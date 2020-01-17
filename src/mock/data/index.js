@@ -1,0 +1,10 @@
+import './data0.js';
+import './data1.js';
+import './data2.js';
+import './data3.js';
+import './data4.js';
+import './data5.js';
+import './data6.js';
+import './data7.js';
+import './data8.js';
+import './data9.js';
