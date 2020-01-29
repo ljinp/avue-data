@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html class="no-js">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title></title>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="./cdn/axios/1.0.0/axios.min.js"></script>
+  <script src="./cdn/vue/2.5.2/vue.min.js"></script>
+  <link href="./cdn/animate/3.5.1/animate.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="./cdn/element-ui/2.9.1/theme-chalk/index.css" />
+  <script src="./cdn/element-ui/2.9.1/index.js"></script>
+  <link rel="stylesheet" href="./css/common.css" />
+  <link rel="stylesheet" href="./lib/index.css" />
+  <link rel="stylesheet" href="./cdn/swiper/4.5.0/swiper.min.css" />
+  <script src="./js/components.js"></script>
+  <script src="./cdn/swiper/4.5.0/swiper.min.js"></script>
+  <script src="./cdn/echarts/4.2.1/echarts.min.js"></script>
+  <script src="./cdn/echarts-wordcloud.min.js"></script>
+  <script src="./js/theme/avue.project.js"></script>
+  <script src="./js/theme/halloween.project.js"></script>
+  <script src="./js/theme/wonderland.project.js"></script>
+  <script src="./js/common.js"></script>
+  <script src="./js/utils.js"></script>
+  <script src="./lib/avue.min.js"></script>
+  <style>
+    #app {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .content {
+      transform-origin: 0 0;
+      background-color: #333;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="content" :style="styleName">
+      <avue-draggable disabled :index="index" :z-index="item.zIndex" v-for="(item,index) in list"
+        :width="item.component.width" :height="item.component.height" :key="index" :top="item.top" :left="item.left"
+        v-show="!item.destruction && !item.display">
+        <avue-echart-slide v-if="item.component.prop==='slide'" :option="item.component.option" :width="item.width"
+          :height="item.height">
+          <div class="swiper-slide" v-for="(citem,cindex) in item.child.index" :key="citem">
+            <component :width="item.component.width" :height="item.component.height" :ref="'list_'+index" disabled
+              :id="'component_'+index" :is="'avue-echart-'+list[citem].component.name"
+              :component="list[citem].component" :data="list[citem].data" :option="list[citem].component.option"
+              :theme="list[citem].component.option.theme" :url="list[citem].url" :child="list[citem].child"
+              :time="list[citem].time" :home-url="config.url" :data-method="list[citem].dataMethod"
+              :data-type="list[citem].dataType" :data-query="handleGetQuery(list[citem])"
+              :data-append="list[citem].dataAppend" :click="handleConClick" :formatter="list[citem].formatter"
+              :label-formatter="list[citem].labelFormatter" :click-formatter="list[citem].clickFormatter"
+              :data-formatter="list[citem].dataFormatter" :title-formatter="list[citem].titleFormatter">
+            </component>
+          </div>
+        </avue-echart-slide>
+
+        <component v-else :width="item.component.width" :height="item.component.height" :ref="'list_'+index"
+          :id="'component_'+index" :is="'avue-echart-'+item.component.name" :component="item.component"
+          :data="item.data" :option="item.component.option" :theme="item.component.theme" :url="item.url"
+          :child="item.child" :time="item.time" :home-url="config.url" :data-method="item.dataMethod"
+          :data-type="item.dataType" :data-query="handleGetQuery(item)" :data-append="item.dataAppend"
+          :click="handleConClick" :formatter="item.formatter" :label-formatter="item.labelFormatter"
+          :click-formatter="item.clickFormatter" :data-formatter="item.dataFormatter"
+          :title-formatter="item.titleFormatter">
+        </component>
+
+      </avue-draggable>
+    </div>
+  </div>
+</body>
+<script>
+  new Vue({
+    el: '#app',
+    data() {
+      return {
+        scale: 1,
+        config: config,
+        list: list
+      }
+    },
+    created() {
+
+    },
+    mounted() {
+      const loading = this.$loading({
+        lock: true,
+        text: '正在加载中，请稍后',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)'
+      });
+      initData(() => {
+        loading.close();
+        this.initData();
+        this.setScale();
+        window.onresize = () => {
+          this.initData();
+          this.setScale();
+        }
+      })
+    },
+    computed: {
+      styleName() {
+        const scale = this.scale;
+        return Object.assign({
+          transform: `scale(${scale}, ${scale})`,
+          width: this.setPx(this.config.width),
+          height: this.setPx(this.config.height),
+          backgroundColor: this.config.backgroundColor
+        }, (() => {
+          if (this.config.backgroundImage) {
+            return {
+              background: `url(${this.config.backgroundImage}) 0% 0% / 100% 100% rgb(3, 12, 59)`,
+            }
+          }
+          return
+        })())
+      },
+    },
+    methods: {
+      initData() {
+        this.list = list;
+        this.config = config;
+        if ((this.config.mark || {}).show) {
+          this.watermark(this.config.mark);
+        }
+      },
+      handleGetQuery(item) {
+        return Object.assign(this.deepClone(this.config.query), item.dataQuery)
+      },
+      handleConClick({ type, child, value }) {
+        if (type === 'tabs') {
+          const indexList = child.index;
+          indexList.forEach((index) => {
+            const paramName = child.paramName;
+            let url = this.list[index].url;
+            if (url) {
+              this.list[index].url = addUrlParam(url, paramName, value);
+              this.$refs['list_' + index].forEach(ele => {
+                ele.updateData();
+              })
+            }
+          })
+        }
+      },
+      setScale() {
+        this.scale = (window.screen.width / this.config.width)
+      },
+    }
+  })
+</script>
+
+</html>
