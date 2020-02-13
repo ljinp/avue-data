@@ -55,7 +55,7 @@ Mock.mock('./data10', 'get', () => {
             "empBackgroundImage": "./img/banner/banner5.png",
             "backgroundImage": "./img/banner/banner4.png"
           },
-          "index": 0,
+          "index": "390da3d6-e6ba-4236-8da6-3f45894f6754",
         },
         {
           "title": "表格",
@@ -135,7 +135,7 @@ Mock.mock('./data10', 'get', () => {
             "scrollTime": 2000,
             "scrollCount": 1
           },
-          "index": 1,
+          "index": "5b88bcd2-23e2-4406-818f-fe6da6ccddf7",
           "url": "${HOME_URL}/table2",
           "time": 0
         },
@@ -12357,7 +12357,7 @@ Mock.mock('./data10', 'get', () => {
             "gridX2": 0,
             "gridY2": 0
           },
-          "index": 2
+          "index": "469a3278-10ee-46a9-9508-e19954f45575"
         },
         {
           "title": "表格",
@@ -12432,7 +12432,7 @@ Mock.mock('./data10', 'get', () => {
             "fontSize": 19,
             "othColor": "#11274c"
           },
-          "index": 3,
+          "index": "469a3278-10ee-46a9-9508-e19954f45576",
           "url": "${HOME_URL}/table1",
           "time": 0
         },
@@ -12509,7 +12509,7 @@ Mock.mock('./data10', 'get', () => {
             "fontSize": 19,
             "othColor": "#152d35"
           },
-          "index": 4,
+          "index": "70c207c5-125c-4cad-8446-0b84a92aff29",
           "url": "${HOME_URL}/table1",
           "time": 0
         },
@@ -12532,7 +12532,7 @@ Mock.mock('./data10', 'get', () => {
             "fontWeight": "normal",
             "color": "#fff"
           },
-          "index": 5
+          "index": "1c3cc832-65e3-47f2-80ec-811315034474"
         },
         {
           "title": "文本框",
@@ -12553,7 +12553,7 @@ Mock.mock('./data10', 'get', () => {
             "fontWeight": "normal",
             "color": "#fff"
           },
-          "index": 6
+          "index": "69278d1a-2aff-4fa2-8e7b-cb8ab7a114a3"
         },
         {
           "name": "实时时间",
@@ -12575,7 +12575,7 @@ Mock.mock('./data10', 'get', () => {
             "fontWeight": "normal",
             "split": 10
           },
-          "index": 7
+          "index": "69268d1a-2aef-4fa2-8e7b-cb8ab7a114a3"
         },
         {
           "name": "实时时间",
@@ -12596,7 +12596,7 @@ Mock.mock('./data10', 'get', () => {
             "fontSize": 42,
             "fontWeight": "normal"
           },
-          "index": 8
+          "index": "69268d1a-2aff-4fa2-8e7b-cb8ab7a114a3"
         },
         {
           "title": "文本框",
@@ -12618,7 +12618,7 @@ Mock.mock('./data10', 'get', () => {
             "color": "#fff",
             "split": 18
           },
-          "index": 9
+          "index": "d1374f1a-752f-463b-8498-3e82d7a05d39"
         },
         {
           "title": "翻牌器",
@@ -12658,7 +12658,7 @@ Mock.mock('./data10', 'get', () => {
             "prefixSplity": 7,
             "split": 0
           },
-          "index": 10,
+          "index": "fb67795f-0e14-4bce-8116-8f3ced600a1e",
           "dataType": 1,
           "url": "${HOME_URL}/table3",
           "time": 0
@@ -12700,7 +12700,7 @@ Mock.mock('./data10', 'get', () => {
             "prefixFontSize": 26,
             "prefixSplity": 7
           },
-          "index": 11,
+          "index": "efc3cdbf-de9e-4d9e-830c-0d75f5db56c6",
           "dataType": 1,
           "url": "${HOME_URL}/table4",
           "time": 0
@@ -12724,7 +12724,7 @@ Mock.mock('./data10', 'get', () => {
             "fontWeight": "normal",
             "color": "#fff"
           },
-          "index": 12
+          "index": "7a5bcb70-60f5-47ca-afb8-6e3bb66ec5f2"
         },
         {
           "title": "文本框",
@@ -12745,7 +12745,7 @@ Mock.mock('./data10', 'get', () => {
             "fontWeight": "normal",
             "color": "#fff"
           },
-          "index": 13
+          "index": "7a5bcb70-60f5-47ca-afb8-6e3bb66ec6f2"
         },
         {
           "title": "文本框",
@@ -12766,7 +12766,7 @@ Mock.mock('./data10', 'get', () => {
             "fontWeight": "normal",
             "color": "#fff"
           },
-          "index": 14
+          "index": "38a6ad0f-dda6-45cf-90a6-2eaa6fac0440"
         },
         {
           "title": "文本框",
@@ -12787,7 +12787,7 @@ Mock.mock('./data10', 'get', () => {
             "fontWeight": "normal",
             "color": "#fff"
           },
-          "index": 15
+          "index": "4f186009-d67c-4b63-98fe-2b3d3910a5bd"
         },
         {
           "title": "文本框",
@@ -12809,7 +12809,7 @@ Mock.mock('./data10', 'get', () => {
             "color": "#fff",
             "split": 7
           },
-          "index": 16
+          "index": "ce9749c3-2c50-4285-88d4-8a35647a72f6"
         },
         {
           "title": "文本框",
@@ -12830,7 +12830,7 @@ Mock.mock('./data10', 'get', () => {
             "fontWeight": "normal",
             "color": "#4affff"
           },
-          "index": 17
+          "index": "d6586dd7-364d-466f-96ba-887664461e99"
         },
         {
           "title": "文本框",
@@ -12851,7 +12851,7 @@ Mock.mock('./data10', 'get', () => {
             "fontWeight": "normal",
             "color": "#fff"
           },
-          "index": 18
+          "index": "613db982-7eb6-4ba9-94ff-785c99547261"
         },
         {
           "name": "折线图",
@@ -12920,7 +12920,7 @@ Mock.mock('./data10', 'get', () => {
             "areaStyle": true,
             "legendShowFontSize": 24
           },
-          "index": 19
+          "index": "ef6c03d7-cb07-48a8-83a5-174da348cc2d"
         },
         {
           "name": "柱状图",
@@ -12986,7 +12986,7 @@ Mock.mock('./data10', 'get', () => {
             "barMinHeight": 56,
             "titleShow": true
           },
-          "index": 20
+          "index": "9cf93be8-5ca7-4395-9197-fe6b7ed370d3"
         },
         {
           "name": "饼图",
@@ -13046,7 +13046,7 @@ Mock.mock('./data10', 'get', () => {
             "gridY": 0,
             "radius": true
           },
-          "index": 21
+          "index": "21712a80-0a78-4a38-8751-94398bc3f594"
         },
         {
           "name": "饼图",
@@ -13104,7 +13104,7 @@ Mock.mock('./data10', 'get', () => {
             ],
             "radius": true
           },
-          "index": 22
+          "index": "7fd623df-3471-4020-89bc-6f4741f1743a"
         },
         {
           "name": "饼图",
@@ -13160,7 +13160,7 @@ Mock.mock('./data10', 'get', () => {
             ],
             "radius": true
           },
-          "index": 23
+          "index": "c537b9c1-045a-4edb-8ee0-19b4f9673313"
         },
         {
           "title": "图片框",
@@ -13177,7 +13177,7 @@ Mock.mock('./data10', 'get', () => {
           "option": {
             "rotate": false
           },
-          "index": 24,
+          "index": "ebeaaf46-9fd5-42c4-8dc4-015a96124e83",
           "data": "https://avuex.avue.top/images/logo.png"
         },
         {
@@ -13222,7 +13222,7 @@ Mock.mock('./data10', 'get', () => {
             "splity": 60,
             "backgroundImage": "./img/banner/banner4.png"
           },
-          "index": 25,
+          "index": "ebeaaf46-9fd5-42c4-8dc4-015a96124e8d",
           "dataType": 1,
           "url": "${HOME_URL}/table4",
           "time": 0
@@ -13243,7 +13243,7 @@ Mock.mock('./data10', 'get', () => {
             "duration": 3000,
             "rotate": true
           },
-          "index": 26,
+          "index": "f0d9d5ce-5ee4-4064-bf5c-44a8fb2ff92f",
           "data": "./img/samiao.png"
         },
         {
@@ -13261,7 +13261,7 @@ Mock.mock('./data10', 'get', () => {
           "option": {
             "duration": "1000"
           },
-          "index": 27,
+          "index": "f0d9d5ce-5ee4-4064-bf5c-44a9fb2ff91f",
           "data": "./img/banner/banner1.png"
         },
         {
@@ -13279,7 +13279,7 @@ Mock.mock('./data10', 'get', () => {
           "option": {
             "duration": "1000"
           },
-          "index": 28,
+          "index": "f0d9d5ce-5ee4-4064-bf5c-44a8fb2ff91f",
           "data": "./img/banner/banner1.png"
         },
         {
@@ -13297,7 +13297,7 @@ Mock.mock('./data10', 'get', () => {
           "option": {
             "duration": "1000"
           },
-          "index": 29,
+          "index": "73441882-5d10-43cb-9547-fce80ddad45b",
           "data": "./img/banner/banner1.png"
         },
         {
@@ -13315,7 +13315,7 @@ Mock.mock('./data10', 'get', () => {
           "option": {
             "duration": "1000"
           },
-          "index": 30,
+          "index": "52188dd0-36e8-4bce-9213-18ba696cb2c2",
           "data": "./img/banner/banner1.png"
         },
         {
@@ -13333,7 +13333,7 @@ Mock.mock('./data10', 'get', () => {
           "option": {
             "duration": "1000"
           },
-          "index": 31,
+          "index": "52188dd0-36e8-4bce-9213-18ba696cb2cb",
           "data": "./img/banner/banner2.png"
         },
         {
@@ -13351,7 +13351,7 @@ Mock.mock('./data10', 'get', () => {
           "option": {
             "duration": "1000"
           },
-          "index": 32,
+          "index": "7dcef154-eb69-4b6f-8017-51a2a0a4e50f",
           "data": "./img/banner/banner1.png"
         },
         {
@@ -13369,7 +13369,7 @@ Mock.mock('./data10', 'get', () => {
           "option": {
             "duration": "1000"
           },
-          "index": 33,
+          "index": "cba08e09-9a9e-4b59-8be1-646a53503702",
           "data": "./img/banner/banner1.png"
         },
         {
@@ -13407,7 +13407,7 @@ Mock.mock('./data10', 'get', () => {
             "whole": true,
             "gridY": 24
           },
-          "index": 34,
+          "index": "c41d122d-cead-44ea-80a7-6630d1509c5f",
         },
         {
           "name": "实时时间",
@@ -13428,7 +13428,7 @@ Mock.mock('./data10', 'get', () => {
             "fontSize": 47,
             "fontWeight": "normal"
           },
-          "index": 35
+          "index": "01c36a39-9ed3-4c6a-8fdb-f7bc52d24ee7"
         },
         {
           "title": "选项卡",
@@ -13466,7 +13466,7 @@ Mock.mock('./data10', 'get', () => {
             "empBackgroundImage": "./img/banner/banner5.png",
             "backgroundImage": "./img/banner/banner4.png"
           },
-          "index": 36
+          "index": "dcb37e11-48be-4487-b1a5-55e172528df8"
         },
         {
           "title": "选项卡",
@@ -13510,7 +13510,7 @@ Mock.mock('./data10', 'get', () => {
             "empBackgroundImage": "",
             "backgroundImage": ""
           },
-          "index": 37
+          "index": "2f044e35-cb0a-4154-9b68-6f9b6fb12627"
         }
       ]
     })()
