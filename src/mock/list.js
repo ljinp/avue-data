@@ -9,7 +9,7 @@ Mock.mock('./list1', 'get', () => {
     label: "大屏模版1",
     status: true
   }, {
-    id: 0,
+    id: 10,
     img: './img/data/data0.jpg',
     label: "大屏模版2",
     status: true

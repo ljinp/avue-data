@@ -4,7 +4,7 @@ function getResult (data) {
     data: data
   }
 }
-Mock.mock('./data0', 'get', () => {
+Mock.mock('./data10', 'get', () => {
   const data = {
     config: {
       name: 'avuex中心驾驶管理舱（全市）',
