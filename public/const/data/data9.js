@@ -8,155 +8,155 @@ Mock.mock('./data9', 'get', () => {
       backgroundColor: '#0d2027',
       query: {}
     },
-    list:(function () {
-        return  [
-          {
-            "title": "文本框",
-            "name": "文本框",
-            "icon": "icon-text",
-            "data": "乡村振兴普惠金融服务平台",
-            "component": {
-              "width": 426.48,
-              "height": 33.04,
-              "name": "text",
-              "prop": "text"
-            },
-            "option": {
-              "textAlign": "left",
-              "fontSize": 35,
-              "fontWeight": "normal",
-              "color": "#fff"
-            },
-            "left": 23.32,
-            "top": 6.36,
-            "index": 13
+    list: (function () {
+      return [
+        {
+          "title": "文本框",
+          "name": "文本框",
+          "icon": "icon-text",
+          "data": "乡村振兴普惠金融服务平台",
+          "component": {
+            "width": 426.48,
+            "height": 33.04,
+            "name": "text",
+            "prop": "text"
           },
-          {
-            "title": "文本框",
-            "name": "文本框",
-            "icon": "icon-text",
-            "data": "Rural Revitalization-PRATT & WHITNEY FINANCIAL SERVICES PLATFORM",
-            "component": {
-              "width": 426.48,
-              "height": 13.96,
-              "name": "text",
-              "prop": "text"
-            },
-            "option": {
-              "textAlign": "left",
-              "fontSize": 12,
-              "fontWeight": "normal",
-              "color": "#fff"
-            },
-            "left": 23.32,
-            "top": 63.6,
-            "index": 14
+          "option": {
+            "textAlign": "left",
+            "fontSize": 35,
+            "fontWeight": "normal",
+            "color": "#fff"
           },
-          {
-            "title": "文本框",
-            "name": "文本框",
-            "icon": "icon-text",
-            "data": "龙头企业",
-            "component": {
-              "width": 110.6,
-              "height": 50,
-              "name": "text",
-              "prop": "text"
-            },
-            "option": {
-              "textAlign": "center",
-              "fontSize": 26,
-              "fontWeight": "bold",
-              "color": "#14eba7"
-            },
-            "left": 19.08,
-            "top": 689,
-            "index": 15
+          "left": 23.32,
+          "top": 6.36,
+          "index": "95ecfd88-c634-48d6-83f9-b94d73569e95"
+        },
+        {
+          "title": "文本框",
+          "name": "文本框",
+          "icon": "icon-text",
+          "data": "Rural Revitalization-PRATT & WHITNEY FINANCIAL SERVICES PLATFORM",
+          "component": {
+            "width": 426.48,
+            "height": 13.96,
+            "name": "text",
+            "prop": "text"
           },
-          {
-            "title": "文本框",
-            "name": "文本框",
-            "icon": "icon-text",
-            "data": "农业占比",
-            "component": {
-              "width": 112.72,
-              "height": 18.2,
-              "name": "text",
-              "prop": "text"
-            },
-            "option": {
-              "textAlign": "left",
-              "fontSize": 20,
-              "fontWeight": "bold",
-              "color": "#14eba7"
-            },
-            "left": 1350.44,
-            "top": 750.48,
-            "index": 16
+          "option": {
+            "textAlign": "left",
+            "fontSize": 12,
+            "fontWeight": "normal",
+            "color": "#fff"
           },
-          {
-            "title": "文本框",
-            "name": "文本框",
-            "icon": "icon-text",
-            "data": "五年产业变化趋势",
-            "component": {
-              "width": 169.96,
-              "height": 20.32,
-              "name": "text",
-              "prop": "text"
-            },
-            "option": {
-              "textAlign": "left",
-              "fontSize": 20,
-              "fontWeight": "bold",
-              "color": "#14eba7"
-            },
-            "left": 1350.44,
-            "top": 152.64,
-            "index": 17
+          "left": 23.32,
+          "top": 63.6,
+          "index": "981d6e01-8bb0-4e59-86a9-52317611c70e"
+        },
+        {
+          "title": "文本框",
+          "name": "文本框",
+          "icon": "icon-text",
+          "data": "龙头企业",
+          "component": {
+            "width": 110.6,
+            "height": 50,
+            "name": "text",
+            "prop": "text"
           },
-          {
-            "title": "文本框",
-            "name": "文本框",
-            "icon": "icon-text",
-            "data": "农产品排名",
-            "component": {
-              "width": 106.36,
-              "height": 18.2,
-              "name": "text",
-              "prop": "text"
-            },
-            "option": {
-              "textAlign": "left",
-              "fontSize": 20,
-              "fontWeight": "bold",
-              "color": "#14eba7"
-            },
-            "left": 1350.44,
-            "top": 419.76,
-            "index": 18
+          "option": {
+            "textAlign": "center",
+            "fontSize": 26,
+            "fontWeight": "bold",
+            "color": "#14eba7"
           },
-          {
-            "title": "文本框",
-            "name": "文本框",
-            "icon": "icon-text",
-            "data": "潍坊 / 非常牛逼的企业",
-            "component": {
-              "width": 316.24,
-              "height": 20.32,
-              "name": "text",
-              "prop": "text"
-            },
-            "option": {
-              "textAlign": "center",
-              "fontSize": 26,
-              "fontWeight": "bold",
-              "color": "#14eba7"
-            },
-            "left": 2.12,
-            "top": 142.04,
-            "index": 19
+          "left": 19.08,
+          "top": 689,
+          "index": "f04583cf-92dd-4af3-b41c-61fd14c2dc29"
+        },
+        {
+          "title": "文本框",
+          "name": "文本框",
+          "icon": "icon-text",
+          "data": "农业占比",
+          "component": {
+            "width": 112.72,
+            "height": 18.2,
+            "name": "text",
+            "prop": "text"
           },
+          "option": {
+            "textAlign": "left",
+            "fontSize": 20,
+            "fontWeight": "bold",
+            "color": "#14eba7"
+          },
+          "left": 1350.44,
+          "top": 750.48,
+          "index": "d2203fa4-ea08-4e41-91b6-67da9d496ac0"
+        },
+        {
+          "title": "文本框",
+          "name": "文本框",
+          "icon": "icon-text",
+          "data": "五年产业变化趋势",
+          "component": {
+            "width": 169.96,
+            "height": 20.32,
+            "name": "text",
+            "prop": "text"
+          },
+          "option": {
+            "textAlign": "left",
+            "fontSize": 20,
+            "fontWeight": "bold",
+            "color": "#14eba7"
+          },
+          "left": 1350.44,
+          "top": 152.64,
+          "index": "7f3c2c56-a2df-43f4-98a2-e2aaec150000"
+        },
+        {
+          "title": "文本框",
+          "name": "文本框",
+          "icon": "icon-text",
+          "data": "农产品排名",
+          "component": {
+            "width": 106.36,
+            "height": 18.2,
+            "name": "text",
+            "prop": "text"
+          },
+          "option": {
+            "textAlign": "left",
+            "fontSize": 20,
+            "fontWeight": "bold",
+            "color": "#14eba7"
+          },
+          "left": 1350.44,
+          "top": 419.76,
+          "index": "a667add6-2eff-4929-8529-597b7d9f319e"
+        },
+        {
+          "title": "文本框",
+          "name": "文本框",
+          "icon": "icon-text",
+          "data": "潍坊 / 非常牛逼的企业",
+          "component": {
+            "width": 316.24,
+            "height": 20.32,
+            "name": "text",
+            "prop": "text"
+          },
+          "option": {
+            "textAlign": "center",
+            "fontSize": 26,
+            "fontWeight": "bold",
+            "color": "#14eba7"
+          },
+          "left": 2.12,
+          "top": 142.04,
+          "index": "07981594-450e-457c-a9f1-0ca5779ac5db"
+        },
         {
           "title": "文本框",
           "name": "文本框",
@@ -176,7 +176,7 @@ Mock.mock('./data9', 'get', () => {
           },
           "left": 1189.32,
           "top": 19.08,
-          "index": 0
+          "index": "dcadb5f0-281a-4d79-923b-ea145496ee5d"
         },
         {
           "name": "实时时间",
@@ -197,7 +197,7 @@ Mock.mock('./data9', 'get', () => {
             "fontSize": 36,
             "fontWeight": "normal"
           },
-          "index": 1
+          "index": "91bcf9ff-b40e-4edf-8b33-e9db7c939087"
         },
         {
           "name": "实时时间",
@@ -218,7 +218,7 @@ Mock.mock('./data9', 'get', () => {
             "fontSize": 24,
             "fontWeight": "normal"
           },
-          "index": 2
+          "index": "91bcf9ff-b40e-4edf-8b33-e9db7c939088"
         },
         {
           "name": "实时时间",
@@ -239,7 +239,7 @@ Mock.mock('./data9', 'get', () => {
             "fontSize": 24,
             "fontWeight": "normal"
           },
-          "index": 3
+          "index": "beed9a67-3b84-4887-81aa-4b8b25b3c12e"
         },
         {
           "name": "折线图",
@@ -297,7 +297,7 @@ Mock.mock('./data9', 'get', () => {
           },
           "left": 1341.96,
           "top": 127.2,
-          "index": 4
+          "index": "d4585aa1-ea0d-4733-8a9d-55163bf27cf3"
         },
         {
           "name": "饼图",
@@ -353,7 +353,7 @@ Mock.mock('./data9', 'get', () => {
           },
           "left": 1437.36,
           "top": 754.72,
-          "index": 5
+          "index": "c8b705fb-da64-4f57-8d59-87ee4578db74"
         },
         {
           "name": "柱状图",
@@ -409,7 +409,7 @@ Mock.mock('./data9', 'get', () => {
           },
           "left": 1322.88,
           "top": 394.32,
-          "index": 6
+          "index": "b6cada0f-1fec-4417-8201-c243095f2971"
         },
         {
           "title": "表格",
@@ -484,7 +484,7 @@ Mock.mock('./data9', 'get', () => {
             "scrollTime": 2000,
             "scrollCount": 1
           },
-          "index": 7,
+          "index": "41a625e8-e15d-43cc-9dd8-371995548044",
           "url": "${HOME_URL}/table2",
           "time": 0
         },
@@ -503,7 +503,7 @@ Mock.mock('./data9', 'get', () => {
           "option": {
             "backgroundColor": "rgba(10, 43, 52, 0.88)"
           },
-          "index": 9
+          "index": "7d86ac27-660b-40e0-8eae-37468536583d"
         },
         {
           "title": "图片框",
@@ -520,7 +520,7 @@ Mock.mock('./data9', 'get', () => {
           "option": {
             "backgroundColor": "rgba(10, 43, 52, 0.88)"
           },
-          "index": 10
+          "index": "2494bc6a-1ddf-4c58-9f49-e10a2f6f8ac7"
         },
         {
           "title": "图片框",
@@ -537,7 +537,7 @@ Mock.mock('./data9', 'get', () => {
           "option": {
             "backgroundColor": "rgba(10, 43, 52, 0.88)"
           },
-          "index": 11
+          "index": "f1613bb9-49a2-428c-8d0a-9abe761ec76b"
         },
         {
           "title": "图片框",
@@ -554,7 +554,7 @@ Mock.mock('./data9', 'get', () => {
           "option": {
             "backgroundColor": "rgba(10, 43, 52, 0.88)"
           },
-          "index": 12
+          "index": "082b9fd0-edbb-44d2-8194-e91d28531bec"
         },
         {
           "title": "翻牌器",
@@ -593,7 +593,7 @@ Mock.mock('./data9', 'get', () => {
             "textAlign": "left",
             "whole": true
           },
-          "index": 20,
+          "index": "1f8eb568-d312-46f4-b4a5-707a127d1a89",
         },
         {
           "title": "翻牌器",
@@ -633,7 +633,7 @@ Mock.mock('./data9', 'get', () => {
             "textAlign": "left",
             "whole": true
           },
-          "index": 21,
+          "index": "ac32588a-c1e0-4a68-839b-66465bb0789a",
         },
         {
           "title": "翻牌器",
@@ -672,7 +672,7 @@ Mock.mock('./data9', 'get', () => {
             "textAlign": "left",
             "whole": true
           },
-          "index": 22,
+          "index": "dc7f1dd2-3838-4afd-8520-fce2ec4e8eb6",
         },
         {
           "title": "翻牌器",
@@ -711,7 +711,7 @@ Mock.mock('./data9', 'get', () => {
             "textAlign": "left",
             "whole": true
           },
-          "index": 23,
+          "index": "a0ec88b7-2e61-443a-bb83-3b7c11de38aa",
         },
         {
           "title": "翻牌器",
@@ -750,7 +750,7 @@ Mock.mock('./data9', 'get', () => {
             "textAlign": "left",
             "whole": true
           },
-          "index": 24,
+          "index": "22b3c880-95a2-4a9d-92c1-7821e0676b55",
         },
         {
           "title": "翻牌器",
@@ -789,7 +789,7 @@ Mock.mock('./data9', 'get', () => {
             "textAlign": "left",
             "whole": true
           },
-          "index": 25,
+          "index": "22b3c880-95a2-4a9d-92c1-7821e0676b54",
         },
         {
           "title": "翻牌器",
@@ -828,7 +828,7 @@ Mock.mock('./data9', 'get', () => {
             "textAlign": "left",
             "whole": true
           },
-          "index": 26,
+          "index": "062b559f-4a3c-4419-a118-3a15a3620adf",
         },
         {
           "title": "翻牌器",
@@ -867,7 +867,7 @@ Mock.mock('./data9', 'get', () => {
             "textAlign": "left",
             "whole": true
           },
-          "index": 27,
+          "index": "1fce8ad9-8ccf-45e9-85db-98935cbb347c",
         },
         {
           "title": "图片",
@@ -885,7 +885,7 @@ Mock.mock('./data9', 'get', () => {
             "duration": "1000",
             "opacity": 0
           },
-          "index": 28,
+          "index": "4509cb57-877d-4965-8986-241e17f0a572",
           "data": "./img/border/border17.jpg"
         },
         {
@@ -904,7 +904,7 @@ Mock.mock('./data9', 'get', () => {
             "duration": "1000",
             "opacity": 0
           },
-          "index": 29,
+          "index": "4134befa-91e8-4517-9476-ee73149edf23",
           "data": "./img/border/border17.jpg"
         },
         {
@@ -923,7 +923,7 @@ Mock.mock('./data9', 'get', () => {
             "duration": "1000",
             "opacity": 0
           },
-          "index": 30,
+          "index": "8a4b3d3e-d124-4b8a-a253-05c150ed555f",
           "data": "./img/border/border17.jpg"
         },
         {
@@ -942,7 +942,7 @@ Mock.mock('./data9', 'get', () => {
             "duration": "1000",
             "opacity": 0
           },
-          "index": 31,
+          "index": "3ccd36ab-b11f-4b97-96fc-bb7258267791",
           "data": "./img/border/border17.jpg"
         },
         {
@@ -961,7 +961,7 @@ Mock.mock('./data9', 'get', () => {
             "duration": "1000",
             "opacity": 0
           },
-          "index": 32,
+          "index": "f7a3503a-0b1b-4775-87bc-242738cca78b",
           "data": "./img/border/border17.jpg"
         },
         {
@@ -980,7 +980,7 @@ Mock.mock('./data9', 'get', () => {
             "duration": "1000",
             "opacity": 0
           },
-          "index": 33,
+          "index": "00869f1b-144d-46dd-b2f7-dea3ae9eaec1",
           "data": "./img/border/border17.jpg"
         },
         {
@@ -999,7 +999,7 @@ Mock.mock('./data9', 'get', () => {
             "duration": "1000",
             "opacity": 0
           },
-          "index": 34,
+          "index": "bd77191c-fc50-41c3-8c2d-fba2a4cc0072",
           "data": "./img/border/border17.jpg"
         },
         {
@@ -1018,7 +1018,7 @@ Mock.mock('./data9', 'get', () => {
             "duration": "1000",
             "opacity": 0
           },
-          "index": 35,
+          "index": "78d9fbfb-9790-4023-97af-92b85bbc8d0a",
           "data": "./img/border/border17.jpg"
         },
         {
@@ -1050,7 +1050,7 @@ Mock.mock('./data9', 'get', () => {
             "suffixFontSize": 14,
             "suffixColor": "#2460dd"
           },
-          "index": 36,
+          "index": "78d9fbfb-9790-4023-97af-92b85bbc8d0b",
           "dataType": 0
         },
         {
@@ -46305,7 +46305,7 @@ Mock.mock('./data9', 'get', () => {
           },
           "left": 549.08,
           "top": 112.36,
-          "index": 37
+          "index": "eb572ded-8b7e-4d78-8fc0-1608aa549dcd"
         },
         {
           "title": "进度条",
@@ -46336,7 +46336,7 @@ Mock.mock('./data9', 'get', () => {
             "suffixFontSize": 14,
             "suffixColor": "#14eba7"
           },
-          "index": 38,
+          "index": "a8b11aa2-74fb-4ee3-8d83-b191e6f8b4f0",
           "dataType": 0
         },
         {
@@ -46368,7 +46368,7 @@ Mock.mock('./data9', 'get', () => {
             "suffixFontSize": 14,
             "suffixColor": "#fddf50"
           },
-          "index": 39,
+          "index": "18c3c427-8cf5-4b92-8b22-4813f9e0ad8a",
           "dataType": 0
         },
         {
@@ -46386,7 +46386,7 @@ Mock.mock('./data9', 'get', () => {
           "option": {
             "backgroundColor": "rgba(10, 43, 52, 0.88)"
           },
-          "index": 8
+          "index": "4ea6b6eb-b904-472e-be21-1681e5345db2"
         }
       ]
     })()

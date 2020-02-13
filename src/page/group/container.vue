@@ -34,6 +34,7 @@
 
 <script>
 import subgroup from './subgroup'
+import { uuid } from '@/utils/utils'
 export default {
   name: 'content',
   inject: ["contain"],
@@ -148,7 +149,8 @@ export default {
         });
         this.$httpajax.get('./data' + id).then(res => {
           const data = res.data.data;
-          this.contain.nav = data.list;
+          let nav = data.list
+          this.contain.nav = nav;
           this.contain.config = data.config;
           this.calcData();
           this.setScale(width);
