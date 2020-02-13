@@ -82,7 +82,7 @@ export default {
     },
     getList (index = 1) {
       this.$httpajax.get('./list' + index).then(res => {
-        this.list = res.data.data
+        this.list = res.data
         this.initData();
       })
     },

@@ -12,7 +12,7 @@ export default {
   },
   computed: {
     option () {
-      return this.component.option || {}
+      return this.option || {}
     },
     fontSize () {
       return (this.option.fontSize || 30) + 'px'

@@ -1,5 +1,3 @@
 export const getResult = (data) => {
-  return {
-    data: data
-  }
+  return data
 }

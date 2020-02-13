@@ -1,3 +1,4 @@
+
 .build{
   position: relative;
   width: 100%;
@@ -30,20 +31,6 @@
     z-index:9999;
     cursor: move;
   }
-  .nav{
-    border-bottom:0 !important;
-    height: 45px;
-    line-height: 45px;
-    overflow: hidden;
-  }
-  .nav__icon{
-    margin-right: 5px;
-  }
-  .nav .el-submenu .el-submenu__title,.nav .el-menu-item{
-    height: 45px;
-    line-height: 45px;
-    font-size: 12px;
-  }
   .el-menu--horizontal .el-menu .el-menu-item, .el-menu--horizontal .el-menu .el-submenu__title{
     font-size: 12px;
   }
@@ -55,7 +42,54 @@
     color:#bcc8d4;
     background: #1d1f26;
   }
+  .menu__list{
+    padding-left: 10px;
+    box-sizing: border-box;
+  }
+  .menu__item--folder{
+    display: flex;
+    align-items: center;
+    padding: 6px 6px;
+    color:#bcc9d4;
+    font-size: 12px;
+    input{
+      border:none;
+      outline: none;
+    }
+    .icon-folder{
+      font-size: 16px;
+      margin-right: 5px;
+    }
+    .icon-fold{
+      font-size: 12px;
+      margin-right: 10px;
+      transform: rotate(90deg);
+      display:inline-block;
+      font-weight: bold;
+      &.is-active{
+        transform: rotate(180deg);
+      }
+    }
+    &.is-active{
+      color: #fff;
+      background: rgba(143,225,255,.1);
+    }
+    &:hover {
+      color: #fff;
+      background: rgba(143,225,255,.1);
+      cursor: pointer;
+    }
+  }
+  .menu__folder{
+    &.ghost{
+      opacity: .6;
+      color:#fff;
+      background: #409EFF !important;
+      cursor: move;
+    }
+  }
   .menu__item {
+    margin-bottom: 1px;
     width: 100%;
     box-sizing: border-box;
     display: flex;
@@ -67,6 +101,21 @@
     cursor: pointer;
     flex: none;
     font-size: 12px;
+    &:hover {
+      color: #fff;
+      background: rgba(143,225,255,.1);
+      cursor: pointer;
+    }
+    &.ghost{
+      opacity: .6;
+      color:#fff;
+      background: #409EFF !important;
+      cursor: move;
+    }
+    &.is-active {
+      background: #409EFF !important;
+      color: #373d41 !important;
+    }
   }
   .menu__icon{
     color: #409EFF;
@@ -79,19 +128,6 @@
     border: 1px solid #3a4659;
     background: #282a30;
   }
-  
-  .menu__item:hover {
-    color: #fff;
-    background: rgba(143,225,255,.1);
-    cursor: move;
-  }
-  
-  .menu__item--active {
-    background: #409EFF !important;
-    color: #373d41 !important;
-    
-  }
-  
   .top{
     padding: 10px 20px;
     position: fixed;
@@ -141,33 +177,6 @@
     width: 100%;
     height: 100%;
     border:none;
-  }
-  .contentmenu{
-    width: 160px;
-    position: fixed;
-    z-index: 99999;
-    list-style: none;
-    box-shadow: 0 2px 6px rgba(0,0,0,.1);
-    padding: 0;
-    background: #27343e;
-    color: #bcc9d4;
-  }
-  .contentmenu__item{
-    z-index:10000;
-    list-style: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    position: relative;
-    font-size: 12px;
-  }
-  .contentmenu__item:hover{
-    background-color: rgba(0,192,222,.1);
-  }
-  .contentmenu__item i{
-    margin-right: 5px;
-  }
-  .contentmenu__item :first-child{
-     padding-top: 5px;
   }
   .container {
     user-select: none;
@@ -222,6 +231,9 @@
     margin-top: -10px;
     box-sizing: border-box;
   }
+  .tabs .el-input-number{
+    width:100%;
+  }
   .tabs .el-tabs__header{
     background: #27343e;
   }
@@ -256,4 +268,15 @@
     height: 100px;
     margin: 20px 10px ;
   }  
+  .el-input-number__decrease, .el-input-number__increase{
+    background: transparent;
+  }
+}
+.views{
+  .wrapper{
+    padding: 0;
+  }
+  .middle{
+    overflow: inherit;
+  }
 }

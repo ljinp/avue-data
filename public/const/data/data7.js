@@ -1,6 +1,3 @@
-
-import { getResult } from '../utils.js'
-import Mock from 'mockjs'
 //选项卡的child配置中
 //index为其他关联组件的序号,paramName为url链接参数中的key值
 //最后选项卡的参数会在请求中带上相关参数,可以看f12的nextwork控制台
@@ -31,48 +28,47 @@ Mock.mock('./data7', 'get', () => {
             "height": 600,
             "name": "bar",
             "prop": "bar",
-            "option": {
-              "gridX": 105,
-              "gridY": 50,
-              "gridX2": 80,
-              "gridY2": 100,
-              "nameColor": "#eee",
-              "lineColor": "#eee",
-              "xNameFontSize": 16,
-              "yNameFontSize": 16,
-              "labelShow": false,
-              "labelShowFontSize": 14,
-              "labelShowFontWeight": 300,
-              "yAxisInverse": false,
-              "xAxisInverse": false,
-              "xAxisShow": true,
-              "yAxisShow": true,
-              "xAxisSplitLineShow": false,
-              "yAxisSplitLineShow": false,
-              "barWidth": 40,
-              "barRadius": 8,
-              "barColor": [
-                {
-                  "color1": "#83bff6",
-                  "color2": "#188df0",
-                  "postion": 90,
-                  "$index": 0,
-                  "_show": true
-                },
-                {
-                  "color1": "#23B7E5",
-                  "color2": "#564AA3",
-                  "postion": 50,
-                  "$index": 1,
-                  "_show": true
-                }
-              ],
-              "barMinHeight": 2
-            }
+          },
+          "option": {
+            "gridX": 105,
+            "gridY": 50,
+            "gridX2": 80,
+            "gridY2": 100,
+            "nameColor": "#eee",
+            "lineColor": "#eee",
+            "xNameFontSize": 16,
+            "yNameFontSize": 16,
+            "labelShow": false,
+            "labelShowFontSize": 14,
+            "labelShowFontWeight": 300,
+            "yAxisInverse": false,
+            "xAxisInverse": false,
+            "xAxisShow": true,
+            "yAxisShow": true,
+            "xAxisSplitLineShow": false,
+            "yAxisSplitLineShow": false,
+            "barWidth": 40,
+            "barRadius": 8,
+            "barColor": [
+              {
+                "color1": "#83bff6",
+                "color2": "#188df0",
+                "postion": 90,
+                "$index": 0,
+                "_show": true
+              },
+              {
+                "color1": "#23B7E5",
+                "color2": "#564AA3",
+                "postion": 50,
+                "$index": 1,
+                "_show": true
+              }
+            ],
+            "barMinHeight": 2
           },
           "left": 415.52,
           "top": 112.36,
-          "zIndex": 0,
           "index": 0
         },
         {
@@ -99,20 +95,19 @@ Mock.mock('./data7', 'get', () => {
           "component": {
             "width": 356.9128919860628,
             "height": 46.209059233449096,
-            "option": {
-              "type": "tabs",
-              "color": "#eee",
-              "empColor": "#4dffff",
-              "fontSize": 20,
-              "split": 8,
-              "empBackgroundImage": "./img/banner/banner5.png",
-              "backgroundImage": "./img/banner/banner4.png"
-            },
             "name": "tabs",
             "prop": "tabs"
           },
+          "option": {
+            "type": "tabs",
+            "color": "#eee",
+            "empColor": "#4dffff",
+            "fontSize": 20,
+            "split": 8,
+            "empBackgroundImage": "./img/banner/banner5.png",
+            "backgroundImage": "./img/banner/banner4.png"
+          },
           "index": 1,
-          "zIndex": 1,
           "left": 837.06,
           "top": 23.32
         }

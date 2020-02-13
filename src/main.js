@@ -2,8 +2,6 @@ import Vue from 'vue'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import axios from 'axios';
-import Avue from '@smallwei/avue';
-import '@smallwei/avue/lib/index.css';
 import router from './router.js';
 import App from './App.vue'
 import './styles/common.scss'
@@ -14,7 +12,7 @@ import './components/'
 import '@/theme/index.js'
 window.axios = axios;
 Vue.config.productionTip = false
-Vue.use(Avue);
+Vue.use(window.AVUE);
 Vue.use(ElementUI);
 new Vue({
   router,

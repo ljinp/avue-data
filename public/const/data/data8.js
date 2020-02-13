@@ -1,7 +1,4 @@
 
-
-import { getResult } from '../utils.js'
-import Mock from 'mockjs'
 Mock.mock('./data8', 'get', () => {
   const data = {
     config: {

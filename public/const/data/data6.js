@@ -1,6 +1,3 @@
-
-import { getResult } from '../utils.js'
-import Mock from 'mockjs'
 Mock.mock('./data6', 'get', () => {
   const data = {
     config: {
@@ -43,49 +40,48 @@ Mock.mock('./data6', 'get', () => {
             "height": 600,
             "name": "bar",
             "prop": "bar",
-            "option": {
-              "gridX": 105,
-              "gridY": 50,
-              "gridX2": 80,
-              "gridY2": 100,
-              "nameColor": "#eee",
-              "lineColor": "#eee",
-              "xNameFontSize": 16,
-              "yNameFontSize": 16,
-              "labelShow": true,
-              "labelShowFontSize": 20,
-              "labelShowColor": '#fff',
-              "labelShowFontWeight": 300,
-              "yAxisInverse": false,
-              "xAxisInverse": false,
-              "xAxisShow": true,
-              "yAxisShow": true,
-              "xAxisSplitLineShow": false,
-              "yAxisSplitLineShow": false,
-              "barWidth": 70,
-              "barRadius": 8,
-              "barColor": [
-                {
-                  "color1": "#83bff6",
-                  "color2": "#188df0",
-                  "postion": 90,
-                  "$index": 0,
-                  "_show": true
-                },
-                {
-                  "color1": "#23B7E5",
-                  "color2": "#564AA3",
-                  "postion": 50,
-                  "$index": 1,
-                  "_show": true
-                }
-              ],
-              "barMinHeight": 2
-            }
+          },
+          "option": {
+            "gridX": 105,
+            "gridY": 50,
+            "gridX2": 80,
+            "gridY2": 100,
+            "nameColor": "#eee",
+            "lineColor": "#eee",
+            "xNameFontSize": 16,
+            "yNameFontSize": 16,
+            "labelShow": true,
+            "labelShowFontSize": 20,
+            "labelShowColor": '#fff',
+            "labelShowFontWeight": 300,
+            "yAxisInverse": false,
+            "xAxisInverse": false,
+            "xAxisShow": true,
+            "yAxisShow": true,
+            "xAxisSplitLineShow": false,
+            "yAxisSplitLineShow": false,
+            "barWidth": 70,
+            "barRadius": 8,
+            "barColor": [
+              {
+                "color1": "#83bff6",
+                "color2": "#188df0",
+                "postion": 90,
+                "$index": 0,
+                "_show": true
+              },
+              {
+                "color1": "#23B7E5",
+                "color2": "#564AA3",
+                "postion": 50,
+                "$index": 1,
+                "_show": true
+              }
+            ],
+            "barMinHeight": 2
           },
           "left": 436.72,
           "top": 273.48,
-          "zIndex": 0,
           "index": 0
         }
       ]

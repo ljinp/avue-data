@@ -1,8 +1,5 @@
 <template>
   <div class="build">
-    <el-dialog title="复制代码" :visible.sync="dataVisible" width="100%" fullscreen>
-      <avue-input type="textarea" v-model="listJson" :min-rows="30"></avue-input>
-    </el-dialog>
     <el-dialog title="图库" :visible.sync="imgVisible">
       <el-tabs class="tabs" stretch v-model="imgActive">
         <el-tab-pane :name="index+''" v-for="(item,index) in imgTabs" :key="index">
@@ -16,115 +13,13 @@
           :key="index" />
       </el-scrollbar>
     </el-dialog>
-    <div class="contentmenu" v-show="contentMenu" :style="styleContentmenu" @click="contentMenu=false">
-      <div class="contentmenu__item" @click="handleDel(active,zIndex)"> <i class="el-icon-close"></i>删除图层
-      </div>
-      <div class="contentmenu__item" @click="handleCopy(active,zIndex)"><i class="el-icon-document"></i>复制图层
-      </div>
-      <div class="contentmenu__item" @click="handleTop(active,zIndex)"><i class="el-icon-arrow-up"></i>置顶图层
-      </div>
-      <div class="contentmenu__item" @click="handleBottom(active,zIndex)"><i class="el-icon-arrow-down"></i>置底图层
-      </div>
-      <div class="contentmenu__item" @click="handleStepTop(active,zIndex)"><i class="el-icon-arrow-up"></i>上移一层
-      </div>
-      <div class="contentmenu__item" @click="handleStepBottom(active,zIndex)"><i class="el-icon-arrow-down"></i>下移一层
-      </div>
-    </div>
-    <el-menu class="nav" mode="horizontal" background-color="#212528" text-color="#fff" active-text-color="#409EFF"
-      @mousedown="handleMouseDown">
-      <el-submenu :index="index+''" v-for="(item,index) in baseList" :key="index">
-        <template slot="title">
-          <el-tooltip effect="dark" :content="item.label" placement="top">
-            <i :class="'nav__icon iconfont '+item.icon"></i>
-          </el-tooltip>
-        </template>
-        <el-menu-item @click="addCompoment(citem.option)" :key="cindex" :index="`${index}-${cindex}`"
-          v-for="(citem,cindex) in item.children">
-          <i :class="'nav__icon iconfont '+citem.option.icon"></i>
-          <span>{{citem.label}}</span>
-        </el-menu-item>
-      </el-submenu>
-      <el-menu-item index="6" @click="handleReset" v-show="!menuFlag">
-        <el-tooltip effect="dark" content="还原" placement="top">
-          <i class="nav__icon iconfont icon-reset"></i>
-        </el-tooltip>
-      </el-menu-item>
-      <el-menu-item index="7" @click="handleView" v-show="menuFlag">
-        <el-tooltip effect="dark" content="预览" placement="top">
-          <i class="nav__icon iconfont icon-view"></i>
-        </el-tooltip>
-      </el-menu-item>
-      <el-menu-item index="8" @click="handleBuild">
-        <el-tooltip effect="dark" content="生成" placement="top">
-          <i class="nav__icon iconfont icon-build"></i>
-        </el-tooltip>
-      </el-menu-item>
-    </el-menu>
+    <top ref="top"></top>
     <div class="app" :class="{'app--none':!menuFlag}">
-      <div class="menu" v-show="menuFlag" @mousedown="handleMouseDown">
+      <div class="menu" v-show="menuFlag" @click.self="handleMouseDown">
         <p class="title">图层</p>
-        <draggable v-model="zIndexList">
-          <div class="menu__item" v-show="!item.destruction" @contextmenu.prevent="handleContextMenu"
-            :class="{'menu__item--active':item.index===active}" v-for="(item,index) in zIndexList" :key="index"
-            @click="active=item.index" @mouseover="handleMouseOver(item.index)">
-            <span class=" menu__icon">
-              <i :class="'iconfont '+item.icon"></i>
-            </span>
-            <span>{{item.title}}</span>
-          </div>
-        </draggable>
+        <layer ref="layer" :nav="nav"></layer>
       </div>
-      <div class="middle">
-        <div class="wrapper__grade" @mousedown="handleMouseDown"></div>
-        <div class="wrapper" @mousedown="handleMouseDown">
-          <div class="content" ref="content" @mousedown.self="handleSelectMouseDown" @mousemove="handleSelectMouseMove"
-            @mouseup.self="handleSelectMouseUp">
-            <div class="selectall" :style="selectStyle" v-show="selectObj.show" ref="selectall"></div>
-            <div class="selectbg" v-show="selectObj.show"></div>
-            <div class="selectflag" ref="selectflag" v-show="selectObj.flag" @mousedown.stop="handleMoveMouseDown"
-              @mousemove="handleMoveMouseMove" @mouseup.stop="handleMoveMouseUp">
-            </div>
-            <div class="container" :style="styleName" ref="container" @contextmenu.prevent="handleContextMenu"
-              @mousedown="handleMouseDown">
-              <div class="grade" v-if="gradeFlag || config.gradeShow" :style="gradeLenStyle"></div>
-              <avue-draggable v-for="(item,index) in list" :scale="stepScale" :disabled="!menuFlag" :ref="'item_'+index"
-                :id="'item_'+index" :step="stepScale" @focus="handleFocus" @postion="handlePostion"
-                :resize="item.resize" @resize="handleResize" v-show="!item.destruction && !item.display"
-                @blur="handleBlur" @change="handleChange" :index="index" :z-index="item.zIndex"
-                :width="item.component.width" :height="item.component.height" :key="index" :top="item.top"
-                :left="item.left">
-                <avue-echart-slide v-if="item.component.prop==='slide'" :option="item.component.option"
-                  :width="item.width" :height="item.height">
-                  <div class="swiper-slide" v-for="(citem,cindex) in item.child.index" :key="cindex">
-                    <component :scale="stepScale" :width="item.component.width" :height="item.component.height"
-                      :ref="'list_'+index" :disabled="!menuFlag" :id="'component_'+index" :animation="!menuFlag"
-                      :is="'avue-echart-'+list[citem].component.name" :component="list[citem].component"
-                      :data="list[citem].data" :option="list[citem].component.option"
-                      :theme="list[citem].component.option.theme" :url="list[citem].url" :child="list[citem].child"
-                      :time="list[citem].time" :home-url="config.url" :data-method="list[citem].dataMethod"
-                      :data-type="list[citem].dataType" :data-query="handleGetQuery(list[citem])"
-                      :click="handleConClick" :formatter="list[citem].formatter"
-                      :click-formatter="list[citem].clickFormatter" :label-formatter="list[citem].labelFormatter"
-                      :data-formatter="list[citem].dataFormatter" :title-formatter="list[citem].titleFormatter">
-                    </component>
-                  </div>
-                </avue-echart-slide>
-                <component v-else :ref="'list_'+index" :disabled="!menuFlag" :id="'component_'+index" :scale="stepScale"
-                  :width="item.component.width" :height="item.component.height" :animation="!menuFlag"
-                  :is="'avue-echart-'+item.component.name" :component="item.component" :data="item.data"
-                  :option="item.component.option" :theme="item.component.option.theme" :url="item.url"
-                  :child="item.child" :time="item.time" :home-url="config.url" :data-method="item.dataMethod"
-                  :data-type="item.dataType" :data-query="handleGetQuery(item)" :click="handleConClick"
-                  :formatter="item.formatter" :click-formatter="item.clickFormatter"
-                  :label-formatter="item.labelFormatter" :data-formatter="item.dataFormatter"
-                  :title-formatter="item.titleFormatter">
-                </component>
-              </avue-draggable>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      <container ref="container"></container>
       <div class="menu params" v-show="menuFlag">
         <p class="title">操作</p>
         <el-tabs class="tabs" stretch v-model="tabsActive">
@@ -1004,34 +899,34 @@
                 </el-collapse>
               </template>
               <!-- 多选配置选项 -->
-              <template v-else-if="isSelect">
+              <template v-else-if="isSelectActive">
                 <el-form-item label="水平方式">
                   <el-tooltip content="左对齐" placement="top">
-                    <i class="el-icon-s-fold icon" @click="handlePostionSelect('left')"></i>
+                    <i class="el-icon-s-fold icon" @click="$refs.container.handlePostionSelect('left')"></i>
                   </el-tooltip>
                   <el-tooltip content="居中对齐" placement="top">
-                    <i class="el-icon-s-operation icon" @click="handlePostionSelect('center')"></i>
+                    <i class="el-icon-s-operation icon" @click="$refs.container.handlePostionSelect('center')"></i>
                   </el-tooltip>
                   <el-tooltip content="右对齐" placement="top">
-                    <i class="el-icon-s-unfold icon" @click="handlePostionSelect('right')"></i>
+                    <i class="el-icon-s-unfold icon" @click="$refs.container.handlePostionSelect('right')"></i>
                   </el-tooltip>
                 </el-form-item>
                 <el-form-item label="垂直方式">
                   <el-tooltip content="顶对齐" placement="top">
-                    <i class="el-icon-s-fold icon" @click="handlePostionSelect('top')"></i>
+                    <i class="el-icon-s-fold icon" @click="$refs.container.handlePostionSelect('top')"></i>
                   </el-tooltip>
                   <el-tooltip content="中部对齐" placement="top">
-                    <i class="el-icon-s-operation icon" @click="handlePostionSelect('middle')"></i>
+                    <i class="el-icon-s-operation icon" @click="$refs.container.handlePostionSelect('middle')"></i>
                   </el-tooltip>
                   <el-tooltip content="底对齐" placement="top">
-                    <i class="el-icon-s-unfold icon" @click="handlePostionSelect('bottom')"></i>
+                    <i class="el-icon-s-unfold icon" @click="$refs.container.handlePostionSelect('bottom')"></i>
                   </el-tooltip>
                 </el-form-item>
                 <el-form-item label-width="0">
-                  <el-button type="primary" size="small" class="block" @click="handleDeleteSelect">批量删除</el-button>
+                  <el-button type="primary" size="small" class="block" @click="handleDeleteSelect">删除</el-button>
                 </el-form-item>
                 <el-form-item label-width="0">
-                  <el-button type="danger" size="small" class="block" @click="handleExectSelect">退出全选</el-button>
+                  <el-button type="danger" size="small" class="block" @click="handleFloder">成组</el-button>
                 </el-form-item>
               </template>
               <!-- 主屏的配置项 -->
@@ -1162,111 +1057,77 @@
             </el-tooltip>
             <el-form label-width="120px" label-position="left" size="small">
               <el-form-item label="序号">
-                <avue-input v-model="active"></avue-input>
-              </el-form-item>
-              <el-form-item label="宽度">
-                <avue-input v-model="activeComponent.width"></avue-input>
-              </el-form-item>
-              <el-form-item label="高度">
-                <avue-input v-model="activeComponent.height"></avue-input>
+                <avue-input v-model="activeObj.index" disabled></avue-input>
               </el-form-item>
               <el-form-item label="X位置">
-                <avue-input v-model="activeObj.left"></avue-input>
+                <avue-input-number v-model="activeObj.left"></avue-input-number>
               </el-form-item>
               <el-form-item label="Y位置">
-                <avue-input v-model="activeObj.top"></avue-input>
+                <avue-input-number v-model="activeObj.top"></avue-input-number>
+              </el-form-item>
+              <el-form-item label="宽度">
+                <avue-input-number v-model="activeComponent.width"></avue-input-number>
+              </el-form-item>
+              <el-form-item label="高度">
+                <avue-input-number v-model="activeComponent.height"></avue-input-number>
               </el-form-item>
             </el-form>
           </el-tab-pane>
         </el-tabs>
       </div>
     </div>
+    <contentmenu ref="contentmenu"></contentmenu>
   </div>
 </template>
 <script>
-import baseList from '@/option/base'
+
+import layer from './group/layer';
+import top from './group/top';
+import contentmenu from './group/contentmenu'
 import {imgOption,imgTabs,dicOption,tableOption,colorOption} from '@/option/config'
-import {compare,stringify} from '@/utils/utils'
-import vuedraggable from 'vuedraggable';
 import init from '@/mixins/'
- export default{
+import {uuid} from '@/utils/utils'
+ export default {
     mixins:[init],
     data() {
       return {
+        keys:{
+          ctrl:false,
+        },
         loading:'',
         childProps: {
           label: 'name',
           value: 'index'
         },
-        contentWidth: 0,
-        contentMenu: false,
-        contentMenuX: -1000,
-        contentMenuY: -1000,
-        zIndex: 0,
         key: '',
-        baseList: baseList,
         menuFlag: true,
-        dataVisible: false,
         imgVisible: false,
         imgObj: {},
         imgOption: imgOption,
         imgTabs: imgTabs,
         imgActive: 0,
         CodeMirrorEditor: {},
-        gradeFlag: false,
         form: {},
         dicOption: dicOption,
         tableOption: tableOption,
         colorOption: colorOption,
-        active: -1,
         tabsActive: 0,
-        selectList: [],
-        selectCount: {
-          maxx1: 0,
-          maxx2: 0,
-          maxy1: 0,
-          maxy2: 0,
-          x1: 0,
-          x2: 0,
-          y1: 0,
-          y2: 0
-        },
-        moveObj: {
-          startX: 0,
-          startY: 0,
-          show: false,
-        },
-        selectObj: {
-          startX: 0,
-          startY: 0,
-          moveX: 0,
-          moveY: 0,
-          flag: false,
-          show: false,
-          left: 0,
-          top: 0,
-          width: 0,
-          height: 0
-        }
       }
     },
     components:{
-      'draggable':vuedraggable
+      layer,
+      top,
+      contentmenu
     },
     computed: {
-      selectStyle() {
-        return {
-          width: this.setPx(this.selectObj.width),
-          height: this.setPx(this.selectObj.height),
-          left: this.setPx(this.selectObj.left),
-          top: this.setPx(this.selectObj.top)
-        }
-      },
-      isSelect() {
-        return !this.validatenull(this.selectList)
+      isFolder(){
+        return this.activeObj.children
       },
       isActive() {
-        return this.active != -1
+        return this.active.length!==0
+      },
+      isSelectActive() {
+        return this.active.length>1;
       },
       childList() {
         return this.list.filter(ele => {
@@ -1275,15 +1136,6 @@ import init from '@/mixins/'
           }
           return true;
         })
-      },
-      listJson() {
-        let list = this.list.filter(ele => !ele.destruction == true)
-        const str = stringify(list)
-        return str
-      },
-      stepScale() {
-        let scale = Number(((1 / this.scale) * 100).toFixed(2));
-        return scale
       },
       queryData: {
         get() {
@@ -1325,43 +1177,11 @@ import init from '@/mixins/'
 
         },
       },
-      styleContentmenu() {
-        return {
-          left: this.setPx(this.contentMenuX),
-          top: this.setPx(this.contentMenuY)
-        }
-      },
-      zIndexList: {
-        set(val) {
-          const leng = val.length;
-          val.forEach((ele, index) => {
-            const zIndex = leng - index;
-            this.$set(this.list[ele.index], 'zIndex', zIndex)
-          })
-        },
-        get() {
-          let list = [];
-          list = this.list.map(ele => {
-            return {
-              destruction: ele.destruction,
-              index: ele.index,
-              title: ele.name,
-              zIndex: ele.zIndex,
-              icon: ele.icon
-            }
-          })
-          list.sort(compare("zIndex"));
-          return list;
-        }
-      },
-      listLen() {
-        return this.list.length || 0;
-      },
       activeComponent() {
         return this.activeObj.component || {}
       },
       activeOption() {
-        return this.activeComponent.option || {}
+        return this.activeObj.option || {}
       },
       activeKey() {
         if (this.activeComponent.name === 'table') {
@@ -1372,210 +1192,115 @@ import init from '@/mixins/'
         return []
       },
       activeObj() {
-        return this.list[this.active] || {}
-      },
-      activeNextObj() {
-        return this.list[this.active - 1] || {}
-      },
-      activeBreakObj() {
-        return this.list[this.active + 1] || {}
-      },
-      gradeLenStyle() {
-        return {
-          backgroundSize: `${this.setPx(this.config.gradeLen)} ${this.setPx(this.config.gradeLen)},${this.setPx(this.config.gradeLen)} ${this.setPx(this.config.gradeLen)}`
+        let result
+        if(this.validatenull(this.active)){
+          return {}
         }
+        this.active.forEach(ele=>{
+          const item = this.findnav(ele, true);
+          if(this.active.length>1){
+            if(!result)result=[];
+            result.push(item.obj);
+          }else{
+            result=item.obj
+          }
+        })
+        return result
       }
     },
     watch: {
       menuFlag() {
         this.setResize();
       },
-      active(val) {
-        this.list.forEach((ele, index) => {
-          this.$refs['item_' + index][0].setActive(index == val)
-        });
-        this.$nextTick(() => {
-          this.selectObj.flag = false;
-          this.contentMenu = false;
+      overactive(n,o){
+        [o,n].forEach((ele,index)=>{
+          this.setActive(ele,index===1,'setOverActive');
         })
+      },
+      active(n,o) {
+        [o,n].forEach((ele,index)=>{
+          ele.forEach(item=>{
+            this.setActive(item,index===1,'setActive');
+          })
+        })
+        //隐藏右键菜单
+        this.$refs.contentmenu.hide();
+        // 初始化选项卡
         this.tabsActive = '0';
       },
     },
+    created(){
+      this.listen();
+    },
+    mounted(){
+      this.initFun()
+    },
     methods: {
+      initFun(){
+        ['setScale','setResize'].forEach(ele=>{
+          this[ele]=this.$refs.container[ele]
+        });
+        ['handleAdd'].forEach(ele=>{
+          this[ele]=this.$refs.top[ele]
+        })
+      },
+      // 右键菜单
+      handleContextMenu (e, item) {
+        if (!this.isSelectActive) {
+          this.active = [item.index];
+        }
+        setTimeout(() => {
+          this.$refs.contentmenu.show(e.clientX, e.clientY);
+        }, 0)
+      },
+      //监听键盘的按键
+      listen(){
+        document.onkeydown =(e)=>{
+          this.keys.ctrl=e.metaKey;
+        }
+        document.onkeyup =(e)=>{
+          this.keys.ctrl=e.metaKey;
+        }
+      },
+      setActive (val, result, fun) {
+        const obj = this.$refs.container.handleGetObj(val);
+          if (obj) obj[0][fun](result)
+      },
+      //批量成组
+      handleFloder(){
+        let floder = {
+          "title": "文件夹",
+          "name": "文件夹",
+          "index": uuid(),
+          "children": []
+        }
+        this.active.forEach(index => {
+          const params = this.findnav(index);
+          floder.children.push(params.obj);
+          delete params.parent.splice(params.count,1);
+        })
+        this.nav.push(floder);
+        this.handleInitActive();
+      },
+      //批量删除
+      handleDeleteSelect () {
+         this.$confirm(`是否批量删除所选图层?`, '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.active.forEach(index => {
+            const params = this.findnav(index);
+            delete params.parent.splice(params.count,1);
+          })
+          this.handleInitActive()
+        })
+      },
       vaildProp(name, list) {
         if (list) {
           return list.includes(this.activeComponent.prop)
         }
         return this.dicOption[name].includes(this.activeComponent.prop)
-      },
-      handleMoveMouseUp() {
-        this.moveObj.show = false;
-      },
-      handleMoveMouseDown(e) {
-        const x = e.offsetX
-        const y = e.offsetY
-        this.moveObj.startX = x
-        this.moveObj.startY = y
-        this.moveObj.show = true;
-      },
-      handleMoveMouseMove(e) {
-        if (this.moveObj.show) {
-          const x = e.offsetX
-          const y = e.offsetY;
-          const movex = (x - this.moveObj.startX) * this.stepScale;
-          const movey = (y - this.moveObj.startY) * this.stepScale;
-          this.moveObj.startX = x
-          this.moveObj.startY = y
-          this.handleMoveSelectList(movex, movey)
-        }
-      },
-      handleSelectMouseDown(e) {
-        this.list.forEach((ele, index) => {
-          this.$refs['item_' + index][0].setActive(false)
-        })
-        this.selectObj.flag = false;
-        this.selectObj.width = 0
-        this.selectObj.height = 0;
-        const x = e.layerX
-        const y = e.layerY
-        this.selectObj.startX = x
-        this.selectObj.startY = y
-        this.selectObj.left = x;
-        this.selectObj.top = y;
-        this.selectObj.show = true
-        this.handleMouseDown();
-      },
-      handleSelectMouseMove(e) {
-        if (this.selectObj.show) {
-          const x = e.layerX
-          const y = e.layerY;
-          this.selectObj.width = this.selectObj.width + x - this.selectObj.startX
-          this.selectObj.height = this.selectObj.height + y - this.selectObj.startY
-          this.selectObj.startX = x
-          this.selectObj.startY = y
-        }
-      },
-      handleSelectMouseUp() {
-        if (this.selectObj.show) {
-          this.selectObj.show = false
-          if (this.selectObj.width != 0 && this.selectObj.height != 0) {
-            this.selectCount.x1 = this.selectObj.left * this.stepScale
-            this.selectCount.x2 = this.selectCount.x1 + this.selectObj.width * this.stepScale
-            this.selectCount.y1 = this.selectObj.top * this.stepScale
-            this.selectCount.y2 = this.selectCount.y1 + this.selectObj.height * this.stepScale
-            this.handleGetSelectList();
-          }
-        }
-      },
-      handlePostionSelect(postion) {
-        const x1 = this.selectCount.maxx1;
-        const x2 = this.selectCount.maxx2;
-        const y1 = this.selectCount.maxy1;
-        const y2 = this.selectCount.maxy2;
-        if (postion === 'left') {
-          this.handleMoveSelectList(x1, undefined, true, postion);
-        } else if (postion === 'center') {
-          this.handleMoveSelectList(x1 + (x2 - x1) / 2, undefined, true, postion);
-        } else if (postion === 'right') {
-          this.handleMoveSelectList(x2, undefined, true, postion);
-        } else if (postion === 'top') {
-          this.handleMoveSelectList(undefined, y1, true, postion);
-        } else if (postion === 'middle') {
-          this.handleMoveSelectList(undefined, y1 + (y2 - y1) / 2, true, postion);
-        } else if (postion === 'bottom') {
-          this.handleMoveSelectList(undefined, y2, true, postion);
-        }
-      },
-      handleMoveSelectList(left, top, type, postion) {
-        this.selectList.forEach(index => {
-          const ele = this.list[index];
-          const ele_component = ele.component;
-          //水平情况
-          if (left) {
-            let baseLeft = Number(type ? left : (ele.left + left).toFixed(2));
-            if (postion === 'right') {
-              baseLeft = baseLeft - ele_component.width
-            }
-            else if (postion === 'center') {
-              const obj_center = ele.left + ele_component.width / 2;
-              baseLeft = ele.left + (left - obj_center)
-            }
-            this.$set(this.list[index], 'left', baseLeft);
-            this.$refs['item_' + index][0].setLeft(baseLeft)
-          }
-          //垂直情况
-          if (top) {
-            let baseTop = Number(type ? top : (ele.top + top).toFixed(2));
-            if (postion === 'bottom') {
-              baseTop = baseTop - ele_component.height
-            }
-            else if (postion === 'middle') {
-              const obj_middle = ele.top + ele_component.height / 2;
-              baseTop = ele.top + (top - obj_middle)
-            }
-            this.$set(this.list[index], 'top', baseTop)
-            this.$refs['item_' + index][0].setTop(baseTop)
-          }
-        })
-        this.handleCalcPostionSelect();
-      },
-      handleGetSelectList() {
-        this.selectList = [];
-        this.list.forEach((ele, index) => {
-          const left = ele.left;
-          const top = ele.top;
-          if ((!ele.destruction && !ele.display)) {
-            if ((left >= this.selectCount.x1 && left <= this.selectCount.x2) && (top >= this.selectCount.y1 && top <= this.selectCount.y2)) {
-              this.selectList.push(index)
-            }
-          }
-        })
-        this.handleCalcPostionSelect();
-        if (!this.validatenull(this.selectList)) {
-          this.selectList.forEach(index => {
-            this.$refs['item_' + index][0].setActive(true)
-          })
-          this.selectObj.flag = true;
-        }
-
-      },
-      //计算多选状态下的最大边界值
-      handleCalcPostionSelect() {
-        this.selectCount.maxx1 = 99999;
-        this.selectCount.maxy1 = 99999;
-        this.selectList.forEach(index => {
-          const ele = this.list[index];
-          const left = ele.left;
-          const top = ele.top;
-          const width = ele.component.width;
-          const height = ele.component.height;
-          if (this.selectCount.maxx1 > left) {
-            this.selectCount.maxx1 = left;
-          }
-          if (this.selectCount.maxx2 < left + width) {
-            this.selectCount.maxx2 = left + width;
-          }
-          if (this.selectCount.maxy1 > top) {
-            this.selectCount.maxy1 = top;
-          }
-          if (this.selectCount.maxy2 < top + height) {
-            this.selectCount.maxy2 = top + height;
-          }
-        })
-      },
-      handleDeleteSelect() {
-        this.selectList.forEach(index => {
-          this.$set(this.list[index], 'destruction', true)
-        })
-        this.selectList = [];
-        this.selectObj.flag = false;
-      },
-      handleExectSelect() {
-        this.selectList.forEach(index => {
-          this.$refs['item_' + index][0].setActive(false)
-        })
-        this.selectList = [];
-        this.selectObj.flag = false;
       },
       handleFormatter() {
         try {
@@ -1590,97 +1315,13 @@ import init from '@/mixins/'
       },
       handleRefresh() {
         this.activeObj.dataFormatter = eval(this.activeObj.dataFormatter);
-        this.$refs['list_' + this.active][0].updateData();
-        this.$message.success('刷新成功')
-      },
-      handleMouseOver(val) {
-        this.list.forEach((ele, index) => {
-          this.$refs['item_' + index][0].setOverActive(index === val)
-        });
-      },
-      startLoading(){
-        this.loading = this.$loading({
-          lock: true,
-          text: '正在加载中，请稍后',
-          spinner: 'el-icon-loading',
-          background: 'rgba(0, 0, 0, 0.7)'
-        });
-      },
-      stopLoading(){
-        this.loading.close();
+        this.$refs.container.handleRefresh();
       },
       formatTooltip(val) {
         return parseInt(val);
       },
-      handleMouseDown() {
-        this.active = -1;
-      },
-      handleTop() {
-        this.activeObj.zIndex = this.listLen + 1;
-      },
-      handleStepTop() {
-        this.activeObj.zIndex = this.activeObj.zIndex + 1;
-        if (this.activeNextObj) this.activeNextObj.zIndex = this.activeNextObj.zIndex - 1;
-      },
-      handleStepBottom() {
-        this.activeObj.zIndex = this.activeObj.zIndex - 1;
-        if (this.activeBreakObj) this.activeBreakObj.zIndex = this.activeBreakObj.zIndex + 1
-      },
-      handleBottom(active) {
-        this.list[active].zIndex = -1;
-      },
       handleMapSelect(value) {
         this.activeOption.mapList = this.dicOption.mapList[value].list;
-      },
-      handleContextMenu(e) {
-        this.$nextTick(() => {
-          if (this.active === -1) {
-            this.contentMenu = false;
-          } else {
-            this.contentMenuX = e.clientX;
-            this.contentMenuY = e.clientY;
-            this.contentMenu = true;
-          }
-        })
-      },
-      handleChange(index, zindex) {
-        this.active = index;
-        this.zIndex = zindex;
-        this.contentMenu = false;
-      },
-      handleFocus() {
-        this.gradeFlag = true;
-      },
-      handleBlur() {
-        this.gradeFlag = false;
-      },
-      handleDel(index) {
-        const obj = this.list[index]
-        this.$confirm(`是否删除${obj.name}图层?`, '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          this.active = -1;
-          this.$set(this.list[index], 'destruction', true)
-        }).catch(() => {
-
-        });
-      },
-      handleCopy(index) {
-        const obj = this.list[index]
-        this.addCompoment(obj);
-      },
-      handleResize({ index, width, height }) {
-        const ele = this.list[index].component;
-        this.$set(ele, 'width', width)
-        this.$set(ele, 'height', height)
-
-      },
-      handlePostion({ index, left, top }) {
-        const ele = this.list[index];
-        this.$set(ele, 'left', left)
-        this.$set(ele, 'top', top)
       },
       rowSave(row, done) {
         this.activeKey.push(row);
@@ -1692,26 +1333,6 @@ import init from '@/mixins/'
       rowUpdate(row, index, done) {
         this.activeKey.splice(index, 1, row);
         done()
-      },
-      addCompoment(option) {
-        const obj = this.deepClone(option);
-        obj.left = 0;
-        obj.top = 0;
-        obj.zIndex = this.listLen;
-        obj.index = this.listLen;
-        this.list.push(obj);
-      },
-      handleView() {
-        this.menuFlag = false;
-        this.active = -1;
-        this.setScale(document.body.clientWidth);
-      },
-      handleReset() {
-        this.menuFlag = true;
-        this.setScale(this.contentWidth);
-      },
-      handleBuild() {
-        this.dataVisible = true;
       },
       handleOpenImg(item) {
         this.imgObj = item

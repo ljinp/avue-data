@@ -1,6 +1,3 @@
-
-import { getResult } from '../utils.js'
-import Mock from 'mockjs'
 Mock.mock('./data4', 'get', () => {
   const data = {
     config: {
@@ -27,10 +24,10 @@ Mock.mock('./data4', 'get', () => {
             "height": 500,
             "name": "test",
             "prop": "test",
-            "option": {
-              "data": '我是参数1234',
-              "fontSize": 72,
-            }
+          },
+          "option": {
+            "data": '我是参数1234',
+            "fontSize": 72,
           },
           "index": 0
         }

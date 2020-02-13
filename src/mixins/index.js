@@ -1,106 +1,91 @@
 // 查看页面和编辑页面公用的参数和方法
+import common from '@/config'
 import { config } from '@/option/config'
-import { addUrlParam } from '@/utils/utils'
+import container from '@/page/group/container'
 export default {
+  components: {
+    container
+  },
+  provide () {
+    return {
+      contain: this
+    };
+  },
   data () {
     return {
-      scale: 1,
       config: config,
-      list: []
+      nav: [],
+      common: common,
+      active: [],
+      overactive: '',
     }
   },
   computed: {
-    //计算中央可视化大屏比例
-    styleName () {
-      const scale = this.config.scale;
-      return Object.assign({
-        transform: `scale(${scale / 100}, ${scale / 100})`,
-        width: this.setPx(this.config.width),
-        height: this.setPx(this.config.height),
-        backgroundColor: this.config.backgroundColor
-      }, (() => {
-        if (this.config.backgroundImage) {
-          return {
-            background: `url(${this.config.backgroundImage}) 0% 0% / 100% 100% rgb(3, 12, 59)`,
-          }
+    list () {
+      let result = [];
+      //循环处理数据
+      const detail = (item) => {
+        if (item.children) {
+          item.children.forEach(ele => {
+            detail(ele);
+          })
+        } else {
+          result.push(item)
         }
-        return
-      })())
-    },
-  },
-  mounted () {
-    this.initData();
+      }
+      this.nav.forEach(ele => {
+        detail(ele);
+      })
+      const len = result.length - 1;
+      result.forEach((ele, index) => {
+        ele.zIndex = len - index;
+      })
+      return result
+    }
   },
   methods: {
-    //适配尺寸
-    setResize () {
-      this.$nextTick(() => {
-        this.$refs.content.style.width = this.setPx((this.config.scale * this.config.width) / 100)
-        this.$refs.content.style.height = this.setPx((this.config.scale * this.config.height) / 100)
-      })
-    },
-    //计算比例
-    setScale (width) {
-      this.$nextTick(() => {
-        this.config.scale = (width / this.config.width) * 100
-        this.scale = this.config.scale;
-        this.setResize();
-      })
-    },
-    //合并组件参数和公共参数查询参数
-    handleGetQuery (item) {
-      return Object.assign(this.deepClone(this.config.query), item.dataQuery)
-    },
-    //点击事件交互
-    handleConClick ({ type, child, value }) {
-      if (type === 'tabs') {
-        const indexList = child.index;
-        indexList.forEach((index) => {
-          const paramName = child.paramName;
-          let url = this.list[index].url;
-          if (url) {
-            this.list[index].url = addUrlParam(url, paramName, value);
-            this.$refs['list_' + index].forEach(ele => {
-              ele.updateData();
-            })
+    findnav (id, type) {
+      //循环处理数据
+      let obj = undefined;
+      let count = 0;
+      let parent = undefined;
+      let pcount = 0;
+      let len = 0;
+      const detail = (item, list, i, number = 0) => {
+        if (!item.children || type) {
+          if (id === item.index) {
+            obj = item;
+            len = Array.isArray(list) ? list.length - 1 : list.children.length - 1;
+            parent = list;
+            pcount = number;
+            count = i;
           }
-        })
-      }
-    },
-    calcData () {
-      if (!this.config.mark) this.config.mark = {}
-      if (!this.config.query) this.config.query = {}
-    },
-    //初始化数据
-    initData () {
-      const id = this.$route.query.id;
-      this.contentWidth = this.$refs.content.offsetWidth;
-      const isBuild = this.$route.path == '/build';
-      const width = isBuild ? this.contentWidth : document.body.clientWidth
-      //添加水印。只有查看页面生效
-      if (!isBuild) {
-        if (this.config.mark.show) {
-          this.watermark(this.config.mark);
+        }
+        if (item.children) {
+          item.children.forEach((ele, index) => {
+            detail(ele, item, index, number + 1);
+          })
         }
       }
-      if (id) {
-        const loading = this.$loading({
-          lock: true,
-          text: '正在加载中，请稍后',
-          spinner: 'el-icon-loading',
-          background: 'rgba(0, 0, 0, 0.7)'
-        });
-        this.$httpajax.get('./data' + id).then(res => {
-          const data = res.data.data;
-          this.list = data.list;
-          this.config = data.config;
-          this.calcData();
-          this.setScale(width);
-          loading.close();
-        })
-      } else {
-        this.setScale(width);
+      this.nav.forEach((ele, index) => {
+        detail(ele, this.nav, index);
+      })
+      return {
+        obj,
+        count,
+        len,
+        pcount,
+        parent
       }
-    }
+    },
+    findlist (index) {
+      return this.list.find(ele => ele.index == index) || {}
+    },
+    handleInitActive () {
+      this.active = []
+    },
+    handleMouseDown () {
+      this.handleInitActive();
+    },
   }
 }

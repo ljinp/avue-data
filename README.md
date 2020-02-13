@@ -97,9 +97,7 @@ labelFormatter:({name,data})=>{
   icon:'组件图标',
   left:'组件x位置',
   top:'组件y位置',
-  zIndex:'图层权重',
   display:'组件隐藏',
-  destruction:'组件销毁',
   dataType:'数据请求格式| 0-静态数据 | 1-动态数据',
   dataMethod:'数据请求方式| get | post,
   url:'动态数据的请求地址',
@@ -110,11 +108,11 @@ labelFormatter:({name,data})=>{
     height:'组件的高度',
     name:'加载组件名',
     prop:'加载组件的类型',
-    //组件属性配置
-    option:{ 
-        //每个组件的独立属性
-    }
   },
+  //属性配置
+  option:{ 
+      //每个组件的独立属性
+  }
 }
 ```
 ## 技术栈
