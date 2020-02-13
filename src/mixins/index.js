@@ -85,7 +85,9 @@ export default {
       this.active = []
     },
     handleMouseDown () {
-      this.handleInitActive();
+      setTimeout(() => {
+        this.handleInitActive();
+      }, 300)
     },
   }
 }
