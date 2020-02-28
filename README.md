@@ -125,39 +125,6 @@ labelFormatter:({name,data})=>{
 - swiper //滑动和轮播支持包  
 - Sortable和vuedraggable // 图拽支持包  
 
-## 目录
-```
-├── cdn //cdn资源  
-├── css //样式库  
-  ├── common.css //公共样式  
-  ├── iconfont.css //阿里巴巴图表库样式  
-  ├── list.css //大屏列表页样式  
-  ├── style.css //构建起和展示样式  
-├── data //大屏的数据和图例  
-├── img //图库存储图片  
-├── js //js方法包  
-  ├── theme // 主题文件夹
-  ├── baseList.js //基础组件列表  
-  ├── colorOption.js //一些通用的配置  
-  ├── common.js //初始化包  
-  ├── components.js //公用组件包  
-  ├── dicOption.js //项目中的字典  
-  ├── imgOption.js //图库坐标配置  
-  ├── map.js //地图坐标数据  
-  ├── util.js //需要的工具包  
-├── lib //底层核心包  
-├── build.html //视图构建器页面  
-├── index.html //大屏列表页面  
-├── test.html //测试页面  
-├── view.html //试图展示页面  
-```
-## 架构讲解
->目前的项目采用的纯前端技术，利用url获取参数动态的加载的对应的js文件中的配置,如果你有后台可以改造成通过ajax去读取数据库动态加载 
-- index.html中的list数组为大屏的列表其中id为data目录下对应的文件  
-- 当访问build.html和view.html时后面加上id参数便会加载对应的文件（build.html?id=1就会加载/data/data1.js）,相关源码js/util.js中的initData方法  
-- build.html为构建器，你拖拽后即可点击生成对应的json串，参考data下的js自己再建立一个即可  
-- view.html为视图预览，读取你的data下对应js进行展示  
-
 ## 附录1
 ### 柱状图
 >数据格式
