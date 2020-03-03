@@ -11,7 +11,7 @@ export const config = {
     textStyle: 'rgba(100,100,100,0.2)',
     degree: -20
   },
-  backgroundImage: './img/bg/bg1.png',
+  backgroundImage: '/img/bg/bg1.png',
   query: {}
 };
 // 颜色的配置
@@ -68,7 +68,7 @@ export const dicOption = {
   orientList: [{ label: '竖排', value: 'vertical' }, { label: '横排', value: 'horizontal' }],
   dataMethod: [{ label: 'POST', value: 'post' }, { label: 'GET', value: 'get' }],
   eventList: ['tabs'],
-  dataList: ['tabs', 'map', 'video', 'wordCloud', 'pie', 'pictorialBar', 'iframe', 'swiper', 'flop', 'bar', 'line', 'progress', 'table', 'gauge', 'funnel', 'scatter', 'radar'],
+  dataList: ['tabs', 'map', 'video', 'wordCloud', 'pie', 'pictorialbar', 'iframe', 'swiper', 'flop', 'bar', 'line', 'progress', 'table', 'gauge', 'funnel', 'scatter', 'radar'],
   themeList: [{
     label: '默认配色',
     value: 'avue'
@@ -123,7 +123,7 @@ function concat (prop, count, type, extend = [], defaults) {
   for (let i = 1; i <= count; i++) {
     list.push({
       label: prop + i,
-      value: `./img/${prop}/${prop}${i}.${extend.includes(i) ? defaults : type}`
+      value: `/img/${prop}/${prop}${i}.${extend.includes(i) ? defaults : type}`
     })
   }
   return list;

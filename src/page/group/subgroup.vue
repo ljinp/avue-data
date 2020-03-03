@@ -13,8 +13,7 @@
                       :id="common.DEAFNAME+item.index"
                       v-show="!item.display"
                       @focus="handleFocus"
-                      @blur="handleBlur"
-                      @change="handleChange">
+                      @blur="handleBlur">
         <component :ref="common.NAME+item.index"
                    :id="common.NAME+item.index"
                    :is="common.COMPNAME+item.component.name"
@@ -89,8 +88,8 @@ export default {
     handleGetObj (val) {
       return this.$refs[`${this.common.DEAFNAME}${val}`];
     },
-    //位置变化
-    handleChange ({ index, left, top, width, height }) {
+    handleFocus ({ index }) {
+      this.container.gradeFlag = true;
       if (this.contain.keys.ctrl) {
         if (!Array.isArray(this.contain.active)) {
           this.contain.handleInitActive();
@@ -100,18 +99,14 @@ export default {
         if (!this.contain.active.includes(index)) {
           this.contain.active = [index];
         }
-        this.$set(this.contain.activeObj.component, 'width', width)
-        this.$set(this.contain.activeObj.component, 'height', height)
-        this.$set(this.contain.activeObj, 'left', left)
-        this.$set(this.contain.activeObj, 'top', top)
       }
-
     },
-    handleFocus () {
-      this.container.gradeFlag = true;
-    },
-    handleBlur () {
+    handleBlur ({ left, top, width, height }) {
       this.container.gradeFlag = false;
+      this.$set(this.contain.activeObj.component, 'width', width)
+      this.$set(this.contain.activeObj.component, 'height', height)
+      this.$set(this.contain.activeObj, 'left', left)
+      this.$set(this.contain.activeObj, 'top', top)
     },
   }
 }

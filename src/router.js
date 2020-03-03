@@ -9,13 +9,13 @@ const vueRouter = new Router({
     component: () =>
       import( /* webpackChunkName: "page" */ '@/page/list')
   }, {
-    path: '/build',
-    name: '编辑页面',
+    path: '/build/:id',
+    name: 'build',
     component: () =>
       import( /* webpackChunkName: "page" */ '@/page/build')
   }, {
-    path: '/view',
-    name: '查看页面',
+    path: '/view/:id',
+    name: 'view',
     component: () =>
       import( /* webpackChunkName: "page" */ '@/page/view')
   }]

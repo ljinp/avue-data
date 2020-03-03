@@ -12,7 +12,9 @@ import './components/'
 import '@/theme/index.js'
 window.axios = axios;
 Vue.config.productionTip = false
-Vue.use(window.AVUE);
+Vue.use(window.AVUE, {
+  size: 'small'
+});
 Vue.use(ElementUI);
 new Vue({
   router,

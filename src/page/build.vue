@@ -931,30 +931,23 @@
               </template>
               <!-- 主屏的配置项 -->
               <template v-else>
-                <el-form-item label="大屏名称">
+                <!-- <el-form-item label="大屏名称">
                   <avue-input v-model="config.name"></avue-input>
-                </el-form-item>
-                <el-form-item label="大屏简介">
-                  <avue-input v-model="config.info" type="textarea" :min-rows="5"></avue-input>
-                </el-form-item>
+                </el-form-item> -->
                 <el-form-item label="大屏宽度">
                   <avue-input-number v-model="config.width"></avue-input-number>
                 </el-form-item>
                 <el-form-item label="大屏高度">
                   <avue-input-number v-model="config.height"></avue-input-number>
                 </el-form-item>
+                <el-form-item label="大屏简介">
+                  <avue-input v-model="config.info" type="textarea" :min-rows="5"></avue-input>
+                </el-form-item>
                 <el-form-item label="背景颜色">
                   <avue-color v-model="config.backgroundColor"></avue-color>
                 </el-form-item>
-                <el-form-item label="缩略图">
-                  <img :src="config.backgroundImage" alt="" width="70%" />
-                </el-form-item>
                 <el-form-item label="背景图片">
-                  <el-input v-model="config.backgroundImage">
-                    <div @click="handleOpenImg('config.backgroundImage')" slot="append">
-                      <i class="iconfont icon-img"></i>
-                    </div>
-                  </el-input>
+                  <img :src="config.backgroundImage"  @click="handleOpenImg('config.backgroundImage')" alt="" width="70%" />
                 </el-form-item>
                 <el-form-item label="缩放">
                   <el-slider v-model="config.scale" :max="200" :format-tooltip="formatTooltip"></el-slider>

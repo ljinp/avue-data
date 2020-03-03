@@ -3,3 +3,4 @@ export default {
   NAME: "list",
   DEAFNAME: 'item'
 }
+export const url = '/visual'

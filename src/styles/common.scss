@@ -110,6 +110,13 @@ a{
 .el-dialog ,.avue-group__item{
   background: #1b1e25;
 }
+.el-message-box{
+  background: #1b1e25;
+  border-color:  #1b1e25;
+}
+.el-message-box__title{
+  color:#fff;
+}
 .el-dialog__title{
   color:#fff;
   font-size: 14px;

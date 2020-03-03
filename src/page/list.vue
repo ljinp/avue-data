@@ -7,25 +7,23 @@
                text-color="#fff"
                active-text-color="#00baff"
                @select="handleSelect">
-        <el-menu-item index="0"
-                      @click="getList(1)">
+        <el-menu-item :index="item.dictKey"
+                      :key="item.dictKey"
+                      v-for="item in typelist"
+                      @click="getList(item.dictKey)">
           <i class="iconfont icon-daping"></i>
-          模板库
-        </el-menu-item>
-        <el-menu-item index="1"
-                      @click="getList(2)">
-          <i class="iconfont icon-moban"></i>
-          组件库
+          {{item.dictValue}}
         </el-menu-item>
       </el-menu>
     </el-header>
     <el-main>
       <div class="content">
-        <div class="content__item content__item--add">
-          <router-link to="/build">
+        <div class="content__item content__item--add"
+             @click="handleAdd">
+          <div>
             <i class="el-icon-plus"></i>
             <p>新建大屏</p>
-          </router-link>
+          </div>
         </div>
         <div class="content__item"
              v-for="(item,index) in list"
@@ -33,27 +31,30 @@
              @mouseover="item._menu=true"
              @mouseout="item._menu=false">
           <div class="content__info">
-            <img v-if="item.img"
-                 :src="item.img"
+            <img v-if="item.backgroundUrl"
+                 :src="item.backgroundUrl"
                  alt="" />
             <div class="content__menu"
                  v-show="item._menu">
-              <router-link :to="{path:'/build',query:{id:item.id}}"
-                           class="content__btn">
-                编辑</router-link>
+              <div class="content__btn"
+                   @click="handleEdit(item)">
+                编辑
+              </div>
             </div>
           </div>
           <div class="content__main">
-            <span class="content__name">{{item.label}}</span>
-            <div>
-              <router-link :to="{path:'/view',query:{id:item.id}}"
-                           class="content__view">
-                <i class="el-icon-view"></i>
-                预览
-              </router-link>
+            <span class="content__name">{{item.title}}</span>
+            <div class="content__menulist">
+              <div class="content__view">
+                <i class="el-icon-delete"
+                   @click="handleDel(item,index)"></i>
+                <i class="el-icon-edit"
+                   @click="handleUpdate(item,index)"></i>
+                <i class="el-icon-view"
+                   @click="handleViews(item,index)"></i>
+              </div>
               <span class="content__status"
                     :class="{'content__status--active':item.status}">
-                <i class="el-icon-check"></i>
                 {{item.status?'已发布':'未发布'}}
               </span>
             </div>
@@ -62,27 +63,196 @@
         </div>
       </div>
     </el-main>
+    <el-dialog title="新建大屏"
+               width="35%"
+               :visible.sync="box">
+      <avue-form :option="option"
+                 v-model="form"
+                 @submit="handleSave"></avue-form>
+    </el-dialog>
   </el-container>
 </template>
 <script>
+import { getList, addObj, updateObj, delObj, getTategory } from '@/api/visual'
 export default {
   name: "list",
   data () {
     return {
-      activeName: '0',
+      typelist: [],
+      type: '',
+      option: {
+        column: [{
+          label: '分组',
+          prop: 'category',
+          span: 24,
+          labelWidth: 100,
+          type: 'select',
+          dicUrl: '/visual/category',
+          props: {
+            label: 'dictValue',
+            value: 'dictKey',
+          },
+          rules: [{
+            required: true,
+            message: "请选择分组",
+            trigger: "blur"
+          }]
+        }, {
+          label: '大屏名称',
+          span: 24,
+          labelWidth: 100,
+          prop: 'title',
+          rules: [{
+            required: true,
+            message: "请输入大屏名称",
+            trigger: "blur"
+          }]
+        }, {
+          label: '大屏尺寸',
+          span: 14,
+          labelWidth: 100,
+          prop: 'width',
+          placeholder: '请输入宽度',
+          rules: [{
+            required: true,
+            message: "请输入大屏尺寸",
+            trigger: "blur"
+          }]
+        }, {
+          label: '',
+          span: 10,
+          labelWidth: 1,
+          prop: 'height',
+          placeholder: '请输入高度',
+          rules: [{
+            required: true,
+            message: "请输入大屏尺寸",
+            trigger: "blur"
+          }]
+        }, {
+          label: '密码',
+          span: 24,
+          type: 'password',
+          labelWidth: 100,
+          prop: 'password',
+        }, {
+          label: '发布状态',
+          prop: 'status',
+          span: 24,
+          labelWidth: 100,
+          type: 'select',
+          dicData: [{
+            label: '未发布',
+            value: 0
+          }, {
+            label: '已发布',
+            value: 1
+          }]
+        }]
+      },
+      form: {},
+      box: false,
+      activeName: '',
       list: [],
     }
   },
   created () {
+    this.getTategory()
     this.getList();
   },
   methods: {
+    vaildData (id) {
+      return ['1', '2', '3', '4'].includes(id)
+    },
+    getTategory () {
+      getTategory().then(res => {
+        const data = res.data.data;
+        this.typelist = data;
+        this.activeName = data[0].dictKey;
+      })
+    },
+    handleDel (item, index) {
+      if (this.vaildData(this.form.id)) {
+        this.$message.error('例子模板不允许修改')
+        return false;
+      }
+      this.$confirm('是否确认永久删除?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        delObj(item.id).then(() => {
+          this.list.splice(index, 1)
+          this.$message.success('删除成功')
+        })
+      }).catch(() => {
+
+      });
+    },
+
+    handleUpdate (item) {
+      this.form = item
+      this.form.category = this.form.category + '';
+      this.type = 'edit';
+      this.option.column[2].display = false;
+      this.option.column[3].display = false;
+      this.box = true;
+    },
+    handleEdit (item) {
+      let routeUrl = this.$router.resolve({
+        path: '/build/' + item.id
+      })
+      window.open(routeUrl.href, '_blank');
+    },
+    handleViews (item) {
+      let routeUrl = this.$router.resolve({
+        path: '/view/' + item.id
+      })
+      window.open(routeUrl.href, '_blank');
+    },
+    handleAdd () {
+      this.type = 'add';
+      this.option.column[5].display = false;
+      this.form.category = this.activeName;
+      this.box = true;
+    },
+    handleSave (form, done) {
+      done();
+      if (this.vaildData(this.form.id)) {
+        this.$message.error('例子模板不允许修改')
+        return false;
+      }
+      if (this.type == 'add') {
+        addObj(Object.assign({
+          category: this.activeName,
+        }, this.form)).then(res => {
+          this.box = false;
+          this.$message.success('新增成功');
+          this.getList();
+          const id = res.data.data.id;
+          this.handleEdit({ id })
+        })
+      } else {
+        updateObj(Object.assign({
+          category: this.activeName
+        }, {
+          id: this.form.id,
+          password: this.form.password,
+          status: this.form.status,
+          title: this.form.title
+        })).then(() => {
+          this.box = false;
+          this.$message.success('修改成功');
+          this.getList();
+        })
+      }
+    },
     handleSelect (key) {
       this.activeName = key;
     },
-    getList (index = 1) {
-      this.$httpajax.get('./list' + index).then(res => {
-        this.list = res.data
+    getList (category) {
+      getList(category || this.activeName).then(res => {
+        this.list = res.data.data.records
         this.initData();
       })
     },

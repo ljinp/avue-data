@@ -2,22 +2,15 @@
   <div class="middle">
     <div class="wrapper__grade"
          @mousedown="contain.handleMouseDown"></div>
-    <div class="wrapper"
+    <div id="wrapper"
+         class="wrapper"
          @mousedown="contain.handleMouseDown">
       <div class="content"
+           id="content"
            ref="content">
-        <div class="selectall"
-             :style="selectStyle"
-             v-show="selectObj.show"
-             ref="selectall"></div>
-        <div class="selectbg"
-             v-show="selectObj.show"></div>
-        <div class="selectflag"
-             ref="selectflag"
-             v-show="selectObj.flag">
-        </div>
         <div class="container"
              :style="styleName"
+             id="container"
              ref="container">
           <div class="grade"
                v-if="gradeFlag || contain.config.gradeShow"
@@ -34,7 +27,8 @@
 
 <script>
 import subgroup from './subgroup'
-import { uuid } from '@/utils/utils'
+import common from '@/config'
+import { getObj } from '@/api/visual'
 export default {
   name: 'content',
   inject: ["contain"],
@@ -49,37 +43,9 @@ export default {
   },
   data () {
     return {
-      contentWidth: 0,
+      selectCount: {},
       scale: 1,
       gradeFlag: false,
-      selectList: [],
-      selectCount: {
-        maxx1: 0,
-        maxx2: 0,
-        maxy1: 0,
-        maxy2: 0,
-        x1: 0,
-        x2: 0,
-        y1: 0,
-        y2: 0
-      },
-      moveObj: {
-        startX: 0,
-        startY: 0,
-        show: false,
-      },
-      selectObj: {
-        startX: 0,
-        startY: 0,
-        moveX: 0,
-        moveY: 0,
-        flag: false,
-        show: false,
-        left: 0,
-        top: 0,
-        width: 0,
-        height: 0
-      }
     }
   },
   computed: {
@@ -108,14 +74,6 @@ export default {
       return {
         backgroundSize: `${this.setPx(this.contain.config.gradeLen)} ${this.setPx(this.contain.config.gradeLen)},${this.setPx(this.contain.config.gradeLen)} ${this.setPx(this.contain.config.gradeLen)}`
       }
-    },
-    selectStyle () {
-      return {
-        width: this.setPx(this.selectObj.width),
-        height: this.setPx(this.selectObj.height),
-        left: this.setPx(this.selectObj.left),
-        top: this.setPx(this.selectObj.top)
-      }
     }
   },
   mounted () {
@@ -130,16 +88,11 @@ export default {
     },
     //初始化数据
     initData () {
-      const id = this.$route.query.id;
-      this.contentWidth = this.$refs.content.offsetWidth;
-      const isBuild = this.$route.path == '/build';
-      const width = isBuild ? this.contentWidth : document.body.clientWidth
-      //添加水印。只有查看页面生效
-      if (!isBuild) {
-        if (this.contain.config.mark.show) {
-          this.watermark(this.contain.config.mark);
-        }
-      }
+      const id = this.$route.params.id;
+      this.contain.id = id;
+      this.contain.contentWidth = this.$refs.content.offsetWidth;
+      const isBuild = this.$route.name === 'build';
+      const width = isBuild ? this.contain.contentWidth : document.body.clientWidth
       if (id) {
         const loading = this.$loading({
           lock: true,
@@ -147,13 +100,45 @@ export default {
           spinner: 'el-icon-loading',
           background: 'rgba(0, 0, 0, 0.7)'
         });
-        this.$httpajax.get('./data' + id).then(res => {
+        getObj(id).then(res => {
+          const callback = () => {
+            //赋值属性
+            this.contain.config = JSON.parse(config.detail) || {};
+            this.contain.nav = JSON.parse(config.component) || [];
+            this.calcData();
+            this.setScale(width);
+          }
           const data = res.data.data;
-          let nav = data.list
-          this.contain.nav = nav;
-          this.contain.config = data.config;
-          this.calcData();
-          this.setScale(width);
+          this.contain.obj = data;
+          const config = data.config;
+          this.contain.visual = data.visual;
+          //添加水印。只有查看页面生效
+          if (!isBuild) {
+            if (this.contain.config.mark.show) {
+              this.watermark(this.contain.config.mark);
+            }
+            const password = this.contain.visual.password
+            if (!this.validatenull(password)) {
+              this.$prompt('请输入密码', '提示', {
+                confirmButtonText: '确定',
+                showCancelButton: false,
+                showClose: false,
+                closeOnClickModal: false,
+                inputPattern: new RegExp(password),
+                inputErrorMessage: '密码不正确，请重新输入'
+              }).then(() => {
+                callback();
+              })
+            } else {
+              callback();
+            }
+
+          } else {
+            callback();
+          }
+          loading.close();
+        }).catch((err) => {
+          console.log(err)
           loading.close();
         })
       } else {
@@ -179,56 +164,8 @@ export default {
       if (!this.contain.config.mark) this.contain.config.mark = {}
       if (!this.contain.config.query) this.contain.config.query = {}
     },
-    handleMoveMouseUp () {
-      this.moveObj.show = false;
-    },
-    handleMoveMouseDown (e) {
-      const x = e.offsetX
-      const y = e.offsetY
-      this.moveObj.startX = x
-      this.moveObj.startY = y
-      this.moveObj.show = true;
-    },
-    handleMoveMouseMove (e) {
-      if (this.moveObj.show) {
-        const x = e.offsetX
-        const y = e.offsetY;
-        const movex = (x - this.moveObj.startX) * this.stepScale;
-        const movey = (y - this.moveObj.startY) * this.stepScale;
-        this.moveObj.startX = x
-        this.moveObj.startY = y
-        this.handleMoveSelectList(movex, movey)
-      }
-    },
-    handleSelectMouseDown (e) {
-      this.list.forEach((ele, index) => {
-        this.$refs['item_' + index][0].setActive(false)
-      })
-      this.selectObj.flag = false;
-      this.selectObj.width = 0
-      this.selectObj.height = 0;
-      const x = e.layerX
-      const y = e.layerY
-      this.selectObj.startX = x
-      this.selectObj.startY = y
-      this.selectObj.left = x;
-      this.selectObj.top = y;
-      this.selectObj.show = true
-      this.contain.handleMouseDown();
-    },
-    handleSelectMouseUp () {
-      if (this.selectObj.show) {
-        this.selectObj.show = false
-        if (this.selectObj.width != 0 && this.selectObj.height != 0) {
-          this.selectCount.x1 = this.selectObj.left * this.stepScale
-          this.selectCount.x2 = this.selectCount.x1 + this.selectObj.width * this.stepScale
-          this.selectCount.y1 = this.selectObj.top * this.stepScale
-          this.selectCount.y2 = this.selectCount.y1 + this.selectObj.height * this.stepScale
-          this.handleGetSelectList();
-        }
-      }
-    },
     handlePostionSelect (postion) {
+      this.handleCalcPostionSelect();
       const x1 = this.selectCount.maxx1;
       const x2 = this.selectCount.maxx2;
       const y1 = this.selectCount.maxy1;
@@ -248,8 +185,8 @@ export default {
       }
     },
     handleMoveSelectList (left, top, type, postion) {
-      this.selectList.forEach(index => {
-        const ele = this.list[index];
+      this.contain.active.forEach(ele => {
+        ele = this.contain.findlist(ele)
         const ele_component = ele.component;
         //水平情况
         if (left) {
@@ -261,8 +198,8 @@ export default {
             const obj_center = ele.left + ele_component.width / 2;
             baseLeft = ele.left + (left - obj_center)
           }
-          this.$set(this.list[index], 'left', baseLeft);
-          this.$refs['item_' + index][0].setLeft(baseLeft)
+          this.$set(ele, 'left', baseLeft);
+          this.$refs.subgroup.$refs[common.DEAFNAME + ele.index][0].setLeft(baseLeft)
         }
         //垂直情况
         if (top) {
@@ -274,38 +211,17 @@ export default {
             const obj_middle = ele.top + ele_component.height / 2;
             baseTop = ele.top + (top - obj_middle)
           }
-          this.$set(this.list[index], 'top', baseTop)
-          this.$refs['item_' + index][0].setTop(baseTop)
+          this.$set(ele, 'top', baseTop)
+          this.$refs.subgroup.$ref[common.DEAFNAME + ele.index][0].setTop(baseTop)
         }
       })
-      this.handleCalcPostionSelect();
-    },
-    handleGetSelectList () {
-      this.selectList = [];
-      this.list.forEach((ele, index) => {
-        const left = ele.left;
-        const top = ele.top;
-        if (!ele.display) {
-          if ((left >= this.selectCount.x1 && left <= this.selectCount.x2) && (top >= this.selectCount.y1 && top <= this.selectCount.y2)) {
-            this.selectList.push(index)
-          }
-        }
-      })
-      this.handleCalcPostionSelect();
-      if (!this.validatenull(this.selectList)) {
-        this.selectList.forEach(index => {
-          this.$refs['item_' + index][0].setActive(true)
-        })
-        this.selectObj.flag = true;
-      }
-
     },
     //计算多选状态下的最大边界值
     handleCalcPostionSelect () {
       this.selectCount.maxx1 = 99999;
       this.selectCount.maxy1 = 99999;
-      this.selectList.forEach(index => {
-        const ele = this.list[index];
+      this.contain.active.forEach(ele => {
+        ele = this.contain.findlist(ele)
         const left = ele.left;
         const top = ele.top;
         const width = ele.component.width;
@@ -323,23 +239,6 @@ export default {
           this.selectCount.maxy2 = top + height;
         }
       })
-    },
-    handleExectSelect () {
-      this.selectList.forEach(index => {
-        this.$refs['item_' + index][0].setActive(false)
-      })
-      this.selectList = [];
-      this.selectObj.flag = false;
-    },
-    handleSelectMouseMove (e) {
-      if (this.selectObj.show) {
-        const x = e.layerX
-        const y = e.layerY;
-        this.selectObj.width = this.selectObj.width + x - this.selectObj.startX
-        this.selectObj.height = this.selectObj.height + y - this.selectObj.startY
-        this.selectObj.startX = x
-        this.selectObj.startY = y
-      }
     },
   }
 }

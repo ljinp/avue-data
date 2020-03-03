@@ -1,5 +1,4 @@
 import Mock from 'mockjs'
-import './list.js'
 import { getResult } from './utils.js'
 //柱状图
 Mock.mock(/\/bar/, 'get', (res) => {

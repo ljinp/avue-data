@@ -13,7 +13,11 @@ export default {
   },
   data () {
     return {
+      contentWidth: '',
       config: config,
+      obj: {},
+      id: '',
+      visual: {},
       nav: [],
       common: common,
       active: [],
@@ -85,9 +89,7 @@ export default {
       this.active = []
     },
     handleMouseDown () {
-      setTimeout(() => {
-        this.handleInitActive();
-      }, 300)
+      this.handleInitActive();
     },
   }
 }
