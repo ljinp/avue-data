@@ -21,7 +21,6 @@ export const colorOption = {
   menuWidth: 150,
   labelWidth: 100,
   dialogHeight: 150,
-  dialogWidth: 200,
   column: [{
     label: '颜色1',
     prop: 'color1',
@@ -45,7 +44,6 @@ export const tableOption = {
   menuWidth: 150,
   labelWidth: 100,
   dialogHeight: 120,
-  dialogWidth: 200,
   column: [{
     label: '名称',
     prop: 'label',
