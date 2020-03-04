@@ -1,7 +1,7 @@
 import { url } from '@/config';
 var request = window.axios;
 export const getList = (category) => request({
-  url: url + '/list',
+  url: url + '/visual/list',
   method: 'get',
   params: {
     category
@@ -10,12 +10,12 @@ export const getList = (category) => request({
 
 
 export const getTategory = () => request({
-  url: url + '/category',
+  url: url + '/visual/category',
   method: 'get'
 });
 
 export const getObj = (id) => request({
-  url: url + '/detail',
+  url: url + '/visual/detail',
   method: 'get',
   params: {
     id
@@ -23,7 +23,7 @@ export const getObj = (id) => request({
 });
 
 export const addObj = (data) => request({
-  url: url + '/save',
+  url: url + '/visual/save',
   method: 'post',
   data: {
     visual: {
@@ -50,13 +50,13 @@ export const addObj = (data) => request({
 });
 
 export const updateComponent = (data) => request({
-  url: url + '/update',
+  url: url + '/visual/update',
   method: 'post',
   data: data
 });
 
 export const updateObj = (data) => request({
-  url: url + '/update',
+  url: url + '/visual/update',
   method: 'post',
   data: {
     "visual": {
@@ -70,7 +70,7 @@ export const updateObj = (data) => request({
 });
 
 export const delObj = (id) => request({
-  url: url + '/remove',
+  url: url + '/visual/remove',
   method: 'post',
   params: {
     ids: id

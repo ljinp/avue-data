@@ -196,32 +196,31 @@ export default [{
         "prop": "radar",
       },
       "option": {
+        width: '100%',
+        height: 600,
+        titleShow: true,
+        title: '各部门开销',
+        subtext: '最近一个月',
+        titleColor: '#666',
+        tipBackgroundColor: 'rgba(50,50,50,0.7)',
+        tipColor: "#fff",
         shape: 'polygon',
         radius: "75%",
         splitNumber: 4,
         radarNameColor: '#fff',
-        areaOpacity: 0.2,
-        radarNameSize: 30,
+        radarNameSize: 18,
         titleFontSize: 18,
-        legendShow: true,
-        labelShow: true,
+        areaOpacity: 0.3,
+        legend: true,
+        // labelShow: true,
         "barColor": [{
-          "color1": "#83bff6",
-        },
-        {
-          "color1": "#23B7E5",
-        },
-        {
-          "color1": "rgba(154, 168, 212, 1)",
+          "color1": "#564AA3",
         },
         {
           "color1": "#188df0",
-        },
-        {
-          "color1": "#564AA3",
         }
         ]
-      }
+      },
     }
   }, {
     label: '散点图',
@@ -307,7 +306,7 @@ export default [{
         "prop": "map",
       },
       "option": {
-        borderWidth: 3,
+        "borderWidth": 3,
         "scale": 87,
         "type": 0,
         "borderColor": "#0dffff",

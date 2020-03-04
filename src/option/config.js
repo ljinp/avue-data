@@ -1,4 +1,3 @@
-import mapList from './map'
 //基本配置
 export const config = {
   width: 1920,
@@ -96,7 +95,6 @@ export const dicOption = {
     label: '选择框',
     value: 'select',
   }],
-  mapList: mapList,
   mapType: [{
     label: '原生',
     value: 0
@@ -107,16 +105,6 @@ export const dicOption = {
   format: [{ label: '日期', value: 'yyyy-MM-dd' }, { label: '日期+时分', value: 'yyyy-MM-dd hh:mm' }, { label: '日期+时分秒', value: 'yyyy-MM-dd hh:mm:ss' }, { label: '日期(无年)', value: 'MM-dd' }, { label: '时分', value: 'hh:mm' }, { label: '时分秒', value: 'hh:mm:ss' }, { label: '星期', value: 'day' }]
 }
 
-//图片选项卡分类
-export const imgTabs = [{
-  title: '背景'
-}, {
-  title: '边框'
-}, {
-  title: '素材'
-}, {
-  title: '其他'
-}]
 
 function concat (prop, count, type, extend = [], defaults) {
   let list = [];

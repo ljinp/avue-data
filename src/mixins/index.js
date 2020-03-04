@@ -2,6 +2,7 @@
 import common from '@/config'
 import { config } from '@/option/config'
 import container from '@/page/group/container'
+import { getList } from '@/api/map'
 export default {
   components: {
     container
@@ -13,6 +14,9 @@ export default {
   },
   data () {
     return {
+      DIC: {
+        MAP: []
+      },
       contentWidth: '',
       config: config,
       obj: {},
@@ -47,7 +51,25 @@ export default {
       return result
     }
   },
+  created () {
+    this.initDic();
+  },
   methods: {
+    //初始化字典
+    initDic () {
+      getList({
+        current: 1,
+        size: 100,
+      }).then(res => {
+        const data = res.data.data;
+        this.DIC.MAP = data.records.map(ele => {
+          return {
+            label: ele.name,
+            value: this.url + '/map/data?id=' + ele.id
+          }
+        });
+      })
+    },
     findnav (id, type) {
       //循环处理数据
       let obj = undefined;

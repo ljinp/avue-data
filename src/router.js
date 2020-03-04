@@ -7,7 +7,7 @@ const vueRouter = new Router({
     path: '/',
     name: '列表页',
     component: () =>
-      import( /* webpackChunkName: "page" */ '@/page/list')
+      import( /* webpackChunkName: "page" */ '@/page/index')
   }, {
     path: '/build/:id',
     name: 'build',

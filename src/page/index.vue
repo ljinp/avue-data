@@ -1,0 +1,56 @@
+<template>
+  <el-container class="list">
+    <el-aside width="200px">
+      <h2 class="title">Avue-data数据大屏</h2>
+      <el-menu :default-active="activeName"
+               background-color="#171b22"
+               text-color="#fff"
+               @select="handleSelect"
+               active-text-color="#00baff">
+        <el-menu-item index="1">
+          大屏管理
+        </el-menu-item>
+        <el-menu-item index="2">
+          地图管理
+        </el-menu-item>
+      </el-menu>
+    </el-aside>
+    <el-container>
+      <list v-if="activeName==1"></list>
+      <maps v-if="activeName==2"></maps>
+    </el-container>
+  </el-container>
+</template>
+<script>
+import list from './list/index'
+import maps from './list/map'
+export default {
+  name: "index",
+  components: {
+    list,
+    maps
+  },
+  data () {
+    return {
+      activeName: '1',
+    }
+  },
+  created () {
+
+  },
+  methods: {
+    handleSelect (key) {
+      this.activeName = key;
+    },
+  }
+}
+</script>
+<style lang="scss" scoped>
+.title {
+  font-size: 18px;
+  color: #409eff;
+  text-align: center;
+  line-height: 60px;
+  font-weight: 500;
+}
+</style>

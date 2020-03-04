@@ -5,6 +5,7 @@ import axios from 'axios';
 import router from './router.js';
 import App from './App.vue'
 import './styles/common.scss'
+import { url } from '@/config'
 import '@/mock/'
 //注册自定义组件
 import './components/'
@@ -12,6 +13,7 @@ import './components/'
 import '@/theme/index.js'
 window.axios = axios;
 Vue.config.productionTip = false
+Vue.prototype.url = url;
 Vue.use(window.AVUE, {
   size: 'small'
 });

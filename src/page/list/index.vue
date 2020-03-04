@@ -79,6 +79,7 @@ export default {
   data () {
     return {
       typelist: [],
+      index: 0,
       type: '',
       option: {
         column: [{
@@ -162,7 +163,7 @@ export default {
   },
   methods: {
     vaildData (id) {
-      return ['1', '2', '3', '4'].includes(id)
+      return [0, 1, 2, 3].includes(id)
     },
     getTategory () {
       getTategory().then(res => {
@@ -172,15 +173,16 @@ export default {
       })
     },
     handleDel (item, index) {
-      if (this.vaildData(this.form.id)) {
-        this.$message.error('例子模板不允许修改')
-        return false;
-      }
+
       this.$confirm('是否确认永久删除?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
+        if (this.vaildData(index)) {
+          this.$message.error('例子模板不允许修改')
+          return false;
+        }
         delObj(item.id).then(() => {
           this.list.splice(index, 1)
           this.$message.success('删除成功')
@@ -190,13 +192,14 @@ export default {
       });
     },
 
-    handleUpdate (item) {
+    handleUpdate (item, index) {
       this.form = item
       this.form.category = this.form.category + '';
       this.type = 'edit';
       this.option.column[2].display = false;
       this.option.column[3].display = false;
       this.box = true;
+      this.index = index;
     },
     handleEdit (item) {
       let routeUrl = this.$router.resolve({
@@ -218,10 +221,6 @@ export default {
     },
     handleSave (form, done) {
       done();
-      if (this.vaildData(this.form.id)) {
-        this.$message.error('例子模板不允许修改')
-        return false;
-      }
       if (this.type == 'add') {
         addObj(Object.assign({
           category: this.activeName,
@@ -233,6 +232,10 @@ export default {
           this.handleEdit({ id })
         })
       } else {
+        if (this.vaildData(Number(this.index))) {
+          this.$message.error('例子模板不允许修改')
+          return false;
+        }
         updateObj(Object.assign({
           category: this.activeName
         }, {
@@ -265,5 +268,5 @@ export default {
 }
 </script>
 <style lang="scss">
-@import "../styles/list.scss";
+@import "@/styles/list.scss";
 </style>

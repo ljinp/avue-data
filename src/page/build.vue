@@ -1,18 +1,6 @@
 <template>
   <div class="build">
-    <el-dialog title="图库" :visible.sync="imgVisible">
-      <el-tabs class="tabs" stretch v-model="imgActive">
-        <el-tab-pane :name="index+''" v-for="(item,index) in imgTabs" :key="index">
-          <el-tooltip slot="label" effect="dark" :content="item.title" placement="top">
-            <div><i class="iconfont icon-peizhi"></i></div>
-          </el-tooltip>
-        </el-tab-pane>
-      </el-tabs>
-      <el-scrollbar class="imgList">
-        <img :src="item.value" @click="handleSetimg(item.value)" v-for="(item,index) in imgOption[imgActive]"
-          :key="index" />
-      </el-scrollbar>
-    </el-dialog>
+    <imglist ref="imglist" @change="handleSetimg"></imglist>
     <top ref="top"></top>
     <div class="app" :class="{'app--none':!menuFlag}">
       <div class="menu" v-show="menuFlag" @click.self="handleMouseDown">
@@ -289,10 +277,8 @@
                       <avue-input-number v-model="activeOption.duration"></avue-input-number>
                     </el-form-item>
                   </template>
-                  <el-form-item label="缩略图">
-                    <img :src="activeObj.data" alt="" width="100%" />
-                  </el-form-item>
                   <el-form-item label="图片地址">
+                    <img  v-if="activeObj.data" :src="activeObj.data" alt="" width="100%" />
                     <el-input v-model="activeObj.data">
                       <div @click="handleOpenImg('activeObj.data')" slot="append">
                         <i class="iconfont icon-img"></i>
@@ -305,12 +291,10 @@
                   <el-form-item label="背景色">
                     <avue-color v-model="activeOption.backgroundColor"></avue-color>
                   </el-form-item>
-                  <el-form-item label="缩略图">
-                    <img :src="activeObj.data" alt="" width="100%" />
-                  </el-form-item>
                   <el-form-item label="图片地址">
-                    <el-input v-model="activeObj.data">
-                      <div @click="handleOpenImg('activeObj.data')" slot="append">
+                    <img v-if="activeObj.data" :src="activeObj.data" alt="" width="100%" />
+                     <el-input v-model="activeObj.data">
+                      <div @click="handleOpenImg('activeObj.data','border')" slot="append">
                         <i class="iconfont icon-img"></i>
                       </div>
                     </el-input>
@@ -364,11 +348,7 @@
                   </template>
                   <template v-if="activeOption.type===0">
                     <el-form-item label="地图选择">
-                      <el-select v-model="activeOption.mapKey" @change="handleMapSelect" placeholder="请选择区域选择">
-                        <el-option v-for="item in dicOption.mapList" :key="item.value" :label="item.label"
-                          :value="item.value">
-                        </el-option>
-                      </el-select>
+                      <avue-select :dic="DIC.MAP" v-model="activeOption.mapData" placeholder="请选择地图"></avue-select>
                     </el-form-item>
                     <el-form-item label="地图比例">
                       <avue-slider v-model="activeOption.zoom" :max="5" :step="0.1"></avue-slider>
@@ -431,12 +411,10 @@
                         <el-form-item label="图标大小">
                           <avue-input-number v-model="activeOption.iconSize"></avue-input-number>
                         </el-form-item>
-                        <el-form-item label="缩略图">
-                          <img :src="activeOption.backgroundImage" alt="" width="70%" />
-                        </el-form-item>
-                        <el-form-item label="背景图片">
-                          <el-input v-model="activeOption.backgroundImage">
-                            <div @click="handleOpenImg('activeOption.backgroundImage')" slot="append">
+                        <el-form-item label="图片地址">
+                          <img v-if="activeOption.backgroundImage" :src="activeOption.backgroundImage" alt="" width="70%" />
+                           <el-input v-model="activeOption.backgroundImage">
+                            <div @click="handleOpenImg('activeOption.backgroundImage','border')" slot="append">
                               <i class="iconfont icon-img"></i>
                             </div>
                           </el-input>
@@ -453,12 +431,10 @@
                         <el-form-item label="字体高亮颜色">
                           <avue-color v-model="activeOption.empColor"></avue-color>
                         </el-form-item>
-                        <el-form-item label="缩略图">
-                          <img :src="activeOption.empBackgroundImage" alt="" width="70%" />
-                        </el-form-item>
                         <el-form-item label="背景图片">
-                          <el-input v-model="activeOption.empBackgroundImage">
-                            <div @click="handleOpenImg('activeOption.empBackgroundImage')" slot="append">
+                          <img v-if="activeOption.empBackgroundImage" :src="activeOption.empBackgroundImage" alt="" width="70%" />
+                           <el-input v-model="activeOption.empBackgroundImage">
+                            <div @click="handleOpenImg('activeOption.empBackgroundImage','background')" slot="append">
                               <i class="iconfont icon-img"></i>
                             </div>
                           </el-input>
@@ -514,12 +490,10 @@
                         </el-form-item>
                       </template>
                       <template v-if="activeOption.type==='img'">
-                        <el-form-item label="缩略图">
-                          <img :src="activeOption.backgroundBorder" alt="" width="70%" />
-                        </el-form-item>
                         <el-form-item label="图片地址">
-                          <el-input v-model="activeOption.backgroundBorder">
-                            <div @click="handleOpenImg('activeOption.backgroundBorder')" slot="append">
+                          <img v-if="activeOption.backgroundBorder" :src="activeOption.backgroundBorder" alt="" width="70%" />
+                           <el-input v-model="activeOption.backgroundBorder">
+                            <div @click="handleOpenImg('activeOption.backgroundBorder','border')" slot="append">
                               <i class="iconfont icon-img"></i>
                             </div>
                           </el-input>
@@ -528,12 +502,10 @@
                       <el-form-item label="背景颜色">
                         <avue-color v-model="activeOption.backgroundColor"></avue-color>
                       </el-form-item>
-                      <el-form-item label="缩略图">
-                        <img :src="activeOption.backgroundImage" alt="" width="70%" />
-                      </el-form-item>
                       <el-form-item label="背景图片">
-                        <el-input v-model="activeOption.backgroundImage">
-                          <div @click="handleOpenImg('activeOption.backgroundImage')" slot="append">
+                        <img v-if="activeOption.backgroundImage" :src="activeOption.backgroundImage" alt="" width="70%" />
+                         <el-input v-model="activeOption.backgroundImage">
+                          <div @click="handleOpenImg('activeOption.backgroundImage','')" slot="append">
                             <i class="iconfont icon-img"></i>
                           </div>
                         </el-input>
@@ -947,7 +919,7 @@
                   <avue-color v-model="config.backgroundColor"></avue-color>
                 </el-form-item>
                 <el-form-item label="背景图片">
-                  <img :src="config.backgroundImage"  @click="handleOpenImg('config.backgroundImage')" alt="" width="70%" />
+                  <img :src="config.backgroundImage"  @click="handleOpenImg('config.backgroundImage','background')" alt="" width="70%" />
                 </el-form-item>
                 <el-form-item label="缩放">
                   <el-slider v-model="config.scale" :max="200" :format-tooltip="formatTooltip"></el-slider>
@@ -1076,8 +1048,9 @@
 
 import layer from './group/layer';
 import top from './group/top';
+import imglist from './group/imglist'
 import contentmenu from './group/contentmenu'
-import {imgOption,imgTabs,dicOption,tableOption,colorOption} from '@/option/config'
+import {dicOption,tableOption,colorOption} from '@/option/config'
 import init from '@/mixins/'
 import {uuid} from '@/utils/utils'
  export default {
@@ -1094,11 +1067,6 @@ import {uuid} from '@/utils/utils'
         },
         key: '',
         menuFlag: true,
-        imgVisible: false,
-        imgObj: {},
-        imgOption: imgOption,
-        imgTabs: imgTabs,
-        imgActive: 0,
         CodeMirrorEditor: {},
         form: {},
         dicOption: dicOption,
@@ -1108,6 +1076,7 @@ import {uuid} from '@/utils/utils'
       }
     },
     components:{
+      imglist,
       layer,
       top,
       contentmenu
@@ -1313,9 +1282,6 @@ import {uuid} from '@/utils/utils'
       formatTooltip(val) {
         return parseInt(val);
       },
-      handleMapSelect(value) {
-        this.activeOption.mapList = this.dicOption.mapList[value].list;
-      },
       rowSave(row, done) {
         this.activeKey.push(row);
         done()
@@ -1327,23 +1293,23 @@ import {uuid} from '@/utils/utils'
         this.activeKey.splice(index, 1, row);
         done()
       },
-      handleOpenImg(item) {
-        this.imgObj = item
-        this.imgVisible = true;
+      //打开图库
+      handleOpenImg(item,type) {
+       this.$refs.imglist.openImg(item,type);
       },
-      handleSetimg(val) {
-        if (this.imgObj === 'activeObj.data') {
+      //图库框回调赋值
+      handleSetimg(val,type) {
+         if (type === 'activeObj.data') {
           this.activeObj.data = val;
-        } else if (this.imgObj === 'activeOption.backgroundImage') {
+        } else if (type === 'activeOption.backgroundImage') {
           this.activeOption.backgroundImage = val;
-        } else if (this.imgObj === 'activeOption.backgroundBorder') {
+        } else if (type === 'activeOption.backgroundBorder') {
           this.activeOption.backgroundBorder = val;
-        } else if (this.imgObj === 'activeOption.empBackgroundBorder') {
+        } else if (type === 'activeOption.empBackgroundBorder') {
           this.activeOption.empBackgroundBorder = val;
-        } else if (this.imgObj === 'config.backgroundImage') {
+        } else if (type === 'config.backgroundImage') {
           this.config.backgroundImage = val;
         }
-        this.imgVisible = false;
       }
     }
   }
