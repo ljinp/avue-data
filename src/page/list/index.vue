@@ -277,7 +277,11 @@ export default {
       this.activeName = key;
     },
     getList (category) {
-      getList(category || this.activeName).then(res => {
+      getList({
+        category: category || this.activeName,
+        current: 1,
+        size: 100,
+      }).then(res => {
         this.list = res.data.data.records
         this.initData();
       })

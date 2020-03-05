@@ -1,11 +1,9 @@
 import { url } from '@/config';
 var request = window.axios;
-export const getList = (category) => request({
+export const getList = (params) => request({
   url: url + '/visual/list',
   method: 'get',
-  params: {
-    category
-  }
+  params: params
 });
 
 
