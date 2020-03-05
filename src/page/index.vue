@@ -1,4 +1,5 @@
 <template>
+
   <el-container class="list">
     <el-aside width="200px">
       <h2 class="title">Avue-data数据大屏</h2>
@@ -18,11 +19,13 @@
         </el-menu-item>
       </el-menu>
     </el-aside>
-    <el-container>
+
+    <el-scrollbar class="list"
+                  style="height:800px;">
       <list v-if="activeName==1"></list>
       <maps v-if="activeName==2"></maps>
       <category v-if="activeName==3"></category>
-    </el-container>
+    </el-scrollbar>
   </el-container>
 </template>
 <script>
