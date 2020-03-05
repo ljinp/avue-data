@@ -8,10 +8,10 @@ export const getList = (category) => request({
   }
 });
 
-
-export const getTategory = () => request({
-  url: url + '/visual/category',
-  method: 'get'
+export const getCategory = (params) => request({
+  url: url + '/category/list',
+  method: 'get',
+  params: params
 });
 
 export const getObj = (id) => request({

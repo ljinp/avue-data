@@ -7,12 +7,12 @@
                text-color="#fff"
                active-text-color="#00baff"
                @select="handleSelect">
-        <el-menu-item :index="item.dictKey"
-                      :key="item.dictKey"
+        <el-menu-item :index="item.categoryValue"
+                      :key="item.categoryValue"
                       v-for="item in typelist"
-                      @click="getList(item.dictKey)">
+                      @click="getList(item.categoryValue)">
           <i class="iconfont icon-daping"></i>
-          {{item.dictValue}}
+          {{item.categoryKey}}
         </el-menu-item>
       </el-menu>
     </el-header>
@@ -73,7 +73,7 @@
   </el-container>
 </template>
 <script>
-import { getList, addObj, updateObj, delObj, getTategory } from '@/api/visual'
+import { getList, addObj, updateObj, delObj, getCategory } from '@/api/visual';
 export default {
   name: "list",
   data () {
@@ -88,10 +88,10 @@ export default {
           span: 24,
           labelWidth: 100,
           type: 'select',
-          dicUrl: '/visual/category',
+          dicUrl: this.url + '/category/list',
           props: {
-            label: 'dictValue',
-            value: 'dictKey',
+            label: 'categoryKey',
+            value: 'categoryValue',
           },
           rules: [{
             required: true,
@@ -158,18 +158,18 @@ export default {
     }
   },
   created () {
-    this.getTategory()
+    this.getCategory()
     this.getList();
   },
   methods: {
     vaildData (id) {
       return [0, 1, 2, 3].includes(id)
     },
-    getTategory () {
-      getTategory().then(res => {
+    getCategory () {
+      getCategory().then(res => {
         const data = res.data.data;
         this.typelist = data;
-        this.activeName = data[0].dictKey;
+        this.activeName = (data[0] || {}).categoryValue;
       })
     },
     handleDel (item, index) {

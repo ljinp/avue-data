@@ -13,22 +13,28 @@
         <el-menu-item index="2">
           地图管理
         </el-menu-item>
+        <el-menu-item index="3">
+          分类管理
+        </el-menu-item>
       </el-menu>
     </el-aside>
     <el-container>
       <list v-if="activeName==1"></list>
       <maps v-if="activeName==2"></maps>
+      <category v-if="activeName==3"></category>
     </el-container>
   </el-container>
 </template>
 <script>
 import list from './list/index'
 import maps from './list/map'
+import category from './list/category'
 export default {
   name: "index",
   components: {
     list,
-    maps
+    maps,
+    category
   },
   data () {
     return {
