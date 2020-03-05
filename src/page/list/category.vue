@@ -25,10 +25,20 @@ export default {
           {
             label: '模块名称',
             prop: 'categoryKey',
+            rules: [{
+              required: true,
+              message: "请输入模块名称",
+              trigger: "blur"
+            }]
           },
           {
             label: '模块值',
             prop: 'categoryValue',
+            rules: [{
+              required: true,
+              message: "请输入模块值",
+              trigger: "blur"
+            }]
           }
         ]
       }

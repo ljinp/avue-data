@@ -8,6 +8,15 @@ export const getList = (category) => request({
   }
 });
 
+
+export const copyObj = (id) => request({
+  url: url + '/visual/copy',
+  method: 'post',
+  params: {
+    id: id
+  }
+});
+
 export const getCategory = (params) => request({
   url: url + '/category/list',
   method: 'get',

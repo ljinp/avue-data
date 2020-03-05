@@ -28,7 +28,12 @@ export default {
           {
             label: '地图名称',
             prop: 'name',
-            row: true
+            row: true,
+            rules: [{
+              required: true,
+              message: "请输入地图名称",
+              trigger: "blur"
+            }]
           },
           {
             label: '地图数据',
@@ -37,6 +42,11 @@ export default {
             span: 24,
             minRows: 20,
             hide: true,
+            rules: [{
+              required: true,
+              message: "请输入地图数据",
+              trigger: "blur"
+            }]
           }
         ]
       }

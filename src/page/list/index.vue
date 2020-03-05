@@ -46,12 +46,22 @@
             <span class="content__name">{{item.title}}</span>
             <div class="content__menulist">
               <div class="content__view">
-                <i class="el-icon-delete"
-                   @click="handleDel(item,index)"></i>
-                <i class="el-icon-edit"
-                   @click="handleUpdate(item,index)"></i>
-                <i class="el-icon-view"
-                   @click="handleViews(item,index)"></i>
+                <el-tooltip content="删除">
+                  <i class="el-icon-delete"
+                     @click="handleDel(item,index)"></i>
+                </el-tooltip>
+                <el-tooltip content="编辑">
+                  <i class="el-icon-edit"
+                     @click="handleUpdate(item,index)"></i>
+                </el-tooltip>
+                <el-tooltip content="预览">
+                  <i class="el-icon-view"
+                     @click="handleViews(item,index)"></i>
+                </el-tooltip>
+                <el-tooltip content="复制">
+                  <i class="el-icon-copy-document"
+                     @click="handleCopy(item,index)"></i>
+                </el-tooltip>
               </div>
               <span class="content__status"
                     :class="{'content__status--active':item.status}">
@@ -73,7 +83,7 @@
   </el-container>
 </template>
 <script>
-import { getList, addObj, updateObj, delObj, getCategory } from '@/api/visual';
+import { getList, addObj, updateObj, delObj, getCategory, copyObj } from '@/api/visual';
 export default {
   name: "list",
   data () {
@@ -172,8 +182,21 @@ export default {
         this.activeName = (data[0] || {}).categoryValue;
       })
     },
-    handleDel (item, index) {
+    handleCopy (item) {
+      this.$confirm('确认复制当前大屏', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        copyObj(item.id).then(() => {
+          this.$message.success('复制成功');
+          this.getList();
+        })
+      }).catch(() => {
 
+      });
+    },
+    handleDel (item, index) {
       this.$confirm('是否确认永久删除?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
