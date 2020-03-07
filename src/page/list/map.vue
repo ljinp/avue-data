@@ -9,18 +9,28 @@
                @row-update="rowUpdate"
                @row-del="rowDel"
                :before-open="beforeOpen"
-               :data="data"></avue-crud>
+               :data="data">
+      <template slot="dataForm"
+                slot-scope="{}">
+        <codeedit v-model="form.data"></codeedit>
+      </template>
+    </avue-crud>
   </div>
 </template>
 
 <script>
+import codeedit from '../group/code';
 import { getList, getObj, addObj, delObj, updateObj } from '@/api/map'
 export default {
+  components: {
+    codeedit
+  },
   data () {
     return {
       form: {},
       data: [],
       option: {
+        labelWidth: 100,
         index: true,
         align: 'center',
         headerAlign: 'center',
@@ -38,10 +48,9 @@ export default {
           {
             label: '地图数据',
             prop: 'data',
-            type: 'textarea',
             span: 24,
-            minRows: 20,
             hide: true,
+            formslot: true,
             rules: [{
               required: true,
               message: "请输入地图数据",
@@ -64,6 +73,7 @@ export default {
         getObj(this.form.id).then(res => {
           const data = res.data.data;
           this.form = data
+          this.form.data = JSON.stringify(JSON.parse(this.form.data), null, 4)
           done()
         })
       } else {
@@ -94,6 +104,7 @@ export default {
         this.$message.error('例子模板不允许修改')
         return false;
       }
+      row.data = this.$refs.codeedit.getValue()
       updateObj(row).then(() => {
         this.$message.success('修改成功');
         this.getList()
@@ -101,6 +112,7 @@ export default {
       })
     },
     rowSave (row, done) {
+      row.data = this.$refs.codeedit.getValue()
       addObj(row).then(() => {
         this.$message.success('新增成功');
         this.getList()

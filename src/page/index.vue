@@ -1,7 +1,7 @@
 <template>
 
   <el-container class="list">
-    <el-aside width="200px">
+    <el-aside width="230px">
       <h2 class="title">Avue-data数据大屏</h2>
       <el-menu :default-active="activeName"
                background-color="#171b22"
@@ -9,19 +9,22 @@
                @select="handleSelect"
                active-text-color="#00baff">
         <el-menu-item index="1">
+          <i class="el-icon-document"></i>
           大屏管理
         </el-menu-item>
         <el-menu-item index="2">
+          <i class="el-icon-document"></i>
           地图管理
         </el-menu-item>
         <el-menu-item index="3">
+          <i class="el-icon-document"></i>
           分类管理
         </el-menu-item>
       </el-menu>
     </el-aside>
 
     <el-scrollbar class="list"
-                  style="height:800px;">
+                  style="width:100%;height:800px;">
       <list v-if="activeName==1"></list>
       <maps v-if="activeName==2"></maps>
       <category v-if="activeName==3"></category>
@@ -56,8 +59,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .title {
-  font-size: 18px;
-  color: #409eff;
+  font-size: 20px;
+  color: #fff;
   text-align: center;
   line-height: 60px;
   font-weight: 500;

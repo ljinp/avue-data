@@ -15,7 +15,7 @@ window.axios = axios;
 Vue.config.productionTip = false
 Vue.prototype.url = url;
 Vue.use(window.AVUE, {
-  size: 'small'
+  size: 'mini'
 });
 Vue.use(ElementUI);
 new Vue({

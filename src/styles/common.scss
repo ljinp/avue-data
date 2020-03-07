@@ -83,7 +83,7 @@ a{
 }
 
 .el-collapse-item__wrap{
-  background-color: transparent;
+  background-color:#000;
   border-bottom: none;
 }
 .el-radio__input, .params .el-radio__label,.params input{
@@ -98,6 +98,9 @@ a{
 }
 .avue-empty__desc{
   color:#fff;
+}
+.el-form-item__label, .el-dialog .el-form-item__label{
+  color:#fff !important;
 }
 
 .hover-row td,.hover-row th{
@@ -197,6 +200,9 @@ input{
   background-color: transparent;
   color:#859094;
   border-color:#859094;
+}
+.el-collapse-item__content{
+  padding: 0;
 }
 .el-collapse-item__header{
   padding-left: 20px;

@@ -169,7 +169,6 @@ export default {
   },
   created () {
     this.getCategory()
-    this.getList();
   },
   methods: {
     vaildData (id) {
@@ -180,6 +179,7 @@ export default {
         const data = res.data.data;
         this.typelist = data;
         this.activeName = (data[0] || {}).categoryValue;
+        this.getList();
       })
     },
     handleCopy (item) {
@@ -240,6 +240,8 @@ export default {
       this.type = 'add';
       this.option.column[5].display = false;
       this.form.category = this.activeName;
+      this.form.width = 1920;
+      this.form.height = 1080;
       this.box = true;
     },
     handleSave (form, done) {
@@ -277,11 +279,19 @@ export default {
       this.activeName = key;
     },
     getList (category) {
+      const loading = this.$loading({
+        lock: true,
+        text: '正在加载中，请稍后',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)'
+      });
+      this.list = []
       getList({
         category: category || this.activeName,
         current: 1,
         size: 100,
       }).then(res => {
+        loading.close();
         this.list = res.data.data.records
         this.initData();
       })

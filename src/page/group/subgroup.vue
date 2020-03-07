@@ -1,7 +1,8 @@
 <template>
   <div>
     <div v-for="item in nav"
-         :key="item.index">
+         :key="item.index"
+         @contextmenu.prevent="contain.handleContextMenu($event,item)">
       <avue-draggable v-if="!item.children"
                       v-bind="item"
                       :scale="container.stepScale"
@@ -18,14 +19,14 @@
                    :id="common.NAME+item.index"
                    :is="common.COMPNAME+item.component.name"
                    v-bind="item"
+                   :data-formatter="getFunction(item.dataFormatter)"
                    :width="item.component.width"
                    :height="item.component.height"
                    :animation="!contain.menuFlag"
                    :disabled="!contain.menuFlag"
                    :scale="container.stepScale"
                    :option="item.option"
-                   :homeUrl="contain.config.url"
-                   :dataQuery="handleGetQuery(item)"
+                   :home-url="contain.config.url"
                    :click="handleClick" />
       </avue-draggable>
       <subgroup :nav="item.children"></subgroup>
@@ -59,6 +60,9 @@ export default {
     }
   },
   methods: {
+    getFunction (fun) {
+      return eval(fun);
+    },
     //点击事件交互
     handleClick ({ type, child, value }) {
       if (type === 'tabs') {
@@ -75,14 +79,12 @@ export default {
         })
       }
     },
-    //合并组件参数和公共参数查询参数
-    handleGetQuery (item) {
-      return Object.assign(this.deepClone(this.contain.config.query), item.dataQuery)
-    },
     //刷新数据
-    handleRefresh () {
+    handleRefresh (tip = true) {
       this.$refs[this.common.NAME + this.contain.activeObj.index][0].updateData();
-      this.$message.success('刷新成功')
+      if (tip) {
+        this.$message.success('刷新成功')
+      }
     },
     //获取对象
     handleGetObj (val) {

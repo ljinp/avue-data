@@ -9,11 +9,12 @@
   },
   "dependencies": {
     "axios": "^0.19.0",
+    "codemirror": "^5.52.0",
     "core-js": "^3.4.4",
     "css-loader": "^3.4.1",
     "element-ui": "^2.13.0",
     "mockjs": "^1.1.0",
-    "vue": "^2.5.2",
+    "vue": "^2.6.11",
     "vue-router": "3.1.0",
     "vuedraggable": "^2.23.2"
   },

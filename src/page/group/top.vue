@@ -96,7 +96,7 @@ export default {
             const data = {
               visual: {
                 id: this.contain.visual.id,
-                backgroundUrl: canvas.toDataURL('image/jpeg', 0.5)
+                backgroundUrl: canvas.toDataURL('image/jpeg', 0.1)
               },
               config: {
                 id: this.contain.obj.config.id,

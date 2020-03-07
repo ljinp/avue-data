@@ -13,6 +13,25 @@ export default [{
       "icon": 'icon-bar',
       "dataType": 1,
       "dataMethod": 'get',
+      "data": {
+        "categories": [
+          "苹果",
+          "三星",
+          "小米",
+          "oppo",
+          "vivo"
+        ],
+        "series": [{
+          "name": "手机品牌",
+          "data": [
+            1000879,
+            3400879,
+            2300879,
+            5400879,
+            3400879
+          ]
+        }]
+      },
       "url": baseUrl + "/bar",
       "time": 5000,
       "component": {
@@ -26,11 +45,12 @@ export default [{
         "gridY": 0,
         "gridX2": 0,
         "gridY2": 0,
+        "legend": true,
         "nameColor": "#eee",
         "lineColor": "#eee",
         "xNameFontSize": 16,
         "yNameFontSize": 16,
-        "labelShow": false,
+        "labelShow": true,
         "labelShowFontSize": 14,
         "labelShowFontWeight": 300,
         "yAxisInverse": false,
@@ -65,6 +85,25 @@ export default [{
       "icon": 'icon-line',
       "dataType": 1,
       "dataMethod": 'get',
+      "dara": {
+        "categories": [
+          "苹果",
+          "三星",
+          "小米",
+          "oppo",
+          "vivo"
+        ],
+        "series": [{
+          "name": "手机品牌",
+          "data": [
+            1000879,
+            3400879,
+            2300879,
+            5400879,
+            3400879
+          ]
+        }]
+      },
       "url": baseUrl + "/bar",
       "time": 5000,
       "component": {
@@ -120,7 +159,31 @@ export default [{
       "dataMethod": 'get',
       "time": 5000,
       "url": baseUrl + "/pie",
-      "data": [],
+      "data": [{
+        "name": "苹果",
+        "value": 1000879,
+        "url": "http://www.baidu.com"
+      }, {
+        "name": "三星",
+        "value": 3400879,
+        "url": "http://www.baidu.com"
+      }, {
+        "name": "小米",
+        "value": 2300879,
+        "url": "http://www.baidu.com"
+      }, {
+        "name": "oppo",
+        "value": 5400879,
+        "url": "http://www.baidu.com"
+      }, {
+        "name": "大疆",
+        "value": 3000,
+        "url": "http://www.baidu.com"
+      }, {
+        "name": "抖音",
+        "value": 2000,
+        "url": "http://www.baidu.com"
+      }],
       "resize": false,
       "component": {
         "width": 600,
@@ -129,6 +192,7 @@ export default [{
         "prop": "pie",
       },
       "option": {
+        "legend": true,
         "labelShow": true,
         "barColor": [
           {
@@ -159,7 +223,25 @@ export default [{
       "dataMethod": 'get',
       "time": 5000,
       "url": baseUrl + "/pie",
-      "data": [],
+      "data": {
+        "categories": [
+          "苹果",
+          "三星",
+          "小米",
+          "oppo",
+          "vivo"
+        ],
+        "series": [{
+          "name": "手机品牌",
+          "data": [
+            1000879,
+            3400879,
+            2300879,
+            5400879,
+            3400879
+          ]
+        }]
+      },
       "component": {
         "width": 600,
         "height": 300,
@@ -188,7 +270,44 @@ export default [{
       "dataMethod": 'get',
       "time": 5000,
       "url": baseUrl + "/radar",
-      "data": [],
+      "data": {
+        indicator: [{
+          name: '销售',
+          max: 6500
+        },
+        {
+          name: '管理',
+          max: 16000
+        },
+        {
+          name: '信息技术',
+          max: 30000
+        },
+        {
+          name: '客服',
+          max: 38000
+        },
+        {
+          name: '研发',
+          max: 52000
+        },
+        {
+          name: '市场',
+          max: 25000
+        }
+        ],
+        series: [{
+          data: [{
+            value: [4300, 10000, 28000, 35000, 50000, 19000],
+            name: '预算分配（Allocated Budget）'
+          },
+          {
+            value: [5000, 14000, 28000, 31000, 42000, 21000],
+            name: '实际开销（Actual Spending）'
+          }
+          ]
+        }]
+      },
       "component": {
         "width": 970,
         "height": 400,
@@ -232,7 +351,18 @@ export default [{
       "dataMethod": 'get',
       "time": 5000,
       "url": baseUrl + "/scatter",
-      "data": [],
+      "data": [{
+        "data": [
+          [1, 8.04],
+          [2, 6.95]
+        ]
+      },
+      {
+        "data": [
+          [1, 4.04],
+          [2, 3.95]
+        ]
+      }],
       "component": {
         "width": 600,
         "height": 300,
@@ -265,7 +395,18 @@ export default [{
       "dataMethod": 'get',
       "time": 5000,
       "url": baseUrl + "/funnel",
-      "data": [],
+      "data": [{
+        value: 335,
+        name: '直接访问'
+      },
+      {
+        value: 310,
+        name: '邮件营销'
+      },
+      {
+        value: 234,
+        name: '联盟广告'
+      }],
       "component": {
         "width": 400,
         "height": 300,
@@ -330,10 +471,13 @@ export default [{
       "title": "文本框",
       "name": "文本框",
       "icon": 'icon-text',
-      "data": "文本框",
+      "dataType": 0,
+      "data": {
+        value: '文本框'
+      },
       "component": {
         "width": 100,
-        "height": 50,
+        "height": 40,
         "name": "text",
         "prop": "text"
       },
@@ -352,7 +496,10 @@ export default [{
       "icon": 'icon-scroll',
       "top": 0,
       "left": 0,
-      "data": "跑马灯",
+      "dataType": 0,
+      "data": {
+        value: "跑马灯"
+      },
       "component": {
         "width": 100,
         "height": 50,
@@ -427,6 +574,10 @@ export default [{
       "icon": 'icon-img',
       "top": 0,
       "left": 0,
+      "dataType": 0,
+      "data": {
+        value: ''
+      },
       "component": {
         "width": 140,
         "height": 140,
@@ -489,7 +640,6 @@ export default [{
       "icon": 'icon-iframe',
       "top": 0,
       "left": 0,
-      "dataType": 0,
       "component": {
         "width": 670,
         "height": 370,
@@ -497,9 +647,10 @@ export default [{
         "name": "iframe",
         "prop": "iframe"
       },
+      "dataType": 0,
       "data": {
-        value: 'https://cloud.baidu.com'
-      },
+        value: 'https://avuejs.com'
+      }
     }
   }, {
     label: 'video',
@@ -538,7 +689,7 @@ export default [{
         value: '12345'
       },
       "component": {
-        "width": 260,
+        "width": 300,
         "height": 100,
         "name": "flop",
         "prop": "flop",
@@ -553,7 +704,7 @@ export default [{
         "borderColor": "#fff",
         "borderWidth": 3,
         "backgroundBorder": "/img/border/border1.png",
-        "fontSize": 42,
+        "fontSize": 32,
         "fontWeight": "normal",
         "splitx": 0,
         "splity": 0,
@@ -585,7 +736,7 @@ export default [{
         "type": "circle",
         "strokeWidth": 25,
         "color": "rgba(154, 168, 212, 1)",
-        "fontSize": 60,
+        "fontSize": 40,
         "fontWeight": "normal",
         "suffixColor": "rgba(154, 168, 212, 1)",
         "suffixFontSize": 40,
@@ -637,7 +788,13 @@ export default [{
       "dataMethod": 'get',
       "time": 5000,
       "url": baseUrl + "/gauge",
-      "data": [],
+      "data": {
+        min: 1,
+        max: 10,
+        label: '名称',
+        value: 4,
+        unit: '%'
+      },
       "component": {
         "width": 390,
         "height": 314,
@@ -678,6 +835,43 @@ export default [{
       "left": 3780,
       "dataType": 1,
       "dataMethod": 'get',
+      "data": [{
+        name: '三星',
+        value: '1234'
+      }, {
+        name: '小米',
+        value: '1234'
+      }, {
+        name: '华为',
+        value: '1234'
+      }, {
+        name: 'oppo',
+        value: '1234'
+      }, {
+        name: '抖音',
+        value: '1234'
+      }, {
+        name: '快手',
+        value: '1234'
+      }, {
+        name: '淘宝',
+        value: '1234'
+      }, {
+        name: '百度',
+        value: '1234'
+      }, {
+        name: '京东',
+        value: '1234'
+      }, {
+        name: '天猫',
+        value: '1234'
+      }, {
+        name: '字符1',
+        value: '1234'
+      }, {
+        name: '字符1',
+        value: '1234'
+      }],
       "url": baseUrl + "/wordCloud",
       "time": 5000,
       "component": {
