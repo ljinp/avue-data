@@ -32,6 +32,7 @@ export default [{
           ]
         }]
       },
+      "dataFormatter": "",
       "url": baseUrl + "/bar",
       "time": 5000,
       "component": {
@@ -104,6 +105,7 @@ export default [{
           ]
         }]
       },
+      "dataFormatter": "",
       "url": baseUrl + "/bar",
       "time": 5000,
       "component": {
@@ -184,6 +186,7 @@ export default [{
         "value": 2000,
         "url": "http://www.baidu.com"
       }],
+      "dataFormatter": "",
       "resize": false,
       "component": {
         "width": 600,
@@ -242,6 +245,7 @@ export default [{
           ]
         }]
       },
+      "dataFormatter": "",
       "component": {
         "width": 600,
         "height": 300,
@@ -308,6 +312,7 @@ export default [{
           ]
         }]
       },
+      "dataFormatter": "",
       "component": {
         "width": 970,
         "height": 400,
@@ -363,6 +368,7 @@ export default [{
           [2, 3.95]
         ]
       }],
+      "dataFormatter": "",
       "component": {
         "width": 600,
         "height": 300,
@@ -407,6 +413,7 @@ export default [{
         value: 234,
         name: '联盟广告'
       }],
+      "dataFormatter": "",
       "component": {
         "width": 400,
         "height": 300,
@@ -440,6 +447,7 @@ export default [{
       "title": "地图",
       "icon": "icon-map",
       "data": [],
+      "dataFormatter": "",
       "component": {
         "width": 800,
         "height": 500,
@@ -472,6 +480,7 @@ export default [{
       "name": "文本框",
       "icon": 'icon-text',
       "dataType": 0,
+      "dataFormatter": "",
       "data": {
         value: '文本框'
       },
@@ -500,6 +509,7 @@ export default [{
       "data": {
         value: "跑马灯"
       },
+      "dataFormatter": "",
       "component": {
         "width": 100,
         "height": 50,
@@ -523,7 +533,10 @@ export default [{
       "icon": 'icon-link',
       "top": 0,
       "left": 0,
-      "data": "超链接",
+      "data": {
+        "value": "超链接"
+      },
+      "dataFormatter": "",
       "component": {
         "width": 100,
         "height": 50,
@@ -578,6 +591,7 @@ export default [{
       "data": {
         value: ''
       },
+      "dataFormatter": "",
       "component": {
         "width": 140,
         "height": 140,
@@ -619,6 +633,7 @@ export default [{
       "time": 5000,
       "url": baseUrl + "/swiper",
       "data": [],
+      "dataFormatter": "",
       "component": {
         "width": 670,
         "height": 370,
@@ -650,7 +665,8 @@ export default [{
       "dataType": 0,
       "data": {
         value: 'https://avuejs.com'
-      }
+      },
+      "dataFormatter": ""
     }
   }, {
     label: 'video',
@@ -661,15 +677,16 @@ export default [{
       "top": 0,
       "left": 0,
       "dataType": 0,
+      "data": {
+        value: 'http://www.w3school.com.cn/i/movie.ogg'
+      },
+      "dataFormatter": "",
       "component": {
         "width": 670,
         "height": 370,
         "option": {},
         "name": "video",
         "prop": "video"
-      },
-      "data": {
-        value: 'http://www.w3school.com.cn/i/movie.ogg'
       },
     }
   }]
@@ -688,6 +705,7 @@ export default [{
       "data": {
         value: '12345'
       },
+      "dataFormatter": "",
       "component": {
         "width": 300,
         "height": 100,
@@ -726,6 +744,7 @@ export default [{
         "value": 40,
         "data": 80
       },
+      "dataFormatter": "",
       "component": {
         "width": 300,
         "height": 300,
@@ -760,6 +779,7 @@ export default [{
         "value": 40,
         "data": 80
       },
+      "dataFormatter": "",
       "component": {
         "width": 400,
         "height": 80,
@@ -795,6 +815,7 @@ export default [{
         value: 4,
         unit: '%'
       },
+      "dataFormatter": "",
       "component": {
         "width": 390,
         "height": 314,
@@ -872,6 +893,7 @@ export default [{
         name: '字符1',
         value: '1234'
       }],
+      "dataFormatter": "",
       "url": baseUrl + "/wordCloud",
       "time": 5000,
       "component": {
@@ -907,6 +929,7 @@ export default [{
         "type1": '数据1',
         "type2": '数据2'
       }],
+      "dataFormatter": "",
       "component": {
         "width": 500,
         "height": 200,
@@ -943,6 +966,7 @@ export default [{
         "index": [],
         "paramName": ""
       },
+      "dataFormatter": "",
       "dataType": 0,
       "data": [
         {
