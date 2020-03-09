@@ -9,8 +9,9 @@
                  :action="url+'/visual/put-file'"
                  multiple
                  list-type="picture">
-        <i class="el-icon-upload"></i>
-        <div class="el-upload__text">点击上传</em></div>
+        <el-button size="small"
+                   icon="el-icon-upload"
+                   type="primary">点击上传</el-button>
       </el-upload>
     </div>
     <el-scrollbar class="imgList">
