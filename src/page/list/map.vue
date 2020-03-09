@@ -12,7 +12,8 @@
                :data="data">
       <template slot="dataForm"
                 slot-scope="{}">
-        <codeedit v-model="form.data"></codeedit>
+        <codeedit v-model="form.data"
+                  ref="codeedit"></codeedit>
       </template>
     </avue-crud>
   </div>
@@ -50,12 +51,7 @@ export default {
             prop: 'data',
             span: 24,
             hide: true,
-            formslot: true,
-            rules: [{
-              required: true,
-              message: "请输入地图数据",
-              trigger: "blur"
-            }]
+            formslot: true
           }
         ]
       }

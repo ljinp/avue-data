@@ -2,6 +2,17 @@
   <el-dialog title="图库"
              width="80%"
              :visible.sync="imgVisible">
+    <div style="margin:0 auto;">
+      <el-upload class="upload-demo"
+                 :on-success="onSuccess"
+                 :show-file-list="false"
+                 :action="url+'/visual/put-file'"
+                 multiple
+                 list-type="picture">
+        <i class="el-icon-upload"></i>
+        <div class="el-upload__text">点击上传</em></div>
+      </el-upload>
+    </div>
     <el-scrollbar class="imgList">
       <img :src="item.value"
            :style="styleName"
@@ -50,6 +61,13 @@ export default {
     }
   },
   methods: {
+    onSuccess (res) {
+      const url = res.data.link;
+      this.imgOption[this.imgActive].unshift({
+        label: url,
+        value: url
+      });
+    },
     openImg (item, type) {
       this.type = type;
       this.imgObj = item

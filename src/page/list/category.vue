@@ -23,11 +23,11 @@ export default {
         headerAlign: 'center',
         column: [
           {
-            label: '模块名称',
+            label: '模块名',
             prop: 'categoryKey',
             rules: [{
               required: true,
-              message: "请输入模块名称",
+              message: "请输入模块名",
               trigger: "blur"
             }]
           },

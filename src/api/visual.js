@@ -7,6 +7,7 @@ export const getList = (params) => request({
 });
 
 
+
 export const copyObj = (id) => request({
   url: url + '/visual/copy',
   method: 'post',
@@ -27,6 +28,12 @@ export const getObj = (id) => request({
   params: {
     id
   }
+});
+export const uploadImg = (file) => request({
+  url: url + '/visual/put-file',
+  method: 'post',
+  data: 'file=' + file,
+  headers: { "Content-Type": "multipart/form-data" }
 });
 
 export const addObj = (data) => request({
