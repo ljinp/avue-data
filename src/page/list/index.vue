@@ -72,6 +72,16 @@
           </div>
         </div>
       </div>
+      <div class="page">
+        <el-pagination layout="total, sizes, prev, pager, next, jumper"
+                       background
+                       @size-change="handleSizeChange"
+                       @current-change="handleCurrentChange"
+                       :page-size="page.size"
+                       :current-page.sync="page.page"
+                       :total="page.total">
+        </el-pagination>
+      </div>
     </el-main>
     <el-dialog title="新建大屏"
                width="35%"
@@ -160,6 +170,11 @@ export default {
             value: 1
           }]
         }]
+      },
+      page: {
+        page: 1,
+        size: 10,
+        total: 0,
       },
       form: {},
       box: false,
@@ -277,6 +292,16 @@ export default {
     },
     handleSelect (key) {
       this.activeName = key;
+      this.page.page = 1;
+      this.getList();
+    },
+    handleCurrentChange (val) {
+      this.page.page = val;
+      this.getList();
+    },
+    handleSizeChange (val) {
+      this.page.size = val;
+      this.getList();
     },
     getList (category) {
       const loading = this.$loading({
@@ -288,11 +313,13 @@ export default {
       this.list = []
       getList({
         category: category || this.activeName,
-        current: 1,
-        size: 100,
+        current: this.page.page,
+        size: this.page.size,
       }).then(res => {
         loading.close();
-        this.list = res.data.data.records
+        const data = res.data.data;
+        this.page.total = data.total;
+        this.list = data.records
         this.initData();
       })
     },

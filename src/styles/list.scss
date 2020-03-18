@@ -6,7 +6,10 @@
     border-color: rgb(33, 37, 40);
     border-width: 2px;
   }
-  
+  .page{
+    display: flex;
+    justify-content: center;
+  }
   .el-menu i {
     margin-right: 5px;
   }
