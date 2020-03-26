@@ -1138,6 +1138,12 @@
                   <avue-radio v-model="activeObj.dataMethod"
                               :dic="dicOption.dataMethod"></avue-radio>
                 </el-form-item>
+                <el-form-item label="接口参数"
+                              v-if="activeObj.dataType===1">
+                  <el-button size="mini"
+                             type="primary"
+                             @click="openCode('dataQuery')">编辑</el-button>
+                </el-form-item>
                 <el-form-item label="刷新时间">
                   <avue-input-number v-model="activeObj.time"></avue-input-number>
                 </el-form-item>
@@ -1392,6 +1398,8 @@ export default {
         } else if (this.code.type === 'dataFormatter') {
           this.activeObj.dataFormatter = value;
           this.handleRefresh(false);
+        } else if (this.code.type === 'dataFormatter') {
+          this.activeObj.dataQuery = value;
         }
         done();
       } catch (error) {
@@ -1407,6 +1415,8 @@ export default {
         this.code.obj = this.activeObj.data
       } else if (this.code.type === 'dataFormatter') {
         this.code.obj = this.activeObj.dataFormatter
+      } else if (this.code.type === 'dataQuery') {
+        this.code.obj = this.activeObj.dataQuery
       }
       this.code.box = true;
     },

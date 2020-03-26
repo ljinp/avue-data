@@ -21,6 +21,7 @@
                    v-bind="item"
                    :data-formatter="getFunction(item.dataFormatter)"
                    :width="item.component.width"
+                   :data-query="item.dataQuery"
                    :height="item.component.height"
                    :animation="!contain.menuFlag"
                    :disabled="!contain.menuFlag"
