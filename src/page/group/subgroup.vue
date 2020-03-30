@@ -21,7 +21,7 @@
                    v-bind="item"
                    :data-formatter="getFunction(item.dataFormatter)"
                    :width="item.component.width"
-                   :data-query="item.dataQuery"
+                   :data-query="getJson(item.dataQuery)"
                    :height="item.component.height"
                    :animation="!contain.menuFlag"
                    :disabled="!contain.menuFlag"
@@ -62,7 +62,11 @@ export default {
   },
   methods: {
     getFunction (fun) {
-      return eval(fun);
+      if (!this.validatenull(fun)) return eval(fun);
+    },
+    getJson (str) {
+      if (!this.validatenull(str)) return JSON.parse(str);
+
     },
     //点击事件交互
     handleClick ({ type, child, value }) {

@@ -1398,7 +1398,7 @@ export default {
         } else if (this.code.type === 'dataFormatter') {
           this.activeObj.dataFormatter = value;
           this.handleRefresh(false);
-        } else if (this.code.type === 'dataFormatter') {
+        } else if (this.code.type === 'dataQuery') {
           this.activeObj.dataQuery = value;
         }
         done();
