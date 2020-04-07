@@ -67,7 +67,11 @@ export default {
   },
   methods: {
     vaildData (id) {
-      return ['1', '2', '3', '4'].includes(id)
+      const list = [];
+      for (var i = 0; i < 20; i++) {
+        list.push(i + '')
+      }
+      return list.includes(id)
     },
     handleView () {
       this.contain.menuFlag = false;

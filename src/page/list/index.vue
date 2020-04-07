@@ -187,7 +187,11 @@ export default {
   },
   methods: {
     vaildData (id) {
-      return [0, 1, 2, 3].includes(id)
+      const list = [];
+      for (var i = 0; i < 20; i++) {
+        list.push(i + '')
+      }
+      return list.includes(id)
     },
     getCategory () {
       getCategory().then(res => {
