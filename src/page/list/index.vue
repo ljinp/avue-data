@@ -15,8 +15,19 @@
           {{item.categoryKey}}
         </el-menu-item>
       </el-menu>
+
     </el-header>
     <el-main>
+      <div class="page">
+        <el-pagination layout="total, sizes, prev, pager, next, jumper"
+                       background
+                       @size-change="handleSizeChange"
+                       @current-change="handleCurrentChange"
+                       :page-size="page.size"
+                       :current-page.sync="page.page"
+                       :total="page.total">
+        </el-pagination>
+      </div>
       <div class="content">
         <div class="content__item content__item--add"
              @click="handleAdd">
@@ -71,16 +82,6 @@
 
           </div>
         </div>
-      </div>
-      <div class="page">
-        <el-pagination layout="total, sizes, prev, pager, next, jumper"
-                       background
-                       @size-change="handleSizeChange"
-                       @current-change="handleCurrentChange"
-                       :page-size="page.size"
-                       :current-page.sync="page.page"
-                       :total="page.total">
-        </el-pagination>
       </div>
     </el-main>
     <el-dialog title="新建大屏"
@@ -189,7 +190,7 @@ export default {
     vaildData (id) {
       const list = [];
       for (var i = 0; i < 20; i++) {
-        list.push(i + '')
+        list.push(i)
       }
       return list.includes(id)
     },
