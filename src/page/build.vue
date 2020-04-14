@@ -1199,21 +1199,22 @@
                      label-position="left"
                      size="mini">
               <el-form-item label="提示事件">
-                <avue-input type="textarea"
-                            :min-rows="15"
-                            v-model="activeObj.formatter"></avue-input>
+                <el-button size="mini"
+                           type="primary"
+                           @click="openCode('formatter')">编辑</el-button>
               </el-form-item>
               <el-form-item label="点击事件"
                             v-if="vaildProp('clickFormatterList')">
-                <avue-input type="textarea"
-                            :min-rows="15"
-                            v-model="activeObj.clickFormatter"></avue-input>
+                <el-button size="mini"
+                           type="primary"
+                           @click="openCode('clickFormatter')">编辑</el-button>
+
               </el-form-item>
               <el-form-item label="标题事件"
                             v-if="vaildProp('labelFormatterList')">
-                <avue-input type="textarea"
-                            :min-rows="15"
-                            v-model="activeObj.labelFormatter"></avue-input>
+                <el-button size="mini"
+                           type="primary"
+                           @click="openCode('labelFormatter')">编辑</el-button>
               </el-form-item>
             </el-form>
           </el-tab-pane>
@@ -1252,13 +1253,20 @@
     </div>
 
     <el-dialog title="代码编辑"
-               :before-close="codeClose"
                :visible.sync="code.box"
+               @close="code.obj={}"
                width="60%">
       <codeedit ref="codeedit"
                 v-model="code.obj"></codeedit>
+      <span slot="footer"
+            class="dialog-footer">
+        <el-button size="small"
+                   @click="code.box=false">取 消</el-button>
+        <el-button type="primary"
+                   @click="codeClose"
+                   size="small">确 定</el-button>
+      </span>
     </el-dialog>
-
     <contentmenu ref="contentmenu"></contentmenu>
   </div>
 </template>
@@ -1382,7 +1390,7 @@ export default {
     this.initFun()
   },
   methods: {
-    codeClose (done) {
+    codeClose () {
       let value = this.$refs.codeedit.getValue();
       if (this.validatenull(value)) {
         value = '{}'
@@ -1393,15 +1401,10 @@ export default {
         }
         if (this.code.type === 'query') {
           this.config.query = value;
-        } else if (this.code.type === 'data') {
-          this.activeObj.data = value;
-        } else if (this.code.type === 'dataFormatter') {
-          this.activeObj.dataFormatter = value;
-          this.handleRefresh(false);
-        } else if (this.code.type === 'dataQuery') {
-          this.activeObj.dataQuery = value;
+        } else {
+          this.activeObj[this.code.type] = value;
         }
-        done();
+        this.code.box = false;
       } catch (error) {
         this.$message.error('数据格式有误')
       }
@@ -1409,14 +1412,10 @@ export default {
     },
     openCode (type) {
       this.code.type = type;
-      if (this.code.type === 'query') {
+      if (type === 'query') {
         this.code.obj = this.config.query;
-      } else if (this.code.type === 'data') {
-        this.code.obj = this.activeObj.data
-      } else if (this.code.type === 'dataFormatter') {
-        this.code.obj = this.activeObj.dataFormatter
-      } else if (this.code.type === 'dataQuery') {
-        this.code.obj = this.activeObj.dataQuery
+      } else {
+        this.code.obj = this.activeObj[type];
       }
       this.code.box = true;
     },

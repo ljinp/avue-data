@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <textarea :ref="id"
-              v-model="code"
-              style="height:300px;width:100%;"></textarea>
-  </div>
+  <textarea :ref="id"
+            v-model="code"
+            style="height:300px;width:100%;"></textarea>
 </template>
 
 <script>
@@ -25,23 +23,22 @@ export default {
     }
   },
   props: {
-    value: [String, Object, Array]
+    value: {
+      type: [String, Object, Array]
+    }
   },
   watch: {
     value: {
-      handler () {
-        if (['object', 'array'].includes(typeof this.value)) {
+      handler (val) {
+        if (['object', 'array'].includes(typeof val)) {
           this.code = JSON.stringify(this.value, null, 4);
         } else {
-          this.code = this.value;
+          this.code = val;
         }
         this.setValue(this.code);
       },
       immediate: true,
       deep: true,
-    },
-    code () {
-      this.$emit('input', this.code);
     },
   },
   mounted () {
