@@ -789,6 +789,12 @@
                 <template v-else-if="activeComponent.prop==='funnel'">
 
                 </template>
+                <!-- 自定义组件配置 -->
+                <template v-else-if="activeComponent.prop==='test'">
+                  <el-form-item label="字体大小">
+                    <avue-input-number v-model="activeOption.fontSize"></avue-input-number>
+                  </el-form-item>
+                </template>
                 <!-- 饼图的配置 -->
                 <template v-else-if="activeComponent.prop==='pie'">
                   <el-form-item label="字体大小">

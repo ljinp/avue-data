@@ -8,12 +8,10 @@
 export default {
   name: 'test',
   props: {
+    option: Object,
     component: Object
   },
   computed: {
-    option () {
-      return this.option || {}
-    },
     fontSize () {
       return (this.option.fontSize || 30) + 'px'
     }

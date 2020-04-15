@@ -469,6 +469,24 @@ export default [{
         "color": "rgba(13, 255, 255, 1)",
       }
     },
+  }, {
+    label: '自定义组件',
+    option: {
+      "name": "自定义组件",
+      "title": "自定义组件",
+      "icon": "icon-map",
+      "data": [],
+      "dataFormatter": "",
+      "component": {
+        "width": 800,
+        "height": 500,
+        "name": "test",
+        "prop": "test",
+      },
+      "option": {
+        "fontSize": 20,
+      }
+    }
   }]
 }, {
   "label": '文字',
