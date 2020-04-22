@@ -4,7 +4,7 @@
     <!-- 折叠公共配置 -->
     <el-collapse accordion>
       <!-- 标题设置 -->
-      <template v-if="crud.vaildProp('titleList')">
+      <template v-if="main.vaildProp('titleList')">
         <el-collapse-item title="标题设置">
           <el-form-item label="标题">
             <avue-switch v-model="main.activeOption.titleShow"></avue-switch>
@@ -36,7 +36,7 @@
         </el-collapse-item>
       </template>
       <!-- 轴设置 -->
-      <template v-if="crud.vaildProp('barList')">
+      <template v-if="main.vaildProp('barList')">
         <el-collapse-item title="X轴设置">
           <el-form-item label="名称">
             <avue-input v-model="main.activeOption.xAxisName">
@@ -91,7 +91,7 @@
         </el-collapse-item>
       </template>
       <!-- 数值设置 -->
-      <template v-if="crud.vaildProp('labelList')">
+      <template v-if="main.vaildProp('labelList')">
         <el-collapse-item title="数值设置">
           <el-form-item label="显示">
             <avue-switch v-model="main.activeOption.labelShow">
@@ -113,7 +113,7 @@
         </el-collapse-item>
       </template>
       <!-- 提示语设置  -->
-      <template v-if="crud.vaildProp('tipList')">
+      <template v-if="main.vaildProp('tipList')">
         <el-collapse-item title="提示语设置">
           <el-form-item label="字体大小">
             <avue-input-number v-model="main.activeOption.tipFontSize"></avue-input-number>
@@ -124,7 +124,7 @@
         </el-collapse-item>
       </template>
       <!-- 轴距离设置 -->
-      <template v-if="crud.vaildProp('postionList')">
+      <template v-if="main.vaildProp('postionList')">
         <el-collapse-item title="坐标轴边距设置">
           <el-form-item label="左边距(像素)">
             <avue-slider v-model="main.activeOption.gridX"
@@ -145,7 +145,7 @@
         </el-collapse-item>
       </template>
       <!-- 图例设置 -->
-      <template v-if="crud.vaildProp('legendList')">
+      <template v-if="main.vaildProp('legendList')">
         <el-collapse-item title="图例操作">
           <el-form-item label="图例">
             <avue-switch v-model="main.activeOption.legend"></avue-switch>
@@ -167,7 +167,7 @@
         </el-collapse-item>
       </template>
       <!-- 颜色设置 -->
-      <template v-if="crud.vaildProp('colorList')">
+      <template v-if="main.vaildProp('colorList')">
         <el-collapse-item title="自定义配色">
           <el-form-item label="文字颜色">
             <avue-color v-model="main.activeOption.nameColor">
