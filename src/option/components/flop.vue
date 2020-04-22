@@ -48,7 +48,7 @@
                  alt=""
                  width="100%" />
             <el-input v-model="main.activeOption.backgroundBorder">
-              <div @click="main.handleOpenImg('main.activeOption.backgroundBorder','border')"
+              <div @click="main.handleOpenImg('activeOption.backgroundBorder','border')"
                    slot="append">
                 <i class="iconfont icon-img"></i>
               </div>
@@ -64,7 +64,7 @@
                alt=""
                width="100%" />
           <el-input v-model="main.activeOption.backgroundImage">
-            <div @click="main.handleOpenImg('main.activeOption.backgroundImage','')"
+            <div @click="main.handleOpenImg('activeOption.backgroundImage','')"
                  slot="append">
               <i class="iconfont icon-img"></i>
             </div>

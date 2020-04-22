@@ -560,6 +560,8 @@ export default {
         this.activeOption.empBackgroundBorder = val;
       } else if (type === 'config.backgroundImage') {
         this.config.backgroundImage = val;
+      } else if (type == 'activeOption.symbol') {
+        this.activeOption.symbol = val;
       }
     }
   }

@@ -13,7 +13,7 @@
            alt=""
            width="100%" />
       <el-input v-model="main.activeObj.data">
-        <div @click="main.handleOpenImg('main.activeObj.data','border')"
+        <div @click="main.handleOpenImg('activeObj.data','border')"
              slot="append">
           <i class="iconfont icon-img"></i>
         </div>

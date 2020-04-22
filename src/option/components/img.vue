@@ -20,7 +20,7 @@
            alt=""
            width="100%" />
       <el-input v-model="main.activeObj.data.value">
-        <div @click="main.handleOpenImg('main.activeObj.data.value')"
+        <div @click="main.handleOpenImg('activeObj.data.value')"
              slot="append">
           <i class="iconfont icon-img"></i>
         </div>
@@ -45,7 +45,7 @@
            alt=""
            width="100%" />
       <el-input v-model="main.activeObj.data.value">
-        <div @click="main.handleOpenImg('main.activeObj.data.value')"
+        <div @click="main.handleOpenImg('activeObj.data.value')"
              slot="append">
           <i class="iconfont icon-img"></i>
         </div>

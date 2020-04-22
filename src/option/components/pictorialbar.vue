@@ -2,9 +2,16 @@
 <template>
   <div>
     <el-form-item label="图标">
-      <img :src="main.activeOption.symbol"
-           width="60" />
-      <avue-input v-model="main.activeOption.symbol"></avue-input>
+      <img v-if="main.activeOption.symbol"
+           :src="main.activeOption.symbol"
+           alt=""
+           width="100%" />
+      <el-input v-model="main.activeOption.symbol">
+        <div @click="main.handleOpenImg('activeOption.symbol')"
+             slot="append">
+          <i class="iconfont icon-img"></i>
+        </div>
+      </el-input>
     </el-form-item>
     <el-form-item label="图标字号">
       <avue-input-number v-model="main.activeOption.symbolSize"></avue-input-number>
