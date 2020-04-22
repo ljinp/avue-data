@@ -215,6 +215,15 @@ input{
 .el-collapse-item__content{
   padding: 0;
 }
+
+.el-select-dropdown.is-multiple .el-select-dropdown__item.selected.hover{
+  background-color: initial;
+  color:#fff;
+}
+.el-select-dropdown.is-multiple .el-select-dropdown__item.selected{
+  background-color: initial;
+  color:#fff;
+}
 .el-collapse-item__header{
   padding-left: 20px;
   height: 40px;

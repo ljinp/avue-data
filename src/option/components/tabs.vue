@@ -58,7 +58,7 @@
                  alt=""
                  width="100%" />
             <el-input v-model="main.activeOption.empBackgroundImage">
-              <div @click="main.handleOpenImg('activeOption.empBackgroundImage','background')"
+              <div @click="main.handleOpenImg('activeOption.empBackgroundImage','border')"
                    slot="append">
                 <i class="iconfont icon-img"></i>
               </div>
@@ -79,7 +79,13 @@
 </template>
 
 <script>
+import { dicOption } from '@/option/config'
 export default {
+  data () {
+    return {
+      dicOption: dicOption
+    }
+  },
   inject: ["main"]
 }
 </script>

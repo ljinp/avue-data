@@ -79,12 +79,12 @@ export default {
         indexList.forEach((index) => {
           const paramName = child.paramName;
           const item = this.contain.findlist(index);
-          if (item.url) {
-            item.url = addUrlParam(item.url, paramName, value);
-            this.$refs[this.common.NAME + index].forEach(ele => {
-              ele.updateData();
-            })
-          }
+          if (!item.url) return
+          if (!item.dataQuery) item.dataQuery = {};
+          item.dataQuery[paramName] = value;
+          this.$refs[this.common.NAME + index].forEach(ele => {
+            ele.updateData();
+          })
         })
       }
     },
