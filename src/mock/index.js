@@ -450,6 +450,16 @@ Mock.mock(/\/gauge/, 'get', () => {
   }
   return getResult(data)
 })
+//轮播图
+Mock.mock(/\/swiper/, 'get', () => {
+  const data = [
+    {
+      value: 'https://img.alicdn.com/tfs/TB1v28TC8v0gK0jSZKbXXbK2FXa-1880-640.jpg',
+    }, {
+      value: 'https://img.alicdn.com/tfs/TB1uevcCrj1gK0jSZFuXXcrHpXa-1880-640.jpg',
+    }]
+  return getResult(data)
+})
 //漏斗图
 Mock.mock(/\/funnel/, 'get', () => {
   const data = [{
@@ -466,3 +476,4 @@ Mock.mock(/\/funnel/, 'get', () => {
   }]
   return getResult(data)
 })
+
