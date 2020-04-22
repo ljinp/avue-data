@@ -52,6 +52,7 @@ export default [{
         "xNameFontSize": 16,
         "yNameFontSize": 16,
         "labelShow": true,
+        "labelShowColor": '#fff',
         "labelShowFontSize": 14,
         "labelShowFontWeight": 300,
         "yAxisInverse": false,
@@ -226,25 +227,25 @@ export default [{
       "dataMethod": 'get',
       "time": 5000,
       "url": baseUrl + "/pie",
-      "data": {
-        "categories": [
-          "苹果",
-          "三星",
-          "小米",
-          "oppo",
-          "vivo"
-        ],
-        "series": [{
-          "name": "手机品牌",
-          "data": [
-            1000879,
-            3400879,
-            2300879,
-            5400879,
-            3400879
-          ]
-        }]
-      },
+      "data": [{
+        "name": "苹果",
+        "value": 1000879,
+      }, {
+        "name": "三星",
+        "value": 3400879,
+      }, {
+        "name": "小米",
+        "value": 2300879,
+      }, {
+        "name": "oppo",
+        "value": 5400879,
+      }, {
+        "name": "大疆",
+        "value": 3000,
+      }, {
+        "name": "抖音",
+        "value": 2000,
+      }],
       "dataFormatter": "",
       "component": {
         "width": 600,
