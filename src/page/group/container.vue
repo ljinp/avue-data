@@ -16,8 +16,7 @@
                v-if="gradeFlag || contain.config.gradeShow"
                :style="gradeLenStyle"></div>
           <subgroup ref="subgroup"
-                    :nav="contain.list"
-                    @contextmenu.prevent.native="contain.handleContextMenu($event,item)"></subgroup>
+                    :nav="contain.list"></subgroup>
 
         </div>
       </div>
