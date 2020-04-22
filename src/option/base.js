@@ -256,6 +256,7 @@ export default [{
       "option": {
         symbolSize: 30,
         split: 30,
+        symbol: '/img/source/source256.png',
         fontSize: '24',
         xAxisShow: false,
         yAxisShow: true,
