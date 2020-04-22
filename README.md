@@ -1,18 +1,14 @@
 # 数据大屏解决方案
 
 ## 介绍
-数据大屏解决方案采用vue-cli项目编写，可以完美嵌套与任何项目，，此项目只是大屏的解决方案，如果想要用于生产或更多场景的支持需要二次开发。  
+数据大屏解决方案采用vue-cli项目编写，可以完美嵌套与任何项目，此项目只是大屏的解决方案，如果想要用于生产或更多场景的支持需要自己根据情况二次开发。  
 
-如果需要其他数据源（excel,直链数据库等），或以下常用组件不能满足，你可以很灵活的进行二次开发，可以参考项目中
-- /src/components/index.js
-- /src/components/test.vue
-- /src/option/base.js
-### 2种数据源
-- 在线api
+## 2种数据源
+- 在线api（本项目采用了mock拦截方式模拟，具体文件/mock/index.js）
 - 静态数据
 - ...
 
-### 20+常用组件
+## 20+常用组件
 - 图表
   - 柱状图
   - 折线图
@@ -44,54 +40,57 @@
   - 表格
 - ...
 
+## 自定义组件
+- 组件配置
+- /src/components/test/index
+- /src/components/test/option
+- 添加组件
+- /src/option/base.js
+- /src/option/components.js
+
 ## 核心方法
-### formatter
->如果数据移动到图表上需要展示的数据个性化定制，调用formatter-提示事件方法去处理（可以添加html标签和样式）  
+### 提示事件
+>如果数据移动到图表上需要展示的数据个性化定制（可以添加html标签和样式）  
 ```
 //name 移动上去的当前数据名字
 //data 接口返回的数据
-formatter:(name,data)=>{
-  return '<div>测试</div>'
+
+(name,data) => {
+  return 返回需要展示的文本
 }
 ```
-### dataFormatter
->如果接口返回的数据格式和组件规定的格式不一致，如果调用dataFormatter-数据处理方法去处理加工数据  
+### 数据处理
+>如果接口返回的数据格式和组件规定的格式不一致，数据处理方法去处理加工数据  
 ```
 //data 接口返回的数据
-dataFormatter:(data)=>{
-  var list = [];//这里处理成标准的数据格式,详情参考下面附录1
-  return {
-    data:list
-  }
+
+(data) => {
+  return //这里处理成标准的数据格式,详情参考下面附录1
 }
 ```
-### clickFormatter
->如果需要点击图表进行操作，如果调用clickFormatter-点击事件方法去处理事件  
+### 点击事件
+>如果需要点击图表进行操作
 ```
 //name  点击的当前数据名字
 //type  点击的当前数据类型
 //value 点击的当前数据值
 //data  接口返回的数据
-clickFormatter:({name,type,value,data})=>{
- alert(1);
+
+({name,type,value,data}) => {
+  //做一些点击的逻辑
 }
 ```
-### labelFormatter
->组件顶部显示的组件，调用labelFormatter-如格式化显示
+### 标题事件
+>组件顶部显示的文字(如柱状图顶部)
 ```
 //name  点击的当前数据名字
 //data  接口返回的数据
-labelFormatter:({name,data})=>{
- return '返回name处理后的数据'
+
+({name,data}) => {
+ return 返回要展示的数据
 }
 ```
-### mapList
->如果添加其他地图，需要在地图组件中mapList属性加入配置  
-[在线地图选择](http://datav.aliyun.com/tools/atlas/)
-你可以选择直接赋值给属性，也可以在map.js中赋值给一个变量，同时可以在地图选择字典中dicOption.js加入即可
 
-以上这些例子在data文件夹下中有例子，其他骚操作需要你自己去发觉了，毕竟这个解决方案是比较灵活的.
-例子分为2部分，第一部分是大屏模版，第二部分是部分组件的例子使用
 ## 通用属性
 ```
 {
@@ -262,4 +261,13 @@ labelFormatter:({name,data})=>{
 ...
 ```
 
+## 项目部署
 
+```
+//nginx为例子
+location /{
+    root /data/avue/avue-data;
+    index index.html;
+    error_page 404 /index.html; //根据vue路由特性，这句一定要配置，否则会出现404问题
+}  
+```

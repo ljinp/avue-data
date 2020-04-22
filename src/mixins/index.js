@@ -9,6 +9,7 @@ export default {
   },
   provide () {
     return {
+      main: this,
       contain: this
     };
   },

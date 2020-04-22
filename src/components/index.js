@@ -3,7 +3,7 @@
  * https://cn.vuejs.org/v2/guide/components-registration.html
 */
 import Vue from 'vue'
-import Test from './test';
+import Test from './test/';
 
 const list = [
   Test
