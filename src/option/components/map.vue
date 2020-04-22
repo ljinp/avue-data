@@ -11,7 +11,7 @@
     </template>
     <template v-if="main.activeOption.type===0">
       <el-form-item label="地图选择">
-        <avue-select :dic="DIC.MAP"
+        <avue-select :dic="main.DIC.MAP"
                      v-model="main.activeOption.mapData"
                      placeholder="请选择地图"></avue-select>
       </el-form-item>
