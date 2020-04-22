@@ -20,11 +20,14 @@ import tableOption from './components/table'
 import tabsOption from './components/tabs'
 import textOption from './components/text'
 import wordcloudOption from './components/wordcloud'
+//通用配置
+import commonOption from './components/common'
 //自定义组件库
 import testOption from '@/components/test/option'
 
 export default {
   components: {
+    commonOption,
     barOption,
     datetimeOption,
     flopOption,

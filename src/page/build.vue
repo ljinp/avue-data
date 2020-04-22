@@ -50,189 +50,7 @@
                   </el-form-item>
                 </template>
                 <component :is="activeComponent.prop+'Option'"></component>
-                <!-- 折叠公共配置 -->
-                <el-collapse accordion>
-                  <!-- 标题设置 -->
-                  <template v-if="vaildProp('titleList')">
-                    <el-collapse-item title="标题设置">
-                      <el-form-item label="标题">
-                        <avue-switch v-model="activeOption.titleShow"></avue-switch>
-                      </el-form-item>
-                      <el-form-item label="标题">
-                        <avue-input v-model="activeOption.title"></avue-input>
-                      </el-form-item>
-                      <el-form-item label="字体颜色">
-                        <avue-color v-model="activeOption.titleColor"></avue-color>
-                      </el-form-item>
-                      <el-form-item label="字体大小">
-                        <avue-input-number v-model="activeOption.titleFontSize"></avue-input-number>
-                      </el-form-item>
-                      <el-form-item label="字体位置">
-                        <avue-select v-model="activeOption.titlePostion"
-                                     :dic="dicOption.textAlign">
-                        </avue-select>
-                      </el-form-item>
-                      <el-form-item label="副标题">
-                        <avue-input v-model="activeOption.subtext"></avue-input>
-                      </el-form-item>
-                      <el-form-item label="字体颜色">
-                        <avue-color v-model="activeOption.subTitleColor"></avue-color>
-                      </el-form-item>
-                      <el-form-item label="字体大小">
-                        <avue-input-number v-model="activeOption.subTitleFontSize">
-                        </avue-input-number>
-                      </el-form-item>
-                    </el-collapse-item>
-                  </template>
-                  <!-- 轴设置 -->
-                  <template v-if="vaildProp('barList')">
-                    <el-collapse-item title="X轴设置">
-                      <el-form-item label="名称">
-                        <avue-input v-model="activeOption.xAxisName">
-                        </avue-input>
-                      </el-form-item>
-                      <el-form-item label="显示">
-                        <avue-switch v-model="activeOption.xAxisShow">
-                        </avue-switch>
-                      </el-form-item>
-                      <el-form-item label="显示网格线">
-                        <avue-switch v-model="activeOption.xAxisSplitLineShow">
-                        </avue-switch>
-                      </el-form-item>
-                      <el-form-item label="标签间距">
-                        <avue-switch v-model="activeOption.xAxisinterval">
-                        </avue-switch>
-                      </el-form-item>
-                      <el-form-item label="文字角度">
-                        <avue-switch v-model="activeOption.xAxisRotate">
-                        </avue-switch>
-                      </el-form-item>
-                      <el-form-item label="轴反转">
-                        <avue-switch v-model="activeOption.xAxisInverse">
-                        </avue-switch>
-                      </el-form-item>
-                      <el-form-item label="字号">
-                        <avue-input-number v-model="activeOption.xNameFontSize">
-                        </avue-input-number>
-                      </el-form-item>
-                    </el-collapse-item>
-                    <el-collapse-item title="Y轴设置">
-                      <el-form-item label="名称">
-                        <avue-input v-model="activeOption.yAxisName">
-                        </avue-input>
-                      </el-form-item>
-                      <el-form-item label="显示">
-                        <avue-switch v-model="activeOption.yAxisShow">
-                        </avue-switch>
-                      </el-form-item>
-                      <el-form-item label="轴网格线">
-                        <avue-switch v-model="activeOption.yAxisSplitLineShow">
-                        </avue-switch>
-                      </el-form-item>
-                      <el-form-item label="反转">
-                        <avue-switch v-model="activeOption.yAxisInverse">
-                        </avue-switch>
-                      </el-form-item>
-                      <el-form-item label="字号">
-                        <avue-input-number v-model="activeOption.yNameFontSize">
-                        </avue-input-number>
-                      </el-form-item>
-                    </el-collapse-item>
-                  </template>
-                  <!-- 数值设置 -->
-                  <template v-if="vaildProp('labelList')">
-                    <el-collapse-item title="数值设置">
-                      <el-form-item label="显示">
-                        <avue-switch v-model="activeOption.labelShow">
-                        </avue-switch>
-                      </el-form-item>
-                      <el-form-item label="字体大小">
-                        <avue-input-number v-model="activeOption.labelShowFontSize">
-                        </avue-input-number>
-                      </el-form-item>
-                      <el-form-item label="字体颜色">
-                        <avue-color v-model="activeOption.labelShowColor">
-                        </avue-color>
-                      </el-form-item>
-                      <el-form-item label="字体粗细">
-                        <avue-select v-model="activeOption.labelShowFontWeight"
-                                     :dic="dicOption.fontWeight">
-                        </avue-select>
-                      </el-form-item>
-                    </el-collapse-item>
-                  </template>
-                  <!-- 提示语设置  -->
-                  <template v-if="vaildProp('tipList')">
-                    <el-collapse-item title="提示语设置">
-                      <el-form-item label="字体大小">
-                        <avue-input-number v-model="activeOption.tipFontSize"></avue-input-number>
-                      </el-form-item>
-                      <el-form-item label="字体颜色">
-                        <avue-color v-model="activeOption.tipColor"></avue-color>
-                      </el-form-item>
-                    </el-collapse-item>
-                  </template>
-                  <!-- 轴距离设置 -->
-                  <template v-if="vaildProp('postionList')">
-                    <el-collapse-item title="坐标轴边距设置">
-                      <el-form-item label="左边距(像素)">
-                        <avue-slider v-model="activeOption.gridX"
-                                     :max="400"></avue-slider>
-                      </el-form-item>
-                      <el-form-item label="顶边距(像素)">
-                        <avue-slider v-model="activeOption.gridY"
-                                     :max="400"></avue-slider>
-                      </el-form-item>
-                      <el-form-item label="右边距(像素)">
-                        <avue-slider v-model="activeOption.gridX2"
-                                     :max="400"></avue-slider>
-                      </el-form-item>
-                      <el-form-item label="底边距(像素)">
-                        <avue-slider v-model="activeOption.gridY2"
-                                     :max="400"></avue-slider>
-                      </el-form-item>
-                    </el-collapse-item>
-                  </template>
-                  <!-- 图例设置 -->
-                  <template v-if="vaildProp('legendList')">
-                    <el-collapse-item title="图例操作">
-                      <el-form-item label="图例">
-                        <avue-switch v-model="activeOption.legend"></avue-switch>
-                      </el-form-item>
-                      <el-form-item label="位置">
-                        <avue-select v-model="activeOption.legendPostion"
-                                     :dic="dicOption.textAlign">
-                        </avue-select>
-                      </el-form-item>
-                      <el-form-item label="布局朝向">
-                        <avue-select v-model="activeOption.legendOrient"
-                                     :dic="dicOption.orientList">
-                        </avue-select>
-                      </el-form-item>
-                      <el-form-item label="字体大小">
-                        <avue-input-number v-model="activeOption.legendFontSize">
-                        </avue-input-number>
-                      </el-form-item>
-                    </el-collapse-item>
-                  </template>
-                  <!-- 颜色设置 -->
-                  <template v-if="vaildProp('colorList')">
-                    <el-collapse-item title="自定义配色">
-                      <el-form-item label="文字颜色">
-                        <avue-color v-model="activeOption.nameColor">
-                        </avue-color>
-                      </el-form-item>
-                      <el-form-item label="轴线颜色">
-                        <avue-color v-model="activeOption.lineColor"></avue-color>
-                      </el-form-item>
-                      <avue-crud :option="colorOption"
-                                 :data="activeOption.barColor"
-                                 @row-save="rowSave"
-                                 @row-del="rowDel"
-                                 @row-update="rowUpdate"></avue-crud>
-                    </el-collapse-item>
-                  </template>
-                </el-collapse>
+                <common-option></common-option>
               </template>
               <!-- 多选配置选项 -->
               <template v-else-if="isSelectActive">
@@ -516,7 +334,7 @@ import top from './group/top';
 import imglist from './group/imglist'
 import contentmenu from './group/contentmenu'
 import codeedit from './group/code';
-import { dicOption, colorOption } from '@/option/config'
+import { dicOption } from '@/option/config'
 import init from '@/mixins/'
 import { uuid } from '@/utils/utils'
 import components from '@/option/components'
@@ -541,7 +359,6 @@ export default {
       },
       form: {},
       dicOption: dicOption,
-      colorOption: colorOption,
       tabsActive: 0,
     }
   },
@@ -621,17 +438,6 @@ export default {
     this.initFun()
   },
   methods: {
-    rowSave (row, done) {
-      this.activeOption.barColor.push(row);
-      done()
-    },
-    rowDel (row, index) {
-      this.activeOption.barColor.splice(index, 1);
-    },
-    rowUpdate (row, index, done) {
-      this.activeOption.barColor.splice(index, 1, row);
-      done()
-    },
     codeClose () {
       let value = this.$refs.codeedit.getValue();
       if (this.validatenull(value)) {
