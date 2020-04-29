@@ -682,6 +682,7 @@ export default [{
         "name": "iframe",
         "prop": "iframe"
       },
+      "option": {},
       "dataType": 0,
       "data": {
         value: 'https://avuejs.com'
@@ -700,6 +701,7 @@ export default [{
       "data": {
         value: 'http://www.w3school.com.cn/i/movie.ogg'
       },
+      "option": {},
       "dataFormatter": "",
       "component": {
         "width": 670,

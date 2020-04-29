@@ -19,6 +19,7 @@ import swiperOption from './components/swiper'
 import tableOption from './components/table'
 import tabsOption from './components/tabs'
 import textOption from './components/text'
+import videoOption from './components/video'
 import wordcloudOption from './components/wordcloud'
 //通用配置
 import commonOption from './components/common'
@@ -47,6 +48,7 @@ export default {
     tableOption,
     tabsOption,
     textOption,
+    videoOption,
     wordcloudOption,
     testOption
   }
