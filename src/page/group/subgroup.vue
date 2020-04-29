@@ -69,8 +69,9 @@ export default {
       if (!this.validatenull(fun)) return eval(fun);
     },
     getJson (str) {
-      if (!this.validatenull(str)) return JSON.parse(str);
-
+      if (this.validatenull(str)) return {};
+      if (typeof str == "string") return JSON.parse(str);
+      return str;
     },
     //点击事件交互
     handleClick ({ type, child, value }) {
@@ -80,8 +81,14 @@ export default {
           const paramName = child.paramName;
           const item = this.contain.findlist(index);
           if (!item.url) return
-          if (!item.dataQuery) item.dataQuery = {};
-          item.dataQuery[paramName] = value;
+          let params = {};
+          if (item.dataQuery) {
+            params = this.getJson(item.dataQuery)
+          } else {
+            params = {}
+          }
+          params[paramName] = value;
+          item.dataQuery = JSON.stringify(params);
           this.$refs[this.common.NAME + index].forEach(ele => {
             ele.updateData();
           })
