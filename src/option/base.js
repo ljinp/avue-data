@@ -652,7 +652,12 @@ export default [{
       "dataMethod": 'get',
       "time": 5000,
       "url": baseUrl + "/swiper",
-      "data": [],
+      "data": [
+        {
+          value: 'https://img.alicdn.com/tfs/TB1v28TC8v0gK0jSZKbXXbK2FXa-1880-640.jpg',
+        }, {
+          value: 'https://img.alicdn.com/tfs/TB1uevcCrj1gK0jSZFuXXcrHpXa-1880-640.jpg',
+        }],
       "dataFormatter": "",
       "component": {
         "width": 670,
