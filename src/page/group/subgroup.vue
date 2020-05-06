@@ -27,7 +27,7 @@
                    :data-query="getJson(item.dataQuery)"
                    :height="item.component.height"
                    :animation="!contain.menuFlag"
-                   :theme="item.option.theme"
+                   :theme="(item.option || {}).theme"
                    :disabled="!contain.menuFlag"
                    :scale="container.stepScale"
                    :option="item.option"
