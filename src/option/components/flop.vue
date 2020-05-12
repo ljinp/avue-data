@@ -5,18 +5,21 @@
       <avue-switch v-model="main.activeOption.whole">
       </avue-switch>
     </el-form-item>
-    <el-form-item label="横行">
-      <avue-switch v-model="main.activeOption.row">
-      </avue-switch>
-    </el-form-item>
     <el-form-item label="精度">
       <avue-input-number v-model="main.activeOption.decimals">
       </avue-input-number>
     </el-form-item>
+    <el-form-item label="行数">
+      <avue-input-number v-model="main.activeOption.span">
+      </avue-input-number>
+    </el-form-item>
     <el-collapse accordion>
       <el-collapse-item title="边框设置">
-        <el-form-item label="间距">
-          <avue-slider v-model="main.activeOption.gridY"></avue-slider>
+        <el-form-item label="X间距">
+          <avue-slider v-model="main.activeOption.splitx"></avue-slider>
+        </el-form-item>
+        <el-form-item label="Y间距">
+          <avue-slider v-model="main.activeOption.splity"></avue-slider>
         </el-form-item>
         <el-form-item label="边框宽度">
           <avue-input-number v-model="main.activeOption.width"
@@ -78,9 +81,6 @@
         </el-form-item>
         <el-form-item label="字体颜色">
           <avue-color v-model="main.activeOption.color"></avue-color>
-        </el-form-item>
-        <el-form-item label="字体间距">
-          <avue-input-number v-model="main.activeOption.split"></avue-input-number>
         </el-form-item>
         <el-form-item label="文字粗细">
           <avue-select v-model="main.activeOption.fontWeight"

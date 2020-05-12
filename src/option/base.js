@@ -758,6 +758,71 @@ export default [{
       },
     }
   }, {
+    "label": '颜色块',
+    "option": {
+      "title": "翻牌器",
+      "name": "颜色块",
+      "icon": 'icon-flop',
+      "top": 0,
+      "left": 0,
+      "dataType": 0,
+      "data": [{
+        "backgroundColor": '#67C23A',
+        "prefixText": "某某某总人数",
+        "value": '12345',
+        "suffixText": '人',
+      }, {
+        "backgroundColor": '#409EFF',
+        "prefixText": "某某某总人数",
+        "value": '12345',
+        "suffixText": '人',
+      }, {
+        "backgroundColor": '#E6A23C',
+        "prefixText": "某某某总人数",
+        "value": '12345',
+        "suffixText": '人',
+      }, {
+        "backgroundColor": '#F56C6C',
+        "prefixText": "某某某总人数",
+        "value": '12345',
+        "suffixText": '人',
+      }, {
+        "backgroundColor": '#7232dd',
+        "prefixText": "某某某总人数",
+        "value": '12345',
+        "suffixText": '人',
+      }, {
+        "backgroundColor": 'blue',
+        "prefixText": "某某某总人数",
+        "value": '12345',
+        "suffixText": '人',
+      }],
+      "dataFormatter": "",
+      "component": {
+        "width": 888,
+        "height": 203,
+        "name": "flop",
+        "prop": "flop",
+      },
+      "option": {
+        "span": 3,
+        "decimals": 2,
+        "whole": true,
+        "padding": 12,
+        "textAlign": 'left',
+        "splity": 23,
+        "splitx": 17,
+        "fontSize": 28,
+        "prefixSplity": 4,
+        "prefixFontSize": 13,
+        "backgroundColor": "#F56C6C",
+        "suffixText": '人',
+        "suffixInline": true,
+        "suffixSplitx": 10,
+        "suffixFontSize": 18,
+      },
+    }
+  }, {
     "label": '环形图',
     "option": {
       "title": "环形图",
