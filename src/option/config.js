@@ -15,12 +15,9 @@ export const config = {
 };
 // 颜色的配置
 export const colorOption = {
-  size: 'mini',
-  columnBtn: false,
-  refreshBtn: false,
+  header: false,
   menuWidth: 150,
   labelWidth: 100,
-  dialogHeight: 150,
   column: [{
     label: '颜色1',
     prop: 'color1',
@@ -38,12 +35,9 @@ export const colorOption = {
 
 // 表格的列配置
 export const tableOption = {
-  size: 'mini',
-  columnBtn: false,
-  refreshBtn: false,
+  header: false,
   menuWidth: 150,
   labelWidth: 100,
-  dialogHeight: 120,
   column: [{
     label: '名称',
     prop: 'label',

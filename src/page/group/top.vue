@@ -16,7 +16,7 @@
             <i :class="'nav__icon iconfont '+item.icon"></i>
           </el-tooltip>
         </template>
-        <el-menu-item @click="handleAdd(citem.option)"
+        <el-menu-item @click="handleAdd(citem.option,true)"
                       :key="cindex"
                       :index="`${index}-${cindex}`"
                       v-for="(citem,cindex) in item.children">
@@ -83,10 +83,10 @@ export default {
       this.contain.setScale(this.contain.contentWidth);
     },
     handleBuild () {
-      if (this.vaildData(this.contain.visual.id)) {
-        this.$message.error('例子模板不允许修改')
-        return false;
-      }
+      // if (this.vaildData(this.contain.visual.id)) {
+      //   this.$message.error('例子模板不允许修改')
+      //   return false;
+      // }
       this.contain.handleInitActive();
       const loading = this.$loading({
         lock: true,

@@ -64,7 +64,7 @@ export const addObj = (data) => request({
 });
 
 export const updateComponent = (data) => request({
-  url: url + '/visual/update',
+  url: url + '/visual/update?flag=1',
   method: 'post',
   data: data
 });

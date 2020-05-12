@@ -122,7 +122,11 @@ export default {
         const params = this.contain.findnav(this.contain.active[0], true);
         this.contain.active.forEach(ele => {
           const item = this.contain.findnav(ele, true);
-          params.parent.splice(item.count, 1);
+          if (Array.isArray(params)) {
+            params.parent.splice(item.count, 1);
+          } else {
+            params.parent.children.splice(item.count, 1);
+          }
         });
         this.contain.handleInitActive();
       }).catch(() => { })
