@@ -122,7 +122,7 @@ export default {
         const params = this.contain.findnav(this.contain.active[0], true);
         this.contain.active.forEach(ele => {
           const item = this.contain.findnav(ele, true);
-          if (Array.isArray(params)) {
+          if (Array.isArray(params.parent)) {
             params.parent.splice(item.count, 1);
           } else {
             params.parent.children.splice(item.count, 1);
