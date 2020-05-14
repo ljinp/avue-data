@@ -416,6 +416,7 @@ export default {
     },
     overactive (n, o) {
       [o, n].forEach((ele, index) => {
+        if (!ele) return
         this.setActive(ele, index === 1, 'setOverActive');
       })
     },

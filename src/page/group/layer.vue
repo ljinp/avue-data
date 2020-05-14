@@ -10,7 +10,7 @@
         <div @dblclick="hangeChangeName(item)"
              @click="handleSetActive(item)"
              @contextmenu.prevent="contain.handleContextMenu($event,item)"
-             :class="['menu__item--folder',{'is-active':handleGetActive(item)}]">
+             :class="['menu__item--folder',{'is-active':handleGetActive(item),'is-over':contain.overactive===item.index}]">
           <i class="iconfont icon-fold"
              @click="openFolder(item)"
              :class="{'is-active':item.menu}"></i>
@@ -33,7 +33,7 @@
             <template v-for="citem in item.children">
               <div v-if="!citem.children"
                    :key="citem.index"
-                   :class="['menu__item',{'is-active':handleGetActive(citem)}]"
+                   :class="['menu__item',{'is-active':handleGetActive(citem),'is-over':contain.overactive===citem.index}]"
                    @click="handleSetActive(citem)"
                    @contextmenu.prevent="contain.handleContextMenu($event,citem)"
                    @mouseover="contain.overactive=citem.index"
@@ -55,7 +55,7 @@
            :key="item.index"
            @contextmenu.prevent="contain.handleContextMenu($event,item)"
            @click="handleSetActive(item)"
-           :class="['menu__item',{'is-active':handleGetActive(item)}]"
+           :class="['menu__item',{'is-active':handleGetActive(item),'is-over': contain.overactive===item.index}]"
            @mouseover="contain.overactive=item.index"
            @mouseout="contain.overactive=undefined">
         <span class="menu__icon">

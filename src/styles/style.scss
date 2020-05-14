@@ -101,12 +101,12 @@
     cursor: pointer;
     flex: none;
     font-size: 12px;
-    &:hover {
+    &.is-over,&:hover {
       color: #fff;
       background: rgba(143,225,255,.1);
       cursor: pointer;
     }
-    &.ghost{
+    &.ghost{  
       opacity: .6;
       color:#fff;
       background: #409EFF !important;

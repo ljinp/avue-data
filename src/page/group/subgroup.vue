@@ -13,6 +13,7 @@
                       :ref="common.DEAFNAME+item.index"
                       :id="common.DEAFNAME+item.index"
                       v-show="!item.display"
+                      @over="handleOver"
                       @focus="handleFocus"
                       @blur="handleBlur">
         <component :ref="common.NAME+item.index"
@@ -106,6 +107,9 @@ export default {
     handleGetObj (val) {
       return this.$refs[`${this.common.DEAFNAME}${val}`];
     },
+    handleOver ({ index }) {
+      this.contain.overactive = index;
+    },
     handleFocus ({ index }) {
       this.container.gradeFlag = true;
       if (this.contain.keys.ctrl) {
@@ -113,10 +117,8 @@ export default {
           this.contain.handleInitActive();
         }
         this.contain.active.push(index);
-      } else {
-        if (!this.contain.active.includes(index)) {
-          this.contain.active = [index];
-        }
+      } else if (!this.contain.active.includes(index)) {
+        this.contain.active = [index];
       }
     },
     handleBlur ({ left, top, width, height }) {
