@@ -491,10 +491,10 @@ export default {
     //监听键盘的按键
     listen () {
       document.onkeydown = (e) => {
-        this.keys.ctrl = e.metaKey;
+        this.keys.ctrl = e.keyCode === 17;
       }
-      document.onkeyup = (e) => {
-        this.keys.ctrl = e.metaKey;
+      document.onkeyup = () => {
+        this.keys.ctrl = false;
       }
     },
     setActive (val, result, fun) {

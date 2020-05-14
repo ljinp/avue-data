@@ -122,6 +122,7 @@ export default {
       }
     },
     handleBlur ({ left, top, width, height }) {
+      if (Array.isArray(this.contain.activeObj)) return
       this.container.gradeFlag = false;
       this.$set(this.contain.activeObj.component, 'width', width)
       this.$set(this.contain.activeObj.component, 'height', height)
