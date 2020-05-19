@@ -499,7 +499,7 @@ export default {
     },
     setActive (val, result, fun) {
       const obj = this.$refs.container.handleGetObj(val);
-      if (obj) obj[0][fun](result)
+      if (!this.validatenull(obj)) obj[0][fun](result)
     },
     //批量成组
     handleFloder () {
