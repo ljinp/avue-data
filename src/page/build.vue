@@ -238,7 +238,7 @@
                              :props="childProps">
                 </avue-select>
               </el-form-item>
-              <el-form-item label="参数">
+              <el-form-item label="参数名称">
                 <avue-input v-model="activeObj.child.paramName"></avue-input>
               </el-form-item>
             </el-form>

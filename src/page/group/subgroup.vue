@@ -67,11 +67,23 @@ export default {
   },
   methods: {
     getFunction (fun) {
-      if (!this.validatenull(fun)) return eval(fun);
+      if (!this.validatenull(fun)) {
+        try {
+          return eval(fun);
+        } catch {
+          return function () { }
+        }
+      }
     },
     getJson (str) {
       if (this.validatenull(str)) return {};
-      if (typeof str == "string") return JSON.parse(str);
+      if (typeof str == "string") {
+        try {
+          return JSON.parse(str);
+        } catch  {
+          return {}
+        }
+      }
       return str;
     },
     //点击事件交互
