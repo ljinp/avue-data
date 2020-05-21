@@ -15,8 +15,9 @@ export const config = {
 };
 // 颜色的配置
 export const colorOption = {
-  header: false,
   menuWidth: 150,
+  refreshBtn: false,
+  columnBtn: false,
   labelWidth: 100,
   column: [{
     label: '颜色1',
@@ -35,8 +36,9 @@ export const colorOption = {
 
 // 表格的列配置
 export const tableOption = {
-  header: false,
   menuWidth: 150,
+  refreshBtn: false,
+  columnBtn: false,
   labelWidth: 100,
   column: [{
     label: '名称',
