@@ -48,6 +48,11 @@
 - /src/option/base.js
 - /src/option/components.js
 
+## 其他例子
+- [数据格式化例子](https://data.avuejs.com/build/16)
+- [选项卡例子](https://data.avuejs.com/build/18)
+- [地图事件例子](https://data.avuejs.com/build/19)
+
 ## 核心方法
 ### 提示事件
 >如果数据移动到图表上需要展示的数据个性化定制（可以添加html标签和样式）  
