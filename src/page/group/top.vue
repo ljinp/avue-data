@@ -83,10 +83,6 @@ export default {
       this.contain.setScale(this.contain.contentWidth);
     },
     handleBuild () {
-      if (this.vaildData(this.contain.visual.id)) {
-        this.$message.error('例子模板不允许修改')
-        return false;
-      }
       this.contain.handleInitActive();
       const loading = this.$loading({
         lock: true,
@@ -147,6 +143,7 @@ export default {
 
               });
             }).catch(() => {
+              this.$message.error('模版例子不能修改')
               loading.close();
             })
           },
