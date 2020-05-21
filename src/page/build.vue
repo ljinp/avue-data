@@ -248,7 +248,7 @@
                        v-if="vaildProp('formatterList')">
             <el-tooltip slot="label"
                         effect="dark"
-                        content="格式化"
+                        content="事件"
                         placement="top">
               <div><i class="iconfont icon-peizhi"></i></div>
             </el-tooltip>
@@ -272,6 +272,12 @@
                 <el-button size="mini"
                            type="primary"
                            @click="openCode('labelFormatter')">编辑</el-button>
+              </el-form-item>
+              <el-form-item label-width="0">
+                <el-button size="mini"
+                           type="primary"
+                           class="block"
+                           @click="handleRefresh">刷新</el-button>
               </el-form-item>
             </el-form>
           </el-tab-pane>

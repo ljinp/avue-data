@@ -24,7 +24,8 @@ export default {
   },
   props: {
     value: {
-      type: [String, Object, Array]
+      type: [String, Object, Array],
+      default: ''
     }
   },
   watch: {
