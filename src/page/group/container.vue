@@ -29,7 +29,7 @@ import subgroup from './subgroup'
 import common from '@/config'
 import { getObj } from '@/api/visual'
 export default {
-  name: 'content',
+  name: 'contents',
   inject: ["contain"],
   provide () {
     return {
