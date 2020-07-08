@@ -9,7 +9,7 @@
                          :max="200"></avue-input-number>
     </el-form-item>
     <el-form-item label="字体颜色">
-      <avue-color v-model="main.activeOption.color"></avue-color>
+      <avue-input-color v-model="main.activeOption.color"></avue-input-color>
     </el-form-item>
     <el-form-item label="字体间距">
       <avue-slider v-model="main.activeOption.split"></avue-slider>
@@ -18,7 +18,7 @@
       <avue-slider v-model="main.activeOption.lineHeight"></avue-slider>
     </el-form-item>
     <el-form-item label="字体背景">
-      <avue-color v-model="main.activeOption.backgroundColor"></avue-color>
+      <avue-input-color v-model="main.activeOption.backgroundColor"></avue-input-color>
     </el-form-item>
     <el-form-item label="文字粗细">
       <avue-select v-model="main.activeOption.fontWeight"

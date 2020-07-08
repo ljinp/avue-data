@@ -2,12 +2,12 @@
 <template>
   <div>
     <el-form-item label="表头颜色">
-      <avue-color type="textarea"
-                  v-model="main.activeOption.headerColor"></avue-color>
+      <avue-input-color type="textarea"
+                  v-model="main.activeOption.headerColor"></avue-input-color>
     </el-form-item>
     <el-form-item label="表头背景">
-      <avue-color type="textarea"
-                  v-model="main.activeOption.headerBackgroud"></avue-color>
+      <avue-input-color type="textarea"
+                  v-model="main.activeOption.headerBackgroud"></avue-input-color>
     </el-form-item>
     <el-form-item label="字体位置">
       <avue-select v-model="main.activeOption.headerTextAlign"
@@ -47,12 +47,12 @@
       <avue-switch v-model="main.activeOption.index"></avue-switch>
     </el-form-item>
     <el-form-item label="文字颜色">
-      <avue-color type="textarea"
-                  v-model="main.activeOption.bodyColor"></avue-color>
+      <avue-input-color type="textarea"
+                  v-model="main.activeOption.bodyColor"></avue-input-color>
     </el-form-item>
     <el-form-item label="表格背景">
-      <avue-color type="textarea"
-                  v-model="main.activeOption.bodyBackgroud"></avue-color>
+      <avue-input-color type="textarea"
+                  v-model="main.activeOption.bodyBackgroud"></avue-input-color>
     </el-form-item>
     <el-form-item label="字体位置">
       <avue-select v-model="main.activeOption.bodyTextAlign"
@@ -60,16 +60,16 @@
       </avue-select>
     </el-form-item>
     <el-form-item label="分割线">
-      <avue-color type="textarea"
-                  v-model="main.activeOption.borderColor"></avue-color>
+      <avue-input-color type="textarea"
+                  v-model="main.activeOption.borderColor"></avue-input-color>
     </el-form-item>
     <el-form-item label="奇行颜色">
-      <avue-color type="textarea"
-                  v-model="main.activeOption.nthColor"></avue-color>
+      <avue-input-color type="textarea"
+                  v-model="main.activeOption.nthColor"></avue-input-color>
     </el-form-item>
     <el-form-item label="偶行颜色">
-      <avue-color type="textarea"
-                  v-model="main.activeOption.othColor"></avue-color>
+      <avue-input-color type="textarea"
+                  v-model="main.activeOption.othColor"></avue-input-color>
     </el-form-item>
     <avue-crud :option="tableOption"
                :data="main.activeOption.column"

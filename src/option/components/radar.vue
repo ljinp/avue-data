@@ -7,9 +7,9 @@
       </avue-input-number>
     </el-form-item>
     <el-form-item label="字体颜色">
-      <avue-color v-model="main.activeOption.radarNameColor"
+      <avue-input-color v-model="main.activeOption.radarNameColor"
                   :max="200">
-      </avue-color>
+      </avue-input-color>
     </el-form-item>
     <el-form-item label="区域透明度">
       <avue-slider v-model="main.activeOption.areaOpacity"

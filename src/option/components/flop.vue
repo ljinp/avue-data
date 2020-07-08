@@ -36,7 +36,7 @@
         </el-form-item>
         <template v-if="main.activeOption.type==='border'">
           <el-form-item label="边框颜色">
-            <avue-color v-model="main.activeOption.borderColor"></avue-color>
+            <avue-input-color v-model="main.activeOption.borderColor"></avue-input-color>
           </el-form-item>
           <el-form-item label="边框宽度">
             <avue-input-number v-model="main.activeOption.borderWidth"
@@ -59,7 +59,7 @@
           </el-form-item>
         </template>
         <el-form-item label="背景颜色">
-          <avue-color v-model="main.activeOption.backgroundColor"></avue-color>
+          <avue-input-color v-model="main.activeOption.backgroundColor"></avue-input-color>
         </el-form-item>
         <el-form-item label="背景图片">
           <img v-if="main.activeOption.backgroundImage"
@@ -80,7 +80,7 @@
                              :max="200"></avue-input-number>
         </el-form-item>
         <el-form-item label="字体颜色">
-          <avue-color v-model="main.activeOption.color"></avue-color>
+          <avue-input-color v-model="main.activeOption.color"></avue-input-color>
         </el-form-item>
         <el-form-item label="文字粗细">
           <avue-select v-model="main.activeOption.fontWeight"
@@ -113,7 +113,7 @@
           <avue-slider v-model="main.activeOption.prefixSplity"></avue-slider>
         </el-form-item>
         <el-form-item label="颜色">
-          <avue-color v-model="main.activeOption.prefixColor"></avue-color>
+          <avue-input-color v-model="main.activeOption.prefixColor"></avue-input-color>
         </el-form-item>
         <el-form-item label="字体大小">
           <avue-input-number v-model="main.activeOption.prefixFontSize"
@@ -141,7 +141,7 @@
           <avue-slider v-model="main.activeOption.suffixSplity"></avue-slider>
         </el-form-item>
         <el-form-item label="颜色">
-          <avue-color v-model="main.activeOption.suffixColor"></avue-color>
+          <avue-input-color v-model="main.activeOption.suffixColor"></avue-input-color>
         </el-form-item>
         <el-form-item label="字体大小">
           <avue-input-number v-model="main.activeOption.suffixFontSize"

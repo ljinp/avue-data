@@ -2,7 +2,7 @@
 <template>
   <div>
     <el-form-item label="背景色">
-      <avue-color v-model="main.activeOption.backgroundColor"></avue-color>
+      <avue-input-color v-model="main.activeOption.backgroundColor"></avue-input-color>
     </el-form-item>
     <el-form-item label="图片透明度">
       <avue-slider v-model="main.activeOption.opacity"></avue-slider>

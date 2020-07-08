@@ -24,22 +24,22 @@
         <avue-input-number v-model="main.activeOption.fontSize"></avue-input-number>
       </el-form-item>
       <el-form-item label="字体高亮颜色">
-        <avue-color v-model="main.activeOption.empColor"></avue-color>
+        <avue-input-color v-model="main.activeOption.empColor"></avue-input-color>
       </el-form-item>
       <el-form-item label="字体颜色">
-        <avue-color v-model="main.activeOption.color"></avue-color>
+        <avue-input-color v-model="main.activeOption.color"></avue-input-color>
       </el-form-item>
       <el-form-item label="区域线">
         <avue-input-number v-model="main.activeOption.borderWidth"></avue-input-number>
       </el-form-item>
       <el-form-item label="区域颜色">
-        <avue-color v-model="main.activeOption.areaColor"></avue-color>
+        <avue-input-color v-model="main.activeOption.areaColor"></avue-input-color>
       </el-form-item>
       <el-form-item label="区域高亮颜色">
-        <avue-color v-model="main.activeOption.empAreaColor"></avue-color>
+        <avue-input-color v-model="main.activeOption.empAreaColor"></avue-input-color>
       </el-form-item>
       <el-form-item label="边框颜色">
-        <avue-color v-model="main.activeOption.borderColor"></avue-color>
+        <avue-input-color v-model="main.activeOption.borderColor"></avue-input-color>
       </el-form-item>
 
     </template>

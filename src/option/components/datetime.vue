@@ -19,7 +19,7 @@
                          :max="200"></avue-input-number>
     </el-form-item>
     <el-form-item label="字体背景">
-      <avue-color v-model="main.activeOption.backgroundColor"></avue-color>
+      <avue-input-color v-model="main.activeOption.backgroundColor"></avue-input-color>
     </el-form-item>
     <el-form-item label="对其方式">
       <avue-select v-model="main.activeOption.textAlign"
@@ -32,7 +32,7 @@
       </avue-select>
     </el-form-item>
     <el-form-item label="字体颜色">
-      <avue-color v-model="main.activeOption.color"></avue-color>
+      <avue-input-color v-model="main.activeOption.color"></avue-input-color>
     </el-form-item>
   </div>
 </template>

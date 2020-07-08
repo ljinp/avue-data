@@ -6,7 +6,7 @@
                          :max="200"></avue-input-number>
     </el-form-item>
     <el-form-item label="字体颜色">
-      <avue-color v-model="main.activeOption.color"></avue-color>
+      <avue-input-color v-model="main.activeOption.color"></avue-input-color>
     </el-form-item>
     <el-form-item label="类型">
       <avue-radio v-model="main.activeOption.type"
@@ -19,7 +19,7 @@
       <el-collapse accordion>
         <el-collapse-item title="边框设置">
           <el-form-item label="背景颜色">
-            <avue-color v-model="main.activeOption.backgroundColor"></avue-color>
+            <avue-input-color v-model="main.activeOption.backgroundColor"></avue-input-color>
           </el-form-item>
           <el-form-item label="图标间距">
             <avue-input-number v-model="main.activeOption.iconSplit"></avue-input-number>
@@ -40,7 +40,7 @@
             </el-input>
           </el-form-item>
           <el-form-item label="边框颜色">
-            <avue-color v-model="main.activeOption.borderColor"></avue-color>
+            <avue-input-color v-model="main.activeOption.borderColor"></avue-input-color>
           </el-form-item>
           <el-form-item label="边框宽度">
             <avue-input-number v-model="main.activeOption.borderWidth"
@@ -50,7 +50,7 @@
         </el-collapse-item>
         <el-collapse-item title="高亮设置">
           <el-form-item label="字体高亮颜色">
-            <avue-color v-model="main.activeOption.empColor"></avue-color>
+            <avue-input-color v-model="main.activeOption.empColor"></avue-input-color>
           </el-form-item>
           <el-form-item label="背景图片">
             <img v-if="main.activeOption.empBackgroundImage"
@@ -65,7 +65,7 @@
             </el-input>
           </el-form-item>
           <el-form-item label="边框颜色">
-            <avue-color v-model="main.activeOption.empBorderColor"></avue-color>
+            <avue-input-color v-model="main.activeOption.empBorderColor"></avue-input-color>
           </el-form-item>
           <el-form-item label="边框宽度">
             <avue-input-number v-model="main.activeOption.empBorderWidth"

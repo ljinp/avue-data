@@ -11,7 +11,7 @@
                          :max="200"></avue-input-number>
     </el-form-item>
     <el-form-item label="边框颜色">
-      <avue-color v-model="main.activeOption.borderColor"></avue-color>
+      <avue-input-color v-model="main.activeOption.borderColor"></avue-input-color>
     </el-form-item>
     <el-form-item label="边框大小">
       <avue-input-number v-model="main.activeOption.strokeWidth"
@@ -22,7 +22,7 @@
                          :max="200"></avue-input-number>
     </el-form-item>
     <el-form-item label="字体颜色">
-      <avue-color v-model="main.activeOption.color"></avue-color>
+      <avue-input-color v-model="main.activeOption.color"></avue-input-color>
     </el-form-item>
     <el-form-item label="文字粗细">
       <avue-select v-model="main.activeOption.FontWeight"
@@ -34,7 +34,7 @@
                          :max="200"></avue-input-number>
     </el-form-item>
     <el-form-item label="前缀字体颜色">
-      <avue-color v-model="main.activeOption.suffixColor"></avue-color>
+      <avue-input-color v-model="main.activeOption.suffixColor"></avue-input-color>
     </el-form-item>
     <el-form-item label="前缀文字粗细">
       <avue-select v-model="main.activeOption.suffixFontWeight"

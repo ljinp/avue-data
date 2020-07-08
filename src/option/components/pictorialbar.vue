@@ -17,10 +17,10 @@
       <avue-input-number v-model="main.activeOption.symbolSize"></avue-input-number>
     </el-form-item>
     <el-form-item label="字体颜色">
-      <avue-color v-model="main.activeOption.color"></avue-color>
+      <avue-input-color v-model="main.activeOption.color"></avue-input-color>
     </el-form-item>
     <el-form-item label="轴字体颜色">
-      <avue-color v-model="main.activeOption.nameColor"></avue-color>
+      <avue-input-color v-model="main.activeOption.nameColor"></avue-input-color>
     </el-form-item>
     <el-form-item label="间距">
       <avue-slider v-model="main.activeOption.split"></avue-slider>

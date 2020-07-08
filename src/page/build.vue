@@ -118,7 +118,7 @@
                               :min-rows="5"></avue-input>
                 </el-form-item>
                 <el-form-item label="背景颜色">
-                  <avue-color v-model="config.backgroundColor"></avue-color>
+                  <avue-input-color v-model="config.backgroundColor"></avue-input-color>
                 </el-form-item>
                 <el-form-item label="背景图片">
                   <img :src="config.backgroundImage"
@@ -152,7 +152,7 @@
                     <avue-input-number v-model="config.mark.fontSize"></avue-input-number>
                   </el-form-item>
                   <el-form-item label="颜色">
-                    <avue-color v-model="config.mark.textStyle"></avue-color>
+                    <avue-input-color v-model="config.mark.textStyle"></avue-input-color>
                   </el-form-item>
                   <el-form-item label="角度">
                     <avue-input-number v-model="config.mark.degree"></avue-input-number>

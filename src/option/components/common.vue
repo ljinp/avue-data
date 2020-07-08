@@ -13,7 +13,7 @@
             <avue-input v-model="main.activeOption.title"></avue-input>
           </el-form-item>
           <el-form-item label="字体颜色">
-            <avue-color v-model="main.activeOption.titleColor"></avue-color>
+            <avue-input-color v-model="main.activeOption.titleColor"></avue-input-color>
           </el-form-item>
           <el-form-item label="字体大小">
             <avue-input-number v-model="main.activeOption.titleFontSize"></avue-input-number>
@@ -27,7 +27,7 @@
             <avue-input v-model="main.activeOption.subtext"></avue-input>
           </el-form-item>
           <el-form-item label="字体颜色">
-            <avue-color v-model="main.activeOption.subTitleColor"></avue-color>
+            <avue-input-color v-model="main.activeOption.subTitleColor"></avue-input-color>
           </el-form-item>
           <el-form-item label="字体大小">
             <avue-input-number v-model="main.activeOption.subTitleFontSize">
@@ -102,8 +102,8 @@
             </avue-input-number>
           </el-form-item>
           <el-form-item label="字体颜色">
-            <avue-color v-model="main.activeOption.labelShowColor">
-            </avue-color>
+            <avue-input-color v-model="main.activeOption.labelShowColor">
+            </avue-input-color>
           </el-form-item>
           <el-form-item label="字体粗细">
             <avue-select v-model="main.activeOption.labelShowFontWeight"
@@ -119,7 +119,7 @@
             <avue-input-number v-model="main.activeOption.tipFontSize"></avue-input-number>
           </el-form-item>
           <el-form-item label="字体颜色">
-            <avue-color v-model="main.activeOption.tipColor"></avue-color>
+            <avue-input-color v-model="main.activeOption.tipColor"></avue-input-color>
           </el-form-item>
         </el-collapse-item>
       </template>
@@ -170,11 +170,11 @@
       <template v-if="main.vaildProp('colorList')">
         <el-collapse-item title="自定义配色">
           <el-form-item label="文字颜色">
-            <avue-color v-model="main.activeOption.nameColor">
-            </avue-color>
+            <avue-input-color v-model="main.activeOption.nameColor">
+            </avue-input-color>
           </el-form-item>
           <el-form-item label="轴线颜色">
-            <avue-color v-model="main.activeOption.lineColor"></avue-color>
+            <avue-input-color v-model="main.activeOption.lineColor"></avue-input-color>
           </el-form-item>
           <avue-crud :option="colorOption"
                      :data="main.activeOption.barColor"
