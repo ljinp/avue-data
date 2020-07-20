@@ -61,7 +61,7 @@ export const dicOption = {
   orientList: [{ label: '竖排', value: 'vertical' }, { label: '横排', value: 'horizontal' }],
   dataMethod: [{ label: 'POST', value: 'post' }, { label: 'GET', value: 'get' }],
   eventList: ['tabs'],
-  dataList: ['text', 'wordcloud', 'img', 'tabs', 'map', 'video', 'pie', 'pictorialbar', 'iframe', 'swiper', 'flop', 'bar', 'line', 'progress', 'table', 'gauge', 'funnel', 'scatter', 'radar'],
+  dataList: ['common', 'text', 'wordcloud', 'img', 'tabs', 'map', 'video', 'pie', 'pictorialbar', 'iframe', 'swiper', 'flop', 'bar', 'line', 'progress', 'table', 'gauge', 'funnel', 'scatter', 'radar'],
   themeList: [{
     label: '默认配色',
     value: 'avue'

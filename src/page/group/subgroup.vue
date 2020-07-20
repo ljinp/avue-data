@@ -22,6 +22,7 @@
                    v-bind="item"
                    :data-formatter="getFunction(item.dataFormatter)"
                    :click-formatter="getFunction(item.clickFormatter)"
+                   :echart-formatter="getFunction(item.echartFormatter)"
                    :label-formatter="getFunction(item.labelFormatter)"
                    :formatter="getFunction(item.formatter)"
                    :width="item.component.width"

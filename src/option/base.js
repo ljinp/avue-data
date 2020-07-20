@@ -6,6 +6,43 @@ export default [{
   "label": '图表',
   "icon": 'icon-bar',
   "children": [{
+    "label": '通用型',
+    "option": {
+      "name": "通用型",
+      "title": "通用型",
+      "icon": 'icon-bar',
+      "dataType": 1,
+      "dataMethod": 'get',
+      "data": {
+        "categories": [
+          "苹果",
+          "三星",
+          "小米",
+          "oppo",
+          "vivo"
+        ],
+        "series": [{
+          "name": "手机品牌",
+          "data": [
+            1000879,
+            3400879,
+            2300879,
+            5400879,
+            3400879
+          ]
+        }]
+      },
+      "echartFormatter": "",
+      "url": baseUrl + "/bar",
+      "time": 5000,
+      "component": {
+        "width": 600,
+        "height": 300,
+        "name": "common",
+        "prop": "common",
+      },
+    }
+  }, {
     "label": '柱形图',
     "option": {
       "name": "柱状图",

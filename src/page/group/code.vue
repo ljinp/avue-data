@@ -1,7 +1,21 @@
 <template>
-  <textarea :ref="id"
-            v-model="code"
-            style="height:300px;width:100%;"></textarea>
+  <el-dialog title="代码编辑"
+             :visible.sync="visible"
+             @close="code=''"
+             :before-close="handleClose"
+             width="60%">
+    <textarea :ref="id"
+              v-model="code"
+              style="height:300px;width:100%;"></textarea>
+    <span slot="footer"
+          class="dialog-footer">
+      <el-button size="small"
+                 @click="setVisible(false)">取 消</el-button>
+      <el-button type="primary"
+                 @click="submit"
+                 size="small">确 定</el-button>
+    </span>
+  </el-dialog>
 </template>
 
 <script>
@@ -17,18 +31,29 @@ export default {
   name: "codeMirror",
   data () {
     return {
-      editor: '',
       id: Math.floor(Math.random() * 100),
+      editor: {},
+      create: false,
       code: ''
     }
   },
   props: {
+    visible: Boolean,
     value: {
       type: [String, Object, Array],
       default: ''
     }
   },
   watch: {
+    visible (val) {
+      if (val & !this.create) {
+        this.create = true;
+        this.$nextTick(() => {
+          this.init();
+          this.setValue(this.code);
+        })
+      }
+    },
     value: {
       handler (val) {
         if (['object', 'array'].includes(typeof val)) {
@@ -36,22 +61,42 @@ export default {
         } else {
           this.code = val;
         }
-        this.setValue(this.code);
+        this.$nextTick(() => {
+          this.setValue(this.code);
+        })
+
       },
-      immediate: true,
       deep: true,
     },
   },
-  mounted () {
-    this.init();
-  },
   methods: {
+    handleClose () {
+      this.setVisible(false);
+    },
+    submit () {
+      let value = this.getValue();
+      if (this.validatenull(value)) {
+        value = '{}'
+      }
+      try {
+        if (['query', 'data'].includes(this.code.type)) {
+          value = JSON.parse(value, null, 4)
+        }
+        this.$emit('submit', value);
+        this.setVisible(false)
+
+      } catch (error) {
+        this.$message.error('数据格式有误')
+      }
+    },
     getValue () {
       return this.editor.getValue()
     },
-    setValue (val) {
+    setVisible (val) {
+      this.$emit('update:visible', val);
+    },
+    setValue (val = '') {
       if (this.editor) this.editor.setValue(val);
-
     },
     init () {
       let mime = 'text/javascript'

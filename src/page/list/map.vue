@@ -3,6 +3,9 @@
     <a class="title"
        target="_blank"
        href="https://datav.aliyun.com/tools/atlas/#&lat=33.521903996156105&lng=104.29849999999999&zoom=4">点击我添加更多地图</a>
+    <a class="title"
+       target="_blank"
+       href=" http://geojson.io/#map">自己画地图</a>
     <avue-crud :option="option"
                v-model="form"
                @row-save="rowSave"

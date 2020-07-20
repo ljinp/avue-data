@@ -50,7 +50,7 @@
                   </el-form-item>
                 </template>
                 <component :is="activeComponent.prop+'Option'"></component>
-                <common-option></common-option>
+                <main-option></main-option>
               </template>
               <!-- 多选配置选项 -->
               <template v-else-if="isSelectActive">
@@ -314,22 +314,9 @@
         </el-tabs>
       </div>
     </div>
-
-    <el-dialog title="代码编辑"
-               :visible.sync="code.box"
-               @close="code.obj={}"
-               width="60%">
-      <codeedit ref="codeedit"
-                v-model="code.obj"></codeedit>
-      <span slot="footer"
-            class="dialog-footer">
-        <el-button size="small"
-                   @click="code.box=false">取 消</el-button>
-        <el-button type="primary"
-                   @click="codeClose"
-                   size="small">确 定</el-button>
-      </span>
-    </el-dialog>
+    <codeedit @submit="codeClose"
+              v-model="code.obj"
+              :visible.sync="code.box"></codeedit>
     <contentmenu ref="contentmenu"></contentmenu>
   </div>
 </template>
@@ -445,25 +432,12 @@ export default {
     this.initFun()
   },
   methods: {
-    codeClose () {
-      let value = this.$refs.codeedit.getValue();
-      if (this.validatenull(value)) {
-        value = '{}'
+    codeClose (value) {
+      if (this.code.type === 'query') {
+        this.config.query = value;
+      } else {
+        this.activeObj[this.code.type] = value;
       }
-      try {
-        if (['query', 'data'].includes(this.code.type)) {
-          value = JSON.parse(value, null, 4)
-        }
-        if (this.code.type === 'query') {
-          this.config.query = value;
-        } else {
-          this.activeObj[this.code.type] = value;
-        }
-        this.code.box = false;
-      } catch (error) {
-        this.$message.error('数据格式有误')
-      }
-
     },
     openCode (type) {
       this.code.type = type;
