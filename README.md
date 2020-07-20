@@ -52,6 +52,8 @@
 - [数据格式化例子](https://data.avuejs.com/build/16)
 - [选项卡例子](https://data.avuejs.com/build/18)
 - [地图事件例子](https://data.avuejs.com/build/19)
+- [柱状图和折线图](https://data.avuejs.com/build/28)
+- [任意echart使用](https://data.avuejs.com/build/29)
 
 ## 核心方法
 ### 提示事件
