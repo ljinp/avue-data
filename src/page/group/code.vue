@@ -84,7 +84,6 @@ export default {
         }
         this.$emit('submit', value);
         this.setVisible(false)
-
       } catch (error) {
         this.$message.error('数据格式有误')
       }

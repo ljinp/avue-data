@@ -32,7 +32,35 @@ export default [{
           ]
         }]
       },
-      "echartFormatter": "",
+      "echartFormatter": (data) => {
+        console.log(data);
+        return {
+          title: {
+            textStyle: {
+              fontWeight: 'normal',
+              color: '#fff'
+            },
+            text: 'ECharts 入门示例'
+          },
+          tooltip: {},
+          legend: {
+            data: ['销量'],
+            textStyle: {
+              fontWeight: 'normal',
+              color: '#fff'
+            },
+          },
+          xAxis: {
+            data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+          },
+          yAxis: {},
+          series: [{
+            name: '销量',
+            type: 'bar',
+            data: [5, 20, 36, 10, 10, 20]
+          }]
+        };
+      },
       "url": baseUrl + "/bar",
       "time": 5000,
       "component": {
@@ -41,6 +69,24 @@ export default [{
         "name": "common",
         "prop": "common",
       },
+    }
+  }, {
+    label: '自定义',
+    option: {
+      "name": "自定义",
+      "title": "自定义",
+      "icon": "icon-bar",
+      "data": [],
+      "dataFormatter": "",
+      "component": {
+        "width": 800,
+        "height": 500,
+        "name": "test",
+        "prop": "test",
+      },
+      "option": {
+        "fontSize": 20,
+      }
     }
   }, {
     "label": '柱形图',
@@ -508,24 +554,6 @@ export default [{
         "color": "rgba(13, 255, 255, 1)",
       }
     },
-  }, {
-    label: '自定义组件',
-    option: {
-      "name": "自定义组件",
-      "title": "自定义组件",
-      "icon": "icon-map",
-      "data": [],
-      "dataFormatter": "",
-      "component": {
-        "width": 800,
-        "height": 500,
-        "name": "test",
-        "prop": "test",
-      },
-      "option": {
-        "fontSize": 20,
-      }
-    }
   }]
 }, {
   "label": '文字',
