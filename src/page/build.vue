@@ -315,6 +315,7 @@
       </div>
     </div>
     <codeedit @submit="codeClose"
+              :type="code.type"
               v-model="code.obj"
               :visible.sync="code.box"></codeedit>
     <contentmenu ref="contentmenu"></contentmenu>

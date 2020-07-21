@@ -39,6 +39,7 @@ export default {
   },
   props: {
     visible: Boolean,
+    type: String,
     value: {
       type: [String, Object, Array],
       default: ''
@@ -79,7 +80,7 @@ export default {
         value = '{}'
       }
       try {
-        if (['query', 'data'].includes(this.code.type)) {
+        if (['query', 'data'].includes(this.type)) {
           value = JSON.parse(value, null, 4)
         }
         this.$emit('submit', value);
