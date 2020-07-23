@@ -13,11 +13,6 @@
                @row-del="rowDel"
                :before-open="beforeOpen"
                :data="data">
-      <template slot="dataForm"
-                slot-scope="{}">
-        <codeedit v-model="form.data"
-                  ref="codeedit"></codeedit>
-      </template>
     </avue-crud>
   </div>
 </template>
@@ -54,7 +49,8 @@ export default {
             prop: 'data',
             span: 24,
             hide: true,
-            formslot: true
+            type: 'textarea',
+            minRows: 20
           }
         ]
       }
