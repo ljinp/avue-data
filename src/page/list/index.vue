@@ -89,6 +89,7 @@
                :visible.sync="box">
       <avue-form :option="option"
                  v-model="form"
+                 v-if="box"
                  @submit="handleSave"></avue-form>
     </el-dialog>
   </el-container>
@@ -234,13 +235,26 @@ export default {
 
       });
     },
-
+    handleAdd () {
+      this.type = 'add';
+      this.findObject(this.option.column, 'status').display = false
+      this.findObject(this.option.column, 'width').display = true
+      this.findObject(this.option.column, 'height').display = true
+      this.form.title = '';
+      this.form.status = '';
+      this.form.password = '';
+      this.form.category = this.activeName;
+      this.form.width = 1920;
+      this.form.height = 1080;
+      this.box = true;
+    },
     handleUpdate (item, index) {
+      this.type = 'edit';
+      this.findObject(this.option.column, 'status').display = true
+      this.findObject(this.option.column, 'width').display = false
+      this.findObject(this.option.column, 'height').display = false
       this.form = item
       this.form.category = this.form.category + '';
-      this.type = 'edit';
-      this.option.column[2].display = false;
-      this.option.column[3].display = false;
       this.box = true;
       this.index = index;
     },
@@ -255,17 +269,6 @@ export default {
         path: '/view/' + item.id
       })
       window.open(routeUrl.href, '_blank');
-    },
-    handleAdd () {
-      this.type = 'add';
-      this.option.column[5].display = false;
-      this.form.title = '';
-      this.form.status = '';
-      this.form.password = '';
-      this.form.category = this.activeName;
-      this.form.width = 1920;
-      this.form.height = 1080;
-      this.box = true;
     },
     handleSave (form, done) {
       done();
