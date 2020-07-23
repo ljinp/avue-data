@@ -259,6 +259,9 @@ export default {
     handleAdd () {
       this.type = 'add';
       this.option.column[5].display = false;
+      this.form.title = '';
+      this.form.status = '';
+      this.form.password = '';
       this.form.category = this.activeName;
       this.form.width = 1920;
       this.form.height = 1080;
