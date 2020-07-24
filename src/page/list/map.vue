@@ -18,12 +18,8 @@
 </template>
 
 <script>
-import codeedit from '../group/code';
 import { getList, getObj, addObj, delObj, updateObj } from '@/api/map'
 export default {
-  components: {
-    codeedit
-  },
   data () {
     return {
       form: {},
@@ -99,7 +95,6 @@ export default {
         this.$message.error('例子模板不允许修改')
         return false;
       }
-      row.data = this.$refs.codeedit.getValue()
       updateObj(row).then(() => {
         this.$message.success('修改成功');
         this.getList()
@@ -107,7 +102,6 @@ export default {
       })
     },
     rowSave (row, done) {
-      row.data = this.$refs.codeedit.getValue()
       addObj(row).then(() => {
         this.$message.success('新增成功');
         this.getList()
