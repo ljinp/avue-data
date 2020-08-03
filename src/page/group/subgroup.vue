@@ -34,6 +34,7 @@
                    :scale="container.stepScale"
                    :option="item.option"
                    :home-url="contain.config.url"
+                   title=""
                    :click="handleClick" />
       </avue-draggable>
       <subgroup :nav="item.children"></subgroup>
