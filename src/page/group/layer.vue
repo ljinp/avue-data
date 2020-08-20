@@ -41,7 +41,7 @@
                 <span class="menu__icon">
                   <i :class="'iconfont '+citem.icon"></i>
                 </span>
-                <span>{{citem.title}}</span>
+                <span>{{citem.name}}</span>
               </div>
               <layer v-else
                      :count="count+1"
@@ -61,7 +61,7 @@
         <span class="menu__icon">
           <i :class="'iconfont '+item.icon"></i>
         </span>
-        <span>{{item.title}}</span>
+        <span>{{item.name}}</span>
       </div>
     </template>
   </draggable>
