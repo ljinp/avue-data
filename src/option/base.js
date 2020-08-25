@@ -142,7 +142,7 @@ export default [{
       "icon": 'icon-line',
       "dataType": 1,
       "dataMethod": 'get',
-      "dara": {
+      "data": {
         "categories": [
           "苹果",
           "三星",
