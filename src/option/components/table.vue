@@ -1,27 +1,6 @@
 <!-- 表格配置 -->
 <template>
   <div>
-    <el-form-item label="表头颜色">
-      <avue-input-color type="textarea"
-                  v-model="main.activeOption.headerColor"></avue-input-color>
-    </el-form-item>
-    <el-form-item label="表头背景">
-      <avue-input-color type="textarea"
-                  v-model="main.activeOption.headerBackgroud"></avue-input-color>
-    </el-form-item>
-    <el-form-item label="字体位置">
-      <avue-select v-model="main.activeOption.headerTextAlign"
-                   :dic="dicOption.textAlign">
-      </avue-select>
-    </el-form-item>
-    <el-form-item label="字体大小">
-      <avue-input-number v-model="main.activeOption.fontSize">
-      </avue-input-number>
-    </el-form-item>
-    <el-form-item label="显示行数">
-      <avue-input-number v-model="main.activeOption.count">
-      </avue-input-number>
-    </el-form-item>
     <el-form-item label="开启滚动">
       <avue-switch v-model="main.activeOption.scroll">
       </avue-switch>
@@ -40,42 +19,50 @@
         </avue-input-number>
       </el-form-item>
     </template>
-    <el-form-item label="线条">
-      <avue-switch v-model="main.activeOption.line"></avue-switch>
-    </el-form-item>
     <el-form-item label="开启排名">
       <avue-switch v-model="main.activeOption.index"></avue-switch>
     </el-form-item>
-    <el-form-item label="文字颜色">
-      <avue-input-color type="textarea"
-                  v-model="main.activeOption.bodyColor"></avue-input-color>
-    </el-form-item>
-    <el-form-item label="表格背景">
-      <avue-input-color type="textarea"
-                  v-model="main.activeOption.bodyBackgroud"></avue-input-color>
-    </el-form-item>
-    <el-form-item label="字体位置">
-      <avue-select v-model="main.activeOption.bodyTextAlign"
-                   :dic="dicOption.textAlign">
-      </avue-select>
-    </el-form-item>
-    <el-form-item label="分割线">
-      <avue-input-color type="textarea"
-                  v-model="main.activeOption.borderColor"></avue-input-color>
-    </el-form-item>
-    <el-form-item label="奇行颜色">
-      <avue-input-color type="textarea"
-                  v-model="main.activeOption.nthColor"></avue-input-color>
-    </el-form-item>
-    <el-form-item label="偶行颜色">
-      <avue-input-color type="textarea"
-                  v-model="main.activeOption.othColor"></avue-input-color>
-    </el-form-item>
-    <avue-crud :option="tableOption"
-               :data="main.activeOption.column"
-               @row-save="rowSave"
-               @row-del="rowDel"
-               @row-update="rowUpdate"></avue-crud>
+    <el-collapse accordion>
+      <el-collapse-item title="表头设置">
+        <el-form-item label="背景">
+          <avue-input-color type="textarea"
+                            v-model="main.activeOption.headerBackground"></avue-input-color>
+        </el-form-item>
+        <el-form-item label="字体颜色">
+          <avue-input-color type="textarea"
+                            v-model="main.activeOption.headerColor"></avue-input-color>
+        </el-form-item>
+      </el-collapse-item>
+      <el-collapse-item title="表格设置">
+        <el-form-item label="字体大小">
+          <avue-input-number v-model="main.activeOption.fontSize">
+          </avue-input-number>
+        </el-form-item>
+        <el-form-item label="显示行数">
+          <avue-input-number v-model="main.activeOption.count">
+          </avue-input-number>
+        </el-form-item>
+        <el-form-item label="文字颜色">
+          <avue-input-color type="textarea"
+                            v-model="main.activeOption.bodyColor"></avue-input-color>
+        </el-form-item>
+        <el-form-item label="奇行颜色">
+          <avue-input-color type="textarea"
+                            v-model="main.activeOption.nthColor"></avue-input-color>
+        </el-form-item>
+        <el-form-item label="偶行颜色">
+          <avue-input-color type="textarea"
+                            v-model="main.activeOption.othColor"></avue-input-color>
+        </el-form-item>
+      </el-collapse-item>
+      <el-collapse-item title="表格列设置">
+        <avue-crud :option="tableOption"
+                   :data="main.activeOption.column"
+                   @row-save="rowSave"
+                   @row-del="rowDel"
+                   @row-update="rowUpdate"></avue-crud>
+      </el-collapse-item>
+    </el-collapse>
   </div>
 </template>
 

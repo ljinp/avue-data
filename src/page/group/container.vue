@@ -104,6 +104,9 @@ export default {
             //赋值属性
             this.contain.config = JSON.parse(config.detail) || {};
             this.contain.nav = JSON.parse(config.component) || [];
+            if (this.contain.config.mark.show) {
+              this.watermark(this.contain.config.mark);
+            }
             this.calcData();
             this.setScale(width);
           }
@@ -113,9 +116,6 @@ export default {
           this.contain.visual = data.visual;
           //添加水印。只有查看页面生效
           if (!isBuild) {
-            if (this.contain.config.mark.show) {
-              this.watermark(this.contain.config.mark);
-            }
             const password = this.contain.visual.password
             if (!this.validatenull(password)) {
               this.$prompt('请输入密码', '提示', {
