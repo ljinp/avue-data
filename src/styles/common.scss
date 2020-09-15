@@ -145,6 +145,10 @@ input{
 
 .avue-crud{
   width: 90%;
+  margin-top: 10px;
+  &__menu{
+    background-color: inherit;
+  }
 }
 .el-radio{
   width: 100%;
