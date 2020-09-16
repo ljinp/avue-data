@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="top-nav">
     <el-menu class="nav"
              mode="horizontal"
              background-color="#212528"
@@ -16,13 +16,20 @@
             <i :class="'nav__icon iconfont '+item.icon"></i>
           </el-tooltip>
         </template>
-        <el-menu-item @click="handleAdd(citem.option,true)"
-                      :key="cindex"
-                      :index="`${index}-${cindex}`"
-                      v-for="(citem,cindex) in item.children">
-          <i :class="'nav__icon iconfont '+citem.option.icon"></i>
-          <span>{{citem.label}}</span>
-        </el-menu-item>
+        <div style="width:390px">
+          <el-menu-item v-for="(citem,cindex) in item.children"
+                        @click="handleAdd(citem.option,true)"
+                        :key="cindex"
+                        class="menu-inline"
+                        :index="`${index}-${cindex}`">
+            <div class="usehove">
+              <img :src="citem.option.icon"
+                   class="inside-img">
+              <div class="bottom-text">{{citem.label}}</div>
+            </div>
+
+          </el-menu-item>
+        </div>
       </el-submenu>
       <el-menu-item index="6"
                     @click="handleReset"
@@ -167,20 +174,48 @@ export default {
 }
 </script>
 
-<style>
-.nav {
-  border-bottom: 0 !important;
-  height: 45px;
-  line-height: 45px;
-  overflow: hidden;
+<style lang='scss'>
+.top-nav {
+  .nav {
+    border-bottom: 0 !important;
+    height: 45px;
+    line-height: 45px;
+    overflow: hidden;
+  }
+  .nav__icon {
+    margin-right: 5px;
+  }
+  .nav .el-submenu .el-submenu__title,
+  .nav .el-menu-item {
+    height: 45px;
+    line-height: 45px;
+    font-size: 12px;
+  }
 }
-.nav__icon {
-  margin-right: 5px;
-}
-.nav .el-submenu .el-submenu__title,
-.nav .el-menu-item {
-  height: 45px;
-  line-height: 45px;
-  font-size: 12px;
+.el-menu--horizontal {
+  .menu-inline {
+    text-align: center;
+    display: inline-block !important;
+  }
+  .bottom-text {
+    color: #b1b1b1;
+  }
+  .inside-img {
+    width: 110px;
+    height: 70px;
+    border: 2px solid transparent;
+    box-sizing: border-box;
+  }
+  .inside-img:hover {
+    border-color: #006eff;
+  }
+  .usehove:hover {
+    .bottom-text {
+      color: #fff;
+    }
+  }
+  .el-menu-item {
+    height: 100px !important;
+  }
 }
 </style>

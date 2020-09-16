@@ -10,7 +10,7 @@ export default [{
     "option": {
       "name": "通用型",
       "title": "通用型",
-      "icon": 'icon-bar',
+      "icon": require('@/assets/text5.png'),
       "dataType": 1,
       "dataMethod": 'get',
       "data": {
@@ -47,7 +47,7 @@ export default [{
     option: {
       "name": "自定义",
       "title": "自定义",
-      "icon": "icon-bar",
+      "icon": require('@/assets/text4.png'),
       "data": [],
       "dataFormatter": "",
       "component": {
@@ -65,7 +65,7 @@ export default [{
     "option": {
       "name": "柱状图",
       "title": "柱状图",
-      "icon": 'icon-bar',
+      "icon": require('@/assets/bar.png'),
       "dataType": 1,
       "dataMethod": 'get',
       "data": {
@@ -139,7 +139,7 @@ export default [{
     "option": {
       "name": "折线图",
       "title": "折线图",
-      "icon": 'icon-line',
+      "icon": require('@/assets/line.png'),
       "dataType": 1,
       "dataMethod": 'get',
       "data": {
@@ -212,7 +212,7 @@ export default [{
     option: {
       "name": "饼图",
       "title": "饼图",
-      "icon": 'icon-pie',
+      "icon": require('@/assets/pie.png'),
       "dataType": 1,
       "dataMethod": 'get',
       "time": 5000,
@@ -277,7 +277,7 @@ export default [{
     option: {
       "title": "象形图",
       "name": "象形图",
-      "icon": "icon-pictorialBar",
+      "icon": require('@/assets/bar2.png'),
       "dataType": 1,
       "dataMethod": 'get',
       "time": 5000,
@@ -326,7 +326,7 @@ export default [{
     option: {
       "title": "雷达图",
       "name": "雷达图",
-      "icon": "icon-radar",
+      "icon": require('@/assets/radar.png'),
       "dataType": 1,
       "dataMethod": 'get',
       "time": 5000,
@@ -408,7 +408,7 @@ export default [{
     option: {
       "title": "散点图",
       "name": "散点图",
-      "icon": "icon-scatter",
+      "icon": require('@/assets/scatter.png'),
       "dataType": 1,
       "dataMethod": 'get',
       "time": 5000,
@@ -453,7 +453,7 @@ export default [{
     option: {
       "title": "漏斗图",
       "name": "漏斗图",
-      "icon": "icon-funnel",
+      "icon": require('@/assets/funnel.png'),
       "dataType": 1,
       "dataMethod": 'get',
       "time": 5000,
@@ -502,7 +502,7 @@ export default [{
     option: {
       "name": "地图",
       "title": "地图",
-      "icon": "icon-map",
+      "icon": require('@/assets/map.png'),
       "data": [],
       "dataFormatter": "",
       "component": {
@@ -535,7 +535,7 @@ export default [{
     "option": {
       "title": "文本框",
       "name": "文本框",
-      "icon": 'icon-text',
+      "icon": require('@/assets/text.png'),
       "dataType": 0,
       "dataFormatter": "",
       "data": {
@@ -559,7 +559,7 @@ export default [{
     "option": {
       "title": "跑马灯",
       "name": "跑马灯",
-      "icon": 'icon-scroll',
+      "icon": require('@/assets/text2.png'),
       "top": 0,
       "left": 0,
       "dataType": 0,
@@ -587,7 +587,7 @@ export default [{
     "option": {
       "title": "超链接",
       "name": "超链接",
-      "icon": 'icon-link',
+      "icon": require('@/assets/text3.png'),
       "top": 0,
       "left": 0,
       "data": {
@@ -615,7 +615,7 @@ export default [{
     "option": {
       "name": "实时时间",
       "title": "实时时间",
-      "icon": 'icon-datetime',
+      "icon": require('@/assets/datetime.png'),
       "top": 78,
       "left": 1604,
       "component": {
@@ -641,7 +641,7 @@ export default [{
     "option": {
       "title": "图片",
       "name": "图片",
-      "icon": 'icon-img',
+      "icon": require('@/assets/img.png'),
       "top": 0,
       "left": 0,
       "dataType": 0,
@@ -664,7 +664,7 @@ export default [{
     "option": {
       "title": "图片框",
       "name": "图片框",
-      "icon": 'icon-img',
+      "icon": require('@/assets/imgborder.png'),
       "top": 0,
       "left": 0,
       "component": {
@@ -682,7 +682,7 @@ export default [{
     option: {
       "title": "轮播图",
       "name": "轮播图",
-      "icon": 'icon-banner',
+      "icon": require('@/assets/swiper.png'),
       "top": 0,
       "left": 0,
       "dataType": 1,
@@ -714,7 +714,7 @@ export default [{
     option: {
       "title": "iframe",
       "name": "iframe",
-      "icon": 'icon-iframe',
+      "icon": require('@/assets/iframe.png'),
       "top": 0,
       "left": 0,
       "component": {
@@ -736,7 +736,7 @@ export default [{
     option: {
       "title": "video",
       "name": "video",
-      "icon": 'icon-video',
+      "icon": require('@/assets/video.png'),
       "top": 0,
       "left": 0,
       "dataType": 0,
@@ -762,7 +762,7 @@ export default [{
     "option": {
       "title": "翻牌器",
       "name": "翻牌器",
-      "icon": 'icon-flop',
+      "icon": require('@/assets/flop.png'),
       "top": 0,
       "left": 0,
       "dataType": 0,
@@ -797,9 +797,9 @@ export default [{
   }, {
     "label": '颜色块',
     "option": {
-      "title": "翻牌器",
+      "title": "颜色块",
       "name": "颜色块",
-      "icon": 'icon-flop',
+      "icon": require('@/assets/flop2.png'),
       "top": 0,
       "left": 0,
       "dataType": 0,
@@ -864,7 +864,7 @@ export default [{
     "option": {
       "title": "环形图",
       "name": "环形图",
-      "icon": 'icon-circle',
+      "icon": require('@/assets/progress.png'),
       "top": 0,
       "left": 0,
       "dataType": 0,
@@ -900,7 +900,7 @@ export default [{
     "option": {
       "title": "进度条",
       "name": "进度条",
-      "icon": 'icon-progress',
+      "icon": require('@/assets/progress2.png'),
       "top": 0,
       "left": 0,
       "data": {
@@ -931,7 +931,7 @@ export default [{
     label: '仪表盘',
     option: {
       "title": "仪表盘",
-      "icon": 'icon-gauge',
+      "icon": require('@/assets/gauge.png'),
       "name": "仪表盘",
       "dataType": 1,
       "dataMethod": 'get',
@@ -980,7 +980,7 @@ export default [{
     option: {
       "title": "字符云",
       "name": "字符云",
-      "icon": "icon-wordCloud",
+      "icon": require('@/assets/wordcloud.png'),
       "top": 725,
       "left": 3780,
       "dataType": 1,
@@ -1047,7 +1047,7 @@ export default [{
     "option": {
       "title": "表格",
       "name": "表格",
-      "icon": 'icon-table',
+      "icon": require('@/assets/table.png'),
       "top": 0,
       "left": 0,
       "dataType": 0,
@@ -1090,7 +1090,7 @@ export default [{
     option: {
       "title": "选项卡",
       "name": "选项卡",
-      "icon": "icon-tabs",
+      "icon": require('@/assets/tabs.png'),
       "child": {
         "index": [],
         "paramName": ""
