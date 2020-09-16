@@ -191,6 +191,10 @@ export default {
     line-height: 45px;
     font-size: 12px;
   }
+
+  .el-menu-item {
+    height: 100px !important;
+  }
 }
 .el-menu--horizontal {
   .menu-inline {
@@ -213,9 +217,6 @@ export default {
     .bottom-text {
       color: #fff;
     }
-  }
-  .el-menu-item {
-    height: 100px !important;
   }
 }
 </style>
