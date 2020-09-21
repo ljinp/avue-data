@@ -23,7 +23,7 @@
                         class="menu-inline"
                         :index="`${index}-${cindex}`">
             <div class="usehove">
-              <img :src="citem.option.icon"
+              <img :src="citem.option.img"
                    class="inside-img">
               <div class="bottom-text">{{citem.label}}</div>
             </div>
