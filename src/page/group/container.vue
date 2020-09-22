@@ -31,6 +31,14 @@ import { getObj } from '@/api/visual'
 export default {
   name: 'contents',
   inject: ["contain"],
+  props: {
+    props: {
+      type: Object,
+      default: () => {
+        return {}
+      }
+    }
+  },
   provide () {
     return {
       contain: this.contain,
@@ -87,10 +95,10 @@ export default {
     },
     //初始化数据
     initData () {
-      const id = this.$route.params.id;
+      const id = this.$route ? this.$route.params.id : this.props.id
       this.contain.id = id;
       this.contain.contentWidth = this.$refs.content.offsetWidth;
-      const isBuild = this.$route.name === 'build';
+      const isBuild = this.$route ? this.$route.name === 'build' : this.props.name;
       const width = isBuild ? this.contain.contentWidth : document.body.clientWidth
       if (id) {
         const loading = this.$loading({

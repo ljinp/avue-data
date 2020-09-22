@@ -8,6 +8,15 @@
 - 静态数据
 - ...
 
+## 引入其他项目使用
+执行npm run lib 打出对应的包(public/lib)
+- index.css
+- index.umd.min.js
+引入相应的文件即可，可以参考public/view.html文件  
+传入对应的id，打开对应的大屏幕，例如view.html?id=xxxx
+- [例子1](https://data.avuejs.com/view.html?id=5)
+- [例子2](https://data.avuejs.com/view.html?id=8)
+
 ## 20+常用组件
 - 图表
   - 柱状图

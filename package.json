@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "npm run lib && vue-cli-service build",
+    "lib": "vue-cli-service build --target lib --name avueData --dest public/lib --filename index --formats umd-min ./src/page/view.vue",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
