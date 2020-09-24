@@ -754,6 +754,7 @@ export default [{
     option: {
       "title": "video",
       "name": "video",
+      "icon": 'icon-video',
       "img": require('@/assets/video.png'),
       "top": 0,
       "left": 0,
