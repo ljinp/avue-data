@@ -549,12 +549,6 @@ export default {
         this.keys.ctrl = false;
       }
     },
-    /** 
-    * @desc    : 干掉组件
-    * @author  : mj
-    * @date  : 2020/09/15
-    * @update   by   
-    */
     deleteMethod () {
       this.active.forEach(index => {
         const params = this.findnav(index);
@@ -590,11 +584,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.active.forEach(index => {
-          const params = this.findnav(index);
-          delete params.parent.splice(params.count, 1);
-        })
-        this.handleInitActive()
+        this.deleteMethod()
       })
     },
     vaildProp (name, list) {
