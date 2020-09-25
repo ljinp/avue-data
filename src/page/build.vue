@@ -672,18 +672,11 @@ export default {
 <style lang="scss">
 @import "../styles/style.scss";
 </style>
-<style scoped>
+<style >
 .params {
   z-index: 3;
   position: absolute;
   right: 0px;
-}
-.wrapper {
-  padding: 0;
-  position: absolute;
-  left: 180px;
-  right: 350px;
-  /* border: 1px solid #dadadc; */
 }
 
 #screens {
