@@ -12,7 +12,37 @@
         <layer ref="layer"
                :nav="nav"></layer>
       </div>
-      <container ref="container"></container>
+      <!-- 中间区域 -->
+      <div class="wrapper"
+           :style="wrapperHight"
+           v-if="flag"
+           id="wrapper"
+           ref="wrapper">
+        <SketchRule :thick="thick"
+                    :scale="scale"
+                    :width="width"
+                    :height="height"
+                    :startX="startX"
+                    :startY="startY"
+                    :horLineArr="lines.h"
+                    :verLineArr="lines.v"
+                    :cornerActive="true"
+                    @onCornerClick="handleCornerClick" />
+
+        <div ref='screensRef'
+             id="screens"
+             @wheel="handleWheel"
+             @scroll="handleScroll">
+          <div ref="containerRef"
+               class="screen-container">
+            <div id="canvas"
+                 ref="canvas"
+                 :style="canvasStyle">
+              <container ref="container"></container>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="menu params"
            v-show="menuFlag">
         <p class="title">操作</p>
@@ -314,6 +344,7 @@
         </el-tabs>
       </div>
     </div>
+
     <codeedit @submit="codeClose"
               :type="code.type"
               v-model="code.obj"
@@ -332,6 +363,8 @@ import { dicOption } from '@/option/config'
 import init from '@/mixins/'
 import { uuid } from '@/utils/utils'
 import components from '@/option/components'
+import SketchRule from "vue-sketch-ruler";
+
 export default {
   mixins: [init, components],
   data () {
@@ -354,6 +387,21 @@ export default {
       form: {},
       dicOption: dicOption,
       tabsActive: 0,
+      // 标尺
+      scale: 1, //初始化标尺的缩放
+      startX: 0, //x轴标尺开始的坐标数值
+      startY: 0,
+      lines: {   //初始化水平标尺上的参考线
+        h: [],
+        v: []
+      },
+      thick: 20,  //标尺的厚度
+      width: 0,  // 标尺宽,后面会初始化
+      height: 0,// 标尺高,后面会初始化
+      flag: false,  // 要求得到参数后再渲染标尺,否则标尺刻度不会显示
+      wrapperHight: '',// 标尺外部style
+      isShowRuler: true, // 显示标尺
+      isShowReferLine: true // 显示参考线
     }
   },
   components: {
@@ -361,7 +409,8 @@ export default {
     layer,
     codeedit,
     top,
-    contentmenu
+    contentmenu,
+    SketchRule
   },
   computed: {
     isFolder () {
@@ -402,7 +451,16 @@ export default {
         }
       })
       return result
+    },
+    /* 标尺用的 */
+    canvasStyle () {
+      return {
+        width: window.innerWidth - 530 + 'px',   // 530为左边180+右边350
+        height: window.innerHeight - 45 + 'px',   // 顶部下拉45
+        transform: `scale(${this.scale})`
+      }
     }
+
   },
   watch: {
     menuFlag () {
@@ -427,12 +485,22 @@ export default {
     },
   },
   created () {
+    this.wrapperHight = `height:${window.innerHeight - 45}px`
+    this.flag = true
     this.listen();
   },
   mounted () {
     this.initFun()
+    // 初始化标尺,一定等其他dom渲染完毕再初始化
+    // 滚动居中
+    this.$refs.screensRef.scrollLeft =
+      this.$refs.containerRef.getBoundingClientRect().width / 2 - 20; // 刻度宽20
+    this.$nextTick(() => {
+      this.initSize();
+    });
   },
   methods: {
+
     codeClose (value) {
       if (this.code.type === 'query') {
         this.config.query = value;
@@ -472,11 +540,27 @@ export default {
     //监听键盘的按键
     listen () {
       document.onkeydown = (e) => {
+        if (e.keyCode === 46) {  // 如果是delete按键,那么调用删除组件按钮
+          this.deleteMethod()
+        }
         this.keys.ctrl = e.keyCode === 17;
       }
       document.onkeyup = () => {
         this.keys.ctrl = false;
       }
+    },
+    /** 
+    * @desc    : 干掉组件
+    * @author  : mj
+    * @date  : 2020/09/15
+    * @update   by   
+    */
+    deleteMethod () {
+      this.active.forEach(index => {
+        const params = this.findnav(index);
+        delete params.parent.splice(params.count, 1);
+      })
+      this.handleInitActive()
     },
     setActive (val, result, fun) {
       const obj = this.$refs.container.handleGetObj(val);
@@ -498,6 +582,7 @@ export default {
       this.nav.push(floder);
       this.handleInitActive();
     },
+    //批量删除
     //批量删除
     handleDeleteSelect () {
       this.$confirm(`是否批量删除所选图层?`, '提示', {
@@ -545,10 +630,80 @@ export default {
       } else if (type === 'activeOption.symbol') {
         this.activeOption.symbol = val;
       }
+    },
+    /* **************************标尺方法开始******************************* */
+    handleCornerClick () {
+      //TODO 点击左上角要回到最开始视图
+      return;
+    },
+    // 滚轮触发
+    handleScroll () {
+      const screensRect = this.$refs.screensRef.getBoundingClientRect();
+      const canvasRect = this.$refs.canvas.getBoundingClientRect();
+      // 标尺开始的刻度
+      const startX = (screensRect.left + this.thick - canvasRect.left) / this.scale;
+      const startY = (screensRect.top + this.thick - canvasRect.top) / this.scale;
+      this.startX = startX >> 0;
+      this.startY = startY >> 0;
+    },
+    // 控制缩放值
+    handleWheel (e) {
+      if (e.ctrlKey || e.metaKey) {
+        e.preventDefault();
+        const nextScale = parseFloat(
+          Math.max(0.2, this.scale - e.deltaY / 500).toFixed(2)
+        );
+        this.scale = nextScale;
+      }
+      this.$nextTick(() => {
+        this.handleScroll();
+      });
+    },
+    // 初始化标尺数值
+    initSize () {
+      const wrapperRect = this.$refs.wrapper.getBoundingClientRect();
+      this.width = wrapperRect.width - this.thick;
+      this.height = wrapperRect.height - this.thick;
     }
+
   }
 }
 </script>
 <style lang="scss">
 @import "../styles/style.scss";
+</style>
+<style scoped>
+.params {
+  z-index: 3;
+  position: absolute;
+  right: 0px;
+}
+.wrapper {
+  padding: 0;
+  position: absolute;
+  left: 180px;
+  right: 350px;
+  /* border: 1px solid #dadadc; */
+}
+
+#screens {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.screen-container {
+  position: absolute;
+  width: 5000px;
+  height: 3000px;
+}
+
+#canvas {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  background: lightblue;
+  /* transform-origin: 50% 0; */
+}
 </style>

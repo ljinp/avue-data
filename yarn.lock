@@ -8681,6 +8681,11 @@ vue-router@3.1.0:
   resolved "https://registry.npmjs.org/vue-router/-/vue-router-3.1.0.tgz#e193d2de7abff75fd793a038a92bdb399259327c"
   integrity sha512-i1jCgNtJeRqIXPz91BAZ9/eSnqiQjJHXIToOmeqBtKLSqt4Ok8vzBhVJ/pd/nDDX4wQ5OfVXRn9BaCkI19nZsA==
 
+vue-sketch-ruler@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/vue-sketch-ruler/-/vue-sketch-ruler-1.0.3.tgz#506591da9f1da92b4bfcdf0ae17abdcd515ddb46"
+  integrity sha512-WfCNXJWn7gdST870nkEixR9JiZqGFCuW/Tuld2EQDYHTleDKPz2A45yTVqrF3MuRLelLkoqtz3+8ZfBhQ7sHGw==
+
 vue-style-loader@^4.1.0, vue-style-loader@^4.1.2:
   version "4.1.2"
   resolved "https://registry.npmjs.org/vue-style-loader/-/vue-style-loader-4.1.2.tgz#dedf349806f25ceb4e64f3ad7c0a44fba735fcf8"
