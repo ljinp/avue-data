@@ -33,6 +33,10 @@
                     :verLineArr="lines.v" />
         <div ref='screensRef'
              id="screens"
+             :class="dragSlide?'dragghanle':''"
+             @mousedown.stop="dragMousedown"
+             @mouseup="dragMouseup"
+             @mousemove="dragMousemove"
              @wheel="handleWheel"
              @scroll="handleScroll">
           <div ref="containerRef"
