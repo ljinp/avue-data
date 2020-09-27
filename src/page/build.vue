@@ -15,20 +15,22 @@
       <!-- 中间区域 -->
       <div class="wrapper"
            :style="wrapperHight"
-           v-if="flag"
            id="wrapper"
            ref="wrapper">
+        <img :src="isShowReferLine?imgOpenData:imgClose"
+             class="refer-line-img"
+             @click="imgClick">
         <SketchRule :thick="thick"
                     :scale="scale"
                     :width="width"
                     :height="height"
                     :startX="startX"
                     :startY="startY"
+                    :isShowReferLine="isShowReferLine"
+                    :palette="palette"
+                    :shadow="shadow"
                     :horLineArr="lines.h"
-                    :verLineArr="lines.v"
-                    :cornerActive="true"
-                    @onCornerClick="handleCornerClick" />
-
+                    :verLineArr="lines.v" />
         <div ref='screensRef'
              id="screens"
              @wheel="handleWheel"
@@ -156,14 +158,9 @@
                        alt=""
                        width="100%" />
                 </el-form-item>
-                <el-form-item label="缩放">
-                  <el-slider v-model="config.scale"
-                             :max="200"
-                             :format-tooltip="formatTooltip"></el-slider>
-                </el-form-item>
                 <el-form-item label="环境地址">
                   <avue-input type="textarea"
-                              :min-rows="2"
+                              :min-rows="3"
                               v-model="config.url"></avue-input>
                 </el-form-item>
                 <el-form-item label="参数">
@@ -388,20 +385,24 @@ export default {
       dicOption: dicOption,
       tabsActive: 0,
       // 标尺
-      scale: 1, //初始化标尺的缩放
+      scale: 0.9, //初始化标尺的缩放
       startX: 0, //x轴标尺开始的坐标数值
       startY: 0,
       lines: {   //初始化水平标尺上的参考线
         h: [],
         v: []
       },
+      rendIndex: 0,//重新渲染组件
+      shadow: { x: 0, y: 0 }, // 阴影大小
       thick: 20,  //标尺的厚度
       width: 0,  // 标尺宽,后面会初始化
       height: 0,// 标尺高,后面会初始化
-      flag: false,  // 要求得到参数后再渲染标尺,否则标尺刻度不会显示
       wrapperHight: '',// 标尺外部style
-      isShowRuler: true, // 显示标尺
-      isShowReferLine: true // 显示参考线
+      isShowReferLine: true, // 显示参考线
+      isImgOpen: true, //眼镜打开
+      imgOpenData: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAbCAYAAAAOEM1uAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAQNSURBVHja7JdvSON1HMdfP126/shSmaZ1ntuZbTLihOnSdJlPhIquB0VR1DZM9En0wCB3qCXKVOh86mmakdGDOqyHityBidYN1HPYZqbhOZprMGTOUk/9/XryWyxvek5NIu4Lg/H+fPj8Xt/P98/n8xUkSeK/PIT7gP8GoCAI8cTQAoWAHkgFRCAA3AKmgeBRA8VkOSZgMvAy8DZQCqQf4OcFRoDPgYmzAnwdaAAuxpFlCbgGfAR4ThUwYhcE4QngExnw71FWVuax2WwBk8mkSE9PV+7t7Ymrq6vbw8PD0uDgYO7CwsK5KPc14ENJkj497FtxAwqCYAK+kvcbANXV1U6Hw6HIyMh4GlAckJHwzMzMrM1my3a5XNoo01XgPUmSdk8MCLwEfAmoAPLz872jo6OrOTk5xVGBQ0tLS575+fnt7OzsRIPBcD4pKelctL2/v3+mtrbWLIpigixfA94BNk8C+JoMlyRn7WZvb68mISEhI+IQCASmKyoq0jweT25EU6lU4aGhoZnKykpzdNzl5eWbRqPxyWAwmCZL3wJvAHeOA/iCPMsHARwOx7jdbi+JXs7t7e3lrKys1LW1NVWsJXa73ZN6vb40WltfX3cbDIZ0r9ebKUv9wLvxAhYC1+V7je7u7rG6urrn9vu1tbWNNzU1lR90KgsLC5emp6cfB5TRejgc9mg0msyoTNYDXfEAjgFmQGxpaZlobm6OBbFrMpl+dTqd+YdcLztbW1ve5ORk7X6D3++f0ul0+aFQKAXYAF6RJOn6UQGDQBrgE0VRJQjCw7EAjUbj8tTUVN4hgLubm5u3lUrlhVjG+vr6ya6ursgWaJck6fJRAW8AzwNia2vrRGNjY8xltNvtEx0dHc8eRKfX62+73W418NB+m8/nm9LpdE+Fw+FHgD+AS/Fk8CJwI7IHe3t7x2pqau7agxsbG/NqtTp3a2tLGQtwcnJyvKSk5K7JhcPhnzQaTXYwGEyVpQ+AK8c5xd9EZt/e3v59Q0ND6f5LeXFx8cfy8vILfr9fHdEUCsVOX1/fhMViqdgfOxQKzRUUFKh9Pt+JTnHk76vyPZgcqR49PT3nExMTM/+x0XZ3fePj47/Mzc2RlZVFVVVVRkpKin5/3JWVFWdRUVFeIBCInN7v5NJ55ySV5EUZ8lEArVb728jIiDcvL++ZONqo0MDAwK2ampoyURQTZXlI7ob+PI1aXAR8AegiutVqdXZ2dt6zFs/OzrosFstjLpcr+iR3A+9LkrRzKs2CrGUCV4C3on3NZrPHarX+Xlxc/MARu5nLkiRdPbVuJsa4BDQCxjj6QRH4GvgY+PksOmqF3FG/KVcc9T066s+AH86y5Y8eOXI282XQyJtkRv6d/pvk/rPz/wT41wBibRrpeMs+PAAAAABJRU5ErkJggg==', // 左上角图片
+      imgClose: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAPYSURBVHja7JVPTFRXFIe/+96gGRHEhQzBFMJKSKSkLTgtGxemSXcktohW2RBmTAjUClIYZ6Cxi+fQDgOCLJgJhqTSBAtLdjaxaSqQWnDSNp2U0I6FFh0SDdV0oMx7pwuZCUXjnyZNuvBsbnLvufe7555zfleJCP+1qReQfwVRSqWmqoFDIE3A+iZXQDbGlMmmNTatP5xPn/0ohOOgLgNtIB8DOlAKvAzsBTKBP4FF4Dvge1DrzwsBaAAuAJ8CxbpuezU/P397QcFLZGVlcf/+fRYXF1lc/G3VNJM/AJ8Dw8CdZ4QoQI4AIWBXaWkpQ0ND5v79+zW73Z5+n9XVVWZnb8rExIQ2MnKZWCz2M/Dhw1d4eiTngXafz2dmZ2ebPp9P6+vrl5qaI2p8fFyi0aheUlJiHj78tpaTs0sHJB6PW4HAJ3og0I2I+AHPkyAeu91uDA4OmrW1tRpAT09vsr29XXM4ciWZTJKXl2ctLCyoHTsy1ZUro+J0OjNSWR8ZGbFcLpeeSCTOAucfBykDpvr7+7c3NjamS+bevXvJ4uIS4vE7tra2tjW/32+7ffu21Ne7rJmZb7VIJKL27Nmjp0ADAwM0NjauAW+IyM2tkAGn8/WG69e/NjVNS20iHA6vd3Z2qrq6OtMwDFswGLROnz6dcffu3WRRUZEVCARwuVzbUv6WZVmVlZXa9PT0RRFp2gq56na7Dw0ODv6jGc6cOWNdu/Zl8saNb/RgMGi1tLSo7u5uaW5u1srLK8yDBw/aursD2ubmcbtPqnA4dFVE3twKuVBeXv7e5OSkabPZ0pGEQuG/WltbicV+0Xbv3m0LBnvWW1qatbNnvclLl4b0c+c+ErfblcoLa2trptPp1CORSEBEWrdCSoBpwzB2ejyedE6Wl5fNsrIyqaiokFAopBwOh/J4PKbf79/mcDiS0WiUnJwcWyoKr9erDMNYBg6ISOxx1dWg6/pAb2+vtZF8DWBqanr96NEalUgkpKCgQJaWljRN04jH43R1dcmpU6dsgBiGobxer3qoGnz2pD5pBfx1dXWaz+czi4qKNECtrKyYY2NjVjQa1fftK7aqq99hdHRUmpqaVEdHhzU/P58xPDycAN4Hws8iK28B/tzc3LJjx96lqqrKOnCggszMzLRmPHjwQM3MzFj19fX63NwcwDJQBUymK+ApEEDtBDkOnFBKvZafv9deWFhIdnYWKysr3Lr1K0tLvydE5CvgJ1AnQZqBi88DSV1aA0qAV4CCDRX+A1gAZoEfN/w/ALqAEyAjzwvZ8mc8KukblgGqD/gCZOyxkBd//P8G8vcAMK383pmr7aEAAAAASUVORK5CYII=',
+      dragSlide: false,  // 拖动滚动条标记
     }
   },
   components: {
@@ -453,6 +454,19 @@ export default {
       return result
     },
     /* 标尺用的 */
+    palette () {
+      return {
+        bgColor: '#181b24', // ruler bg color
+        longfgColor: '#BABBBC', // ruler longer mark color
+        shortfgColor: '#9C9C9C', // ruler shorter mark color
+        fontColor: '#DEDEDE', // ruler font color
+        shadowColor: '#525252', // ruler shadow color
+        lineColor: '#EB5648',
+        borderColor: '#B5B5B5',
+        cornerActiveColor: '#fff',
+      }
+    },
+    // 画布大小,一定要是computer里面,否则缩放页面会失效
     canvasStyle () {
       return {
         width: window.innerWidth - 530 + 'px',   // 530为左边180+右边350
@@ -460,7 +474,6 @@ export default {
         transform: `scale(${this.scale})`
       }
     }
-
   },
   watch: {
     menuFlag () {
@@ -485,16 +498,11 @@ export default {
     },
   },
   created () {
-    this.wrapperHight = `height:${window.innerHeight - 45}px`
-    this.flag = true
     this.listen();
+    this.iniresize()
   },
   mounted () {
     this.initFun()
-    // 初始化标尺,一定等其他dom渲染完毕再初始化
-    // 滚动居中
-    this.$refs.screensRef.scrollLeft =
-      this.$refs.containerRef.getBoundingClientRect().width / 2 - 20; // 刻度宽20
     this.$nextTick(() => {
       this.initSize();
     });
@@ -540,7 +548,17 @@ export default {
     //监听键盘的按键
     listen () {
       document.onkeydown = (e) => {
-        if (e.keyCode === 46) {  // 如果是delete按键,那么调用删除组件按钮
+        // 去掉默认滚动条按空格跳到后面行为
+        if (e.target.nodeName == 'TEXTAREA' || e.target.nodeName == 'INPUT') {
+          return;
+        }
+        // 按下空格键
+        if (e.keyCode == 32) {
+          e.preventDefault();
+          this.keys.space = true
+        }
+        // 如果是delete按键,那么调用删除组件按钮
+        if (e.keyCode === 46) {
           this.deleteMethod()
         }
         this.keys.ctrl = e.keyCode === 17;
@@ -576,7 +594,6 @@ export default {
       this.nav.push(floder);
       this.handleInitActive();
     },
-    //批量删除
     //批量删除
     handleDeleteSelect () {
       this.$confirm(`是否批量删除所选图层?`, '提示', {
@@ -622,10 +639,6 @@ export default {
       }
     },
     /* **************************标尺方法开始******************************* */
-    handleCornerClick () {
-      //TODO 点击左上角要回到最开始视图
-      return;
-    },
     // 滚轮触发
     handleScroll () {
       const screensRect = this.$refs.screensRef.getBoundingClientRect();
@@ -651,9 +664,57 @@ export default {
     },
     // 初始化标尺数值
     initSize () {
-      const wrapperRect = this.$refs.wrapper.getBoundingClientRect();
-      this.width = wrapperRect.width - this.thick;
-      this.height = wrapperRect.height - this.thick;
+      const domW = this.$refs.wrapper
+      let width = window.innerWidth - 530
+      let height = window.innerHeight - 45
+      domW.style.width = width + 'px'
+      domW.style.height = height + 'px'
+      this.width = width - this.thick;
+      this.height = height - this.thick;
+      // 画布阴影部分
+      this.shadow = { x: 0, y: 0, width, height }
+      // 滚动居中
+      let dom = this.$refs.containerRef.getBoundingClientRect()
+      this.$refs.screensRef.scrollLeft = dom.width / 2 - this.thick;
+      this.$refs.screensRef.scrollTop = dom.height / 2 - this.thick;
+    },
+    // resize
+    iniresize () {
+      window.addEventListener('resize', () => {
+        let width = this.width
+        let height = this.height
+        this.initSize();
+        let rate = Math.min(this.width / width, this.height / height)
+        this.scale = rate > 1 ? rate * 0.5 : rate
+        this.rendIndex++
+      })
+    },
+    // 图片点击事件
+    imgClick () {
+      this.isShowReferLine = !this.isShowReferLine
+    },
+    // 鼠标按下事件
+    dragMousedown (e) {
+      // 如果按下了空格键,且按下鼠标左键,那么鼠标变抓手,开启滚动条随鼠标拖动的操作
+      if (this.keys.space) {
+        this.dragSlide = true
+        window.stardragEvent = e
+        window.startSlideX = this.$refs.screensRef.scrollLeft
+        window.startSlideY = this.$refs.screensRef.scrollTop
+      }
+    },
+    //鼠标抬起操作
+    dragMouseup () {
+      this.dragSlide = false
+    },
+    // 鼠标移动骚操作
+    dragMousemove (e) {
+      if (this.dragSlide) {
+        let x = e.clientX - window.stardragEvent.clientX
+        let y = e.clientY - window.stardragEvent.clientY
+        this.$refs.screensRef.scrollLeft = window.startSlideX - x * this.scale
+        this.$refs.screensRef.scrollTop = window.startSlideY - y * this.scale
+      }
     }
 
   }
@@ -669,6 +730,14 @@ export default {
   right: 0px;
 }
 
+.refer-line-img {
+  position: absolute;
+  left: 0;
+  z-index: 5;
+  width: 20px;
+  height: 20px;
+  /* background: #fff; */
+}
 #screens {
   position: absolute;
   width: 100%;
@@ -682,9 +751,12 @@ export default {
   height: 3000px;
 }
 
+.dragghanle {
+  cursor: pointer;
+}
 #canvas {
   position: absolute;
-  top: 40px;
+  top: 50%;
   left: 50%;
   background: lightblue;
   /* transform-origin: 50% 0; */
