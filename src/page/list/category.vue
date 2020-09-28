@@ -1,13 +1,11 @@
 <template>
-  <div class="map">
-    <avue-crud :option="option"
-               v-model="form"
-               @row-save="rowSave"
-               @row-update="rowUpdate"
-               @row-del="rowDel"
-               :before-open="beforeOpen"
-               :data="data"></avue-crud>
-  </div>
+  <avue-crud :option="option"
+             v-model="form"
+             @row-save="rowSave"
+             @row-update="rowUpdate"
+             @row-del="rowDel"
+             :before-open="beforeOpen"
+             :data="data"></avue-crud>
 </template>
 
 <script>
@@ -113,14 +111,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.map {
-  padding: 30px;
-  width: 100%;
-  .title {
-    display: block;
-    margin-bottom: 30px;
-    padding: 0 50px;
-    font-size: 20px;
-  }
-}
 </style>

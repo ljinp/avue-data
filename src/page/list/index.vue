@@ -1,8 +1,7 @@
 <template>
   <el-container class="list">
-    <el-header>
+    <el-aside width="190px">
       <el-menu :default-active="activeName"
-               mode="horizontal"
                background-color="#171b22"
                text-color="#fff"
                active-text-color="#00baff"
@@ -11,16 +10,17 @@
                       :key="item.categoryValue"
                       v-for="item in typelist"
                       @click="getList(item.categoryValue)">
-          <i class="iconfont icon-daping"></i>
+          <i class="el-icon-s-order"></i>
           {{item.categoryKey}}
         </el-menu-item>
       </el-menu>
 
-    </el-header>
+    </el-aside>
     <el-main>
       <div class="page">
         <el-pagination layout="total, sizes, prev, pager, next, jumper"
                        background
+                       size="mini"
                        @size-change="handleSizeChange"
                        @current-change="handleCurrentChange"
                        :page-size="page.size"
@@ -175,7 +175,7 @@ export default {
       },
       page: {
         page: 1,
-        size: 10,
+        size: 7,
         total: 0,
       },
       form: {},

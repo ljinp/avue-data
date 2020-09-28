@@ -1,20 +1,31 @@
 <template>
-  <div class="map">
-    <a class="title"
-       target="_blank"
-       href="https://datav.aliyun.com/tools/atlas/#&lat=33.521903996156105&lng=104.29849999999999&zoom=4">点击我添加更多地图</a>
-    <a class="title"
-       target="_blank"
-       href=" http://geojson.io/#map">自己画地图</a>
-    <avue-crud :option="option"
-               v-model="form"
-               @row-save="rowSave"
-               @row-update="rowUpdate"
-               @row-del="rowDel"
-               :before-open="beforeOpen"
-               :data="data">
-    </avue-crud>
-  </div>
+  <avue-crud :option="option"
+             v-model="form"
+             @row-save="rowSave"
+             @row-update="rowUpdate"
+             @row-del="rowDel"
+             :before-open="beforeOpen"
+             :data="data">
+    <template slot-scope="{}"
+              slot="menuLeft">
+      <div style="display: inline-block;">
+        <el-button type="primary"
+                   icon="el-icon-add-location"
+                   size="mini">
+          <a class="title"
+             target="_blank"
+             href="https://datav.aliyun.com/tools/atlas/#&lat=33.521903996156105&lng=104.29849999999999&zoom=4">添加更多地图</a>
+        </el-button>
+        <el-button type="primary"
+                   icon="el-icon-location-information"
+                   size="mini">
+          <a class="title"
+             target="_blank"
+             href=" http://geojson.io/#map">画地图</a>
+        </el-button>
+      </div>
+    </template>
+  </avue-crud>
 </template>
 
 <script>
@@ -122,14 +133,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.map {
-  padding: 30px;
-  width: 100%;
-  .title {
-    display: block;
-    margin-bottom: 30px;
-    padding: 0 50px;
-    font-size: 20px;
-  }
-}
 </style>

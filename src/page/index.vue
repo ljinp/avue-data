@@ -1,35 +1,43 @@
 <template>
-
-  <el-container class="list">
-    <el-aside width="230px">
-      <h2 class="title">Avue-data数据大屏</h2>
-      <el-menu :default-active="activeName"
-               background-color="#171b22"
+  <div class="index">
+    <div class="header">
+      <img src="/img/header.jpg"
+           alt=""
+           width="100%"
+           height="210px">
+      <div class="title">
+        <p>
+          AVUE-DATA<br />
+          <small>可视化数据大屏</small>
+        </p>
+      </div>
+      <el-menu class="nav"
+               mode="horizontal"
+               :default-active="activeName"
+               background-color="rgba(0,0,0,0)"
                text-color="#fff"
                @select="handleSelect"
                active-text-color="#00baff">
         <el-menu-item index="1">
-          <i class="el-icon-document"></i>
+          <i class="el-icon-menu"></i>
           大屏管理
         </el-menu-item>
         <el-menu-item index="2">
-          <i class="el-icon-document"></i>
+          <i class="el-icon-location-information"></i>
           地图管理
         </el-menu-item>
         <el-menu-item index="3">
-          <i class="el-icon-document"></i>
+          <i class="el-icon-folder-opened"></i>
           分类管理
         </el-menu-item>
       </el-menu>
-    </el-aside>
-
-    <el-scrollbar class="list"
-                  style="width:100%;height:800px;">
+    </div>
+    <el-scrollbar class="main">
       <list v-if="activeName==1"></list>
       <maps v-if="activeName==2"></maps>
       <category v-if="activeName==3"></category>
     </el-scrollbar>
-  </el-container>
+  </div>
 </template>
 <script>
 import list from './list/index'
@@ -57,12 +65,38 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-.title {
-  font-size: 20px;
-  color: #fff;
-  text-align: center;
-  line-height: 60px;
-  font-weight: 500;
+<style lang="scss">
+.index {
+  height: 100%;
+  .header {
+    position: relative;
+    padding: 0;
+    height: auto !important;
+    .nav {
+      margin: 0 20px;
+      width: 100%;
+      position: absolute;
+      bottom: 10px;
+      border: none;
+      .el-menu-item {
+        background-color: rgba(0, 0, 0, 0) !important;
+      }
+    }
+    .title {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      font-size: 34px;
+      color: rgb(0, 186, 255);
+      font-weight: 500;
+    }
+    .title small {
+      font-size: 18px;
+    }
+  }
+  .main {
+    width: 100%;
+    height: calc(100% - 220px);
+  }
 }
 </style>
