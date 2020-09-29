@@ -9,20 +9,24 @@
     <template slot-scope="{}"
               slot="menuLeft">
       <div style="display: inline-block;">
-        <el-button type="primary"
-                   icon="el-icon-add-location"
-                   size="mini">
-          <a class="title"
-             target="_blank"
-             href="https://datav.aliyun.com/tools/atlas/#&lat=33.521903996156105&lng=104.29849999999999&zoom=4">添加更多地图</a>
-        </el-button>
-        <el-button type="primary"
-                   icon="el-icon-location-information"
-                   size="mini">
-          <a class="title"
-             target="_blank"
-             href=" http://geojson.io/#map">画地图</a>
-        </el-button>
+        <a class="title"
+           target="_blank"
+           href="https://datav.aliyun.com/tools/atlas/#&lat=33.521903996156105&lng=104.29849999999999&zoom=4">
+          <el-button type="primary"
+                     icon="el-icon-add-location"
+                     size="mini">
+            添加更多地图
+          </el-button>
+        </a>
+        <a class="title"
+           target="_blank"
+           href=" http://geojson.io/#map">
+          <el-button type="primary"
+                     icon="el-icon-location-information"
+                     size="mini">
+            画地图
+          </el-button>
+        </a>
       </div>
     </template>
   </avue-crud>
