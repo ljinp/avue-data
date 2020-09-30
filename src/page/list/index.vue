@@ -84,7 +84,7 @@
         </div>
       </div>
     </el-main>
-    <el-dialog title="新建大屏"
+    <el-dialog :title="type==='add'?'新建大屏':'编辑大屏'"
                width="35%"
                :visible.sync="box">
       <avue-form :option="option"
@@ -175,7 +175,7 @@ export default {
       },
       page: {
         page: 1,
-        size: 7,
+        size: 10,
         total: 0,
       },
       form: {},
@@ -287,14 +287,13 @@ export default {
           this.$message.error('例子模板不允许修改')
           return false;
         }
-        updateObj(Object.assign({
-          category: this.activeName
-        }, {
+        updateObj({
           id: this.form.id,
+          category: this.form.category,
           password: this.form.password,
           status: this.form.status,
           title: this.form.title
-        })).then(() => {
+        }).then(() => {
           this.box = false;
           this.$message.success('修改成功');
           this.getList();
