@@ -99,64 +99,65 @@ export default {
       });
       this.$nextTick(() => {
         html2canvas(document.getElementById('content'), {
-          onrendered: (canvas) => {
-            function dataURLtoFile (dataurl, filename) {
-              var arr = dataurl.split(','),
-                mime = arr[0].match(/:(.*?);/)[1],
-                bstr = atob(arr[1]),
-                n = bstr.length,
-                u8arr = new Uint8Array(n);
-              while (n--) {
-                u8arr[n] = bstr.charCodeAt(n);
-              }
-              return new File([u8arr], filename, { type: mime });
+          useCORS: true,
+          backgroundColor: null,
+          allowTaint: true
+        }).then(canvas => {
+          function dataURLtoFile (dataurl, filename) {
+            var arr = dataurl.split(','),
+              mime = arr[0].match(/:(.*?);/)[1],
+              bstr = atob(arr[1]),
+              n = bstr.length,
+              u8arr = new Uint8Array(n);
+            while (n--) {
+              u8arr[n] = bstr.charCodeAt(n);
             }
+            return new File([u8arr], filename, { type: mime });
+          }
 
-            var file = dataURLtoFile(canvas.toDataURL('image/jpeg', 0.1), new Date().getTime() + '.jpg');
-            var formdata = new FormData();
-            formdata.append('file', file)
-            axios.post(this.url + '/visual/put-file', formdata, {
-              headers: {
-                "Content-Type": "multipart/form-data"
-              }
-            }).then(res => {
-              const data = res.data.data;
-              const url = data.link;
-              const formdata = {
-                visual: {
-                  id: this.contain.visual.id,
-                  backgroundUrl: url
-                },
-                config: {
-                  id: this.contain.obj.config.id,
-                  visualId: this.contain.visual.id,
-                  detail: JSON.stringify(this.contain.config),
-                  component: JSON.stringify(this.contain.nav),
-                },
-              }
-              return updateComponent(formdata)
+          var file = dataURLtoFile(canvas.toDataURL('image/jpeg', 0.1), new Date().getTime() + '.jpg');
+          var formdata = new FormData();
+          formdata.append('file', file)
+          axios.post(this.url + '/visual/put-file', formdata, {
+            headers: {
+              "Content-Type": "multipart/form-data"
+            }
+          }).then(res => {
+            const data = res.data.data;
+            const url = data.link;
+            const formdata = {
+              visual: {
+                id: this.contain.visual.id,
+                backgroundUrl: url
+              },
+              config: {
+                id: this.contain.obj.config.id,
+                visualId: this.contain.visual.id,
+                detail: JSON.stringify(this.contain.config),
+                component: JSON.stringify(this.contain.nav),
+              },
+            }
+            return updateComponent(formdata)
+          }).then(() => {
+            loading.close();
+            this.$confirm('保存成功大屏配置, 是否打开预览?', '提示', {
+              confirmButtonText: '确定',
+              cancelButtonText: '取消',
+              type: 'warning'
             }).then(() => {
-              loading.close();
-              this.$confirm('保存成功大屏配置, 是否打开预览?', '提示', {
-                confirmButtonText: '确定',
-                cancelButtonText: '取消',
-                type: 'warning'
-              }).then(() => {
-                let routeUrl = this.$router.resolve({
-                  path: '/view/' + this.contain.id
-                })
-                window.open(routeUrl.href, '_blank');
-              }).catch(() => {
-
-              });
+              let routeUrl = this.$router.resolve({
+                path: '/view/' + this.contain.id
+              })
+              window.open(routeUrl.href, '_blank');
             }).catch(() => {
-              this.$message.error('模版例子不能修改')
-              loading.close();
-            })
-          },
-        });
-      })
 
+            });
+          }).catch(() => {
+            this.$message.error('模版例子不能修改')
+            loading.close();
+          })
+        })
+      })
     },
     handleAdd (option, first = false) {
       let obj = this.deepClone(option);
