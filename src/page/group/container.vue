@@ -112,7 +112,7 @@ export default {
             //赋值属性
             this.contain.config = JSON.parse(config.detail) || {};
             this.contain.nav = JSON.parse(config.component) || [];
-            if (this.contain.config.mark.show) {
+            if (this.contain.config.mark.show && !isBuild) {
               this.watermark(this.contain.config.mark);
             }
             this.calcData();
