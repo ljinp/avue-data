@@ -716,8 +716,8 @@ export default {
       if (this.dragSlide) {
         let x = e.clientX - window.stardragEvent.clientX
         let y = e.clientY - window.stardragEvent.clientY
-        this.$refs.screensRef.scrollLeft = window.startSlideX - x * this.scale
-        this.$refs.screensRef.scrollTop = window.startSlideY - y * this.scale
+        this.$refs.screensRef.scrollLeft = window.startSlideX - x
+        this.$refs.screensRef.scrollTop = window.startSlideY - y
       }
     }
 
