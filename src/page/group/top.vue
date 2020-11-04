@@ -83,7 +83,7 @@ export default {
     handleView () {
       this.contain.menuFlag = false;
       this.contain.handleInitActive();
-      this.contain.setScale(document.body.clientWidth);
+      // this.contain.setScale(document.body.clientWidth);
     },
     handleReset () {
       this.contain.menuFlag = true;
