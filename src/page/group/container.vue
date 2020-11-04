@@ -37,7 +37,8 @@ export default {
       default: () => {
         return {}
       }
-    }
+    },
+    wscale: Number
   },
   provide () {
     return {
@@ -57,7 +58,7 @@ export default {
   },
   computed: {
     stepScale () {
-      let scale = Number(((1 / this.scale) * 100).toFixed(2));
+      let scale = Number((100 / (this.scale * this.wscale))).toFixed(2)
       return scale
     },
     //计算中央可视化大屏比例

@@ -44,7 +44,8 @@
             <div id="canvas"
                  ref="canvas"
                  :style="canvasStyle">
-              <container ref="container"></container>
+              <container ref="container"
+                         :wscale="scale"></container>
             </div>
           </div>
         </div>
