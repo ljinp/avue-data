@@ -30,6 +30,14 @@
           <i class="el-icon-folder-opened"></i>
           分类管理
         </el-menu-item>
+        <el-menu-item index="4">
+          <a href="https://www.kancloud.cn/smallwei/avue-doc"
+             style="font-size:14px;">
+            <i class="el-icon-tickets"></i>
+            在线文档
+          </a>
+        </el-menu-item>
+
       </el-menu>
     </div>
     <el-scrollbar class="main">
