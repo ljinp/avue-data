@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     vaildData (id) {
-      return [0, 1].includes(id)
+      return [0, 1, 2].includes(id)
     },
     beforeOpen (done, type) {
       if (type == 'edit') {

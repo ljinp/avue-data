@@ -209,6 +209,11 @@ export default {
       })
     },
     handleCopy (item) {
+      this.$message({
+        message: '演示环境不允许复制',
+        type: 'danger'
+      })
+      return
       this.$confirm('确认复制当前大屏', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
