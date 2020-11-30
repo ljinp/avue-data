@@ -553,7 +553,6 @@ export default {
     //监听键盘的按键
     listen () {
       document.onkeydown = (e) => {
-        // 去掉默认滚动条按空格跳到后面行为
         if (e.target.nodeName == 'TEXTAREA' || e.target.nodeName == 'INPUT') {
           return;
         }
@@ -565,6 +564,12 @@ export default {
         // 如果是delete按键,那么调用删除组件按钮
         if (e.keyCode === 46) {
           this.deleteMethod()
+        }
+        if (e.keyCode === 90) {
+          this.editorUndo();
+        }
+        if (e.keyCode === 89) {
+          this.editorRedo();
         }
         this.keys.ctrl = e.keyCode === 17;
       }
