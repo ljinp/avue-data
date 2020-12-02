@@ -1,5 +1,5 @@
 import { url } from '@/config';
-var request = window.axios;
+import request from '../axios'
 export const getList = (params) => request({
   url: url + '/map/list',
   method: 'get',

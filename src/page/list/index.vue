@@ -28,11 +28,7 @@
                        :total="page.total">
         </el-pagination>
       </div>
-      <div class="content"
-           element-loading-text="拼命加载中"
-           element-loading-spinner="el-icon-loading"
-           element-loading-background="rgba(0, 0, 0, 0)"
-           v-loading="loading">
+      <div class="content">
         <div class="content__item content__item--add"
              @click="handleAdd">
           <div>
@@ -104,7 +100,6 @@ export default {
   name: "list",
   data () {
     return {
-      loading: false,
       typelist: [],
       index: 0,
       type: '',
@@ -324,14 +319,12 @@ export default {
       this.getList();
     },
     getList (category) {
-      this.loading = true;
       this.list = []
       getList({
         category: category || this.activeName,
         current: this.page.page,
         size: this.page.size,
       }).then(res => {
-        this.loading = false;
         const data = res.data.data;
         this.page.total = data.total;
         this.list = data.records
