@@ -13,24 +13,23 @@
                :nav="nav"></layer>
       </div>
       <!-- 中间区域 -->
-      <div class="wrapper"
-           :style="wrapperHight"
-           id="wrapper"
-           ref="wrapper">
-        <img :src="isShowReferLine?imgOpenData:imgClose"
-             class="refer-line-img"
+      <div ref="wrapper"
+           style="flex:1;overflow:hidden;position:relative;">
+        <div class="refer-line-img"
              @click="imgClick">
-        <SketchRule :thick="thick"
-                    :scale="scale"
-                    :width="width"
-                    :height="height"
-                    :startX="startX"
-                    :startY="startY"
-                    :isShowReferLine="isShowReferLine"
-                    :palette="palette"
-                    :shadow="shadow"
-                    :horLineArr="lines.h"
-                    :verLineArr="lines.v" />
+          <img :src="isShowReferLine?imgOpenData:imgClose">
+        </div>
+        <sketch-rule :thick="thick"
+                     :scale="scale"
+                     :width="width"
+                     :height="height"
+                     :startX="startX"
+                     :startY="startY"
+                     :isShowReferLine="isShowReferLine"
+                     :palette="palette"
+                     :shadow="shadow"
+                     :horLineArr="lines.h"
+                     :verLineArr="lines.v" />
         <div ref='screensRef'
              id="screens"
              :class="dragSlide?'dragghanle':''"
@@ -41,7 +40,7 @@
              @scroll="handleScroll">
           <div ref="containerRef"
                class="screen-container">
-            <div id="canvas"
+            <div class="canvas"
                  ref="canvas"
                  :style="canvasStyle">
               <container ref="container"
@@ -402,7 +401,6 @@ export default {
       thick: 20,  //标尺的厚度
       width: 0,  // 标尺宽,后面会初始化
       height: 0,// 标尺高,后面会初始化
-      wrapperHight: '',// 标尺外部style
       isShowReferLine: true, // 显示参考线
       isImgOpen: true, //眼镜打开
       imgOpenData: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAbCAYAAAAOEM1uAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAQNSURBVHja7JdvSON1HMdfP126/shSmaZ1ntuZbTLihOnSdJlPhIquB0VR1DZM9En0wCB3qCXKVOh86mmakdGDOqyHityBidYN1HPYZqbhOZprMGTOUk/9/XryWyxvek5NIu4Lg/H+fPj8Xt/P98/n8xUkSeK/PIT7gP8GoCAI8cTQAoWAHkgFRCAA3AKmgeBRA8VkOSZgMvAy8DZQCqQf4OcFRoDPgYmzAnwdaAAuxpFlCbgGfAR4ThUwYhcE4QngExnw71FWVuax2WwBk8mkSE9PV+7t7Ymrq6vbw8PD0uDgYO7CwsK5KPc14ENJkj497FtxAwqCYAK+kvcbANXV1U6Hw6HIyMh4GlAckJHwzMzMrM1my3a5XNoo01XgPUmSdk8MCLwEfAmoAPLz872jo6OrOTk5xVGBQ0tLS575+fnt7OzsRIPBcD4pKelctL2/v3+mtrbWLIpigixfA94BNk8C+JoMlyRn7WZvb68mISEhI+IQCASmKyoq0jweT25EU6lU4aGhoZnKykpzdNzl5eWbRqPxyWAwmCZL3wJvAHeOA/iCPMsHARwOx7jdbi+JXs7t7e3lrKys1LW1NVWsJXa73ZN6vb40WltfX3cbDIZ0r9ebKUv9wLvxAhYC1+V7je7u7rG6urrn9vu1tbWNNzU1lR90KgsLC5emp6cfB5TRejgc9mg0msyoTNYDXfEAjgFmQGxpaZlobm6OBbFrMpl+dTqd+YdcLztbW1ve5ORk7X6D3++f0ul0+aFQKAXYAF6RJOn6UQGDQBrgE0VRJQjCw7EAjUbj8tTUVN4hgLubm5u3lUrlhVjG+vr6ya6ursgWaJck6fJRAW8AzwNia2vrRGNjY8xltNvtEx0dHc8eRKfX62+73W418NB+m8/nm9LpdE+Fw+FHgD+AS/Fk8CJwI7IHe3t7x2pqau7agxsbG/NqtTp3a2tLGQtwcnJyvKSk5K7JhcPhnzQaTXYwGEyVpQ+AK8c5xd9EZt/e3v59Q0ND6f5LeXFx8cfy8vILfr9fHdEUCsVOX1/fhMViqdgfOxQKzRUUFKh9Pt+JTnHk76vyPZgcqR49PT3nExMTM/+x0XZ3fePj47/Mzc2RlZVFVVVVRkpKin5/3JWVFWdRUVFeIBCInN7v5NJ55ySV5EUZ8lEArVb728jIiDcvL++ZONqo0MDAwK2ampoyURQTZXlI7ob+PI1aXAR8AegiutVqdXZ2dt6zFs/OzrosFstjLpcr+iR3A+9LkrRzKs2CrGUCV4C3on3NZrPHarX+Xlxc/MARu5nLkiRdPbVuJsa4BDQCxjj6QRH4GvgY+PksOmqF3FG/KVcc9T066s+AH86y5Y8eOXI282XQyJtkRv6d/pvk/rPz/wT41wBibRrpeMs+PAAAAABJRU5ErkJggg==', // 左上角图片
@@ -474,8 +472,7 @@ export default {
     // 画布大小,一定要是computer里面,否则缩放页面会失效
     canvasStyle () {
       return {
-        width: window.innerWidth - 530 + 'px',   // 530为左边180+右边350
-        height: window.innerHeight - 45 + 'px',   // 顶部下拉45
+        width: window.innerWidth - 530 + 'px',
         transform: `scale(${this.scale})`
       }
     }
@@ -509,11 +506,10 @@ export default {
   mounted () {
     this.initFun()
     this.$nextTick(() => {
-      this.initSize();
-    });
+      this.initSize()
+    })
   },
   methods: {
-
     codeClose (value) {
       if (this.code.type === 'query') {
         this.config.query = value;
@@ -732,43 +728,42 @@ export default {
 </script>
 <style lang="scss">
 @import "../styles/style.scss";
-</style>
-<style >
-.params {
-  z-index: 3;
-  position: absolute;
-  right: 0px;
-}
-
 .refer-line-img {
   position: absolute;
   left: 0;
   z-index: 5;
   width: 20px;
   height: 20px;
-  /* background: #fff; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: 100%;
+  }
 }
 #screens {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
 }
 
 .screen-container {
-  position: absolute;
+  position: relative;
   width: 5000px;
   height: 3000px;
+  background: url(https://img.alicdn.com/tfs/TB184VLcPfguuRjSspkXXXchpXa-14-14.png)
+    repeat;
 }
 
 .dragghanle {
   cursor: pointer;
 }
-#canvas {
+.canvas {
   position: absolute;
   top: 50%;
   left: 50%;
-  background: lightblue;
-  /* transform-origin: 50% 0; */
 }
 </style>

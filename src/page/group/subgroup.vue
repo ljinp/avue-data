@@ -82,7 +82,7 @@ export default {
       if (typeof str == "string") {
         try {
           return JSON.parse(str);
-        } catch  {
+        } catch {
           return {}
         }
       }

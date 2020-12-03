@@ -1,13 +1,12 @@
 <template>
   <div class="middle">
-    <div class="wrapper__grade"
-         @mousedown="contain.handleMouseDown"></div>
     <div id="wrapper"
          class="wrapper"
          @mousedown="contain.handleMouseDown">
       <div class="content"
            id="content"
-           ref="content">
+           ref="content"
+           :style="contentStyle">
         <div class="container"
              :style="styleName"
              id="container"
@@ -51,6 +50,7 @@ export default {
   },
   data () {
     return {
+      contentStyle: {},
       selectCount: {},
       scale: 1,
       gradeFlag: false,
@@ -64,8 +64,9 @@ export default {
     //计算中央可视化大屏比例
     styleName () {
       const scale = this.contain.config.scale;
+      const val = (scale / 100) + 0.001;
       return Object.assign({
-        transform: `scale(${scale / 100}, ${scale / 100})`,
+        transform: `scale(${val}, ${val})`,
         width: this.setPx(this.contain.config.width),
         height: this.setPx(this.contain.config.height),
         backgroundColor: this.contain.config.backgroundColor
@@ -155,18 +156,16 @@ export default {
     },
     //适配尺寸
     setResize () {
-      this.$nextTick(() => {
-        this.$refs.content.style.width = this.setPx((this.contain.config.scale * this.contain.config.width) / 100)
-        this.$refs.content.style.height = this.setPx((this.contain.config.scale * this.contain.config.height) / 100)
-      })
+      this.contentStyle = {
+        width: this.setPx((this.contain.config.scale * this.contain.config.width) / 100),
+        height: this.setPx((this.contain.config.scale * this.contain.config.height) / 100),
+      }
     },
     //计算比例
     setScale (width) {
-      this.$nextTick(() => {
-        this.contain.config.scale = (width / this.contain.config.width) * 100
-        this.scale = this.contain.config.scale;
-        this.setResize();
-      })
+      this.contain.config.scale = (width / this.contain.config.width) * 100
+      this.scale = this.contain.config.scale;
+      this.setResize();
     },
     calcData () {
       if (!this.contain.config.mark) this.contain.config.mark = {}

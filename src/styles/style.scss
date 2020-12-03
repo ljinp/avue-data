@@ -141,8 +141,6 @@
     background-color: #2a2d32;
     flex:1;
     position: relative;
-    height: 100%;
-    overflow: auto;
   }
   .wrapper {
     position: relative;
@@ -194,15 +192,6 @@
     bottom: 0;
     left: 0;
     right: 0;
-  }
-  .wrapper__grade{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    background: url(https://img.alicdn.com/tfs/TB184VLcPfguuRjSspkXXXchpXa-14-14.png) repeat;
   }
   
   .title {

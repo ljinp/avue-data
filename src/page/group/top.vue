@@ -49,31 +49,30 @@
           <i class="nav__icon iconfont icon-view"></i>
         </el-tooltip>
       </el-menu-item>
-
       <el-menu-item index="8"
-                    :disabled='!contain.canUndo'
-                    @click="contain.editorUndo">
-        <el-tooltip effect="dark"
-                    content="撤销"
-                    placement="top">
-          <i class="nav__icon el-icon-d-arrow-left"></i>
-        </el-tooltip>
-      </el-menu-item>
-      <el-menu-item index="9"
-                    :disabled='!contain.canRedo'
-                    @click="contain.editorRedo">
-        <el-tooltip effect="dark"
-                    content="重做"
-                    placement="top">
-          <i class="nav__icon el-icon-d-arrow-right"></i>
-        </el-tooltip>
-      </el-menu-item>
-      <el-menu-item index="10"
                     @click="handleBuild">
         <el-tooltip effect="dark"
                     content="保存"
                     placement="top">
           <i class="nav__icon iconfont icon-build"></i>
+        </el-tooltip>
+      </el-menu-item>
+      <el-menu-item index="9"
+                    :disabled='!contain.canUndo'
+                    @click="contain.editorUndo">
+        <el-tooltip effect="dark"
+                    content="撤销"
+                    placement="top">
+          <i class="nav__icon el-icon-arrow-left"></i>
+        </el-tooltip>
+      </el-menu-item>
+      <el-menu-item index="10"
+                    :disabled='!contain.canRedo'
+                    @click="contain.editorRedo">
+        <el-tooltip effect="dark"
+                    content="重做"
+                    placement="top">
+          <i class="nav__icon el-icon-arrow-right"></i>
         </el-tooltip>
       </el-menu-item>
     </el-menu>
@@ -102,7 +101,7 @@ export default {
     handleView () {
       this.contain.menuFlag = false;
       this.contain.handleInitActive();
-      // this.contain.setScale(document.body.clientWidth);
+      this.contain.setScale(document.body.clientWidth);
     },
     handleReset () {
       this.contain.menuFlag = true;
