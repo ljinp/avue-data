@@ -12,6 +12,7 @@
                       :height="item.component.height"
                       :ref="common.DEAFNAME+item.index"
                       :id="common.DEAFNAME+item.index"
+                      :active-flag="contain.active.includes(item.index)"
                       v-show="!item.display"
                       @over="handleOver"
                       @focus="handleFocus"
