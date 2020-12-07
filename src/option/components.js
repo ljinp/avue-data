@@ -22,6 +22,7 @@ import textOption from './components/text'
 import videoOption from './components/video'
 import commonOption from './components/common'
 import wordcloudOption from './components/wordcloud'
+import datavOption from './components/datav'
 //通用配置
 import mainOption from './components/main'
 //自定义组件库
@@ -52,6 +53,7 @@ export default {
     textOption,
     videoOption,
     wordcloudOption,
+    datavOption,
     testOption
   }
 }

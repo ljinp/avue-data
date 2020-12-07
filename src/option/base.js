@@ -63,6 +63,47 @@ export default [{
       }
     }
   }, {
+    "label": 'datav',
+    "option": {
+      "name": "datav",
+      "title": "datav",
+      "icon": 'icon-bar',
+      "img": require('@/assets/text6.png'),
+      "dataType": 1,
+      "dataMethod": 'get',
+      "data": {
+        "categories": [
+          "苹果",
+          "三星",
+          "小米",
+          "oppo",
+          "vivo"
+        ],
+        "series": [{
+          "name": "手机品牌",
+          "data": [
+            1000879,
+            3400879,
+            2300879,
+            5400879,
+            3400879
+          ]
+        }]
+      },
+      "echartFormatter": "(data)=>{\nconsole.log(data);\nreturn {\n  value: 66 \n}\n }",
+      "url": baseUrl + "/bar",
+      "time": 5000,
+      "component": {
+        "width": 600,
+        "height": 300,
+        "name": "datav",
+        "prop": "datav",
+      },
+      "option": {
+        "is": 'dv-percent-pond'
+      }
+    }
+  }, {
     "label": '柱形图',
     "option": {
       "name": "柱状图",

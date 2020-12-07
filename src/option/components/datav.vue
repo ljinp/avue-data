@@ -2,8 +2,11 @@
 <template>
   <div>
     <el-form-item label="在线文档">
-      <a href="https://echarts.apache.org/examples/zh/index.html"
+      <a href="http://datav.jiaminghi.com/"
          target="_blank">点击查看</a>
+    </el-form-item>
+    <el-form-item label="模块名称">
+      <avue-input v-model="main.activeOption.is"></avue-input>
     </el-form-item>
     <el-form-item label="配置列表">
       <el-button size="mini"
