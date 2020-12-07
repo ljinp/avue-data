@@ -90,17 +90,17 @@ export default [{
           ]
         }]
       },
-      "echartFormatter": "(data)=>{\nconsole.log(data);\nreturn {\n  value: 66 \n}\n }",
+      "echartFormatter": "(data)=>{\nconsole.log(data);\nreturn {\n  data: [66] \n}\n }",
       "url": baseUrl + "/bar",
       "time": 5000,
       "component": {
-        "width": 600,
-        "height": 300,
+        "width": 150,
+        "height": 200,
         "name": "datav",
         "prop": "datav",
       },
       "option": {
-        "is": 'dv-percent-pond'
+        "is": 'dv-water-level-pond'
       }
     }
   }, {
