@@ -22,7 +22,7 @@
                    :is="common.COMPNAME+item.component.name"
                    v-bind="item"
                    :data-formatter="getFunction(item.dataFormatter)"
-                   :click-formatter="getFunction(item.clickFormatter)"
+                   :click-formatter="getFunction(item.clickFormatter,true)"
                    :echart-formatter="getFunction(item.echartFormatter)"
                    :label-formatter="getFunction(item.labelFormatter)"
                    :formatter="getFunction(item.formatter)"
@@ -69,14 +69,15 @@ export default {
     }
   },
   methods: {
-    getFunction (fun) {
+    getFunction (fun,def) {
       if (!this.validatenull(fun)) {
         try {
           return eval(fun);
         } catch {
-          return function () { }
+         return ()=>{}
         }
       }
+      if(def) return ()=>{}
     },
     getJson (str) {
       if (this.validatenull(str)) return {};
