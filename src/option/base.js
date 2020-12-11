@@ -574,6 +574,8 @@ export default [{
         "zoom": 0.5,
         "empAreaColor": "rgba(35, 183, 229, 0.42)",
         "empColor": "#fff",
+        "index": "894edc1d-d2f0-4616-962c-8e61083ada71",
+        "mapData": "https://data.bladex.vip/blade-visual/map/data?id=1235103352843448322",
         "color": "rgba(13, 255, 255, 1)",
       }
     },
