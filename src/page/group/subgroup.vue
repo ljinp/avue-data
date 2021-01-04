@@ -2,7 +2,7 @@
   <div>
     <div v-for="item in nav"
          :key="item.index"
-         @contextmenu.prevent="contain.handleContextMenu($event,item)">
+         @contextmenu.prevent="contain.handleContextMenu && contain.handleContextMenu($event,item)">
       <avue-draggable v-if="!item.children"
                       v-bind="item"
                       :scale="container.stepScale"
@@ -69,15 +69,15 @@ export default {
     }
   },
   methods: {
-    getFunction (fun,def) {
+    getFunction (fun, def) {
       if (!this.validatenull(fun)) {
         try {
           return eval(fun);
         } catch {
-         return ()=>{}
+          return () => { }
         }
       }
-      if(def) return ()=>{}
+      if (def) return () => { }
     },
     getJson (str) {
       if (this.validatenull(str)) return {};
