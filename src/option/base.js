@@ -90,7 +90,7 @@ export default [{
           ]
         }]
       },
-      "echartFormatter": "(data)=>{\nconsole.log(data);\nreturn {\n  data: [66] \n}\n }",
+      "echartFormatter": "(data)=>{\n  console.log(data);\n  return {\n    config:{\n\t  data: [66] \n\t}\n  }\n}",
       "url": baseUrl + "/bar",
       "time": 5000,
       "component": {

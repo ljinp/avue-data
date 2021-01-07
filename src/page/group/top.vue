@@ -31,6 +31,15 @@
           </el-menu-item>
         </div>
       </el-submenu>
+      <el-menu-item index="11"
+                    @click="handleImg">
+        <el-tooltip effect="dark"
+                    content="导出图片"
+                    placement="top">
+          <i class="nav__icon el-icon-camera"
+             style="font-size:18px"></i>
+        </el-tooltip>
+      </el-menu-item>
       <el-menu-item index="6"
                     @click="handleReset"
                     v-show="!contain.menuFlag">
@@ -97,6 +106,21 @@ export default {
         list.push(i + '')
       }
       return list.includes(id)
+    },
+    handleImg () {
+      this.$confirm('是否导出大屏图片？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$Screenshot(document.querySelector("#wrapper")).then(canvas => {
+          this.downFile(canvas.toDataURL("image/jpeg", 0.8), new Date().getTime());
+          this.$message.success('图片导出成功')
+        });
+      }).catch(() => {
+
+      });
+
     },
     handleView () {
       this.contain.menuFlag = false;
