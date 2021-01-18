@@ -242,6 +242,9 @@ input{
   border-color: #282e3a;
 }
  
+.el-input-number__decrease,.el-input-number__increase{
+  border-color:#333 !important;
+}
 .icon-gauge{
   font-size: 12px !important;
 }
