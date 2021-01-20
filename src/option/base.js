@@ -249,6 +249,8 @@ export default [{
           "$index": 1,
           "_show": true
         }],
+        "symbolSize": 6,
+        "smooth": true,
         "barMinHeight": 2
       }
     }
@@ -986,7 +988,7 @@ export default [{
         "color": "#fff",
         "fontSize": 24,
         "suffixColor": "#fff",
-        "strokeWidth": 18,
+        "strokeWidth": 13,
         "fontWeight": "normal",
         "borderColor": "#564AA3"
       },

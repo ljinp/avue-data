@@ -7,6 +7,10 @@
     </el-form-item>
     <el-collapse accordion>
       <el-collapse-item title="折线设置">
+        <el-form-item label="平滑曲线">
+          <avue-switch v-model="main.activeOption.smooth">
+          </avue-switch>
+        </el-form-item>
         <el-form-item label="面积堆积">
           <avue-switch v-model="main.activeOption.areaStyle"></avue-switch>
         </el-form-item>
