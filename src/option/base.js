@@ -977,7 +977,7 @@ export default [{
       "dataFormatter": "",
       "component": {
         "width": 400,
-        "height": 80,
+        "height": 100,
         "name": "progress",
         "prop": "progress"
       },
@@ -988,9 +988,7 @@ export default [{
         "suffixColor": "#fff",
         "strokeWidth": 18,
         "fontWeight": "normal",
-        "borderColor": "#564AA3",
-        "width": 400,
-        "height": 80
+        "borderColor": "#564AA3"
       },
     }
   }, {
