@@ -1135,27 +1135,24 @@ export default [{
         "prop": "table",
       },
       "option": {
-        columnShow: true,
-        columnViews: true,
-        headerBackground: 'rgba(0, 0, 0, 0.01)',
-        headerColor: 'rgba(154, 168, 212, 1)',
-        headerTextAlign: 'center',
-        bodyBackground: 'rgba(0, 0, 0, 0.01)',
-        bodyColor: 'rgba(154, 168, 212, 1)',
-        borderColor: 'rgba(51, 65, 107, 1)',
-        bodyTextAlign: 'center',
-        "column": [
-          {
-            "label": "类型1",
-            "prop": "type1",
-            "hide": false
-          },
-          {
-            "label": "类型2",
-            "prop": "type2",
-            "hide": false
-          },
-        ]
+        "columnShow": true,
+        "columnViews": true,
+        "headerBackground":
+          "rgba(0, 0, 0, 0.5)",
+        "headerColor": "rgba(154, 168, 212, 1)",
+        "headerTextAlign": "center",
+        "bodyBackground": "rgba(0, 0, 0, 0.5)",
+        "bodyColor": "rgba(255, 255, 255, 1)",
+        "borderColor": "rgba(51, 65, 107, 1)",
+        "count": 5,
+        "bodyTextAlign": "center",
+        "column": [{ "label": "类型1", "prop": "type1", "hide": false }, { "label": "类型2", "prop": "type2", "hide": false, }],
+        "menu": false,
+        "align": "center",
+        "headerAlign": "center",
+        "header": false,
+        "nthColor": "rgba(249, 35, 35, 0.42)",
+        "othColor": "rgba(26, 222, 225, 0.72)"
       }
     }
   }, {
