@@ -9,6 +9,10 @@
       <avue-switch v-model="main.activeOption.columnShow">
       </avue-switch>
     </el-form-item>
+    <el-form-item label="全部数据">
+      <avue-switch v-model="main.activeOption.columnViews">
+      </avue-switch>
+    </el-form-item>
     <template v-if="main.activeOption.scroll">
       <el-form-item label="滚动时间">
         <avue-input-number v-model="main.activeOption.scrollTime">

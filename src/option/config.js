@@ -49,6 +49,18 @@ export const tableOption = {
   }, {
     label: '宽度',
     prop: 'width',
+  }, {
+    label: '状态',
+    prop: 'hide',
+    type: 'select',
+    value: false,
+    dicData: [{
+      label: '显示',
+      value: false
+    }, {
+      label: '隐藏',
+      value: true
+    }]
   }]
 }
 //一些字典的配置

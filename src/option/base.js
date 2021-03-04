@@ -1135,6 +1135,8 @@ export default [{
         "prop": "table",
       },
       "option": {
+        columnShow: true,
+        columnViews: true,
         headerBackground: 'rgba(0, 0, 0, 0.01)',
         headerColor: 'rgba(154, 168, 212, 1)',
         headerTextAlign: 'center',
@@ -1145,11 +1147,13 @@ export default [{
         "column": [
           {
             "label": "类型1",
-            "prop": "type1"
+            "prop": "type1",
+            "hide": false
           },
           {
             "label": "类型2",
-            "prop": "type2"
+            "prop": "type2",
+            "hide": false
           },
         ]
       }
