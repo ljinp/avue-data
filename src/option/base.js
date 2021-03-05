@@ -1152,20 +1152,16 @@ export default [{
         "bodyTextAlign": "center",
         "column": [{
           "label": "车牌号",
-          "prop": "type1",
-          "width": "10",
+          "prop": "type1"
         }, {
           "label": "驾驶员",
-          "prop": "type2",
-          "width": "10",
+          "prop": "type2"
         }, {
           "label": "里程",
-          "prop": "type3",
-          "width": "10",
+          "prop": "type3"
         }, {
           "label": "油耗",
-          "prop": "type4",
-          "width": "10",
+          "prop": "type4"
         }],
         "align": "center",
         "headerAlign": "center",
