@@ -1141,6 +1141,8 @@ export default [{
         "prop": "table",
       },
       "option": {
+        "columnShow": true,
+        "columnViews": true,
         "headerBackground": "rgba(30, 144, 255, 1)",
         "headerColor": "rgba(241, 242, 245, 1)",
         "headerTextAlign": "center",
