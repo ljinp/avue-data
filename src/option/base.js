@@ -1122,10 +1122,16 @@ export default [{
       "dataType": 0,
       "data": [{
         "type1": '数据1',
+        "type2": '数据1'
+      }, {
+        "type1": '数据2',
         "type2": '数据2'
       }, {
-        "type1": '数据1',
-        "type2": '数据2'
+        "type1": '数据3',
+        "type2": '数据3'
+      }, {
+        "type1": '数据4',
+        "type2": '数据4'
       }],
       "dataFormatter": "",
       "component": {
@@ -1135,24 +1141,41 @@ export default [{
         "prop": "table",
       },
       "option": {
-        "columnShow": true,
-        "columnViews": true,
-        "headerBackground":
-          "rgba(0, 0, 0, 0.5)",
-        "headerColor": "rgba(154, 168, 212, 1)",
+        "headerBackground": "rgba(30, 144, 255, 1)",
+        "headerColor": "rgba(241, 242, 245, 1)",
         "headerTextAlign": "center",
-        "bodyBackground": "rgba(0, 0, 0, 0.5)",
-        "bodyColor": "rgba(255, 255, 255, 1)",
+        "bodyBackground": "rgba(0, 0, 0, 0.01)",
+        "bodyColor": "rgba(0, 0, 0, 1)",
         "borderColor": "rgba(51, 65, 107, 1)",
-        "count": 5,
         "bodyTextAlign": "center",
-        "column": [{ "label": "类型1", "prop": "type1", "hide": false }, { "label": "类型2", "prop": "type2", "hide": false, }],
-        "menu": false,
+        "column": [{
+          "label": "车牌号",
+          "prop": "type1",
+          "width": "10",
+        }, {
+          "label": "驾驶员",
+          "prop": "type2",
+          "width": "10",
+        }, {
+          "label": "里程",
+          "prop": "type3",
+          "width": "10",
+        }, {
+          "label": "油耗",
+          "prop": "type4",
+          "width": "10",
+        }],
         "align": "center",
         "headerAlign": "center",
         "header": false,
-        "nthColor": "rgba(249, 35, 35, 0.42)",
-        "othColor": "rgba(26, 222, 225, 0.72)"
+        "scroll": true,
+        "scrollTime": 10000,
+        "fontSize": 15,
+        "count": 4,
+        "nthColor": "rgba(127, 185, 242, 1)",
+        "othColor": "rgba(164, 205, 244, 1)",
+        "index": true,
+        "scrollCount": 1
       }
     }
   }, {
