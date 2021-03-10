@@ -1,6 +1,7 @@
 <template>
   <div class="build views">
     <container :props="props"
+               :option="option"
                ref="container"></container>
   </div>
 </template>
@@ -8,6 +9,7 @@
 import init from '@/mixins/'
 export default {
   props: {
+    option: Object,
     props: {
       type: Object,
       default: () => {

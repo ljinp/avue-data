@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+window.html = `<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -11,22 +11,22 @@
   <META HTTP-EQUIV="Expires" CONTENT="0">
   <script src="./view.js"></script>
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1117329_z5buvlhlaf.css">
-  <link rel="stylesheet" href="./cdn/animate/3.5.1/animate.css">
-  <link rel="stylesheet" href="./cdn/element-ui/2.13.2/theme-chalk/index.css">
-  <link rel="stylesheet" href="./cdn/avue/index.css">
-  <link rel="stylesheet" href="./lib/index.css">
+  <link rel="stylesheet" href="https://data.avuejs.com/cdn/animate/3.5.1/animate.css">
+  <link rel="stylesheet" href="https://data.avuejs.com/cdn/element-ui/2.13.2/theme-chalk/index.css">
+  <link rel="stylesheet" href="https://data.avuejs.com/cdn/avue/index.css">
+  <link rel="stylesheet" href="https://data.avuejs.com/lib/index.css">
   <link rel="stylesheet" href="https://cdn.staticfile.org/Swiper/4.5.1/css/swiper.min.css">
-  <script src="./cdn/echarts/4.2.1/echarts.min.js"></script>
-  <script src="./cdn/echarts-wordcloud.min.js"></script>
-  <script src="./const/theme/avue.project.js"></script>
-  <script src="./const/theme/halloween.project.js"></script>
-  <script src="./const/theme/wonderland.project.js"></script>
-  <script src="./cdn/avue/avue.min.js"></script>
-  <script src="./cdn/vue/2.5.2/vue.min.js" charset="utf-8"></script>
-  <script src="./cdn/axios/1.0.0/axios.min.js" charset="utf-8"></script>
-  <script src="./cdn/element-ui/2.13.2/index.js" charset="utf-8"></script>
+  <script src="https://data.avuejs.com/cdn/echarts/4.2.1/echarts.min.js"></script>
+  <script src="https://data.avuejs.com/cdn/echarts-wordcloud.min.js"></script>
+  <script src="https://data.avuejs.com/const/theme/avue.project.js"></script>
+  <script src="https://data.avuejs.com/const/theme/halloween.project.js"></script>
+  <script src="https://data.avuejs.com/const/theme/wonderland.project.js"></script>
+  <script src="https://data.avuejs.com/cdn/avue/avue.min.js"></script>
+  <script src="https://data.avuejs.com/cdn/vue/2.5.2/vue.min.js" charset="utf-8"></script>
+  <script src="https://data.avuejs.com/cdn/axios/1.0.0/axios.min.js" charset="utf-8"></script>
+  <script src="https://data.avuejs.com/cdn/element-ui/2.13.2/index.js" charset="utf-8"></script>
   <script src="https://cdn.staticfile.org/Swiper/4.5.1/js/swiper.min.js"> </script>
-  <script src="./lib/index.umd.min.js"></script>
+  <script src="https://data.avuejs.com/lib/index.umd.min.js"></script>
   <title>avue-data数据大屏</title>
   <style>
     * {
@@ -67,4 +67,4 @@
   </script>
 </body>
 
-</html>
+</html>`

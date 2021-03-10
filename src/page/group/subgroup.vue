@@ -25,6 +25,7 @@
                    :click-formatter="getFunction(item.clickFormatter,true)"
                    :echart-formatter="getFunction(item.echartFormatter)"
                    :label-formatter="getFunction(item.labelFormatter)"
+                   :sql-formatter="sqlFormatter"
                    :formatter="getFunction(item.formatter)"
                    :width="item.component.width"
                    :data-query="getJson(item.dataQuery)"
@@ -45,6 +46,8 @@
 
 <script>
 import { addUrlParam } from '@/utils/utils'
+import crypto from '@/utils/crypto';
+import { dynamicSql } from '@/api/db'
 import common from '@/config'
 export default {
   name: 'subgroup',
@@ -65,6 +68,7 @@ export default {
   },
   data () {
     return {
+      sqlFormatter: dynamicSql,
       common: common,
     }
   },
@@ -112,12 +116,15 @@ export default {
         })
       }
     },
+    handleRes () {
+      return this.$refs[this.common.NAME + this.contain.activeObj.index][0];
+    },
     //刷新数据
     handleRefresh (tip = true) {
-      this.$refs[this.common.NAME + this.contain.activeObj.index][0].updateData();
       if (tip) {
-        this.$message.success('刷新成功')
+        this.$message.success('数据刷新成功')
       }
+      return this.$refs[this.common.NAME + this.contain.activeObj.index][0].updateData();
     },
     //获取对象
     handleGetObj (val) {

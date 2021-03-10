@@ -109,8 +109,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
     }
     &__btn {
+      margin: 5px 0;
       display: inline-block;
       vertical-align: middle;
       height: 32px;
