@@ -504,7 +504,7 @@ export default {
   watch: {
     activeObj: {
       handler (val) {
-        if (this.activeObj.sql && this.datatype === 2) {
+        if (this.activeObj.sql && this.activeObj.dataType === 2) {
           let mode = JSON.parse(crypto.decrypt(this.activeObj.sql));
           this.db = mode.id;
           this.sql = mode.sql;
