@@ -409,7 +409,7 @@ export default {
       keys: {
         ctrl: false,
       },
-      dataRes: {},
+      dataRes: '',
       db: '',
       sql: '',
       nav: [],
@@ -582,18 +582,22 @@ export default {
     },
     handleRes () {
       this.handleRefresh().then(res => {
-        this.dataRes = JSON.stringify(res || {}, null, 4);
+        if (!this.validatenull(res)) {
+          this.dataRes = JSON.stringify(res || {}, null, 4);
+        } else {
+          this.dataRes = '';
+        }
+
       })
     },
     handleSql () {
       this.show = true;
-      this.handleRes();
     },
     handleBlur () {
-      this.activeObj.sql = crypto.encrypt(JSON.stringify({
+      this.$set(this.activeObj, 'sql', crypto.encrypt(JSON.stringify({
         id: this.db,
         sql: this.sql
-      }))
+      })))
     },
     initSqlList () {
       getList(1, 100).then(res => {
