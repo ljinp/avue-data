@@ -84,7 +84,16 @@
           <i class="nav__icon el-icon-arrow-right"></i>
         </el-tooltip>
       </el-menu-item>
+      <el-menu-item index="12"
+                    @click="$refs.result.show=true">
+        <el-tooltip effect="dark"
+                    content="大屏结构"
+                    placement="top">
+          <i class="nav__icon el-icon-info"></i>
+        </el-tooltip>
+      </el-menu-item>
     </el-menu>
+    <result ref="result"></result>
   </div>
 </template>
 
@@ -92,8 +101,17 @@
 import { uuid } from '@/utils/utils'
 import baseList from '@/option/base'
 import { updateComponent } from '@/api/visual'
+import result from './result';
 export default {
   inject: ["contain"],
+  provide () {
+    return {
+      contain: this.contain
+    };
+  },
+  components: {
+    result
+  },
   data () {
     return {
       baseList: baseList

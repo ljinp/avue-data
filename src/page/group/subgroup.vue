@@ -25,6 +25,7 @@
                    :click-formatter="getFunction(item.clickFormatter,true)"
                    :echart-formatter="getFunction(item.echartFormatter)"
                    :label-formatter="getFunction(item.labelFormatter)"
+                   :sql-formatter="sqlFormatter"
                    :formatter="getFunction(item.formatter)"
                    :width="item.component.width"
                    :data-query="getJson(item.dataQuery)"
@@ -45,6 +46,8 @@
 
 <script>
 import { addUrlParam } from '@/utils/utils'
+import crypto from '@/utils/crypto';
+import { dynamicSql } from '@/api/db'
 import common from '@/config'
 export default {
   name: 'subgroup',
@@ -65,6 +68,7 @@ export default {
   },
   data () {
     return {
+      sqlFormatter: dynamicSql,
       common: common,
     }
   },

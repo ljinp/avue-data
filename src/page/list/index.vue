@@ -51,6 +51,10 @@
                    @click="handleEdit(item)">
                 编辑
               </div>
+              <!-- <div class="content__btn"
+                   @click="handleExport(item)">
+                导出
+              </div> -->
             </div>
           </div>
           <div class="content__main">
@@ -96,6 +100,7 @@
 </template>
 <script>
 import { getList, addObj, updateObj, delObj, getCategory, copyObj } from '@/api/visual';
+import { getObj } from '@/api/visual'
 export default {
   name: "list",
   data () {
@@ -201,6 +206,22 @@ export default {
         this.typelist = data;
         this.activeName = (data[0] || {}).categoryValue;
         this.getList();
+      })
+    },
+    handleExport (item) {
+      getObj(item.id).then(res => {
+        const data = res.data.data;
+        let mode = {
+          detail: JSON.parse(data.config.detail),
+          component: JSON.parse(data.config.component)
+        }
+        var zip = new window.JSZip();
+        zip.file("view.js", `const option =${JSON.stringify(mode, null, 4)}`);
+        zip.file('index.html', window.html);
+        zip.generateAsync({ type: "base64" })
+          .then(function (content) {
+            location.href = "data:application/zip;base64," + content;
+          });
       })
     },
     handleCopy (item) {

@@ -236,6 +236,21 @@
                   <avue-input-number v-model="activeObj.time"></avue-input-number>
                 </el-form-item>
               </template>
+              <template v-if="activeObj.dataType===2">
+                <el-form-item label="数据源选择">
+                  <avue-select :dic="DIC.sql"
+                               v-model="db"></avue-select>
+                </el-form-item>
+                <el-form-item label="SQL语句">
+                  <avue-input type="textarea"
+                              :min-rows="6"
+                              @blur="handleBlur"
+                              v-model="sql"></avue-input>
+                </el-form-item>
+                <el-form-item label="刷新时间">
+                  <avue-input-number v-model="activeObj.time"></avue-input-number>
+                </el-form-item>
+              </template>
               <el-form-item label="数据处理">
                 <el-button size="mini"
                            type="primary"
@@ -365,6 +380,8 @@ import init from '@/mixins/'
 import { uuid } from '@/utils/utils'
 import components from '@/option/components'
 import SketchRule from "vue-sketch-ruler";
+import { getList } from "@/api/db";
+import crypto from '@/utils/crypto'
 
 export default {
   mixins: [init, components],
@@ -372,6 +389,13 @@ export default {
     return {
       keys: {
         ctrl: false,
+      },
+      db: '',
+      sql: '',
+      nav: [],
+      json: {},
+      DIC: {
+        sql: [],
       },
       loading: '',
       childProps: {
@@ -478,6 +502,19 @@ export default {
     }
   },
   watch: {
+    activeObj: {
+      handler (val) {
+        if (this.activeObj.sql && this.datatype === 2) {
+          let mode = JSON.parse(crypto.decrypt(this.activeObj.sql));
+          this.db = mode.id;
+          this.sql = mode.sql;
+        } else {
+          this.db = '';
+          this.sql = '';
+        }
+      },
+      deep: true
+    },
     menuFlag () {
       this.setResize();
     },
@@ -502,6 +539,7 @@ export default {
   created () {
     this.listen();
     this.iniresize()
+    this.initSqlList();
   },
   mounted () {
     this.initFun()
@@ -510,6 +548,23 @@ export default {
     })
   },
   methods: {
+    handleBlur () {
+      this.activeObj.sql = crypto.encrypt(JSON.stringify({
+        id: this.db,
+        sql: this.sql
+      }))
+    },
+    initSqlList () {
+      getList(1, 100).then(res => {
+        const data = res.data.data;
+        this.DIC.sql = data.records.map(ele => {
+          return {
+            label: ele.name,
+            value: ele.id
+          }
+        })
+      });
+    },
     codeClose (value) {
       if (this.code.type === 'query') {
         this.config.query = value;

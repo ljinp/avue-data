@@ -30,7 +30,11 @@
           <i class="el-icon-folder-opened"></i>
           分类管理
         </el-menu-item>
-        <el-menu-item index="4"
+        <el-menu-item index="4">
+          <i class="el-icon-set-up"></i>
+          数据源管理
+        </el-menu-item>
+        <el-menu-item index="5"
                       @click="goData">
           在线文档
         </el-menu-item>
@@ -39,8 +43,9 @@
     </div>
     <el-scrollbar class="main">
       <list v-if="activeName==1"></list>
-      <maps v-if="activeName==2"></maps>
-      <category v-if="activeName==3"></category>
+      <maps v-else-if="activeName==2"></maps>
+      <category v-else-if="activeName==3"></category>
+      <db v-else-if="activeName==4"></db>
     </el-scrollbar>
   </div>
 </template>
@@ -48,12 +53,14 @@
 import list from './list/index'
 import maps from './list/map'
 import category from './list/category'
+import db from './list/db'
 export default {
   name: "index",
   components: {
     list,
     maps,
-    category
+    category,
+    db
   },
   data () {
     return {

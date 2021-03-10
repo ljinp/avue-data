@@ -31,6 +31,7 @@ export default {
   name: 'contents',
   inject: ["contain"],
   props: {
+    option: Object,
     props: {
       type: Object,
       default: () => {
@@ -102,7 +103,21 @@ export default {
       this.contain.contentWidth = this.$refs.content.offsetWidth;
       const isBuild = this.$route ? this.$route.name === 'build' : this.props.name;
       const width = isBuild ? this.contain.contentWidth : document.body.clientWidth
-      if (id) {
+      let config;
+      const callback = () => {
+        //赋值属性
+        if (this.contain.config.mark.show && !isBuild) {
+          this.watermark(this.contain.config.mark);
+        }
+        this.calcData();
+        this.setScale(width);
+      }
+      if (this.option) {
+        config = this.option;
+        this.contain.config = config.detail || {};
+        this.contain.nav = config.component || [];
+        callback();
+      } else if (id) {
         const loading = this.$loading({
           lock: true,
           text: '正在加载中，请稍后',
@@ -110,19 +125,15 @@ export default {
           background: 'rgba(0, 0, 0, 0.7)'
         });
         getObj(id).then(res => {
-          const callback = () => {
-            //赋值属性
-            this.contain.config = JSON.parse(config.detail) || {};
-            this.contain.nav = JSON.parse(config.component) || [];
-            if (this.contain.config.mark.show && !isBuild) {
-              this.watermark(this.contain.config.mark);
-            }
-            this.calcData();
-            this.setScale(width);
-          }
           const data = res.data.data;
           this.contain.obj = data;
-          const config = data.config;
+          config = data.config;
+          this.contain.json = {
+            detail: JSON.parse(config.detail) || {},
+            component: JSON.parse(config.component) || [],
+          }
+          this.contain.config = JSON.parse(config.detail) || {};
+          this.contain.nav = JSON.parse(config.component) || [];
           this.contain.visual = data.visual;
           //添加水印。只有查看页面生效
           if (!isBuild) {
