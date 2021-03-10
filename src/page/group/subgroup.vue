@@ -116,12 +116,15 @@ export default {
         })
       }
     },
+    handleRes () {
+      return this.$refs[this.common.NAME + this.contain.activeObj.index][0];
+    },
     //刷新数据
     handleRefresh (tip = true) {
-      this.$refs[this.common.NAME + this.contain.activeObj.index][0].updateData();
       if (tip) {
-        this.$message.success('刷新成功')
+        this.$message.success('数据刷新成功')
       }
+      return this.$refs[this.common.NAME + this.contain.activeObj.index][0].updateData();
     },
     //获取对象
     handleGetObj (val) {

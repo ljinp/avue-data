@@ -210,58 +210,25 @@
               </el-form-item>
               <el-form-item label="数据值"
                             label-position="top"
-                            v-if="activeObj.dataType===0">
+                            v-if="isStatic">
                 <el-button size="mini"
                            type="primary"
                            @click="openCode('data')">编辑</el-button>
               </el-form-item>
-              <template v-if="activeObj.dataType===1">
-                <el-form-item label="接口地址">
-                  <avue-input type="textarea"
-                              :min-rows="6"
-                              v-model="activeObj.url"></avue-input>
-                </el-form-item>
-                <el-form-item label="接口方式"
-                              v-if="activeObj.dataType===1">
-                  <avue-radio v-model="activeObj.dataMethod"
-                              :dic="dicOption.dataMethod"></avue-radio>
-                </el-form-item>
-                <el-form-item label="接口参数"
-                              v-if="activeObj.dataType===1">
+              <template v-if="isApi || isSql">
+                <el-form-item label-width="0">
                   <el-button size="mini"
                              type="primary"
-                             @click="openCode('dataQuery')">编辑</el-button>
+                             class="block"
+                             @click="handleSql">
+                    <span v-if="isSql">编辑SQL语句</span>
+                    <span v-else-if="isApi">编辑Api接口</span>
+                  </el-button>
                 </el-form-item>
                 <el-form-item label="刷新时间">
                   <avue-input-number v-model="activeObj.time"></avue-input-number>
                 </el-form-item>
               </template>
-              <template v-if="activeObj.dataType===2">
-                <el-form-item label="数据源选择">
-                  <avue-select :dic="DIC.sql"
-                               v-model="db"></avue-select>
-                </el-form-item>
-                <el-form-item label="SQL语句">
-                  <avue-input type="textarea"
-                              :min-rows="6"
-                              @blur="handleBlur"
-                              v-model="sql"></avue-input>
-                </el-form-item>
-                <el-form-item label="刷新时间">
-                  <avue-input-number v-model="activeObj.time"></avue-input-number>
-                </el-form-item>
-              </template>
-              <el-form-item label="数据处理">
-                <el-button size="mini"
-                           type="primary"
-                           @click="openCode('dataFormatter')">编辑</el-button>
-              </el-form-item>
-              <el-form-item label-width="0">
-                <el-button size="mini"
-                           type="primary"
-                           class="block"
-                           @click="handleRefresh">刷新</el-button>
-              </el-form-item>
             </el-form>
 
           </el-tab-pane>
@@ -366,6 +333,57 @@
               v-model="code.obj"
               :visible.sync="code.box"></codeedit>
     <contentmenu ref="contentmenu"></contentmenu>
+    <el-dialog append-to-body
+               title="返回数据"
+               :visible.sync="show"
+               width="60%">
+      <div>
+        <el-form size="small">
+          <template v-if="isSql">
+            <el-form-item label="数据源选择">
+              <avue-select :dic="DIC.sql"
+                           v-model="db"></avue-select>
+            </el-form-item>
+            <el-form-item label="SQL语句">
+              <avue-input type="textarea"
+                          :min-rows="6"
+                          @blur="handleBlur"
+                          v-model="sql"></avue-input>
+            </el-form-item>
+          </template>
+          <template v-else-if="isApi">
+            <el-form-item label="接口地址">
+              <avue-input v-model="activeObj.url"></avue-input>
+            </el-form-item>
+            <el-form-item label="接口方式">
+              <avue-radio v-model="activeObj.dataMethod"
+                          :dic="dicOption.dataMethod"></avue-radio>
+            </el-form-item>
+            <el-form-item label="接口参数">
+              <el-button size="mini"
+                         type="primary"
+                         @click="openCode('dataQuery')">编辑</el-button>
+            </el-form-item>
+
+          </template>
+          <el-form-item label-width="0">
+            <el-button size="mini"
+                       type="primary"
+                       class="block"
+                       @click="openCode('dataFormatter')">数据处理</el-button>
+          </el-form-item>
+          <el-form-item>
+            <el-button size="mini"
+                       type="primary"
+                       class="block"
+                       @click="handleRes">刷新数据</el-button>
+          </el-form-item>
+        </el-form>
+        <textarea disabled
+                  style="color:#fff;width:100%;height:500px"
+                  v-model="dataRes"></textarea>
+      </div>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -387,9 +405,11 @@ export default {
   mixins: [init, components],
   data () {
     return {
+      show: false,
       keys: {
         ctrl: false,
       },
+      dataRes: {},
       db: '',
       sql: '',
       nav: [],
@@ -441,6 +461,15 @@ export default {
     SketchRule
   },
   computed: {
+    isStatic () {
+      return this.activeObj.dataType == 0
+    },
+    isApi () {
+      return this.activeObj.dataType == 1
+    },
+    isSql () {
+      return this.activeObj.dataType == 2
+    },
     isFolder () {
       return this.activeObj.children
     },
@@ -504,7 +533,7 @@ export default {
   watch: {
     activeObj: {
       handler (val) {
-        if (this.activeObj.sql && this.activeObj.dataType === 2) {
+        if (this.activeObj.sql && this.isSql) {
           let mode = JSON.parse(crypto.decrypt(this.activeObj.sql));
           this.db = mode.id;
           this.sql = mode.sql;
@@ -548,6 +577,18 @@ export default {
     })
   },
   methods: {
+    handleRefresh (tip) {
+      return this.$refs.container.handleRefresh(tip);
+    },
+    handleRes () {
+      this.handleRefresh().then(res => {
+        this.dataRes = JSON.stringify(res || {}, null, 4);
+      })
+    },
+    handleSql () {
+      this.show = true;
+      this.handleRes();
+    },
     handleBlur () {
       this.activeObj.sql = crypto.encrypt(JSON.stringify({
         id: this.db,
@@ -670,9 +711,6 @@ export default {
         return list.includes(this.activeComponent.prop)
       }
       return this.dicOption[name].includes(this.activeComponent.prop)
-    },
-    handleRefresh (tip) {
-      this.$refs.container.handleRefresh(tip);
     },
     formatTooltip (val) {
       return parseInt(val);

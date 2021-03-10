@@ -92,7 +92,7 @@ export default {
   },
   methods: {
     initFun () {
-      ['handleRefresh', 'handleGetObj'].forEach(ele => {
+      ['handleRefresh', 'handleGetObj', 'handleRes'].forEach(ele => {
         this[ele] = this.$refs.subgroup[ele]
       });
     },
