@@ -35,6 +35,10 @@
           数据源管理
         </el-menu-item>
         <el-menu-item index="5"
+                      @click="goApi">
+          接口文档
+        </el-menu-item>
+        <el-menu-item index="6"
                       @click="goData">
           在线文档
         </el-menu-item>
@@ -71,6 +75,9 @@ export default {
 
   },
   methods: {
+    goApi () {
+      window.open('https://data.bladex.vip/doc.html')
+    },
     goData () {
       window.open('https://www.kancloud.cn/smallwei/avue-doc')
     },
