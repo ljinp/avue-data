@@ -215,6 +215,9 @@
                            type="primary"
                            @click="openCode('data')">编辑</el-button>
               </el-form-item>
+              <el-form-item label="刷新时间">
+                <avue-input-number v-model="activeObj.time"></avue-input-number>
+              </el-form-item>
               <template v-if="isApi || isSql">
                 <el-form-item label-width="0">
                   <el-button size="mini"
@@ -224,9 +227,6 @@
                     <span v-if="isSql">编辑SQL语句</span>
                     <span v-else-if="isApi">编辑Api接口</span>
                   </el-button>
-                </el-form-item>
-                <el-form-item label="刷新时间">
-                  <avue-input-number v-model="activeObj.time"></avue-input-number>
                 </el-form-item>
               </template>
             </el-form>
@@ -577,8 +577,8 @@ export default {
     })
   },
   methods: {
-    handleRefresh (tip) {
-      return this.$refs.container.handleRefresh(tip);
+    handleRefresh () {
+      return this.$refs.container.handleRefresh();
     },
     handleRes () {
       this.handleRefresh().then(res => {
@@ -587,6 +587,7 @@ export default {
         } else {
           this.dataRes = '';
         }
+        this.$message.success('数据刷新成功')
 
       })
     },
