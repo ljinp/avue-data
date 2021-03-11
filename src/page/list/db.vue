@@ -60,6 +60,9 @@ export default {
               }, {
                 label: 'oracle.jdbc.OracleDriver',
                 value: 'oracle.jdbc.OracleDriver',
+              }, {
+                label: 'com.microsoft.sqlserver.jdbc.SQLServerDriver',
+                value: 'com.microsoft.sqlserver.jdbc.SQLServerDriver'
               }
             ],
             width: 200,

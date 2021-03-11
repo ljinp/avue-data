@@ -150,6 +150,10 @@ export default {
       this.contain.setScale(this.contain.contentWidth);
     },
     handleBuild () {
+      if (this.$route.params.id <= 100) {
+        this.$message.error('模版例子不能修改')
+        return
+      }
       this.contain.handleInitActive();
       const loading = this.$loading({
         lock: true,
