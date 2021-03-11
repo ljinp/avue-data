@@ -73,7 +73,7 @@ a{
 .el-select-dropdown__item.selected{
   color: #fff;
 }
-.el-input-group__append, .el-input-group__prepend,.el-dialog .el-input-group__append, .el-dialog .el-input-group__prepend{
+.el-input-group__append, .el-input-group__prepend{
   background-color: #0f1014;
   border-color: #282e3a;
 }
@@ -99,7 +99,7 @@ a{
 .avue-empty__desc{
   color:#fff;
 }
-.el-form-item__label, .el-dialog .el-form-item__label{
+.el-form-item__label{
   color:#fff !important;
 }
 
@@ -125,12 +125,8 @@ a{
 }
 .el-dialog__title{
   color:#fff;
-  font-size: 14px;
+  font-size: 16px;
 }
-.el-dialog__body{
-  padding: 10px;
-}
-
 .el-collapse-item__arrow.is-active{
   color:#fff;
 }
@@ -229,7 +225,7 @@ input{
   color:#fff;
 }
 .el-dialog__title{
-  color:#fff !important;
+  color:#999 !important;
 }
 .el-collapse-item__header{
   padding-left: 20px;
@@ -250,4 +246,7 @@ input{
 }
 .el-card{
   background-color: transparent;
+}
+.avue-dialog .el-dialog__header{
+  border-color: #333;
 }
