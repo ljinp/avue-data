@@ -198,20 +198,20 @@ input{
   border-color: #409EFF  !important;
   background-color: #409EFF  !important;
 }
-.el-button,.el-dialog .el-button{
+.el-button{
   border-radius: 0;
 }
-.el-button--primary,.el-dialog .el-button--primary{
+.el-button--primary{
   background-color: transparent;
   color:#409EFF;
   border-color:#409EFF;
 }
-.el-button--danger,.el-dialog .el-button--danger{
+.el-button--danger{
   background-color: transparent;
   color:#f56c6c;
   border-color:#f56c6c;
 }
-.el-button--default,.el-dialog  .el-button--default{
+.el-button--default{
   background-color: transparent;
   color:#859094;
   border-color:#859094;

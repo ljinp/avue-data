@@ -345,19 +345,19 @@
                width="60%">
       <div>
         <el-form size="small">
-          <template v-if="isSql">
+          <div v-show="isSql">
             <el-form-item label="数据源选择">
               <avue-select :dic="DIC.sql"
                            v-model="db"></avue-select>
             </el-form-item>
-            <el-form-item label="SQL语句">
-              <avue-input type="textarea"
-                          :min-rows="6"
-                          @blur="handleBlur"
-                          v-model="sql"></avue-input>
+            <el-form-item label="SQL语句"
+                          label-position="top">
+              <monaco-editor v-model="sql"
+                             language="sql"
+                             height="50"></monaco-editor>
             </el-form-item>
-          </template>
-          <template v-else-if="isApi">
+          </div>
+          <div v-show="isApi">
             <el-form-item label="接口地址">
               <avue-input v-model="activeObj.url"></avue-input>
             </el-form-item>
@@ -370,30 +370,38 @@
                          type="primary"
                          @click="openCode('dataQuery')">编辑</el-button>
             </el-form-item>
-
-          </template>
-          <el-form-item label-width="0">
-            <el-button size="mini"
-                       type="primary"
-                       class="block"
-                       @click="openCode('dataFormatter')">数据处理</el-button>
+          </div>
+          <el-form-item label="响应数据"
+                        label-position="top">
+            <monaco-editor v-model="dataRes"
+                           disabled
+                           height="200"></monaco-editor>
           </el-form-item>
-          <el-form-item>
-            <el-button size="mini"
-                       type="primary"
-                       class="block"
-                       @click="handleRes">刷新数据</el-button>
+          <el-form-item label-width="0">
+            <el-row>
+              <el-col span="12">
+                <el-button size="mini"
+                           type="danger"
+                           class="block"
+                           @click="openCode('dataFormatter')">数据处理</el-button>
+              </el-col>
+              <el-col span="12">
+                <el-button size="mini"
+                           type="primary"
+                           class="block"
+                           @click="handleRes">刷新数据</el-button>
+              </el-col>
+            </el-row>
+
           </el-form-item>
         </el-form>
-        <textarea disabled
-                  style="color:#fff;width:100%;height:500px"
-                  v-model="dataRes"></textarea>
       </div>
     </el-dialog>
   </div>
 </template>
 <script>
 
+import MonacoEditor from '@/page/components/editor'
 import layer from './group/layer';
 import top from './group/top';
 import imglist from './group/imglist'
@@ -459,6 +467,7 @@ export default {
     }
   },
   components: {
+    MonacoEditor,
     imglist,
     layer,
     codeedit,
@@ -587,6 +596,12 @@ export default {
       return this.$refs.container.handleRefresh();
     },
     handleRes () {
+      if (this.isSql) {
+        this.$set(this.activeObj, 'sql', crypto.encrypt(JSON.stringify({
+          id: this.db,
+          sql: this.sql
+        })))
+      }
       this.handleRefresh().then(res => {
         if (!this.validatenull(res)) {
           this.dataRes = JSON.stringify(res || {}, null, 4);
@@ -599,12 +614,7 @@ export default {
     },
     handleSql () {
       this.show = true;
-    },
-    handleBlur () {
-      this.$set(this.activeObj, 'sql', crypto.encrypt(JSON.stringify({
-        id: this.db,
-        sql: this.sql
-      })))
+      this.dataRes = '';
     },
     initSqlList () {
       getList(1, 100).then(res => {

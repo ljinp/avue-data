@@ -2,8 +2,7 @@
   <el-dialog :visible.sync="visible"
              :before-close="handleClose"
              width="60%">
-    <monaco-editor v-model="code"
-                   height="300"></monaco-editor>
+    <monaco-editor v-model="code"></monaco-editor>
     <span slot="footer"
           class="dialog-footer">
       <el-button size="small"
@@ -16,7 +15,7 @@
 </template>
 
 <script>
-import MonacoEditor from '@/utils/monaco-editor'
+import MonacoEditor from '@/page/components/editor'
 export default {
   components: { MonacoEditor },
   data () {
@@ -27,19 +26,12 @@ export default {
   props: {
     visible: Boolean,
     type: String,
-    value: {
-      type: [String, Object, Array],
-      default: ''
-    }
+    value: [String, Object, Array]
   },
   watch: {
     value: {
       handler (val) {
-        if (['object', 'array'].includes(typeof val)) {
-          this.code = JSON.stringify(val, null, 4);
-        } else {
-          this.code = val;
-        }
+        this.code = val;
       },
       immediate: true,
       deep: true,

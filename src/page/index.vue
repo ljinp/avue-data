@@ -82,6 +82,9 @@ export default {
       window.open('https://www.kancloud.cn/smallwei/avue-doc')
     },
     handleSelect (key) {
+      if (['5', '6'].includes(key)) {
+        return
+      }
       this.activeName = key;
     },
   }

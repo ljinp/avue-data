@@ -9,11 +9,17 @@
              @row-save="rowSave"
              @row-del="rowDel"
              @refresh-change="refreshChange"
-             @on-load="onLoad"></avue-crud>
+             @on-load="onLoad">
+    <template slot="menuForm">
+      <el-button type="primary"
+                 size="mini"
+                 @click="handleTest">测试连接</el-button>
+    </template>
+  </avue-crud>
 </template>
 
 <script>
-import { getList, getDetail, add, update, remove } from "@/api/db";
+import { getList, getDetail, add, update, remove, dbTest } from "@/api/db";
 import config from '@/config';
 export default {
   data () {
@@ -181,6 +187,21 @@ export default {
     },
     refreshChange () {
       this.onLoad();
+    },
+    handleTest () {
+      dbTest({
+        driverClass: this.form.driverClass,
+        url: this.form.url,
+        username: this.form.username,
+        password: this.form.password
+      }).then(res => {
+        const data = res.data;
+        if (data.success) {
+          this.$message.success('连接成功')
+        } else {
+          this.$message.error('连接失败，请检查相关配置参数')
+        }
+      })
     },
     onLoad () {
       getList(this.page.currentPage, this.page.pageSize).then(res => {

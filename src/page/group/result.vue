@@ -3,21 +3,17 @@
              title="代码结构"
              :visible.sync="show"
              width="60%">
-    <textarea disabled
-              style="color:#fff;width:100%;height:500px"
-              v-model="json"></textarea>
+    <monaco-editor v-model="contain.json"
+                   disabled></monaco-editor>
   </el-dialog>
 
 </template>
 
 <script>
+import MonacoEditor from '@/page/components/editor'
 export default {
+  components: { MonacoEditor },
   inject: ["contain"],
-  computed: {
-    json () {
-      return JSON.stringify(this.contain.json, null, 4)
-    }
-  },
   data () {
     return {
       show: false

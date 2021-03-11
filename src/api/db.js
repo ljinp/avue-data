@@ -1,4 +1,5 @@
 import { url } from '@/config';
+import crypto from '@/utils/crypto'
 import request from '../axios';
 export const getList = (current, size, params) => {
   return request({
@@ -55,5 +56,15 @@ export const dynamicSql = (data) => {
       'Content-Type': 'application/json'
     },
     data: data
+  })
+}
+export const dbTest = (data) => {
+  return request({
+    url: url + '/db/db-test',
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    data: crypto.encrypt(JSON.stringify(data))
   })
 }
