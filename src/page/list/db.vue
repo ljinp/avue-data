@@ -27,7 +27,8 @@ export default {
       },
       option: {
         index: true,
-        viewBtn: true,
+        copyBtn: true,
+        labelWidth: 110,
         column: [
           {
             label: "名称",
@@ -75,6 +76,7 @@ export default {
           {
             label: "密码",
             prop: "password",
+            type: 'password',
             hide: true,
             rules: [{
               required: true,
@@ -85,6 +87,7 @@ export default {
           {
             label: "连接地址",
             prop: "url",
+            type: 'textarea',
             span: 24,
             rules: [{
               required: true,
@@ -107,7 +110,7 @@ export default {
   },
   methods: {
     vaildData (id) {
-      return [0, 1, 2].includes(id)
+      return [0, 1, 2, 3].includes(id)
     },
     rowSave (row, done, loading) {
       add(row).then(() => {
