@@ -229,7 +229,7 @@
                   </el-button>
                 </el-form-item>
               </template>
-              <el-form-item>
+              <el-form-item label-width="0">
                 <el-button size="mini"
                            type="primary"
                            class="block"
