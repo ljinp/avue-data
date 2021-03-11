@@ -112,12 +112,7 @@ export default {
         this.calcData();
         this.setScale(width);
       }
-      if (this.option) {
-        config = this.option;
-        this.contain.config = config.detail || {};
-        this.contain.nav = config.component || [];
-        callback();
-      } else if (id) {
+      if (id) {
         const loading = this.$loading({
           lock: true,
           text: '正在加载中，请稍后',
@@ -161,6 +156,11 @@ export default {
           console.log(err)
           loading.close();
         })
+      } else if (this.option) {
+        config = this.option;
+        this.contain.config = config.detail || {};
+        this.contain.nav = config.component || [];
+        callback();
       } else {
         this.setScale(width);
       }
