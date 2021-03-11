@@ -229,6 +229,12 @@
                   </el-button>
                 </el-form-item>
               </template>
+              <el-form-item>
+                <el-button size="mini"
+                           type="primary"
+                           class="block"
+                           @click="handleRes">刷新数据</el-button>
+              </el-form-item>
             </el-form>
 
           </el-tab-pane>
