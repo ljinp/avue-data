@@ -354,7 +354,7 @@
                           label-position="top">
               <monaco-editor v-model="sql"
                              language="sql"
-                             height="50"></monaco-editor>
+                             height="100"></monaco-editor>
             </el-form-item>
           </div>
           <div v-show="isApi">
