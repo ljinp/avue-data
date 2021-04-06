@@ -10,5 +10,6 @@ const list = [
 ]
 //循环注册组件
 list.forEach(ele => {
+  ele.mixins = [window.AVUE.default.$Echart]
   Vue.component(`avue-echart-${ele.name}`, ele)
 })
