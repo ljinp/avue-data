@@ -229,7 +229,8 @@
                   </el-button>
                 </el-form-item>
               </template>
-              <el-form-item label-width="0">
+              <el-form-item label-width="0"
+                            v-if="isStatic">
                 <el-button size="mini"
                            type="primary"
                            class="block"

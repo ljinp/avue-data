@@ -4,17 +4,22 @@
              width="60%">
     <div slot="title">
       <el-popover placement="bottom-start"
-                  width="200"
+                  width="400"
                   trigger="hover">
         <div>
-          <small>说明：部分编辑不需要返回函数，直接返回JSON对象即可</small>
+          <p>- data为返回的数据</p>
           <p>(data)=>{</p>
-          <p> return {}</p>
+          <p :style="textStyle(1)">//处理数据逻辑</p>
+          <p :style="textStyle(1)">return {</p>
+          <p :style="textStyle(2)">//返回的数据结构体</p>
+          <p :style="textStyle(1)">}</p>
           <p>}</p>
+          <small>说明：只有·样式编辑·、·数据处理·等处理方法需要返回函数，其它直接返回JSON对象即可</small>
         </div>
         <span slot="reference"><i class="el-icon-info">函数处理说明</i></span>
       </el-popover>
     </div>
+
     <monaco-editor v-model="code"></monaco-editor>
     <span slot="footer"
           class="dialog-footer">
@@ -51,6 +56,11 @@ export default {
     },
   },
   methods: {
+    textStyle (index) {
+      return {
+        textIndent: index + 'em'
+      }
+    },
     handleClose () {
       this.setVisible(false);
     },
