@@ -55,8 +55,8 @@
             </avue-switch>
           </el-form-item>
           <el-form-item label="文字角度">
-            <avue-switch v-model="main.activeOption.xAxisRotate">
-            </avue-switch>
+            <avue-input-number v-model="main.activeOption.xAxisRotate">
+            </avue-input-number>
           </el-form-item>
           <el-form-item label="轴反转">
             <avue-switch v-model="main.activeOption.xAxisInverse">
