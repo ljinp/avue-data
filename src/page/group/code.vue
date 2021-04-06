@@ -2,6 +2,19 @@
   <el-dialog :visible.sync="visible"
              :before-close="handleClose"
              width="60%">
+    <div slot="title">
+      <el-popover placement="bottom-start"
+                  width="200"
+                  trigger="hover">
+        <div>
+          <small>说明：部分编辑不需要返回函数，直接返回JSON对象即可</small>
+          <p>(data)=>{</p>
+          <p> return {}</p>
+          <p>}</p>
+        </div>
+        <span slot="reference"><i class="el-icon-info">函数处理说明</i></span>
+      </el-popover>
+    </div>
     <monaco-editor v-model="code"></monaco-editor>
     <span slot="footer"
           class="dialog-footer">

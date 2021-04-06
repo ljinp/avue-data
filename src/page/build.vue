@@ -233,6 +233,20 @@
                 <el-button size="mini"
                            type="primary"
                            class="block"
+                           @click="handleSql">
+                  <span>数据处理</span>
+                </el-button>
+              </el-form-item>
+              <el-form-item label-width="0">
+                <el-button size="mini"
+                           type="primary"
+                           class="block"
+                           @click="openCode('stylesFormatter')">编辑样式</el-button>
+              </el-form-item>
+              <el-form-item label-width="0">
+                <el-button size="mini"
+                           type="primary"
+                           class="block"
                            @click="handleRes">刷新数据</el-button>
               </el-form-item>
             </el-form>

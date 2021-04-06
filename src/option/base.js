@@ -34,6 +34,8 @@ export default [{
         }]
       },
       "echartFormatter": "(data)=>{\nconsole.log(data);\nreturn {\n            title: {\n\t\t\t\t textStyle: {\n\t\t\t\t\tfontWeight: 'normal',      \n\t\t\t\t\tcolor: '#fff'\n\t\t\t\t},\n                text: 'ECharts 入门示例'\n            },\n            tooltip: {},\n            legend: {\n                data:['销量'],\n\t\t\t\ttextStyle: {\n\t\t\t\t\tfontWeight: 'normal',      \n\t\t\t\t\tcolor: '#fff'\n\t\t\t\t},\n            },\n            xAxis: {\n                data: [\"衬衫\",\"羊毛衫\",\"雪纺衫\",\"裤子\",\"高跟鞋\",\"袜子\"]\n            },\n            yAxis: {},\n            series: [{\n                name: '销量',\n                type: 'bar',\n                data: [5, 20, 36, 10, 10, 20]\n            }]\n        };\n}",
+      "dataFormatter": "",
+      "stylesFormatter": "",
       "url": baseUrl + "/bar",
       "time": 5000,
       "component": {
@@ -52,6 +54,7 @@ export default [{
       "img": require('@/assets/text4.png'),
       "data": [],
       "dataFormatter": "",
+      "stylesFormatter": "",
       "component": {
         "width": 800,
         "height": 500,
@@ -132,6 +135,7 @@ export default [{
         }]
       },
       "dataFormatter": "",
+      "stylesFormatter": "",
       "url": baseUrl + "/bar",
       "time": 5000,
       "component": {
@@ -207,6 +211,7 @@ export default [{
         }]
       },
       "dataFormatter": "",
+      "stylesFormatter": "",
       "url": baseUrl + "/bar",
       "time": 5000,
       "component": {
@@ -291,6 +296,7 @@ export default [{
         "url": "http://www.baidu.com"
       }],
       "dataFormatter": "",
+      "stylesFormatter": "",
       "resize": false,
       "component": {
         "width": 600,
@@ -351,6 +357,7 @@ export default [{
         "value": 2000,
       }],
       "dataFormatter": "",
+      "stylesFormatter": "",
       "component": {
         "width": 600,
         "height": 300,
@@ -420,6 +427,7 @@ export default [{
         }]
       },
       "dataFormatter": "",
+      "stylesFormatter": "",
       "component": {
         "width": 970,
         "height": 400,
@@ -477,6 +485,7 @@ export default [{
         ]
       }],
       "dataFormatter": "",
+      "stylesFormatter": "",
       "component": {
         "width": 600,
         "height": 300,
@@ -523,6 +532,7 @@ export default [{
         name: '联盟广告'
       }],
       "dataFormatter": "",
+      "stylesFormatter": "",
       "component": {
         "width": 400,
         "height": 300,
@@ -558,6 +568,7 @@ export default [{
       "img": require('@/assets/map.png'),
       "data": [],
       "dataFormatter": "",
+      "stylesFormatter": "",
       "component": {
         "width": 800,
         "height": 500,
@@ -594,6 +605,7 @@ export default [{
       "img": require('@/assets/text.png'),
       "dataType": 0,
       "dataFormatter": "",
+      "stylesFormatter": "",
       "data": {
         value: '文本框'
       },
@@ -624,6 +636,7 @@ export default [{
         value: "跑马灯"
       },
       "dataFormatter": "",
+      "stylesFormatter": "",
       "component": {
         "width": 100,
         "height": 50,
@@ -652,6 +665,7 @@ export default [{
         "value": "超链接"
       },
       "dataFormatter": "",
+      "stylesFormatter": "",
       "component": {
         "width": 100,
         "height": 50,
@@ -709,6 +723,7 @@ export default [{
         value: ''
       },
       "dataFormatter": "",
+      "stylesFormatter": "",
       "component": {
         "width": 140,
         "height": 140,
@@ -758,6 +773,7 @@ export default [{
           value: 'https://img.alicdn.com/tfs/TB1uevcCrj1gK0jSZFuXXcrHpXa-1880-640.jpg',
         }],
       "dataFormatter": "",
+      "stylesFormatter": "",
       "component": {
         "width": 670,
         "height": 370,
@@ -792,7 +808,8 @@ export default [{
       "data": {
         value: 'https://avuejs.com'
       },
-      "dataFormatter": ""
+      "dataFormatter": "",
+      "stylesFormatter": ""
     }
   }, {
     label: 'video',
@@ -809,6 +826,7 @@ export default [{
       },
       "option": {},
       "dataFormatter": "",
+      "stylesFormatter": "",
       "component": {
         "width": 670,
         "height": 370,
@@ -835,6 +853,7 @@ export default [{
         value: '12345'
       },
       "dataFormatter": "",
+      "stylesFormatter": "",
       "component": {
         "width": 300,
         "height": 100,
@@ -901,6 +920,7 @@ export default [{
         "suffixText": '人',
       }],
       "dataFormatter": "",
+      "stylesFormatter": "",
       "component": {
         "width": 888,
         "height": 203,
@@ -941,6 +961,7 @@ export default [{
         "data": 80
       },
       "dataFormatter": "",
+      "stylesFormatter": "",
       "component": {
         "width": 300,
         "height": 300,
@@ -977,6 +998,7 @@ export default [{
         "data": 80
       },
       "dataFormatter": "",
+      "stylesFormatter": "",
       "component": {
         "width": 400,
         "height": 100,
@@ -1012,6 +1034,7 @@ export default [{
         unit: '%'
       },
       "dataFormatter": "",
+      "stylesFormatter": "",
       "component": {
         "width": 390,
         "height": 314,
@@ -1091,6 +1114,7 @@ export default [{
         value: '1234'
       }],
       "dataFormatter": "",
+      "stylesFormatter": "",
       "url": baseUrl + "/wordCloud",
       "time": 5000,
       "component": {
@@ -1134,6 +1158,7 @@ export default [{
         "type2": '数据4'
       }],
       "dataFormatter": "",
+      "stylesFormatter": "",
       "component": {
         "width": 500,
         "height": 200,
@@ -1188,6 +1213,7 @@ export default [{
         "paramName": ""
       },
       "dataFormatter": "",
+      "stylesFormatter": "",
       "dataType": 0,
       "data": [
         {

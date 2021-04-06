@@ -25,6 +25,7 @@
                    :click-formatter="getFunction(item.clickFormatter,true)"
                    :echart-formatter="getFunction(item.echartFormatter)"
                    :label-formatter="getFunction(item.labelFormatter)"
+                   :styles-formatter="getFunction(item.stylesFormatter)"
                    :sql-formatter="sqlFormatter"
                    :formatter="getFunction(item.formatter)"
                    :width="item.component.width"

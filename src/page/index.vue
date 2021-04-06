@@ -8,7 +8,7 @@
       <div class="title">
         <p>
           AVUE-DATA<br />
-          <small>可视化数据大屏</small>
+          <small>可视化数据大屏（演示环境）</small>
         </p>
       </div>
       <el-menu class="nav"
