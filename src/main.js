@@ -16,7 +16,7 @@ import '@/theme/index.js'
 window.axios = axios;
 Vue.config.productionTip = false
 Vue.prototype.url = url;
-Vue.use(window.AVUE.default, {
+Vue.use(window.AVUE, {
   size: 'mini'
 });
 Vue.use(ElementUI);
