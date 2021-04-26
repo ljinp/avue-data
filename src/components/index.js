@@ -5,11 +5,15 @@
 import Vue from 'vue'
 import Test from './test/';
 
-const list = [
-  Test
-]
-//循环注册组件
-list.forEach(ele => {
-  ele.mixins = [window.AVUE.$Echart]
-  Vue.component(`avue-echart-${ele.name}`, ele)
-})
+export default (() => {
+  const list = [
+    Test
+  ]
+  let result = {}
+  //循环注册组件
+  list.forEach(ele => {
+    ele.mixins = [window.AVUE.$Echart]
+    result[`avue-echart-${ele.name}`] = ele
+  })
+  return result
+})()

@@ -9,8 +9,6 @@ import App from './App.vue'
 import './styles/common.scss'
 import { url } from '@/config'
 import '@/mock/'
-//注册自定义组件
-import './components/'
 //导入主题文件
 import '@/theme/index.js'
 window.axios = axios;

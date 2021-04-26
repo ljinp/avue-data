@@ -46,6 +46,8 @@
 </template>
 
 <script>
+//注册自定义组件
+import components from '@/components/';
 import { addUrlParam } from '@/utils/utils'
 import crypto from '@/utils/crypto';
 import { dynamicSql } from '@/api/db'
@@ -59,6 +61,7 @@ export default {
       container: this.container
     };
   },
+  components: components,
   props: {
     nav: {
       type: Array,
