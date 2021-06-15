@@ -12,6 +12,7 @@
     "@jiaminghi/data-view": "^2.10.0",
     "axios": "^0.19.0",
     "core-js": "^3.4.4",
+    "crypto-js": "^4.0.0",
     "css-loader": "^3.4.1",
     "element-ui": "^2.13.0",
     "mockjs": "^1.1.0",
@@ -28,7 +29,7 @@
     "babel-eslint": "^10.0.3",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
-    "node-sass": "^4.9.0",
+    "node-sass": "^4.14.1",
     "sass-loader": "^8.0.0",
     "vue-template-compiler": "^2.6.10"
   },
