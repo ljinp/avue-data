@@ -52,6 +52,7 @@ import { addUrlParam } from '@/utils/utils'
 import crypto from '@/utils/crypto';
 import { dynamicSql } from '@/api/db'
 import common from '@/config'
+import echartComponents from '../../echart/'
 export default {
   name: 'subgroup',
   inject: ["contain", 'container'],
@@ -75,6 +76,12 @@ export default {
       sqlFormatter: dynamicSql,
       common: common,
     }
+  },
+  created () {
+    Object.keys(echartComponents).map(ele => {
+      let component = echartComponents[ele];
+      Vue.component(component.name, component);
+    });
   },
   methods: {
     getFunction (fun, def) {
@@ -157,5 +164,6 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import "./styles/echart.scss";
 </style>
