@@ -1,5 +1,12 @@
 module.exports = {
   lintOnSave: false,
+  css: {
+    loaderOptions: {
+      scss: {
+        prependData: '@import "@/styles/echart.scss";'
+      }
+    }
+  },
   chainWebpack: (config) => {
     //忽略的打包文件
     config.externals({

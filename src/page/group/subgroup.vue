@@ -163,7 +163,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-@import "./styles/echart.scss";
-</style>
