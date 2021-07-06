@@ -1,0 +1,26 @@
+import EchartBar from './packages/bar';
+import EchartPie from './packages/pie';
+import EchartLine from './packages/line';
+import EchartTable from './packages/table';
+import EchartFlop from './packages/flop';
+import EchartDatetime from './packages/datetime';
+import EchartText from './packages/text';
+import EchartSwiper from './packages/swiper';
+import EchartIframe from './packages/iframe';
+import EchartVideo from './packages/video';
+import EchartWordCloud from './packages/wordCloud';
+import EchartGauge from './packages/gauge';
+import EchartProgress from './packages/progress';
+import EchartMaps from './packages/map';
+import EchartImg from './packages/img';
+import EchartImgBorder from './packages/imgBorder';
+import EchartTabs from './packages/tabs';
+import EchartSlide from './packages/slide';
+import EchartPictorialBar from './packages/pictorialBar';
+import EchartRadar from './packages/radar';
+import EchartFunnel from './packages/funnel';
+import EchartScatter from './packages/scatter';
+import EchartCommon from './packages/common';
+import EchartDatav from './packages/datav';
+
+export default { EchartRadar, EchartScatter, EchartFunnel, EchartSlide, EchartTabs, EchartVideo, EchartWordCloud, EchartPictorialBar, EchartMaps, EchartImg, EchartImgBorder, EchartBar, EchartGauge, EchartIframe, EchartSwiper, EchartTable, EchartPie, EchartText, EchartLine, EchartFlop, EchartDatetime, EchartProgress, EchartCommon, EchartDatav };

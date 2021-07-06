@@ -2,8 +2,9 @@
  * 自定义组件参考文档
  * https://cn.vuejs.org/v2/guide/components-registration.html
 */
-import Vue from 'vue'
 import Test from './test/';
+import $Echart from '../echart/common';
+import { KEY_COMPONENT_NAME } from '../echart/variable';
 
 export default (() => {
   const list = [
@@ -12,8 +13,8 @@ export default (() => {
   let result = {}
   //循环注册组件
   list.forEach(ele => {
-    ele.mixins = [window.AVUE.$Echart]
-    result[`avue-echart-${ele.name}`] = ele
+    ele.mixins = [$Echart]
+    result[`${KEY_COMPONENT_NAME}${ele.name}`] = ele
   })
   return result
 })()
