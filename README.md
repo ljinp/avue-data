@@ -4,9 +4,10 @@
 数据大屏解决方案采用vue-cli项目编写，可以完美嵌套与任何项目，此项目只是大屏的解决方案，如果想要用于生产或更多场景的支持需要自己根据情况二次开发,[在线文档](https://www.kancloud.cn/smallwei/avue-doc)。
 
 
-## 2种数据源
+## 3种数据源
 - 在线api（本项目采用了mock拦截方式模拟，具体文件/mock/index.js）
 - 静态数据
+- SQL数据库
 - ...
 
 ## 引入其他项目使用
@@ -53,6 +54,7 @@
 - 组件配置
 - /src/components/test/index
 - /src/components/test/option
+- /src/components/index.js
 - 添加组件
 - /src/option/base.js
 - /src/option/components.js
@@ -63,6 +65,7 @@
 - [地图事件例子](https://data.avuejs.com/build/19)
 - [柱状图和折线图](https://data.avuejs.com/build/28)
 - [任意echart使用](https://data.avuejs.com/build/29)
+- [SQL使用例子](https://data.avuejs.com/build/55)
 
 ## 核心方法
 ### 提示事件
