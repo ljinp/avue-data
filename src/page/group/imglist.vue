@@ -1,6 +1,7 @@
 <template>
   <el-dialog title="图库"
              width="80%"
+             :close-on-click-modal="false"
              :visible.sync="imgVisible">
     <div style="margin:0 auto;">
       <el-upload class="upload-demo"

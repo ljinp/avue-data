@@ -90,6 +90,7 @@
     </el-container>
     <el-dialog :title="type==='add'?'新建大屏':'编辑大屏'"
                width="35%"
+               :close-on-click-modal="false"
                :visible.sync="box">
       <avue-form :option="option"
                  v-model="form"

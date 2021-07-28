@@ -3,6 +3,7 @@
        :style="[styleSizeName,{overflow:(scroll?'hidden':'inherit')}]">
     <el-dialog :visible.sync="visible"
                modal-append-to-body
+               :close-on-click-modal="false"
                append-to-body
                title="数据显隐"
                width="30%">
@@ -12,6 +13,7 @@
     </el-dialog>
     <el-dialog :visible.sync="listVisible"
                modal-append-to-body
+               :close-on-click-modal="false"
                :class="b('allview')"
                title="详细数据"
                append-to-body

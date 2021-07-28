@@ -48,8 +48,3 @@ export default {
   },
 }
 </script>
-<style >
-.monaco_editor_container {
-  margin-top: 30px;
-}
-</style>

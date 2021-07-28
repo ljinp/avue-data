@@ -208,13 +208,6 @@
                 <avue-radio v-model="activeObj.dataType"
                             :dic="dicOption.dataType"></avue-radio>
               </el-form-item>
-              <el-form-item label="数据值"
-                            label-position="top"
-                            v-if="isStatic">
-                <el-button size="mini"
-                           type="primary"
-                           @click="openCode('data')">编辑</el-button>
-              </el-form-item>
               <el-form-item label="刷新时间">
                 <avue-input-number v-model="activeObj.time"></avue-input-number>
               </el-form-item>
@@ -235,7 +228,7 @@
                            type="primary"
                            class="block"
                            @click="handleSql">
-                  <span>数据处理</span>
+                  <span>编辑静态数据</span>
                 </el-button>
               </el-form-item>
               <el-form-item label-width="0">
@@ -355,11 +348,19 @@
               :visible.sync="code.box"></codeedit>
     <contentmenu ref="contentmenu"></contentmenu>
     <el-dialog append-to-body
-               title="返回数据"
+               :close-on-click-modal="false"
                :visible.sync="show"
                width="60%">
-      <el-form size="small">
-        <div v-show="isSql">
+      <el-form size="small"
+               label-width="130px">
+        <el-form-item v-if="isStatic"
+                      label="数据值"
+                      label-position="top">
+          <el-button size="mini"
+                     type="primary"
+                     @click="openCode('data')">编辑静态数据(JSON)</el-button>
+        </el-form-item>
+        <div v-else-if="isSql">
           <el-form-item label="数据源选择">
             <avue-select :dic="DIC.sql"
                          v-model="db"></avue-select>
@@ -371,42 +372,38 @@
                            height="100"></monaco-editor>
           </el-form-item>
         </div>
-        <div v-show="isApi">
+        <div v-else-if="isApi">
           <el-form-item label="接口地址">
             <avue-input v-model="activeObj.url"></avue-input>
           </el-form-item>
-          <el-form-item label="接口方式">
-            <avue-radio v-model="activeObj.dataMethod"
-                        :dic="dicOption.dataMethod"></avue-radio>
+          <el-form-item label="请求方式">
+            <avue-select v-model="activeObj.dataMethod"
+                         :dic="dicOption.dataMethod"></avue-select>
           </el-form-item>
-          <el-form-item label="接口参数">
-            <el-button size="mini"
+          <el-form-item label="请求参数">
+            <el-button size="small"
                        type="primary"
-                       @click="openCode('dataQuery')">编辑</el-button>
+                       @click="openCode('dataQuery')">编辑参数(JSON)</el-button>
           </el-form-item>
         </div>
-        <el-form-item label="响应数据"
-                      label-position="top">
+        <el-form-item label="响应数据">
           <monaco-editor v-model="dataRes"
                          disabled
-                         height="200"></monaco-editor>
+                         height="300"></monaco-editor>
         </el-form-item>
-        <el-form-item label-width="0">
-          <el-row>
-            <el-col span="12">
-              <el-button size="mini"
-                         type="danger"
-                         class="block"
-                         @click="openCode('dataFormatter')">数据处理</el-button>
-            </el-col>
-            <el-col span="12">
-              <el-button size="mini"
-                         type="primary"
-                         class="block"
-                         @click="handleRes">刷新数据</el-button>
-            </el-col>
-          </el-row>
-
+        <el-form-item label-width="0px">
+          <el-col :span="12">
+            <el-button size="small"
+                       type="danger"
+                       class="block"
+                       @click="openCode('dataFormatter')">数据处理</el-button>
+          </el-col>
+          <el-col :span="12">
+            <el-button size="small"
+                       type="primary"
+                       class="block"
+                       @click="handleRes">刷新数据</el-button>
+          </el-col>
         </el-form-item>
       </el-form>
     </el-dialog>

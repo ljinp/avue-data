@@ -1,6 +1,7 @@
 <template>
   <el-dialog append-to-body
              title="代码结构"
+             :close-on-click-modal="false"
              :visible.sync="show"
              width="60%">
     <monaco-editor v-model="contain.json"
