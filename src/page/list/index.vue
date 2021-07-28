@@ -1,6 +1,6 @@
 <template>
   <el-container class="list">
-    <el-aside width="230px">
+    <el-aside width="200px">
       <el-menu :default-active="activeName"
                background-color="#171b22"
                text-color="#fff"
@@ -180,7 +180,7 @@ export default {
       },
       page: {
         page: 1,
-        size: 40,
+        size: 50,
         total: 0,
       },
       form: {},

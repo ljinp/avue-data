@@ -14,7 +14,7 @@ export default {
     return {
       code: '',
       options: {
-        fontSize: 14
+        fontSize: 12
       }
     }
   },
