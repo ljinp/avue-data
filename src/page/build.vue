@@ -634,6 +634,8 @@ export default {
           result = true;
         } else if (this.isApi && !this.validatenull(this.activeObj.url)) {
           result = true;
+        } else {
+          result = true;
         }
         if (result) this.handleRes()
       })

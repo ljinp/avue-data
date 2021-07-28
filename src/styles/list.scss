@@ -26,6 +26,7 @@
       width: 258px;
       height: 184px;
       border: 1px solid #3a4659;
+      box-sizing: border-box;
       overflow: hidden;
       &:hover {
         box-shadow: 0 0 20px 0 #000;
