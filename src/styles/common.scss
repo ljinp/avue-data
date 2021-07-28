@@ -199,20 +199,36 @@ input{
 .el-button{
   border-radius: 0;
 }
+
 .el-button--primary{
   background-color: transparent;
   color:#409EFF;
   border-color:#409EFF;
+  &:hover,&:focus{
+    background:transparent;
+    border-color: #409EFF;
+    color:#409EFF;
+  }
 }
 .el-button--danger{
   background-color: transparent;
   color:#f56c6c;
   border-color:#f56c6c;
+  &:hover,&:focus{
+    background:transparent;
+    border-color: #f56c6c;
+    color:#f56c6c;
+  }
 }
 .el-button--default{
   background-color: transparent;
   color:#859094;
   border-color:#859094;
+  &:hover,&:focus{
+    background:transparent;
+    border-color: #859094;
+    color:#859094;
+  }
 }
 .el-collapse-item__content{
   padding: 0;

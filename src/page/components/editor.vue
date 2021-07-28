@@ -19,16 +19,16 @@ export default {
     }
   },
   props: {
-    language: String,
+    language: {
+      type: String,
+      default: 'javascript'
+    },
     disabled: Boolean,
     height: {
       type: [String, Number],
       default: 400
     },
-    value: {
-      type: [String, Object, Array],
-      default: ''
-    }
+    value: [String, Object, Array]
   },
   watch: {
     code (val) {
@@ -39,7 +39,7 @@ export default {
         if (['object', 'array'].includes(typeof val)) {
           this.code = JSON.stringify(val, null, 4);
         } else {
-          this.code = val;
+          this.code = val || '';
         }
       },
       immediate: true,

@@ -1,4 +1,5 @@
 .list{
+  height: 100%;
   .el-menu{
     border-right: none;
   }
@@ -7,7 +8,7 @@
     border-width: 2px;
   }
   .page{
-    padding: 10px 0;
+    padding: 20px 0 0 0;
     display: flex;
     justify-content: center;
   }

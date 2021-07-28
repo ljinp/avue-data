@@ -45,9 +45,13 @@
 
       </el-menu>
     </div>
-    <el-scrollbar class="main">
+    <div v-if="['1'].includes(activeName)"
+         class="main">
       <list v-if="activeName==1"></list>
-      <maps v-else-if="activeName==2"></maps>
+    </div>
+    <el-scrollbar v-else
+                  class="main">
+      <maps v-if="activeName==2"></maps>
       <category v-else-if="activeName==3"></category>
       <db v-else-if="activeName==4"></db>
     </el-scrollbar>

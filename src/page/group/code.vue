@@ -16,7 +16,8 @@
           <p>}</p>
           <small>说明：只有·样式编辑·、·数据处理·等处理方法需要返回函数，其它直接返回JSON对象即可</small>
         </div>
-        <span slot="reference"><i class="el-icon-info">函数处理说明</i></span>
+        <span style="color:#fff;"
+              slot="reference"><i class="el-icon-info">函数处理说明</i></span>
       </el-popover>
     </div>
 

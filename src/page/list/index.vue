@@ -1,6 +1,6 @@
 <template>
   <el-container class="list">
-    <el-aside width="190px">
+    <el-aside width="230px">
       <el-menu :default-active="activeName"
                background-color="#171b22"
                text-color="#fff"
@@ -16,8 +16,8 @@
       </el-menu>
 
     </el-aside>
-    <el-main>
-      <div class="page">
+    <el-container>
+      <el-header class="page">
         <el-pagination layout="total, sizes, prev, pager, next, jumper"
                        background
                        size="mini"
@@ -27,8 +27,8 @@
                        :current-page.sync="page.page"
                        :total="page.total">
         </el-pagination>
-      </div>
-      <div class="content">
+      </el-header>
+      <el-main class="content">
         <div class="content__item content__item--add"
              @click="handleAdd">
           <div>
@@ -86,8 +86,8 @@
 
           </div>
         </div>
-      </div>
-    </el-main>
+      </el-main>
+    </el-container>
     <el-dialog :title="type==='add'?'新建大屏':'编辑大屏'"
                width="35%"
                :visible.sync="box">
@@ -180,7 +180,7 @@ export default {
       },
       page: {
         page: 1,
-        size: 10,
+        size: 40,
         total: 0,
       },
       form: {},

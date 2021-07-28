@@ -358,59 +358,57 @@
                title="返回数据"
                :visible.sync="show"
                width="60%">
-      <div>
-        <el-form size="small">
-          <div v-show="isSql">
-            <el-form-item label="数据源选择">
-              <avue-select :dic="DIC.sql"
-                           v-model="db"></avue-select>
-            </el-form-item>
-            <el-form-item label="SQL语句"
-                          label-position="top">
-              <monaco-editor v-model="sql"
-                             language="sql"
-                             height="100"></monaco-editor>
-            </el-form-item>
-          </div>
-          <div v-show="isApi">
-            <el-form-item label="接口地址">
-              <avue-input v-model="activeObj.url"></avue-input>
-            </el-form-item>
-            <el-form-item label="接口方式">
-              <avue-radio v-model="activeObj.dataMethod"
-                          :dic="dicOption.dataMethod"></avue-radio>
-            </el-form-item>
-            <el-form-item label="接口参数">
+      <el-form size="small">
+        <div v-show="isSql">
+          <el-form-item label="数据源选择">
+            <avue-select :dic="DIC.sql"
+                         v-model="db"></avue-select>
+          </el-form-item>
+          <el-form-item label="SQL语句"
+                        label-position="top">
+            <monaco-editor v-model="sql"
+                           language="sql"
+                           height="100"></monaco-editor>
+          </el-form-item>
+        </div>
+        <div v-show="isApi">
+          <el-form-item label="接口地址">
+            <avue-input v-model="activeObj.url"></avue-input>
+          </el-form-item>
+          <el-form-item label="接口方式">
+            <avue-radio v-model="activeObj.dataMethod"
+                        :dic="dicOption.dataMethod"></avue-radio>
+          </el-form-item>
+          <el-form-item label="接口参数">
+            <el-button size="mini"
+                       type="primary"
+                       @click="openCode('dataQuery')">编辑</el-button>
+          </el-form-item>
+        </div>
+        <el-form-item label="响应数据"
+                      label-position="top">
+          <monaco-editor v-model="dataRes"
+                         disabled
+                         height="200"></monaco-editor>
+        </el-form-item>
+        <el-form-item label-width="0">
+          <el-row>
+            <el-col span="12">
+              <el-button size="mini"
+                         type="danger"
+                         class="block"
+                         @click="openCode('dataFormatter')">数据处理</el-button>
+            </el-col>
+            <el-col span="12">
               <el-button size="mini"
                          type="primary"
-                         @click="openCode('dataQuery')">编辑</el-button>
-            </el-form-item>
-          </div>
-          <el-form-item label="响应数据"
-                        label-position="top">
-            <monaco-editor v-model="dataRes"
-                           disabled
-                           height="200"></monaco-editor>
-          </el-form-item>
-          <el-form-item label-width="0">
-            <el-row>
-              <el-col span="12">
-                <el-button size="mini"
-                           type="danger"
-                           class="block"
-                           @click="openCode('dataFormatter')">数据处理</el-button>
-              </el-col>
-              <el-col span="12">
-                <el-button size="mini"
-                           type="primary"
-                           class="block"
-                           @click="handleRes">刷新数据</el-button>
-              </el-col>
-            </el-row>
+                         class="block"
+                         @click="handleRes">刷新数据</el-button>
+            </el-col>
+          </el-row>
 
-          </el-form-item>
-        </el-form>
-      </div>
+        </el-form-item>
+      </el-form>
     </el-dialog>
   </div>
 </template>
@@ -630,6 +628,15 @@ export default {
     handleSql () {
       this.show = true;
       this.dataRes = '';
+      this.$nextTick(() => {
+        let result = false
+        if (this.isSql && !this.validatenull(this.sql)) {
+          result = true;
+        } else if (this.isApi && !this.validatenull(this.activeObj.url)) {
+          result = true;
+        }
+        if (result) this.handleRes()
+      })
     },
     initSqlList () {
       getList(1, 100).then(res => {
