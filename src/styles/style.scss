@@ -295,10 +295,8 @@
   }
 }
 .views{
+  overflow-x: hidden;
   overflow-y: scroll;
-  .middle{
-    overflow: inherit;
-  }
   .wrapper{
     overflow: hidden;
   }
