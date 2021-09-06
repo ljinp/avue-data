@@ -3,9 +3,6 @@
        v-show="contentMenu"
        @click="contentMenu=false"
        :style="styleName">
-    <div class="contentmenu__item">
-      <small style="font-size:10px">Tip:按住Ctrl可以选择多个图层</small>
-    </div>
     <div class="contentmenu__item"
          @click="handleLogout()"
          v-if="contain.isFolder"> <i class="el-icon-close"></i>解散分组
@@ -31,6 +28,12 @@
     </div>
     <div class="contentmenu__item"
          @click="handleStepBottom()"><i class="el-icon-arrow-down"></i>下移一层
+    </div>
+    <div class="contentmenu__item">
+      <small style="font-size:10px">Tip:按住Ctrl可以选择多个图层</small>
+    </div>
+    <div class="contentmenu__item">
+      <small style="font-size:10px">Tip:按空格可以拖拽画布</small>
     </div>
   </div>
 </template>

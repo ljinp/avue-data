@@ -689,16 +689,6 @@ export default {
           e.preventDefault();
           this.keys.space = true
         }
-        // 如果是delete按键,那么调用删除组件按钮
-        if (e.keyCode === 8) {
-          this.deleteMethod()
-        }
-        if (e.keyCode === 90) {
-          this.editorUndo();
-        }
-        if (e.keyCode === 89) {
-          this.editorRedo();
-        }
       }
       document.onkeyup = () => {
         this.keys.ctrl = false;

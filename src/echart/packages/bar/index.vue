@@ -125,7 +125,7 @@ export default create({
               }, { barBorderRadius: this.option.barRadius || 0 }),
               label: {
                 show: this.vaildData(this.option.labelShow, false), //开启显示
-                position: "top", //在上方显示,
+                position: this.option.category ? "right" : "top", //在上方显示,
                 formatter: name => this.getLabelFormatter(name),
                 textStyle: {
                   //数值样式
