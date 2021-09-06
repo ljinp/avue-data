@@ -52,7 +52,12 @@ export default {
   data () {
     return {
       contentStyle: {},
-      selectCount: {},
+      selectCount: {
+        x1: null,
+        x2: null,
+        y1: null,
+        y2: null
+      },
       scale: 1,
       gradeFlag: false,
     }
@@ -184,10 +189,10 @@ export default {
     },
     handlePostionSelect (postion) {
       this.handleCalcPostionSelect();
-      const x1 = this.selectCount.maxx1;
-      const x2 = this.selectCount.maxx2;
-      const y1 = this.selectCount.maxy1;
-      const y2 = this.selectCount.maxy2;
+      const x1 = this.selectCount.x1;
+      const x2 = this.selectCount.x2;
+      const y1 = this.selectCount.y1;
+      const y2 = this.selectCount.y2;
       if (postion === 'left') {
         this.handleMoveSelectList(x1, undefined, true, postion);
       } else if (postion === 'center') {
@@ -217,7 +222,6 @@ export default {
             baseLeft = ele.left + (left - obj_center)
           }
           this.$set(ele, 'left', baseLeft);
-          this.$refs.subgroup.$refs[common.DEAFNAME + ele.index][0].setLeft(baseLeft)
         }
         //垂直情况
         if (top) {
@@ -230,32 +234,35 @@ export default {
             baseTop = ele.top + (top - obj_middle)
           }
           this.$set(ele, 'top', baseTop)
-          this.$refs.subgroup.$ref[common.DEAFNAME + ele.index][0].setTop(baseTop)
         }
       })
     },
     //计算多选状态下的最大边界值
     handleCalcPostionSelect () {
-      this.selectCount.maxx1 = 99999;
-      this.selectCount.maxy1 = 99999;
+      this.selectCount = {
+        x1: null,
+        x2: null,
+        y1: null,
+        y2: null
+      }
       this.contain.active.forEach(ele => {
         ele = this.contain.findlist(ele)
         const left = ele.left;
         const top = ele.top;
         const width = ele.component.width;
         const height = ele.component.height;
-        if (this.selectCount.maxx1 > left) {
-          this.selectCount.maxx1 = left;
+        if (!this.selectCount.x1) {
+          this.selectCount = {
+            x1: left,
+            x2: left + width,
+            y1: top,
+            y2: top + height
+          }
         }
-        if (this.selectCount.maxx2 < left + width) {
-          this.selectCount.maxx2 = left + width;
-        }
-        if (this.selectCount.maxy1 > top) {
-          this.selectCount.maxy1 = top;
-        }
-        if (this.selectCount.maxy2 < top + height) {
-          this.selectCount.maxy2 = top + height;
-        }
+        if (this.selectCount.x1 > left) this.selectCount.x1 = left;
+        if (this.selectCount.x2 < left + width) this.selectCount.x2 = left + width;
+        if (this.selectCount.y1 > top) this.selectCount.y1 = top;
+        if (this.selectCount.y2 < top + height) this.selectCount.y2 = top + height;
       })
     },
   }

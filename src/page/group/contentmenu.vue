@@ -3,13 +3,16 @@
        v-show="contentMenu"
        @click="contentMenu=false"
        :style="styleName">
+    <div class="contentmenu__item">
+      <small style="font-size:10px">Tip:按住Ctrl可以选择多个图层</small>
+    </div>
     <div class="contentmenu__item"
          @click="handleLogout()"
          v-if="contain.isFolder"> <i class="el-icon-close"></i>解散分组
     </div>
     <div class="contentmenu__item"
          @click="handleCompose()"
-         v-if="!contain.isFolder"> <i class="el-icon-close"></i>组合分组
+         v-if="!contain.isFolder"> <i class="el-icon-check"></i>组合分组
     </div>
     <div class="contentmenu__item"
          @click="handleDel()"> <i class="el-icon-close"></i>删除图层
@@ -203,7 +206,7 @@ export default {
 
 <style>
 .contentmenu {
-  width: 160px;
+  width: 190px;
   position: fixed;
   z-index: 99999;
   list-style: none;

@@ -674,29 +674,23 @@ export default {
     },
     // 右键菜单
     handleContextMenu (e, item = {}) {
-      if (!item.index) {
-        return
-      }
-      if (!this.isSelectActive) {
-        this.active = [item.index];
-      }
-      setTimeout(() => {
-        this.$refs.contentmenu.show(e.clientX, e.clientY);
-      }, 0)
+      if (!item.index) return
+      if (!this.isSelectActive) this.active = [item.index];
+      if (this.keys.ctrl) return
+      this.$nextTick(() => this.$refs.contentmenu.show(e.clientX, e.clientY))
     },
     //监听键盘的按键
     listen () {
       document.onkeydown = (e) => {
-        if (e.target.nodeName == 'TEXTAREA' || e.target.nodeName == 'INPUT') {
-          return;
-        }
+        this.keys.ctrl = e.keyCode === 17;
+        if (e.target.nodeName == 'TEXTAREA' || e.target.nodeName == 'INPUT') return;
         // 按下空格键
         if (e.keyCode == 32) {
           e.preventDefault();
           this.keys.space = true
         }
         // 如果是delete按键,那么调用删除组件按钮
-        if (e.keyCode === 46) {
+        if (e.keyCode === 8) {
           this.deleteMethod()
         }
         if (e.keyCode === 90) {
@@ -705,7 +699,6 @@ export default {
         if (e.keyCode === 89) {
           this.editorRedo();
         }
-        this.keys.ctrl = e.keyCode === 17;
       }
       document.onkeyup = () => {
         this.keys.ctrl = false;
