@@ -66,6 +66,14 @@
           <i class="nav__icon iconfont icon-build"></i>
         </el-tooltip>
       </el-menu-item>
+      <el-menu-item index="12"
+                    @click="$refs.result.show=true">
+        <el-tooltip effect="dark"
+                    content="大屏结构"
+                    placement="top">
+          <i class="nav__icon el-icon-info"></i>
+        </el-tooltip>
+      </el-menu-item>
       <el-menu-item index="9"
                     :disabled='!contain.canUndo'
                     @click="contain.editorUndo">
@@ -82,14 +90,6 @@
                     content="重做"
                     placement="top">
           <i class="nav__icon el-icon-arrow-right"></i>
-        </el-tooltip>
-      </el-menu-item>
-      <el-menu-item index="12"
-                    @click="$refs.result.show=true">
-        <el-tooltip effect="dark"
-                    content="大屏结构"
-                    placement="top">
-          <i class="nav__icon el-icon-info"></i>
         </el-tooltip>
       </el-menu-item>
     </el-menu>

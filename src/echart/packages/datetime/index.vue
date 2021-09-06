@@ -20,7 +20,7 @@ export default create({
   computed: {
     nowDate () {
       if (this.option.format === "day") {
-        return "星期" + dayjs().mWeek
+        return "星期" + dayjs().$W
       }
       const format = (this.option.format || "yyyy-MM-dd hh:mm:ss")
         .replace("dd", "DD")

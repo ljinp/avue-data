@@ -13,8 +13,8 @@
                :nav="nav"></layer>
       </div>
       <!-- 中间区域 -->
-      <div ref="wrapper"
-           style="flex:1;overflow:hidden;position:relative;">
+      <div ref="section"
+           class="section">
         <div class="refer-line-img"
              @click="imgClick">
           <img :src="isShowReferLine?imgOpenData:imgClose">
@@ -793,7 +793,7 @@ export default {
     },
     // 初始化标尺数值
     initSize () {
-      const domW = this.$refs.wrapper
+      const domW = this.$refs.section
       let width = window.innerWidth - 530
       let height = window.innerHeight - 45
       domW.style.width = width + 'px'
@@ -888,5 +888,10 @@ export default {
   position: absolute;
   top: 50%;
   left: 50%;
+}
+.section {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
 }
 </style>
