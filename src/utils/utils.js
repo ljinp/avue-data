@@ -1,5 +1,3 @@
-
-
 export const uuid = () => {
   var s = [];
   var hexDigits = "0123456789abcdef";
@@ -12,6 +10,14 @@ export const uuid = () => {
 
   var uuid = s.join("");
   return uuid;
+}
+export const createFile = () => {
+  return {
+    "title": "文件夹",
+    "name": "文件夹",
+    "index": uuid(),
+    "children": []
+  }
 }
 export const compare = (propertyName) => {
   return function (object1, object2) {

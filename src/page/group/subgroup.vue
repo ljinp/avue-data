@@ -116,15 +116,15 @@ export default {
         })
       }
     },
-    handleRes () {
+    getItemObj () {
       return this.$refs[this.common.NAME + this.contain.activeObj.index][0];
     },
     //刷新数据
     handleRefresh () {
-      return this.handleRes().updateData();
+      return this.getItemObj().updateData();
     },
     //获取对象
-    handleGetObj (val) {
+    getDragObj (val) {
       return this.$refs[`${this.common.DEAFNAME}${val}`];
     },
     handleOver ({ index }) {

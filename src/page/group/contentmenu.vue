@@ -12,7 +12,7 @@
     </div>
     <div class="contentmenu__item"
          @click="handleCompose()"
-         v-if="!contain.isFolder"> <i class="el-icon-check"></i>组合分组
+         v-if="!contain.isFolder"> <i class="el-icon-close"></i>组合分组
     </div>
     <div class="contentmenu__item"
          @click="handleDel()"> <i class="el-icon-close"></i>删除图层
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { uuid } from '@/utils/utils'
+import { createFile } from '@/utils/utils'
 export default {
   name: 'contentmenu',
   inject: ["contain"],
@@ -80,12 +80,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        let floder = {
-          "title": "文件夹",
-          "name": "文件夹",
-          "index": uuid(),
-          "children": []
-        }
+        let floder = createFile()
         //查找到每个组件调用核心方法就行组合操作
         //寻找父类
         const params = this.contain.findnav(list[0], true);
@@ -206,7 +201,7 @@ export default {
 
 <style>
 .contentmenu {
-  width: 190px;
+  width: 200px;
   position: fixed;
   z-index: 99999;
   list-style: none;

@@ -127,6 +127,7 @@ export default {
       return this.list.find(ele => ele.index == index) || {}
     },
     handleInitActive () {
+      if (this.active.isNull()) return
       this.active = []
     },
     handleMouseDown () {

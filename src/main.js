@@ -7,6 +7,7 @@ import router from './router.js';
 import App from './App.vue'
 import './styles/common.scss'
 import { url } from '@/config'
+import '@/utils/es6'
 import '@/mock/'
 //导入主题文件
 import '@/theme/index.js'

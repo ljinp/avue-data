@@ -97,7 +97,7 @@ export default {
   },
   methods: {
     initFun () {
-      ['handleRefresh', 'handleGetObj', 'handleRes'].forEach(ele => {
+      ['handleRefresh', 'getDragObj'].forEach(ele => {
         this[ele] = this.$refs.subgroup[ele]
       });
     },

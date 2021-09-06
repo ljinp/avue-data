@@ -419,7 +419,7 @@ import contentmenu from './group/contentmenu'
 import codeedit from './group/code';
 import { dicOption } from '@/option/config'
 import init from '@/mixins/'
-import { uuid } from '@/utils/utils'
+import { createFile } from '@/utils/utils'
 import components from '@/option/components'
 import SketchRule from "vue-sketch-ruler";
 import { getList } from "@/api/db";
@@ -573,15 +573,14 @@ export default {
       this.setResize();
     },
     overactive (n, o) {
-      [o, n].forEach((ele, index) => {
-        if (!ele) return
-        this.setActive(ele, index === 1, 'setOverActive');
+      [n, o].forEach((ele, index) => {
+        this.setActive(ele, index === 0, 'setOverActive');
       })
     },
     active (n, o) {
-      [o, n].forEach((ele, index) => {
+      [n, o].forEach((ele, index) => {
         ele.forEach(item => {
-          this.setActive(item, index === 1, 'setActive');
+          this.setActive(item, index === 0, 'setActive')
         })
       })
       //隐藏右键菜单
@@ -712,17 +711,12 @@ export default {
       this.handleInitActive()
     },
     setActive (val, result, fun) {
-      const obj = this.$refs.container.handleGetObj(val);
+      const obj = this.$refs.container.getDragObj(val);
       if (!this.validatenull(obj)) obj[0][fun](result)
     },
     //批量成组
     handleFloder () {
-      let floder = {
-        "title": "文件夹",
-        "name": "文件夹",
-        "index": uuid(),
-        "children": []
-      }
+      let floder = createFile()
       this.active.forEach(index => {
         const params = this.findnav(index);
         floder.children.push(params.obj);

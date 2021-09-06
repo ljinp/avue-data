@@ -106,11 +106,6 @@ export default (() => {
       echartFormatter () {
         this.updateChart();
       },
-      styleChartName () {
-        this.$nextTick(() => {
-          this.myChart && this.myChart.resize();
-        });
-      },
       url: {
         handler (val) {
           this.dataUrl = val || '';
