@@ -573,14 +573,15 @@ export default {
       this.setResize();
     },
     overactive (n, o) {
-      [n, o].forEach((ele, index) => {
-        this.setActive(ele, index === 0, 'setOverActive');
+      [o, n].forEach((ele, index) => {
+        if (!ele) return
+        this.setActive(ele, index === 1, 'setOverActive');
       })
     },
     active (n, o) {
-      [n, o].forEach((ele, index) => {
+      [o, n].forEach((ele, index) => {
         ele.forEach(item => {
-          this.setActive(item, index === 0, 'setActive')
+          this.setActive(item, index === 1, 'setActive');
         })
       })
       //隐藏右键菜单
