@@ -108,22 +108,11 @@ export default {
     //点击事件交互
     handleClick ({ type, child, value }) {
       if (type === 'tabs') {
-        const indexList = child.index;
-        indexList.forEach((index) => {
-          const paramName = child.paramName;
+        child.index.forEach(index => {
           const item = this.contain.findlist(index);
-          if (!item.url) return
-          let params = {};
-          if (item.dataQuery) {
-            params = this.getJson(item.dataQuery)
-          } else {
-            params = {}
-          }
-          params[paramName] = value;
+          let params = item.dataQuery ? this.getJson(item.dataQuery) : {}
+          params[child.paramName || ''] = value;
           item.dataQuery = JSON.stringify(params);
-          this.$refs[this.common.NAME + index].forEach(ele => {
-            ele.updateData();
-          })
         })
       }
     },
@@ -132,7 +121,7 @@ export default {
     },
     //刷新数据
     handleRefresh () {
-      return this.$refs[this.common.NAME + this.contain.activeObj.index][0].updateData();
+      return this.handleRes().updateData();
     },
     //获取对象
     handleGetObj (val) {

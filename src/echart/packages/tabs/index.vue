@@ -12,7 +12,7 @@
            :style="[styleName,styleActiveName(item)]"
            v-for="(item,index) in dataChart"
            :key="index"
-           @click="handleClick(item.value)">
+           @click="handleItem(item.value)">
         <div v-if="item.icon"
              :class="b('icon')"
              :style="[styleIconName,styleIconBgName(item),styleIconActiveName(item)]"></div>
@@ -33,8 +33,7 @@ export default create({
   },
   watch: {
     active (val) {
-      if (!val) return;
-      this.handleClick(val);
+      this.handleClick();
     },
     dataChart: {
       handler (val) {
@@ -136,8 +135,10 @@ export default create({
         );
       }
     },
-    handleClick (val) {
+    handleItem (val) {
       this.active = val;
+    },
+    handleClick () {
       this.click && this.click({
         type: this.name,
         child: this.child,
