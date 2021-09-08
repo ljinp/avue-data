@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { createFile } from '@/utils/utils'
+import { createFile, uuid } from '@/utils/utils'
 export default {
   name: 'contentmenu',
   inject: ["contain"],
