@@ -13,13 +13,12 @@ import '@/utils/es6'
 import '@/mock/'
 //导入主题文件
 import '@/theme/index.js'
-
-window.axios = axios;
 Vue.config.productionTip = false
-Vue.prototype.url = url;
+window.axios = axios;
 Vue.use(Avue, {
   size: 'mini'
 });
+Vue.prototype.url = url;
 Vue.use(ElementUI);
 Vue.use(dataV)
 new Vue({

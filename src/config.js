@@ -4,4 +4,4 @@ export default {
   DEAFNAME: 'item',
   password: 'avue_data'
 }
-export const url = 'https://data.bladex.vip/blade-visual'
+export const url = window.$url;
