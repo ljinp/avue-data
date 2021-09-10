@@ -7,6 +7,10 @@ module.exports = {
       }
     }
   },
+  transpileDependencies: [
+    'monaco-editor',
+    '@jiaminghi/data-view'
+  ],
   chainWebpack: (config) => {
     //忽略的打包文件
     config.externals({

@@ -1,4 +1,4 @@
-window.html = `<!DOCTYPE html>
+export const viewHtml = `<!DOCTYPE html>
 <html lang="en">
 
 <head>

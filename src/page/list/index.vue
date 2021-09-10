@@ -102,6 +102,7 @@
 <script>
 import { getList, addObj, updateObj, delObj, getCategory, copyObj } from '@/api/visual';
 import { getObj } from '@/api/visual'
+import { viewHtml } from '@/utils/html'
 export default {
   name: "list",
   data () {
@@ -218,7 +219,7 @@ export default {
         }
         var zip = new window.JSZip();
         zip.file("view.js", `const option =${JSON.stringify(mode, null, 4)}`);
-        zip.file('index.html', window.html);
+        zip.file('index.html', viewHtml);
         zip.generateAsync({ type: "base64" })
           .then(function (content) {
             location.href = "data:application/zip;base64," + content;
