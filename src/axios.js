@@ -1,5 +1,6 @@
 import { Loading } from 'element-ui';
 import axios from 'axios';
+import { forEach } from 'core-js/fn/array';
 axios.defaults.timeout = 10000;
 //返回其他状态吗
 axios.defaults.validateStatus = function (status) {
@@ -14,6 +15,25 @@ axios.interceptors.request.use(config => {
     background: 'rgba(0,0,0,0.5)',
     spinner: 'el-icon-loading'
   });
+  //获取全局参数
+  if (config.method == 'get') {
+    var query = window.location.search;
+    if (config.url.indexOf('?') == -1) {
+      config.url = config.url + query
+    } else {
+      config.url = config.url + '&' + query.substring(1)
+    }
+  } else if (config.method == 'post') {
+    let globParams = {};
+    var query = window.location.search.substring(1);
+    query = query.split("&");
+    query.forEach(ele => {
+      var pair = ele.split("=");
+      globParams[pair[0]] = pair[1]
+    })
+    config.data = Object.assign((config.data || {}), globParams)
+  }
+
   return config
 }, error => {
   return Promise.reject(error)
