@@ -1,6 +1,5 @@
 import { Loading } from 'element-ui';
 import axios from 'axios';
-import { forEach } from 'core-js/fn/array';
 axios.defaults.timeout = 10000;
 //返回其他状态吗
 axios.defaults.validateStatus = function (status) {
