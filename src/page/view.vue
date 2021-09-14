@@ -1,9 +1,9 @@
 <template>
-  <div class="build views">
+  <el-scrollbar class="build views">
     <container :props="props"
                :option="option"
                ref="container"></container>
-  </div>
+  </el-scrollbar>
 </template>
 <script>
 import init from '@/mixins/'

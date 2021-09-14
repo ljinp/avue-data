@@ -295,8 +295,11 @@
   }
 }
 .views{
-  overflow-x: hidden;
-  overflow-y: scroll;
+  height: 100%;
+  overflow: hidden;
+  .el-scrollbar__wrap{
+    overflow-x: hidden;
+  }
   .wrapper{
     overflow: hidden;
   }
