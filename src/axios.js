@@ -29,7 +29,7 @@ axios.interceptors.request.use(config => {
     } else {
       config.url = config.url + '&' + query.substring(1)
     }
-  } else if (config.method == 'post' && config.data.constructor === Object) {
+  } else if (config.method == 'post' && typeof(config.data) === 'object') {
     config.data = Object.assign(config.data, window.globParams)
   }
 
