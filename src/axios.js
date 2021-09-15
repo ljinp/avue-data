@@ -14,13 +14,13 @@ axios.interceptors.request.use(config => {
     background: 'rgba(0,0,0,0.5)',
     spinner: 'el-icon-loading'
   });
-    window.globParams = {};
-    var query = window.location.search.substring(1);
-    query = query.split("&");
-    query.forEach(ele => {
-      var pair = ele.split("=");
-      window.globParams[pair[0]] = pair[1]
-    })
+  window.globParams = {};
+  var query = window.location.search.substring(1);
+  query = query.split("&");
+  query.forEach(ele => {
+    var pair = ele.split("=");
+    window.globParams[pair[0]] = pair[1]
+  })
   //获取全局参数
   if (config.method == 'get') {
     var query = window.location.search;
@@ -29,8 +29,8 @@ axios.interceptors.request.use(config => {
     } else {
       config.url = config.url + '&' + query.substring(1)
     }
-  } else if (config.method == 'post') {
-    config.data = Object.assign((config.data || {}), window.globParams)
+  } else if (config.method == 'post' && config.data.constructor === Object) {
+    config.data = Object.assign(config.data, window.globParams)
   }
 
   return config
