@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { funEval } from '@/utils/utils'
 import MonacoEditor from '@/page/components/editor'
 export default {
   components: { MonacoEditor },
@@ -198,13 +199,14 @@ export default {
     submit () {
       let value = this.code;
       try {
-        eval('(' + value + ')')
+        funEval(value);
         if (['query', 'data'].includes(this.type)) {
-          value = eval('(' + value + ')')
+          value = funEval(value);
         }
         this.$emit('submit', value);
         this.setVisible(false)
       } catch (error) {
+        console.log(error);
         this.$message.error('数据格式有误')
       }
 

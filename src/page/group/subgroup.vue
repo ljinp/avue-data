@@ -48,9 +48,9 @@
 <script>
 //注册自定义组件
 import components from '@/components/';
-import { addUrlParam } from '@/utils/utils'
 import crypto from '@/utils/crypto';
 import { dynamicSql } from '@/api/db'
+import { funEval } from '@/utils/utils'
 import common from '@/config'
 import echartComponents from '../../echart/'
 export default {
@@ -87,7 +87,7 @@ export default {
     getFunction (fun, def) {
       if (!this.validatenull(fun)) {
         try {
-          return eval(fun);
+          return funEval(fun)
         } catch {
           return () => { }
         }
