@@ -27,7 +27,8 @@ import datavOption from './components/datav'
 import mainOption from './components/main'
 //自定义组件库
 import testOption from '@/components/test/option'
-
+import imgTabsOption from '@/components/imgTabs/option'
+import imgListOption from '@/components/imgList/option'
 export default {
   components: {
     commonOption,
@@ -54,6 +55,8 @@ export default {
     videoOption,
     wordcloudOption,
     datavOption,
-    testOption
+    testOption,
+    imgTabsOption,
+    imgListOption
   }
 }

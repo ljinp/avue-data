@@ -52,6 +52,7 @@ export default [{
       "title": "自定义",
       "icon": 'icon-bar',
       "img": require('@/assets/text4.png'),
+      "dataType": 0,
       "data": [],
       "dataFormatter": "",
       "stylesFormatter": "",
@@ -1241,5 +1242,90 @@ export default [{
         "backgroundImage": "/img/banner/banner4.png"
       },
     },
+  }]
+}, {
+  label: '二次开发',
+  icon: 'el-icon-info',
+  children: [{
+    label: '滚动选项卡',
+    option: {
+      "name": "滚动选项卡",
+      "title": "滚动选项卡",
+      "icon": 'icon-bar',
+      "img": require('@/assets/text4.png'),
+      "dataType": 0,
+      data: [{
+        text: '领导调研',
+        list: [
+          "https://img.alicdn.com/tfs/TB1v28TC8v0gK0jSZKbXXbK2FXa-1880-640.jpg",
+          "https://img.alicdn.com/tfs/TB1uevcCrj1gK0jSZFuXXcrHpXa-1880-640.jpg"
+        ]
+      }, {
+        text: '先进事件',
+        list: [
+          "https://img.alicdn.com/imgextra/i1/O1CN01NAnI6W1Vf1kZScscd_!!6000000002679-0-tps-2880-1070.jpg",
+          "https://img.alicdn.com/imgextra/i2/O1CN011FMQT21RF8u1nHsem_!!6000000002081-0-tps-2880-1070.jpg"
+        ]
+      }],
+      "dataFormatter": "",
+      "stylesFormatter": "",
+      "component": {
+        "width": 800,
+        "height": 400,
+        "name": "imgTabs",
+        "prop": "imgTabs",
+      },
+      "option": {
+        direction: 'horizontal',
+        interval: 3000,
+        autoplay: true
+      }
+    }
+  }, {
+    label: '滚动列表',
+    option: {
+      "name": "滚动列表",
+      "title": "滚动列表",
+      "icon": 'icon-bar',
+      "img": require('@/assets/text4.png'),
+      "dataType": 0,
+      "data": [{
+        name: 'smallwei',
+        age: '28',
+        color: 'green',
+        img: 'https://avuejs.com/images/logo.png',
+        desc: '前端搬砖神器,让数据驱动视图,更加贴合企业开发,前端搬砖神器,让数据驱动视图,更加贴合企业开发,前端搬砖神器,让数据驱动视图,更加贴合企业开发,前端搬砖神器,让数据驱动视图,更加贴合企业开发',
+        tag: '前端'
+      }, {
+        name: 'smallwei',
+        age: '28',
+        color: 'red',
+        img: 'https://avuejs.com/images/logo.png',
+        desc: '前端搬砖神器,让数据驱动视图,更加贴合企业开发,前端搬砖神器,让数据驱动视图,更加贴合企业开发,前端搬砖神器,让数据驱动视图,更加贴合企业开发,前端搬砖神器,让数据驱动视图,更加贴合企业开发',
+        tag: '前端'
+      }, {
+        name: 'smallwei',
+        age: '28',
+        color: 'red',
+        img: 'https://avuejs.com/images/logo.png',
+        desc: '前端搬砖神器,让数据驱动视图,更加贴合企业开发,前端搬砖神器,让数据驱动视图,更加贴合企业开发,前端搬砖神器,让数据驱动视图,更加贴合企业开发,前端搬砖神器,让数据驱动视图,更加贴合企业开发',
+        tag: '前端'
+      }],
+      "dataFormatter": "",
+      "stylesFormatter": "",
+      "component": {
+        "width": 800,
+        "height": 500,
+        "name": "imgList",
+        "prop": "imgList",
+      },
+      "option": {
+        borderImageSource: '/img/border/border1.png',
+        step: 1,
+        marginBottom: 20,
+        hoverStop: true,
+
+      }
+    }
   }]
 }]

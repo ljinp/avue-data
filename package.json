@@ -21,6 +21,7 @@
     "monaco-editor": "0.21.3",
     "vue": "^2.6.11",
     "vue-router": "3.1.0",
+    "vue-seamless-scroll": "^1.1.23",
     "vue-sketch-ruler": "^1.0.3",
     "vuedraggable": "^2.23.2"
   },

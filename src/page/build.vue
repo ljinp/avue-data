@@ -741,20 +741,13 @@ export default {
     },
     //图库框回调赋值
     handleSetimg (val, type) {
-      if (type === 'activeObj.data') {
-        this.activeObj.data = val;
-      } if (type === 'activeObj.data.value') {
-        this.activeObj.data.value = val;
-      } else if (type === 'activeOption.backgroundImage') {
-        this.activeOption.backgroundImage = val;
-      } else if (type === 'activeOption.backgroundBorder') {
-        this.activeOption.backgroundBorder = val;
-      } else if (type === 'activeOption.empBackgroundBorder') {
-        this.activeOption.empBackgroundBorder = val;
-      } else if (type === 'config.backgroundImage') {
-        this.config.backgroundImage = val;
-      } else if (type === 'activeOption.symbol') {
-        this.activeOption.symbol = val;
+      let params = type.split('.')[1];
+      if (type.includes('config')) {
+        this.config[params] = val;
+      } else if (type.includes('activeObj')) {
+        this.activeObj[params] = val;
+      } else if (type.includes('activeOption')) {
+        this.activeOption[params] = val;
       }
     },
     /* **************************标尺方法开始******************************* */
