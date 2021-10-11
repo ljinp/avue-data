@@ -96,14 +96,16 @@ export default {
     },
     getJson (str) {
       if (this.validatenull(str)) return {};
-      if (typeof str == "string") {
+      else if (typeof str == "string") {
         try {
           return JSON.parse(str);
         } catch {
           return {}
         }
+      } else {
+        return str;
       }
-      return str;
+
     },
     //点击事件交互
     handleClick ({ type, child, value }) {
@@ -113,6 +115,7 @@ export default {
           let params = item.dataQuery ? this.getJson(item.dataQuery) : {}
           params[child.paramName || ''] = value;
           item.dataQuery = JSON.stringify(params);
+          this.$refs[this.common.NAME + index].forEach(ele => ele.updateData())
         })
       }
     },
