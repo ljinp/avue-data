@@ -18,7 +18,8 @@
     </el-aside>
     <el-container>
       <el-header class="page">
-        <el-pagination layout="total, sizes, prev, pager, next, jumper"
+        <el-pagination v-if="page.total>0"
+                       layout="total, sizes, prev, pager, next, jumper"
                        background
                        size="mini"
                        @size-change="handleSizeChange"

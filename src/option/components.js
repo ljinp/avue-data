@@ -20,6 +20,7 @@ import tableOption from './components/table'
 import tabsOption from './components/tabs'
 import textOption from './components/text'
 import videoOption from './components/video'
+import clapperOption from './components/clapper'
 import commonOption from './components/common'
 import wordcloudOption from './components/wordcloud'
 import datavOption from './components/datav'
@@ -53,6 +54,7 @@ export default {
     tabsOption,
     textOption,
     videoOption,
+    clapperOption,
     wordcloudOption,
     datavOption,
     testOption,

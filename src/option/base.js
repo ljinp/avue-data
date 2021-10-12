@@ -813,7 +813,7 @@ export default [{
       "stylesFormatter": ""
     }
   }, {
-    label: 'video',
+    label: 'video播放器',
     option: {
       "title": "video",
       "name": "video",
@@ -834,6 +834,30 @@ export default [{
         "option": {},
         "name": "video",
         "prop": "video"
+      },
+    }
+  }, {
+    label: 'hls播放器',
+    option: {
+      "title": "hls",
+      "name": "hls",
+      "icon": 'icon-video',
+      "img": require('@/assets/video.png'),
+      "top": 0,
+      "left": 0,
+      "dataType": 0,
+      "data": {
+        value: 'https://open.ys7.com/v3/openlive/E10668433_1_1.m3u8?expire=1664027961&id=363444666731335680&t=346b970f0d5cb5d5b5e4734d966275a61fb9efd5038c7a75b7435423c5716908&ev=100'
+      },
+      "option": {},
+      "dataFormatter": "",
+      "stylesFormatter": "",
+      "component": {
+        "width": 670,
+        "height": 370,
+        "option": {},
+        "name": "clapper",
+        "prop": "clapper"
       },
     }
   }]
