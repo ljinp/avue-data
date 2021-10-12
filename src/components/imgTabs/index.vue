@@ -5,7 +5,7 @@
            :class="{'imgTabs--active':index==count}"
            v-for="(item,index) in dataChart"
            :key="index"
-           @click="handleItem(item,index)">
+           @click="handleItem(index)">
         <span>{{item.text}}</span>
       </div>
     </div>
@@ -29,6 +29,7 @@ export default {
   name: 'imgTabs',
   data () {
     return {
+      check: null,
       count: 0,
       active: {}
     }
@@ -37,17 +38,39 @@ export default {
     option: Object,
     component: Object
   },
-  watch: {
-    dataChart (val) {
-      this.active = val && val[0].list;
+  computed: {
+    time () {
+      return this.option.time;
     }
   },
-  computed: {
+  watch: {
+    count (val) {
+      this.active = this.dataChart[val].list;
+    },
+    dataChart (val) {
+      this.active = val && val[0].list;
+    },
+    time (val) {
+      clearInterval(this.check)
+      if (val > 0) {
+        this.handleTime()
+      }
+    }
+  },
+  mounted () {
+    this.handleTime()
   },
   methods: {
-    handleItem (item, index) {
+    handleTime () {
+      this.check = setInterval(() => {
+        this.count++
+        if (this.count >= this.dataChart.length) {
+          this.count = 0
+        }
+      }, this.time)
+    },
+    handleItem (index) {
       this.count = index
-      this.active = item.list;
     }
   }
 }

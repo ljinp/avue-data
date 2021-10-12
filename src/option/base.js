@@ -1302,6 +1302,7 @@ export default [{
       "option": {
         direction: 'horizontal',
         interval: 3000,
+        time: 5000,
         autoplay: true
       }
     }
@@ -1319,21 +1320,21 @@ export default [{
         color: 'green',
         img: 'https://avuejs.com/images/logo.png',
         desc: '前端搬砖神器,让数据驱动视图,更加贴合企业开发,前端搬砖神器,让数据驱动视图,更加贴合企业开发,前端搬砖神器,让数据驱动视图,更加贴合企业开发,前端搬砖神器,让数据驱动视图,更加贴合企业开发',
-        tag: '前端'
+        tag: ['前端']
       }, {
         name: 'smallwei',
         age: '28',
         color: 'red',
         img: 'https://avuejs.com/images/logo.png',
         desc: '前端搬砖神器,让数据驱动视图,更加贴合企业开发,前端搬砖神器,让数据驱动视图,更加贴合企业开发,前端搬砖神器,让数据驱动视图,更加贴合企业开发,前端搬砖神器,让数据驱动视图,更加贴合企业开发',
-        tag: '前端'
+        tag: ['前端']
       }, {
         name: 'smallwei',
         age: '28',
         color: 'red',
         img: 'https://avuejs.com/images/logo.png',
         desc: '前端搬砖神器,让数据驱动视图,更加贴合企业开发,前端搬砖神器,让数据驱动视图,更加贴合企业开发,前端搬砖神器,让数据驱动视图,更加贴合企业开发,前端搬砖神器,让数据驱动视图,更加贴合企业开发',
-        tag: '前端'
+        tag: ['前端', '前端', '前端'],
       }],
       "dataFormatter": "",
       "stylesFormatter": "",

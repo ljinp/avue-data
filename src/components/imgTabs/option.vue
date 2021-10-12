@@ -1,6 +1,9 @@
 <!-- 自定义配置 -->
 <template>
   <div>
+    <el-form-item label="选项卡时间">
+      <avue-input-number v-model="main.activeOption.time"></avue-input-number>
+    </el-form-item>
     <el-form-item label="自动播放">
       <avue-switch v-model="main.activeOption.autoplay"></avue-switch>
     </el-form-item>

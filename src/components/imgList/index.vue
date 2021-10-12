@@ -16,8 +16,12 @@
             <div class="imgItem_top">
               <span class="imgItem_name">{{item.name}}</span>
               <span>{{item.age}}</span>
-              <span class="imgItem_tag"
-                    :style="{backgroundColor: item.color}">{{item.tag}}</span>
+              <span class="imgItem_tag">
+                <span v-for="(citem,cindex) in item.tag"
+                      :key="cindex"
+                      :style="{backgroundColor: item.color}">{{citem}}</span>
+              </span>
+
             </div>
             <div class="imgItem_content">
               {{item.desc}}
@@ -112,10 +116,13 @@ export default {
     margin-bottom: 10px;
   }
   &_tag {
-    position: relative;
-    padding: 2px 10px 2px 10px;
-    font-size: 10px;
     float: right;
+    span {
+      position: relative;
+      padding: 2px 10px 2px 10px;
+      font-size: 10px;
+      margin-left: 10px;
+    }
   }
   &_content {
     line-height: 25px;
