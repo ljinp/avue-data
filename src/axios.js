@@ -24,12 +24,14 @@ axios.interceptors.request.use(config => {
   //获取全局参数
   if (config.method == 'get') {
     var query = window.location.search;
-    if (config.url.indexOf('?') == -1) {
-      config.url = config.url + query
-    } else {
-      config.url = config.url + '&' + query.substring(1)
+    if (query) {
+      if (config.url.indexOf('?') == -1) {
+        config.url = config.url + query
+      } else {
+        config.url = config.url + '&' + query.substring(1)
+      }
     }
-  } else if (config.method == 'post' && typeof(config.data) === 'object') {
+  } else if (config.method == 'post' && typeof (config.data) === 'object') {
     config.data = Object.assign(config.data, window.globParams)
   }
 

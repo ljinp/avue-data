@@ -5,7 +5,6 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <link rel="icon" href="./favicon.ico">
   <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
   <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
   <META HTTP-EQUIV="Expires" CONTENT="0">
@@ -42,7 +41,7 @@
       var r = window.location.search.substr(1).match(reg);
       if (r != null) return unescape(r[2]); return null;
     }
-    Vue.use(AVUE);
+    Vue.use(window.AVUE);
   </script>
 </head>
 
