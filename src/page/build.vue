@@ -742,8 +742,11 @@ export default {
     //图库框回调赋值
     handleSetimg (val, type) {
       let params = type.split('.')[1];
+      console.log(val, type);
       if (type.includes('config')) {
         this.config[params] = val;
+      } else if (type.includes('activeObj.data')) {
+        this.activeObj.data.value = val;
       } else if (type.includes('activeObj')) {
         this.activeObj[params] = val;
       } else if (type.includes('activeOption')) {
