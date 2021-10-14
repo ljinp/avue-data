@@ -10,7 +10,7 @@ export const config = {
     textStyle: 'rgba(100,100,100,0.2)',
     degree: -20
   },
-  backgroundImage: '/img/bg/bg1.png',
+  backgroundImage: '/img/bg/bg.png',
   query: {}
 };
 // 颜色的配置

@@ -2,11 +2,12 @@
   <div class="build">
     <imglist ref="imglist"
              @change="handleSetimg"></imglist>
+    <headers></headers>
     <top ref="top"></top>
     <div class="app"
          :class="{'app--none':!menuFlag}">
       <div class="menu"
-           v-show="menuFlag"
+           v-show="menuFlag&&menuShow"
            @click.self="handleMouseDown">
         <p class="title">图层</p>
         <layer ref="layer"
@@ -50,7 +51,7 @@
         </div>
       </div>
       <div class="menu params"
-           v-show="menuFlag">
+           v-show="menuFlag&&paramsShow">
         <p class="title">操作</p>
         <el-tabs class="tabs"
                  stretch
@@ -341,7 +342,6 @@
         </el-tabs>
       </div>
     </div>
-
     <codeedit @submit="codeClose"
               :type="code.type"
               v-model="code.obj"
@@ -414,6 +414,7 @@
 import MonacoEditor from '@/page/components/editor'
 import layer from './group/layer';
 import top from './group/top';
+import headers from './group/header';
 import imglist from './group/imglist'
 import contentmenu from './group/contentmenu'
 import codeedit from './group/code';
@@ -429,6 +430,8 @@ export default {
   mixins: [init, components],
   data () {
     return {
+      menuShow: true,
+      paramsShow: true,
       show: false,
       keys: {
         ctrl: false,
@@ -482,6 +485,7 @@ export default {
     layer,
     codeedit,
     top,
+    headers,
     contentmenu,
     SketchRule
   },

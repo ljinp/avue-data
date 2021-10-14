@@ -52,7 +52,7 @@ export const addObj = (data) => request({
         width: data.width,
         height: data.height,
         scale: 1,
-        backgroundImage: '/img/bg/bg1.png',
+        backgroundImage: '/img/bg/bg.png',
         url: '',
         mark: {},
         gradeShow: false,
