@@ -1,90 +1,93 @@
 <template>
   <el-container class="list">
-    <el-aside width="200px">
-      <el-menu :default-active="activeName"
-               background-color="#171b22"
-               text-color="#fff"
-               active-text-color="#00baff"
-               @select="handleSelect">
-        <el-menu-item :index="item.categoryValue"
-                      :key="item.categoryValue"
-                      v-for="item in typelist"
-                      @click="getList(item.categoryValue)">
+    <el-aside width="180px">
+      <ul class="menu">
+        <li :index="item.categoryValue"
+            :key="item.categoryValue"
+            v-for="item in typelist"
+            :class="{'is-active':item.categoryValue===activeName}"
+            @click="handleSelect(item.categoryValue)">
           <i class="el-icon-s-order"></i>
           {{item.categoryKey}}
-        </el-menu-item>
-      </el-menu>
-
+        </li>
+      </ul>
     </el-aside>
     <el-container>
-      <el-header class="page">
-        <el-pagination v-if="page.total>0"
-                       layout="total, sizes, prev, pager, next, jumper"
-                       background
-                       size="mini"
-                       @size-change="handleSizeChange"
-                       @current-change="handleCurrentChange"
-                       :page-size="page.size"
-                       :current-page.sync="page.page"
-                       :total="page.total">
-        </el-pagination>
-      </el-header>
-      <el-main class="content">
-        <div class="content__item content__item--add"
-             @click="handleAdd">
-          <div>
-            <i class="el-icon-plus"></i>
+      <el-header class="content__header">
+        <p class="avue-tip-title">选择下面的方式进行创建</p>
+        <div class="content__box content__nav">
+          <div class="content__add"
+               @click="handleAdd">
+            <img src="/img/new-project.png"
+                 height="40px"
+                 alt="">
             <p>新建大屏</p>
           </div>
-        </div>
-        <div class="content__item"
-             v-for="(item,index) in list"
-             :key="index"
-             @mouseover="item._menu=true"
-             @mouseout="item._menu=false">
-          <div class="content__info">
-            <img v-if="item.backgroundUrl"
-                 :src="item.backgroundUrl"
-                 alt="" />
-            <div class="content__menu"
-                 v-show="item._menu">
-              <div class="content__btn"
-                   @click="handleEdit(item)">
-                编辑
-              </div>
-              <div class="content__btn"
-                   @click="handleExport(item)">
-                导出
-              </div>
-            </div>
+          <div class="content__page">
+            <el-pagination v-if="page.total>0"
+                           layout="total, sizes, prev, pager, next, jumper"
+                           background
+                           size="mini"
+                           @size-change="handleSizeChange"
+                           @current-change="handleCurrentChange"
+                           :page-size="page.size"
+                           :current-page.sync="page.page"
+                           :total="page.total">
+            </el-pagination>
           </div>
-          <div class="content__main">
-            <span class="content__name">{{item.title}}</span>
-            <div class="content__menulist">
-              <div class="content__view">
-                <el-tooltip content="删除">
-                  <i class="el-icon-delete"
-                     @click="handleDel(item,index)"></i>
-                </el-tooltip>
-                <el-tooltip content="编辑">
-                  <i class="el-icon-edit"
-                     @click="handleUpdate(item,index)"></i>
-                </el-tooltip>
-                <el-tooltip content="预览">
-                  <i class="el-icon-view"
-                     @click="handleViews(item,index)"></i>
-                </el-tooltip>
-                <el-tooltip content="复制">
-                  <i class="el-icon-copy-document"
-                     @click="handleCopy(item,index)"></i>
-                </el-tooltip>
+        </div>
+      </el-header>
+      <el-main class="content">
+        <div class="content__box">
+          <div class="content__item"
+               v-for="(item,index) in list"
+               :key="index"
+               @mouseover="item._menu=true"
+               @mouseout="item._menu=false">
+            <div class="content__info">
+              <img v-if="item.backgroundUrl"
+                   :src="item.backgroundUrl"
+                   alt="" />
+              <div class="content__menu"
+                   v-show="item._menu">
+                <div class="content__btn"
+                     @click="handleEdit(item)">
+                  编辑
+                </div>
+                <div class="content__btn"
+                     @click="handleExport(item)">
+                  导出
+                </div>
               </div>
-              <span class="content__status"
-                    :class="{'content__status--active':item.status}">
-                {{item.status?'已发布':'未发布'}}
-              </span>
             </div>
+            <div class="content__main">
+              <span class="content__name">{{item.title}}</span>
+              <div class="content__menulist">
+                <div class="content__view">
+                  <el-tooltip content="删除">
+                    <i class="el-icon-delete"
+                       @click="handleDel(item,index)"></i>
+                  </el-tooltip>
+                  <el-tooltip content="编辑">
+                    <i class="el-icon-edit"
+                       @click="handleUpdate(item,index)"></i>
+                  </el-tooltip>
+                  <el-tooltip content="预览">
+                    <i class="el-icon-view"
+                       @click="handleViews(item,index)"></i>
+                  </el-tooltip>
+                  <el-tooltip content="复制">
+                    <i class="el-icon-copy-document"
+                       @click="handleCopy(item,index)"></i>
+                  </el-tooltip>
+                </div>
+                <span class="content__status"
+                      :class="{'content__status--active':item.status}">
+                  {{item.status?'已发布':'未发布'}}
+                </span>
+              </div>
 
+            </div>
           </div>
         </div>
       </el-main>
@@ -196,6 +199,11 @@ export default {
     this.getCategory()
   },
   methods: {
+    handleSelect (key) {
+      this.activeName = key;
+      this.page.page = 1;
+      this.getList();
+    },
     vaildData (id) {
       const list = [];
       for (var i = 0; i < 20; i++) {
@@ -328,11 +336,6 @@ export default {
           this.getList();
         })
       }
-    },
-    handleSelect (key) {
-      this.activeName = key;
-      this.page.page = 1;
-      this.getList();
     },
     handleCurrentChange (val) {
       this.page.page = val;

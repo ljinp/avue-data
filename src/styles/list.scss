@@ -1,5 +1,32 @@
 .list{
   height: 100%;
+  .menu{
+    padding-top: 40px;
+    li{
+      padding-left: 40px;
+      position: relative;
+      height: 50px;
+      line-height: 40px;
+      display: flex;
+      font-size: 14px;
+      align-items: center;
+      cursor: pointer;
+      color:#fff;
+      &:hover{
+        color: #3365b9;
+      }
+      i{
+        margin-right: 10px;
+      }
+      &.is-active{
+        background-image: url(/img/nav-menu-img.png);
+        background-repeat: round;
+        &:hover{
+          color: #fff;
+        }
+      }
+    }
+  }
   .el-menu{
     border-right: none;
   }
@@ -7,17 +34,57 @@
     border-color: rgb(33, 37, 40);
     border-width: 2px;
   }
-  .page{
-    padding: 20px 0 0 0;
-    display: flex;
-    justify-content: center;
-  }
   .el-menu i {
     margin-right: 5px;
   }
   .content{
     display: flex;
     flex-wrap: wrap;
+    &__header{
+      padding-left: 40px;
+      width: 100%;
+      height: 150px !important;
+    }
+    &__box{
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    &__nav{
+      justify-content: space-between;
+    }
+    &__add {
+      margin: 20px 0 10px 0;
+      width: 258px;
+      height: 78px;
+      padding:0 20px;
+      box-sizing: border-box;
+      vertical-align: middle;
+      border: 1px solid #00baff;
+      color: #8eeeff;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+      cursor: pointer;
+      background-image: linear-gradient(-90deg, rgba(0, 222, 255, .39) 0, rgba(0, 174, 255, .19) 100%);
+      box-shadow: 0 0 10px 0 rgba(55, 224, 255, .3);
+      font-size: 14px;
+      cursor: pointer;
+      img{
+        margin-right: 30px;
+      }
+      p {
+        letter-spacing: 2px;
+      }
+      
+    }  
+    &__page{
+      padding-right: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     &__item{
       position: relative;
       margin: 16px;
@@ -31,30 +98,7 @@
       &:hover {
         box-shadow: 0 0 20px 0 #000;
         border: 1px solid #00baff;
-      }
-      &--add {
-        height: 184px;
-        width: 258px;
-        border: 1px solid #00baff;
-        font-size: 14px;
-        color: #8eeeff;
-        background-image: linear-gradient(-90deg, rgba(0, 222, 255, .39) 0, rgba(0, 174, 255, .19) 100%);
-        box-shadow: 0 0 10px 0 rgba(55, 224, 255, .3);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        i {
-          display: block;
-          padding-bottom: 10px;
-          text-align: center;
-          font-size: 19px;
-        }
-        p {
-          letter-spacing: 2px;
-        }
-        
-      }    
+      }  
     }
     &__main {
       font-size: 12px;
@@ -117,15 +161,17 @@
       margin: 5px 0;
       display: inline-block;
       vertical-align: middle;
-      height: 32px;
-      line-height: 32px;
-      padding: 0 30px;
+      height: 34px;
+      line-height: 34px;
+      padding: 0 40px;
       box-sizing: border-box;
       outline: 0;
       text-align: center;
       font-size: 14px;
       background-image: linear-gradient(-225deg, #00d3f1 0, #12b3ff 100%);
-      color: #293f52;
+      background-color: #2681ff;
+      border-color: #2681ff;
+      color:#fff;
       border: none;
       transition: .3s ease;
       cursor: pointer

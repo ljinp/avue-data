@@ -1,59 +1,34 @@
 <template>
   <div class="index">
     <div class="header">
-      <img src="/img/header.jpg"
+      <img src="/img/nav-img.png"
            alt=""
            width="100%"
-           height="210px">
+           height="220px">
       <div class="title">
         <p>
-          AVUE-DATA<br />
+          WELECOMT TO AVUE-DATA<br />
           <small>可视化数据大屏（演示环境）</small>
         </p>
       </div>
-      <el-menu class="nav"
-               mode="horizontal"
-               :default-active="activeName"
-               background-color="rgba(0,0,0,0)"
-               text-color="#fff"
-               @select="handleSelect"
-               active-text-color="#00baff">
-        <el-menu-item index="1">
-          <i class="el-icon-menu"></i>
-          大屏管理
-        </el-menu-item>
-        <el-menu-item index="2">
-          <i class="el-icon-location-information"></i>
-          地图管理
-        </el-menu-item>
-        <el-menu-item index="3">
-          <i class="el-icon-folder-opened"></i>
-          分类管理
-        </el-menu-item>
-        <el-menu-item index="4">
-          <i class="el-icon-set-up"></i>
-          数据源管理
-        </el-menu-item>
-        <el-menu-item index="5"
-                      @click="goApi">
-          接口文档
-        </el-menu-item>
-        <el-menu-item index="6"
-                      @click="goData">
-          在线文档
-        </el-menu-item>
-
-      </el-menu>
+      <navs @change="handleChange"></navs>
     </div>
-    <div v-if="['1'].includes(activeName)"
-         class="main">
-      <list v-if="activeName==1"></list>
+    <div class="main"
+         v-if="activeName==0">
+      <list></list>
     </div>
-    <el-scrollbar v-else
-                  class="main">
-      <maps v-if="activeName==2"></maps>
-      <category v-else-if="activeName==3"></category>
-      <db v-else-if="activeName==4"></db>
+    <el-scrollbar class="main">
+      <maps v-if="activeName==1"></maps>
+      <category v-else-if="activeName==2"></category>
+      <db v-else-if="activeName==3"></db>
+      <iframe v-else-if="activeName==4"
+              style="width:100%;height:1500px"
+              src="https://data.bladex.vip/doc.html"
+              frameborder="0"></iframe>
+      <iframe v-else-if="activeName==5"
+              style="width:100%;height:1500px"
+              src="https://www.kancloud.cn/smallwei/avue-doc"
+              frameborder="0"></iframe>
     </el-scrollbar>
   </div>
 </template>
@@ -62,9 +37,11 @@ import list from './list/index'
 import maps from './list/map'
 import category from './list/category'
 import db from './list/db'
+import navs from './nav/index'
 export default {
   name: "index",
   components: {
+    navs,
     list,
     maps,
     category,
@@ -72,25 +49,13 @@ export default {
   },
   data () {
     return {
-      activeName: '1',
+      activeName: 0,
     }
   },
-  created () {
-
-  },
   methods: {
-    goApi () {
-      window.open('https://data.bladex.vip/doc.html')
-    },
-    goData () {
-      window.open('https://www.kancloud.cn/smallwei/avue-doc')
-    },
-    handleSelect (key) {
-      if (['5', '6'].includes(key)) {
-        return
-      }
-      this.activeName = key;
-    },
+    handleChange (nav, index) {
+      this.activeName = index;
+    }
   }
 }
 </script>
@@ -99,8 +64,6 @@ export default {
   height: 100%;
   .header {
     position: relative;
-    padding: 0;
-    height: auto !important;
     .nav {
       margin: 0 20px;
       width: 100%;
@@ -113,14 +76,17 @@ export default {
     }
     .title {
       position: absolute;
-      top: 30px;
-      left: 30px;
-      font-size: 34px;
+      top: 60px;
+      left: 20px;
+      font-size: 48px;
+      font-style: oblique;
       color: rgb(0, 186, 255);
-      font-weight: 500;
+      font-weight: bold;
+      line-height: 35px;
     }
     .title small {
       font-size: 18px;
+      color: #9cb4c2;
     }
   }
   .main {

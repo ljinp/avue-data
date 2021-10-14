@@ -284,3 +284,13 @@ input{
   border-color:#333;
 
 }
+.avue-tip-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #3365b9;
+  padding: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 40px;
+}
