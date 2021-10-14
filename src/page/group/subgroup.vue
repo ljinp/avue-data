@@ -6,6 +6,7 @@
       <avue-draggable v-if="!item.children"
                       v-bind="item"
                       :scale="container.stepScale"
+                      :lock="item.lock"
                       :disabled="!contain.menuFlag"
                       :step="container.stepScale"
                       :width="item.component.width"

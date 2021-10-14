@@ -4,6 +4,9 @@
        @click="contentMenu=false"
        :style="styleName">
     <div class="contentmenu__item"
+         @click="handleLock()"> <i class="el-icon-close"></i>{{contain.activeObj.lock?'解锁':'锁定'}}
+    </div>
+    <div class="contentmenu__item"
          @click="handleLogout()"
          v-if="contain.isFolder"> <i class="el-icon-close"></i>解散分组
     </div>
@@ -197,6 +200,10 @@ export default {
     },
     handleBottom () {
       this.handleCommon();
+    },
+    handleLock () {
+      this.contain.activeObj.lock = !this.contain.activeObj.lock;
+      this.contain.active = []
     }
   }
 }

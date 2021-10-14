@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import ElementUI from 'element-ui';
-import Avue from '@smallwei/avue'
-import '@smallwei/avue/lib/index.css'
 import axios from './axios'
 import 'element-ui/lib/theme-chalk/index.css';
 import dataV from '@jiaminghi/data-view'
@@ -15,7 +13,7 @@ import '@/mock/'
 import '@/theme/index.js'
 Vue.config.productionTip = false
 window.axios = axios;
-Vue.use(Avue, {
+Vue.use(window.AVUE, {
   size: 'mini'
 });
 Vue.prototype.url = url;

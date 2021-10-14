@@ -139,9 +139,9 @@
               </template>
               <!-- 主屏的配置项 -->
               <template v-else>
-                <!-- <el-form-item label="大屏名称">
+                <el-form-item label="大屏名称">
                   <avue-input v-model="config.name"></avue-input>
-                </el-form-item> -->
+                </el-form-item>
                 <el-form-item label="大屏宽度">
                   <avue-input-number v-model="config.width"></avue-input-number>
                 </el-form-item>
@@ -540,8 +540,8 @@ export default {
         bgColor: '#181b24', // ruler bg color
         longfgColor: '#BABBBC', // ruler longer mark color
         shortfgColor: '#9C9C9C', // ruler shorter mark color
-        fontColor: '#DEDEDE', // ruler font color
-        shadowColor: '#525252', // ruler shadow color
+        fontColor: '#fff', // ruler font color
+        shadowColor: '#181b24', // ruler shadow color
         lineColor: '#EB5648',
         borderColor: '#B5B5B5',
         cornerActiveColor: '#fff',
