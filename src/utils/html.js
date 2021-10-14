@@ -19,6 +19,7 @@ export const viewHtml = `
   <link rel="stylesheet" href="${homePath}/lib/index.css">
   <link rel="stylesheet" href="${dataPath}/lib/index.css">
   <link rel="stylesheet" href="${cdnPath}/Swiper/4.5.1/css/swiper.min.css">
+  <script src="${cdnPath}/Swiper/4.5.1/js/swiper.min.js"> </script>
   <script src="${dataPath}/config.js"></script>
   <script src="${cdnPath}/echarts/4.2.1/echarts.min.js"></script>
   <script src="${dataPath}/cdn/echarts-wordcloud.min.js"></script>
@@ -26,11 +27,11 @@ export const viewHtml = `
   <script src="${dataPath}/const/theme/avue.project.js"></script>
   <script src="${dataPath}/const/theme/halloween.project.js"></script>
   <script src="${dataPath}/const/theme/wonderland.project.js"></script>
-  <script src="${homePath}/lib/avue.min.js"></script>
   <script src="${cdnPath}/vue/2.6.14/vue.min.js" charset="utf-8"></script>
   <script src="${cdnPath}/axios/0.21.1/axios.min.js" charset="utf-8"></script>
   <script src="${cdnPath}/element-ui/2.15.3/index.min.js" charset="utf-8"></script>
-  <script src="${cdnPath}/Swiper/4.5.1/js/swiper.min.js"> </script>
+  <script src="${homePath}/lib/avue.min.js"></script>
+  <script src="${dataPath}/cdn/datav.min.vue.js"></script>
   <script src="${dataPath}/lib/index.umd.min.js"></script>
   <title>avue-data数据大屏</title>
   <style>

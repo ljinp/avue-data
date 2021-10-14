@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="./cdn/avue/2.8.23/index.css">
   <link rel="stylesheet" href="./lib/index.css">
   <link rel="stylesheet" href="https://cdn.staticfile.org/Swiper/4.5.1/css/swiper.min.css">
+  <script src="https://cdn.staticfile.org/Swiper/4.5.1/js/swiper.min.js"> </script>
   <script src="./config.js"></script>
   <script src="./cdn/echarts/4.2.1/echarts.min.js"></script>
   <script src="./cdn/echarts-wordcloud.min.js"></script>
@@ -22,11 +23,11 @@
   <script src="./const/theme/avue.project.js"></script>
   <script src="./const/theme/halloween.project.js"></script>
   <script src="./const/theme/wonderland.project.js"></script>
-  <script src="./cdn/avue/2.8.23/avue.min.js"></script>
   <script src="./cdn/vue/2.5.2/vue.min.js" charset="utf-8"></script>
   <script src="./cdn/axios/1.0.0/axios.min.js" charset="utf-8"></script>
   <script src="./cdn/element-ui/2.15.0/index.js" charset="utf-8"></script>
-  <script src="https://cdn.staticfile.org/Swiper/4.5.1/js/swiper.min.js"> </script>
+  <script src="./cdn/avue/2.8.23/avue.min.js"></script>
+  <script src="./cdn/datav.min.vue.js"></script>
   <script src="./lib/index.umd.min.js"></script>
   <title>avue-data数据大屏</title>
   <style>
@@ -41,7 +42,6 @@
       var r = window.location.search.substr(1).match(reg);
       if (r != null) return unescape(r[2]); return null;
     }
-    Vue.use(window.AVUE);
   </script>
 </head>
 
