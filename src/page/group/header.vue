@@ -68,6 +68,14 @@
         </el-tooltip>
       </div>
       <div class="head_btn"
+           @click="handleShare">
+        <el-tooltip effect="dark"
+                    content="分享"
+                    placement="top">
+          <i class="el-icon-share"></i>
+        </el-tooltip>
+      </div>
+      <div class="head_btn"
            :disabled='!contain.canUndo'
            @click="contain.editorUndo">
         <el-tooltip effect="dark"
@@ -116,8 +124,9 @@ export default {
         this.contain.setScale(document.body.clientWidth);
       })
     },
-    handleBuild () {
-      if (this.$route.params.id <= 100) {
+    handleBuild (fn) {
+      let isFun = typeof (fn) === 'function'
+      if (!isFun && this.$route.params.id <= 100) {
         this.$message.error('模版例子不能修改')
         return
       }
@@ -171,20 +180,13 @@ export default {
             return updateComponent(formdata)
           }).then(() => {
             loading.close();
-            this.$confirm('保存成功大屏配置, 是否打开预览?', '提示', {
-              confirmButtonText: '确定',
-              cancelButtonText: '取消',
-              type: 'warning'
-            }).then(() => {
-              let routeUrl = this.$router.resolve({
-                path: '/view/' + this.contain.id
-              })
-              window.open(routeUrl.href, '_blank');
-            }).catch(() => {
-
-            });
+            if (isFun) {
+              fn()
+            } else {
+              this.$message.success('大屏配置保存成功');
+            }
           }).catch(() => {
-            this.$message.error('模版例子不能修改')
+            this.$message.error('大屏配置保存失败，请检查服务端配置')
             loading.close();
           })
         })
@@ -205,6 +207,14 @@ export default {
       });
 
     },
+    handleShare () {
+      this.handleBuild(() => {
+        let routeUrl = this.$router.resolve({
+          path: '/view/' + this.contain.id
+        })
+        window.open(routeUrl.href, '_blank');
+      })
+    }
   }
 }
 </script>
