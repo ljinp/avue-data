@@ -749,10 +749,10 @@ export default {
       console.log(val, type);
       if (type.includes('config')) {
         this.config[params] = val;
-      } else if (type.includes('activeObj.data')) {
-        this.activeObj.data = val;
       } else if (type.includes('activeObj.data.value')) {
         this.activeObj.data.value = val;
+      } else if (type.includes('activeObj.data')) {
+        this.activeObj.data = val;
       } else if (type.includes('activeObj')) {
         this.activeObj[params] = val;
       } else if (type.includes('activeOption')) {
