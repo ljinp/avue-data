@@ -817,6 +817,7 @@ export default {
     // 鼠标按下事件
     dragMousedown (e) {
       // 如果按下了空格键,且按下鼠标左键,那么鼠标变抓手,开启滚动条随鼠标拖动的操作
+      this.handleInitActive()
       if (this.keys.space) {
         this.dragSlide = true
         window.stardragEvent = e
