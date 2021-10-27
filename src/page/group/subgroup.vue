@@ -15,6 +15,7 @@
                       :id="common.DEAFNAME+item.index"
                       :active-flag="contain.active.includes(item.index)"
                       v-show="!item.display"
+                      @move="handleMove"
                       @over="handleOver"
                       @focus="handleFocus"
                       @blur="handleBlur">
@@ -131,22 +132,24 @@ export default {
     getDragObj (val) {
       return this.$refs[`${this.common.DEAFNAME}${val}`];
     },
+    handleMove ({ index, left, top }) {
+      if (this.contain.activeIndex !== index) return
+      this.contain.activeList.forEach(item => {
+        if (this.contain.activeIndex === item.index) return
+        item.left = item.left + left;
+        item.top = item.top + top
+      })
+    },
     handleOver ({ index }) {
       this.contain.overactive = index;
     },
     handleFocus ({ index }) {
+      this.contain.activeIndex = index;
       this.container.gradeFlag = true;
-      if (this.contain.keys.ctrl) {
-        if (!Array.isArray(this.contain.active)) {
-          this.contain.handleInitActive();
-        }
-        this.contain.active.push(index);
-      } else if (!this.contain.active.includes(index)) {
-        this.contain.active = [index];
-      }
+      this.contain.selectNav(index);
     },
-    handleBlur ({ left, top, width, height }) {
-      if (Array.isArray(this.contain.activeObj)) return
+    handleBlur ({ index, left, top, width, height }) {
+      if (index !== this.contain.activeIndex) return
       this.container.gradeFlag = false;
       this.$set(this.contain.activeObj.component, 'width', width)
       this.$set(this.contain.activeObj.component, 'height', height)

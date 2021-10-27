@@ -490,6 +490,9 @@ export default {
     SketchRule
   },
   computed: {
+    isKeysCtrl () {
+      return this.keys.ctrl == true
+    },
     isStatic () {
       return this.activeObj.dataType == 0
     },
@@ -523,18 +526,15 @@ export default {
       return this.activeObj.option || {}
     },
     activeObj () {
-      let result
-      if (this.validatenull(this.active)) {
-        return {}
-      }
+      if (this.validatenull(this.activeIndex)) return {}
+      let item = this.findlist(this.activeIndex);
+      return item
+    },
+    activeList () {
+      let result = []
       this.active.forEach(ele => {
         const item = this.findnav(ele, true);
-        if (this.active.length > 1) {
-          if (!result) result = [];
-          result.push(item.obj);
-        } else {
-          result = item.obj
-        }
+        result.push(item.obj);
       })
       return result
     },
@@ -680,7 +680,7 @@ export default {
     handleContextMenu (e, item = {}) {
       if (!item.index) return
       if (!this.isSelectActive) this.active = [item.index];
-      if (this.keys.ctrl) return
+      if (this.isKeysCtrl) return
       this.$nextTick(() => this.$refs.contentmenu.show(e.clientX, e.clientY))
     },
     //监听键盘的按键
@@ -837,8 +837,16 @@ export default {
         this.$refs.screensRef.scrollLeft = window.startSlideX - x
         this.$refs.screensRef.scrollTop = window.startSlideY - y
       }
-    }
-
+    },
+    selectNav (item) {
+      if (Array.isArray(item)) {
+        this.active = this.active.concat(item)
+      } else if (this.isKeysCtrl) {
+        this.active.push(item);
+      } else if (!this.active.includes(item)) {
+        this.active = [item];
+      }
+    },
   }
 }
 </script>

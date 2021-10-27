@@ -8,22 +8,20 @@
            class="menu__folder"
            v-if="item.children">
         <div @dblclick="hangeChangeName(item)"
-             @click="handleSetActive(item)"
              @contextmenu.prevent="contain.handleContextMenu && contain.handleContextMenu($event,item)"
              :class="['menu__item--folder',{'is-active':handleGetActive(item),'is-over':contain.overactive===item.index}]">
           <i class="iconfont icon-fold"
              @click="openFolder(item)"
              :class="{'is-active':item.menu}"></i>
           <i class="iconfont icon-folder"
-             @click="openFolder(item)"></i>
+             @click="handleSetActive(item)"></i>
           <input type="text"
                  @keyup.enter="item.isname=false"
                  v-if="item.isname"
                  v-model="item.name">
           <span v-else>{{item.name}}</span>
         </div>
-        <div :key="'list'
-                 +item.index"
+        <div :key="'list'+item.index"
              class="menu__list"
              v-show="item.menu">
           <draggable :group="{ name: 'form' }"
@@ -97,14 +95,13 @@ export default {
       return this.contain.active.includes(item.index);
     },
     handleSetActive (item) {
-      if (this.contain.keys.ctrl) {
-        if (!Array.isArray(this.contain.active)) {
-          this.contain.handleInitActive();
-        }
-        this.contain.active.push(item.index)
+      if (item.children) {
+        let list = item.children.map(ele => ele.index);
+        this.contain.selectNav(list);
       } else {
-        this.contain.active = [item.index];
+        this.contain.selectNav(item.index);
       }
+
     },
     hangeChangeName (item) {
       this.$set(item, 'isname', !item.isname)

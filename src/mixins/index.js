@@ -26,6 +26,7 @@ export default {
       nav: [],
       common: common,
       active: [],
+      activeIndex: null,
       overactive: '',
       historyCache: [],// 历史操作数据用于undo redo
       currentHistoryIndex: -1,     // redo undo 指针
