@@ -5,9 +5,14 @@ const vueRouter = new Router({
   mode: 'history',
   routes: [{
     path: '/',
-    name: '列表页',
+    name: 'list',
     component: () =>
       import( /* webpackChunkName: "page" */ '@/page/index')
+  }, {
+    path: '/create',
+    name: 'create',
+    component: () =>
+      import( /* webpackChunkName: "page" */ '@/page/create')
   }, {
     path: '/build/:id',
     name: 'build',

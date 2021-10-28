@@ -93,7 +93,7 @@
       </el-main>
     </el-container>
     <el-dialog :title="type==='add'?'新建大屏':'编辑大屏'"
-               width="35%"
+               width="50%"
                :close-on-click-modal="false"
                :visible.sync="box">
       <avue-form :option="option"
@@ -104,7 +104,7 @@
   </el-container>
 </template>
 <script>
-import { getList, addObj, updateObj, delObj, getCategory, copyObj } from '@/api/visual';
+import { getList, updateObj, delObj, getCategory, copyObj } from '@/api/visual';
 import { getObj } from '@/api/visual'
 import { viewHtml } from '@/utils/html'
 export default {
@@ -113,8 +113,8 @@ export default {
     return {
       typelist: [],
       index: 0,
-      type: '',
       option: {
+        size: 'medium',
         column: [{
           label: '分组',
           prop: 'category',
@@ -139,28 +139,6 @@ export default {
           rules: [{
             required: true,
             message: "请输入大屏名称",
-            trigger: "blur"
-          }]
-        }, {
-          label: '大屏尺寸',
-          span: 14,
-          labelWidth: 100,
-          prop: 'width',
-          placeholder: '请输入宽度',
-          rules: [{
-            required: true,
-            message: "请输入大屏尺寸",
-            trigger: "blur"
-          }]
-        }, {
-          label: '',
-          span: 10,
-          labelWidth: 1,
-          prop: 'height',
-          placeholder: '请输入高度',
-          rules: [{
-            required: true,
-            message: "请输入大屏尺寸",
             trigger: "blur"
           }]
         }, {
@@ -273,23 +251,13 @@ export default {
       });
     },
     handleAdd () {
-      this.type = 'add';
-      this.findObject(this.option.column, 'status').display = false
-      this.findObject(this.option.column, 'width').display = true
-      this.findObject(this.option.column, 'height').display = true
-      this.form.title = '';
-      this.form.status = '';
-      this.form.password = '';
-      this.form.category = this.activeName;
-      this.form.width = 1920;
-      this.form.height = 1080;
-      this.box = true;
+      this.$router.push({
+        path: '/create', query: {
+          category: this.activeName
+        }
+      })
     },
     handleUpdate (item, index) {
-      this.type = 'edit';
-      this.findObject(this.option.column, 'status').display = true
-      this.findObject(this.option.column, 'width').display = false
-      this.findObject(this.option.column, 'height').display = false
       this.form = item
       this.form.category = this.form.category + '';
       this.box = true;
@@ -309,33 +277,21 @@ export default {
     },
     handleSave (form, done) {
       done();
-      if (this.type == 'add') {
-        addObj(Object.assign({
-          category: this.activeName,
-        }, this.form)).then(res => {
-          this.box = false;
-          this.$message.success('新增成功');
-          this.getList();
-          const id = res.data.data.id;
-          this.handleEdit({ id })
-        })
-      } else {
-        if (this.vaildData(Number(this.index))) {
-          this.$message.error('例子模板不允许修改')
-          return false;
-        }
-        updateObj({
-          id: this.form.id,
-          category: this.form.category,
-          password: this.form.password,
-          status: this.form.status,
-          title: this.form.title
-        }).then(() => {
-          this.box = false;
-          this.$message.success('修改成功');
-          this.getList();
-        })
+      if (this.vaildData(Number(this.index))) {
+        this.$message.error('例子模板不允许修改')
+        return false;
       }
+      updateObj({
+        id: this.form.id,
+        category: this.form.category,
+        password: this.form.password,
+        status: this.form.status,
+        title: this.form.title
+      }).then(() => {
+        this.box = false;
+        this.$message.success('修改成功');
+        this.getList();
+      })
     },
     handleCurrentChange (val) {
       this.page.page = val;

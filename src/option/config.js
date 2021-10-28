@@ -117,7 +117,7 @@ function concat (prop, count, type, extend = [], defaults) {
   for (let i = 1; i <= count; i++) {
     list.push({
       label: prop + i,
-      value: `./img/${prop}/${prop}${i}.${extend.includes(i) ? defaults : type}`
+      value: `/img/${prop}/${prop}${i}.${extend.includes(i) ? defaults : type}`
     })
   }
   return list;
