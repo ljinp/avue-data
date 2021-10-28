@@ -1,4 +1,5 @@
 import { url } from '@/config';
+import { config } from '@/option/config'
 import request from '../axios'
 export const getList = (params) => request({
   url: url + '/visual/list',
@@ -47,17 +48,11 @@ export const addObj = (data) => request({
       title: data.title,
     },
     config: {
-      detail: JSON.stringify({
+      detail: JSON.stringify(Object.assign(config, {
         name: data.title,
         width: data.width,
-        height: data.height,
-        scale: 1,
-        backgroundImage: '/img/bg/bg.png',
-        url: '',
-        mark: {},
-        gradeShow: false,
-        gradeLen: 30,
-      }),
+        height: data.height
+      })),
       component: '[]'
     },
   }

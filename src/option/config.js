@@ -10,8 +10,11 @@ export const config = {
     textStyle: 'rgba(100,100,100,0.2)',
     degree: -20
   },
+  scale: 1,
   backgroundImage: '/img/bg/bg.png',
-  query: {}
+  url: '',
+  gradeShow: false,
+  gradeLen: 30,
 };
 // 颜色的配置
 export const colorOption = {

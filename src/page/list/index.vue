@@ -4,7 +4,7 @@
       <ul class="menu">
         <li :index="item.categoryValue"
             :key="item.categoryValue"
-            v-for="item in typelist"
+            v-for="item in typeList"
             :class="{'is-active':item.categoryValue===activeName}"
             @click="handleSelect(item.categoryValue)">
           <i class="el-icon-s-order"></i>
@@ -92,13 +92,12 @@
         </div>
       </el-main>
     </el-container>
-    <el-dialog :title="type==='add'?'新建大屏':'编辑大屏'"
+    <el-dialog title="编辑大屏"
                width="50%"
                :close-on-click-modal="false"
                :visible.sync="box">
       <avue-form :option="option"
                  v-model="form"
-                 v-if="box"
                  @submit="handleSave"></avue-form>
     </el-dialog>
   </el-container>
@@ -111,10 +110,10 @@ export default {
   name: "list",
   data () {
     return {
-      typelist: [],
+      typeList: [],
       index: 0,
       option: {
-        size: 'medium',
+        submitText: '修改大屏',
         column: [{
           label: '分组',
           prop: 'category',
@@ -168,7 +167,6 @@ export default {
         total: 0,
       },
       form: {},
-      box: false,
       activeName: '',
       list: [],
     }
@@ -192,7 +190,7 @@ export default {
     getCategory () {
       getCategory().then(res => {
         const data = res.data.data;
-        this.typelist = data;
+        this.typeList = data;
         this.activeName = (data[0] || {}).categoryValue;
         this.getList();
       })
@@ -260,7 +258,6 @@ export default {
     handleUpdate (item, index) {
       this.form = item
       this.form.category = this.form.category + '';
-      this.box = true;
       this.index = index;
     },
     handleEdit (item) {
@@ -288,7 +285,6 @@ export default {
         status: this.form.status,
         title: this.form.title
       }).then(() => {
-        this.box = false;
         this.$message.success('修改成功');
         this.getList();
       })
