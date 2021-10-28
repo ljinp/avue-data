@@ -1,3 +1,4 @@
+const path = process.env.VUE_APP_PATH;
 //基本配置
 export const config = {
   width: 1920,
@@ -11,7 +12,7 @@ export const config = {
     degree: -20
   },
   scale: 1,
-  backgroundImage: '/img/bg/bg.png',
+  backgroundImage: `${path}img/bg/bg.png`,
   url: '',
   gradeShow: false,
   gradeLen: 30,
@@ -120,7 +121,7 @@ function concat (prop, count, type, extend = [], defaults) {
   for (let i = 1; i <= count; i++) {
     list.push({
       label: prop + i,
-      value: `/img/${prop}/${prop}${i}.${extend.includes(i) ? defaults : type}`
+      value: `${path}img/${prop}/${prop}${i}.${extend.includes(i) ? defaults : type}`
     })
   }
   return list;
