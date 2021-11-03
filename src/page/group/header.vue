@@ -186,6 +186,7 @@ export default {
               this.$message.success('大屏配置保存成功');
             }
           }).catch(err => {
+            console.log(err);
             this.$message.error('大屏配置保存失败，请检查服务端配置')
             loading.close();
           })

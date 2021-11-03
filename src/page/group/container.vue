@@ -128,12 +128,13 @@ export default {
           const data = res.data.data;
           this.contain.obj = data;
           config = data.config;
-          this.contain.json = {
-            detail: JSON.parse(config.detail) || {},
-            component: JSON.parse(config.component) || [],
+          const contain = {
+            config: JSON.parse(config.detail) || {},
+            component: JSON.parse(config.component) || []
           }
-          this.contain.config = JSON.parse(config.detail) || {};
-          this.contain.nav = JSON.parse(config.component) || [];
+          this.contain.json = contain
+          this.contain.config = contain.config;
+          this.contain.nav = contain.component
           this.contain.visual = data.visual;
           //添加水印。只有查看页面生效
           if (!isBuild) {

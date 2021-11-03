@@ -58,6 +58,7 @@ axios.interceptors.response.use(config => {
   loadingInstance.close();
   return config;
 }, error => {
+  loadingInstance.close();
   return Promise.reject(new Error(error));
 })
 
