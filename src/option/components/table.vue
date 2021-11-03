@@ -1,6 +1,10 @@
 <!-- 表格配置 -->
 <template>
   <div>
+    <el-form-item label="追加模式">
+      <avue-switch v-model="main.activeOption.dataAppend">
+      </avue-switch>
+    </el-form-item>
     <el-form-item label="开启滚动">
       <avue-switch v-model="main.activeOption.scroll">
       </avue-switch>

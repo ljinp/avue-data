@@ -53,10 +53,6 @@ export default (() => {
         type: Number,
         default: 0
       },
-      dataAppend: {
-        type: Boolean,
-        default: false
-      },
       dataMethod: {
         type: String,
         default: 'get'
@@ -84,7 +80,6 @@ export default (() => {
     data () {
       return {
         propQuery: {},
-        dataCount: 0,
         headerHeight: '',
         checkChart: '',
         myChart: '',
@@ -92,10 +87,23 @@ export default (() => {
         dataUrl: '',
         key: false,
         isChart: false,
-        styles: {}
+        styles: {},
+        appendCheck: {},
+        appendObj: {},
+        appendList: []
       };
     },
     watch: {
+      dataAppend (val) {
+        this.appendObj = {};
+        this.appendList = []
+        if (!val) {
+          this.appendCheck = clearInterval(this.appendCheck)
+        } else {
+          this.dataChart = []
+        }
+        this.updateData()
+      },
       echartFormatter () {
         this.updateChart();
       },
@@ -136,6 +144,12 @@ export default (() => {
       }
     },
     computed: {
+      count () {
+        return this.option.count;
+      },
+      dataAppend () {
+        return this.option.dataAppend;
+      },
       dataChartLen () {
         return (this.dataChart || []).length;
       },
@@ -198,6 +212,36 @@ export default (() => {
           }
         }
       },
+      updateAppend (result) {
+        if (this.validatenull(this.appendObj)) {
+          this.appendList = result
+          this.appendObj = result[0]
+        } else {
+          let appendList = [];
+          for (let i = 0; i < result.length; i++) {
+            const ele = result[i]
+            if (ele.id === this.appendObj.id) break
+            else appendList.push(ele)
+          }
+          this.appendObj = result[0]
+          appendList.reverse().forEach(ele => {
+            this.appendList.unshift(ele);
+          })
+        }
+        if (this.validatenull(this.appendCheck)) {
+          this.appendCheck = setInterval(() => {
+            let length = this.appendList.length - 1;
+            if (length >= 0) {
+              let obj = this.appendList.splice(length, 1)[0]
+              this.dataChart.unshift(obj);
+              let len = this.dataChart.length;
+              if (len > this.count) {
+                this.appendList.splice(len - 1, 1)
+              }
+            }
+          }, 2000)
+        }
+      },
       updateUrl (url) {
         this.dataUrl = url;
         this.updateData();
@@ -219,11 +263,12 @@ export default (() => {
               resolve(this.dataChart);
 
             }
+
             // 动态数据
             if (this.isApi) {
               const detail = (res) => {
                 // 处理返回的数据
-                const result = (() => {
+                let result = (() => {
                   if (typeof this.dataFormatter === 'function') {
                     return this.dataFormatter(res.data);
                   };
@@ -231,12 +276,7 @@ export default (() => {
                 })();
                 // 延迟效果数据逐步增加
                 if (this.dataAppend) {
-                  result.forEach(ele => {
-                    this.dataCount++;
-                    setTimeout(() => {
-                      this.dataChart.unshift(ele);
-                    }, this.dataCount * 1500);
-                  });
+                  this.updateAppend(result)
                 } else {
                   this.dataChart = result;
                 }
