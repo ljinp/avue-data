@@ -1,3 +1,4 @@
+import { validatenull } from '@/echart/util'
 export const uuid = () => {
   var s = [];
   var hexDigits = "0123456789abcdef";
@@ -35,4 +36,37 @@ export const compare = (propertyName) => {
 
 export const funEval = (value) => {
   return new Function("return " + value + ";")();
+}
+
+
+export const getFunction = (fun, def) => {
+  if (!validatenull(fun)) {
+    try {
+      return funEval(fun)
+    } catch {
+      return () => { }
+    }
+  }
+  if (def) return () => { }
+}
+export const getJson = (str) => {
+  if (validatenull(str)) return {};
+  else if (typeof str == "string") {
+    try {
+      return JSON.parse(str);
+    } catch {
+      return {}
+    }
+  } else {
+    return str;
+  }
+}
+export const checkUrl = (url) => {
+  var reg = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+  if (!reg.test(url)) {
+    return false;
+  }
+  else {
+    return true
+  }
 }

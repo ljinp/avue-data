@@ -31,14 +31,14 @@
                    :sql-formatter="sqlFormatter"
                    :formatter="getFunction(item.formatter)"
                    :width="item.component.width"
-                   :data-query="getJson(item.dataQuery)"
+                   :data-query="getFunction(item.dataQuery)"
+                   :data-header="getFunction(item.dataHeader)"
                    :height="item.component.height"
                    :animation="!contain.menuFlag"
                    :theme="(item.option || {}).theme"
                    :disabled="!contain.menuFlag"
                    :scale="container.stepScale"
                    :option="item.option"
-                   :home-url="contain.config.url"
                    title=""
                    :click="handleClick" />
       </avue-draggable>
@@ -52,7 +52,7 @@
 import components from '@/components/';
 import crypto from '@/utils/crypto';
 import { dynamicSql } from '@/api/db'
-import { funEval } from '@/utils/utils'
+import { getFunction, getJson } from '@/utils/utils'
 import common from '@/config'
 import echartComponents from '../../echart/'
 export default {
@@ -80,34 +80,16 @@ export default {
     }
   },
   created () {
-    Object.keys(echartComponents).map(ele => {
-      let component = echartComponents[ele];
-      Vue.component(component.name, component);
-    });
+    this.init()
   },
   methods: {
-    getFunction (fun, def) {
-      if (!this.validatenull(fun)) {
-        try {
-          return funEval(fun)
-        } catch {
-          return () => { }
-        }
-      }
-      if (def) return () => { }
-    },
-    getJson (str) {
-      if (this.validatenull(str)) return {};
-      else if (typeof str == "string") {
-        try {
-          return JSON.parse(str);
-        } catch {
-          return {}
-        }
-      } else {
-        return str;
-      }
-
+    init () {
+      Object.keys(echartComponents).map(ele => {
+        let component = echartComponents[ele];
+        Vue.component(component.name, component);
+      });
+      this.getJson = getJson;
+      this.getFunction = getFunction
     },
     //点击事件交互
     handleClick ({ type, child, value }) {

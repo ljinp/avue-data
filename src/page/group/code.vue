@@ -40,7 +40,13 @@ export default {
   watch: {
     value: {
       handler (val) {
-        this.code = val;
+        if (['dataFormatter', 'query', 'header', 'dataQuery', 'dataHeader', 'stylesFormatter'].includes(this.type) && this.validatenull(val)) {
+          this.code = `(params)=>{
+    return {}
+}`
+        } else {
+          this.code = val;
+        }
       },
       immediate: true,
       deep: true,
@@ -50,11 +56,11 @@ export default {
     this.tip = `
 //data为返回的数据
 /**
- * 说明：只有样式编辑、数据处理、组件事件方法需要返回函数
+ * 说明：只有样式编辑、数据处理、组件事件、请求头、请求参数方法需要返回函数
  * 静态数据或者配置数据直接返回JSON对象即可
  * 不写的话采用默认加载
 */
-#数据处理/样式处理
+#样式编辑、数据处理、组件事件、请求头、请求参数
 (data)=>{
   //处理数据逻辑
   return {
@@ -65,7 +71,7 @@ export default {
 #事件处理
 ({name,type,value,data})=>{
   //直接写执行的逻辑即可
-  console.log(data,name)
+  alert(data,name)
 }
 
 #提示处理
@@ -200,7 +206,7 @@ export default {
       let value = this.code;
       try {
         funEval(value);
-        if (['query', 'data'].includes(this.type)) {
+        if (['data'].includes(this.type)) {
           value = funEval(value);
         }
         this.$emit('submit', value);

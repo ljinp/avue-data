@@ -4,6 +4,8 @@ export const config = {
   width: 1920,
   height: 1080,
   scale: 1,
+  query: '',
+  header: '',
   mark: {
     show: false,
     text: 'avue数据大屏水印',

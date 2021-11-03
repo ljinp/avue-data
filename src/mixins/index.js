@@ -30,7 +30,8 @@ export default {
       overactive: '',
       historyCache: [],// 历史操作数据用于undo redo
       currentHistoryIndex: -1,     // redo undo 指针
-      copyNav: '' // 用于监听去干扰,字符串类型,方便比较
+      copyNav: '', // 用于监听去干扰,字符串类型,方便比较,
+      configData: ['header', 'query']
     }
   },
   watch: {
@@ -39,7 +40,16 @@ export default {
         this.recordMain(val, oldval)
       },
       deep: true
-    }
+    },
+    config: {
+      handler (val) {
+        this.configData.concat(['url']).forEach(ele => {
+          window.$glob[ele] = val[ele]
+        })
+      },
+      deep: true,
+      immediate: true
+    },
   },
   computed: {
     list () {
@@ -130,6 +140,7 @@ export default {
     handleInitActive () {
       if (this.active.isNull()) return
       this.active = []
+      this.activeIndex = null
     },
     handleMouseDown () {
       this.handleInitActive();

@@ -12,6 +12,8 @@ export default (() => {
       sqlFormatter: Function,
       formatter: Function,
       echartFormatter: Function,
+      dataQuery: Function,
+      dataHeader: Function,
       width: {
         type: [Number, String],
         default: 600
@@ -50,15 +52,6 @@ export default (() => {
       dataType: {
         type: Number,
         default: 0
-      },
-      dataQuery: {
-        type: Object,
-        default: () => {
-          return {};
-        }
-      },
-      homeUrl: {
-        type: String
       },
       dataAppend: {
         type: Boolean,
@@ -228,7 +221,6 @@ export default (() => {
             }
             // 动态数据
             if (this.isApi) {
-              let dataUrl = this.dataUrl.replace(config.homeurl, this.homeUrl);
               const detail = (res) => {
                 // 处理返回的数据
                 const result = (() => {
@@ -250,18 +242,19 @@ export default (() => {
                 }
                 bindEvent();
               };
-              let result = getUrlParams(dataUrl);
+              let result = getUrlParams(this.dataUrl);
               let url = result.url;
-              let params = Object.assign(result.params, this.dataQuery, this.propQuery);
-              this.$axios[this.dataMethod](url, (() => {
-                if (this.dataMethod === 'get') {
-                  return {
-                    params: params
-                  };
-                } else if (this.dataMethod === 'post') {
-                  return params;
-                }
-              })()).then(res => {
+              if (this.validatenull(url)) return
+              let dataQuery = this.dataQuery && this.dataQuery(result);
+              let dataHeader = this.dataHeader && this.dataHeader(result) || {};
+              let params = Object.assign(result.params, dataQuery, this.propQuery);
+              this.$axios({
+                method: this.dataMethod,
+                url: url,
+                data: params,
+                headers: dataHeader,
+                params: params
+              }).then(res => {
                 detail(res);
               });
             } else if (this.isSql) {

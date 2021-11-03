@@ -163,15 +163,20 @@
                        alt=""
                        width="100%" />
                 </el-form-item>
-                <el-form-item label="环境地址">
+                <el-form-item label="公共地址">
                   <avue-input type="textarea"
                               :min-rows="3"
                               v-model="config.url"></avue-input>
                 </el-form-item>
-                <el-form-item label="参数">
+                <el-form-item label="公共请求头">
                   <el-button size="mini"
                              type="primary"
-                             @click="openCode('query')">编辑</el-button>
+                             @click="openCode('query')">编辑函数</el-button>
+                </el-form-item>
+                <el-form-item label="公共请求头">
+                  <el-button size="mini"
+                             type="primary"
+                             @click="openCode('header')">编辑函数</el-button>
                 </el-form-item>
                 <el-form-item label="水印(预览有效)">
                   <avue-switch v-model="config.mark.show"></avue-switch>
@@ -343,6 +348,7 @@
       </div>
     </div>
     <codeedit @submit="codeClose"
+              v-if="code.box"
               :type="code.type"
               v-model="code.obj"
               :visible.sync="code.box"></codeedit>
@@ -358,7 +364,7 @@
                       label-position="top">
           <el-button size="mini"
                      type="primary"
-                     @click="openCode('data')">编辑静态数据(JSON)</el-button>
+                     @click="openCode('data')">编辑JSON</el-button>
         </el-form-item>
         <div v-else-if="isSql">
           <el-form-item label="数据源选择">
@@ -380,10 +386,15 @@
             <avue-select v-model="activeObj.dataMethod"
                          :dic="dicOption.dataMethod"></avue-select>
           </el-form-item>
+          <el-form-item label="请求头">
+            <el-button size="small"
+                       type="primary"
+                       @click="openCode('dataHeader')">编辑函数</el-button>
+          </el-form-item>
           <el-form-item label="请求参数">
             <el-button size="small"
                        type="primary"
-                       @click="openCode('dataQuery')">编辑参数(JSON)</el-button>
+                       @click="openCode('dataQuery')">编辑函数</el-button>
           </el-form-item>
         </div>
         <el-form-item label="响应数据">
@@ -653,16 +664,16 @@ export default {
       });
     },
     codeClose (value) {
-      if (this.code.type === 'query') {
-        this.config.query = value;
+      if (this.configData.includes(this.code.type)) {
+        this.config[this.code.type] = value;
       } else {
         this.activeObj[this.code.type] = value;
       }
     },
     openCode (type) {
       this.code.type = type;
-      if (type === 'query') {
-        this.code.obj = this.config.query;
+      if (this.configData.includes(type)) {
+        this.code.obj = this.config[type];
       } else {
         this.code.obj = this.activeObj[type];
       }
@@ -731,9 +742,7 @@ export default {
       })
     },
     vaildProp (name, list) {
-      if (list) {
-        return list.includes(this.activeComponent.prop)
-      }
+      if (list) return list.includes(this.activeComponent.prop) || this.active.length > 1;
       return this.dicOption[name].includes(this.activeComponent.prop)
     },
     formatTooltip (val) {
@@ -845,6 +854,7 @@ export default {
         this.active.push(item);
       } else if (!this.active.includes(item)) {
         this.active = [item];
+        this.activeIndex = item;
       }
     },
   }
