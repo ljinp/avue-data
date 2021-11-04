@@ -44,6 +44,10 @@ export default {
           this.code = `(params)=>{
     return {}
 }`
+        } else if (['clickFormatter', 'labelFormatter'].includes(this.type) && this.validatenull(val)) {
+          this.code = `(params)=>{
+    alert(params)
+}`
         } else {
           this.code = val;
         }

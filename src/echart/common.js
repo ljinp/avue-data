@@ -285,8 +285,8 @@ export default (() => {
               let result = getUrlParams(this.dataUrl);
               let url = result.url;
               if (this.validatenull(url)) return
-              let dataQuery = this.dataQuery && this.dataQuery(result);
-              let dataHeader = this.dataHeader && this.dataHeader(result) || {};
+              let dataQuery = typeof (this.dataQuery) === 'function' && this.dataQuery(result);
+              let dataHeader = typeof (this.dataHeader) === 'function' && this.dataHeader(result) || {};
               let params = Object.assign(result.params, dataQuery, this.propQuery);
               this.$axios({
                 method: this.dataMethod,

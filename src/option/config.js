@@ -97,8 +97,7 @@ export const dicOption = {
   colorList: ['bar', 'pie', 'line', 'gauge', 'funnel', 'scatter', 'radar'],
   tipList: ['bar', 'pie', 'line', 'gauge', 'funnel', 'scatter', 'radar'],
   postionList: ['bar', 'line', 'pictorialbar'],
-  formatterList: ['bar', 'map', 'line', 'pie', 'gauge', 'funnel', 'scatter', 'radar', 'tabs', 'text'],
-  clickFormatterList: ['map', 'tabs', 'text'],
+  clickFormatterList: ['map', 'tabs', 'text', 'flop'],
   labelFormatterList: ['bar', 'map', 'line', 'pie', 'gauge', 'funnel', 'scatter', 'radar'],
   tabsTypeList: [{
     label: '选项卡',
