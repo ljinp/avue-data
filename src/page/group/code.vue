@@ -41,11 +41,11 @@ export default {
     value: {
       handler (val) {
         if (['dataFormatter', 'query', 'header', 'dataQuery', 'dataHeader', 'stylesFormatter'].includes(this.type) && this.validatenull(val)) {
-          this.code = `(params)=>{
+          this.code = `function(params){
     return {}
 }`
         } else if (['clickFormatter', 'labelFormatter'].includes(this.type) && this.validatenull(val)) {
-          this.code = `(params)=>{
+          this.code = `function(params){
     alert(params)
 }`
         } else {
