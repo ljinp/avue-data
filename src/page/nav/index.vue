@@ -40,6 +40,9 @@ export default {
       }, {
         icon: 'el-icon-document',
         name: '在线文档'
+      }, {
+        icon: 'el-icon-thumb',
+        name: '点击购买'
       }],
       activeNav: null,
       activeIndex: 0,

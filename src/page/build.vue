@@ -359,15 +359,17 @@
                :visible.sync="show"
                width="60%">
       <el-form size="small"
+               v-if="show"
                label-width="130px">
-        <el-form-item v-if="isStatic"
-                      label="数据值"
-                      label-position="top">
-          <el-button size="mini"
-                     type="primary"
-                     @click="openCode('data')">编辑JSON</el-button>
-        </el-form-item>
-        <div v-else-if="isSql">
+        <template v-if="isStatic">
+          <el-form-item label="数据值"
+                        label-position="top">
+            <el-button size="mini"
+                       type="primary"
+                       @click="openCode('data')">编辑JSON</el-button>
+          </el-form-item>
+        </template>
+        <template v-else-if="isSql">
           <el-form-item label="数据源选择">
             <avue-select :dic="DIC.sql"
                          v-model="db"></avue-select>
@@ -378,8 +380,8 @@
                            language="sql"
                            height="100"></monaco-editor>
           </el-form-item>
-        </div>
-        <div v-else-if="isApi">
+        </template>
+        <template v-else-if="isApi">
           <el-form-item label="接口地址">
             <avue-input v-model="activeObj.url"></avue-input>
           </el-form-item>
@@ -397,7 +399,7 @@
                        type="primary"
                        @click="openCode('dataQuery')">编辑函数</el-button>
           </el-form-item>
-        </div>
+        </template>
         <el-form-item label="响应数据">
           <monaco-editor v-model="dataRes"
                          disabled

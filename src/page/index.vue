@@ -54,7 +54,12 @@ export default {
   },
   methods: {
     handleChange (nav, index) {
-      this.activeName = index;
+      if (index === 6) {
+        window.open('https://avuejs.com/views/vip.html', '_blank')
+      } else {
+        this.activeName = index;
+      }
+
     }
   }
 }
