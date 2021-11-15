@@ -692,9 +692,11 @@ export default {
     },
     // 右键菜单
     handleContextMenu (e, item = {}) {
-      if (!item.index) return
-      if (!this.isSelectActive) this.active = [item.index];
-      if (this.isKeysCtrl) return
+      if (!item.index || this.isKeysCtrl) return
+      else if (!this.isSelectActive) {
+        this.active = [item.index];
+        this.activeIndex = item.index;
+      }
       this.$nextTick(() => this.$refs.contentmenu.show(e.clientX, e.clientY))
     },
     //监听键盘的按键
