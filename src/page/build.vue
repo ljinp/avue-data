@@ -254,7 +254,7 @@
           </el-tab-pane>
           <!-- 交互事件配置 -->
           <el-tab-pane name="2"
-                       v-if="vaildProp('eventList')">
+                       v-if="vaildProp('eventList')&&activeObj.child">
             <el-tooltip slot="label"
                         effect="dark"
                         content="交互"
