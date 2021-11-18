@@ -87,6 +87,9 @@ export default create({
   },
   methods: {
     handleClick () {
+      this.updateClick({
+        value: this.dataChart
+      });
       this.clickFormatter && this.clickFormatter({
         data: this.dataChart
       });

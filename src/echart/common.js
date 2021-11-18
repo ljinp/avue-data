@@ -1,9 +1,9 @@
-import { setPx, getUrlParams } from './util';
+import { setPx, getUrlParams, validatenull } from './util';
 import config from './config';
+import crypto from '@/utils/crypto'
 export default (() => {
   return {
     props: {
-      click: Function,
       stylesFormatter: Function,
       dataFormatter: Function,
       titleFormatter: Function,
@@ -14,6 +14,7 @@ export default (() => {
       echartFormatter: Function,
       dataQuery: Function,
       dataHeader: Function,
+      child: Object,
       width: {
         type: [Number, String],
         default: 600
@@ -79,6 +80,7 @@ export default (() => {
     },
     data () {
       return {
+        dynamicQuery: {},
         propQuery: {},
         headerHeight: '',
         checkChart: '',
@@ -212,6 +214,19 @@ export default (() => {
           }
         }
       },
+      updateClick (params) {
+        let refList = this.$parent.$parent.$refs;
+        let indexList = this.child.index;
+        let indexName = this.child.paramName;
+        if (validatenull(indexName) && validatenull(indexList)) return
+        let p = {};
+        p[indexName] = params.value
+        Object.keys(refList).forEach(ele => {
+          if (indexList.includes(ele.replace('list', ''))) {
+            refList[ele][0].updateData(p);
+          }
+        })
+      },
       updateAppend (result) {
         if (this.validatenull(this.appendObj)) {
           this.appendList = result
@@ -247,7 +262,8 @@ export default (() => {
         this.updateData();
       },
       // 更新数据核心方法
-      updateData () {
+      updateData (p) {
+        if (p) this.dynamicQuery = p;
         return new Promise((resolve, reject) => {
           this.resetData && this.resetData();
           if (this.key) return;
@@ -287,7 +303,7 @@ export default (() => {
               if (this.validatenull(url)) return
               let dataQuery = typeof (this.dataQuery) === 'function' && this.dataQuery(result);
               let dataHeader = typeof (this.dataHeader) === 'function' && this.dataHeader(result) || {};
-              let params = Object.assign(result.params, dataQuery, this.propQuery);
+              let params = Object.assign(result.params, dataQuery, this.propQuery, this.dynamicQuery);
               this.$axios({
                 method: this.dataMethod,
                 url: url,
@@ -298,7 +314,12 @@ export default (() => {
                 detail(res);
               });
             } else if (this.isSql) {
-              this.sqlFormatter(this.sql).then(res => {
+              let sql = JSON.parse(crypto.decrypt(this.sql));
+              Object.keys(this.dynamicQuery).forEach(ele => {
+                sql.sql = sql.sql.replace(`{{${ele}}}`, this.dynamicQuery[ele]);
+              })
+              let result = crypto.encrypt(JSON.stringify(sql));
+              this.sqlFormatter(result).then(res => {
                 // 静态数据
                 if (typeof this.dataFormatter === 'function') {
                   this.dataChart = this.dataFormatter(res.data.data);

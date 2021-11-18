@@ -39,8 +39,8 @@
                    :disabled="!contain.menuFlag"
                    :scale="container.stepScale"
                    :option="item.option"
-                   title=""
-                   :click="handleClick" />
+                   :child="item.child"
+                   title="" />
       </avue-draggable>
       <subgroup :nav="item.children"></subgroup>
     </div>
@@ -90,18 +90,6 @@ export default {
       });
       this.getJson = getJson;
       this.getFunction = getFunction
-    },
-    //点击事件交互
-    handleClick ({ type, child, value }) {
-      if (type === 'tabs') {
-        child.index.forEach(index => {
-          const item = this.contain.findlist(index);
-          let params = item.dataQuery ? this.getJson(item.dataQuery) : {}
-          params[child.paramName || ''] = value;
-          item.dataQuery = JSON.stringify(params);
-          this.$refs[this.common.NAME + index].forEach(ele => ele.updateData())
-        })
-      }
     },
     getItemObj () {
       return this.$refs[this.common.NAME + this.contain.activeObj.index][0];

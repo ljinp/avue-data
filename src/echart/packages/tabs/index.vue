@@ -139,9 +139,7 @@ export default create({
       this.active = val;
     },
     handleClick () {
-      this.click && this.click({
-        type: this.name,
-        child: this.child,
+      this.updateClick({
         value: this.active
       });
       this.clickFormatter && this.clickFormatter({

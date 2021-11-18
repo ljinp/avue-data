@@ -607,6 +607,10 @@ export default [{
       "dataType": 0,
       "dataFormatter": "",
       "stylesFormatter": "",
+      "child": {
+        "index": [],
+        "paramName": ""
+      },
       "data": {
         value: '文本框'
       },
@@ -874,6 +878,10 @@ export default [{
       "top": 0,
       "left": 0,
       "dataType": 0,
+      "child": {
+        "index": [],
+        "paramName": ""
+      },
       "data": {
         value: '12345'
       },
