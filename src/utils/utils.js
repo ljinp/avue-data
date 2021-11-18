@@ -46,8 +46,7 @@ export const getFunction = (fun, def) => {
     } catch {
       return () => { }
     }
-  }
-  if (def) return () => { }
+  } else if (def) return () => { }
 }
 export const getJson = (str) => {
   if (validatenull(str)) return {};

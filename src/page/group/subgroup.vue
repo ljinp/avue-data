@@ -6,7 +6,6 @@
       <avue-draggable v-if="!item.children"
                       v-bind="item"
                       :scale="container.stepScale"
-                      :lock="item.lock"
                       :disabled="!contain.menuFlag"
                       :step="container.stepScale"
                       :width="item.component.width"
@@ -22,27 +21,17 @@
         <component :ref="common.NAME+item.index"
                    :id="common.NAME+item.index"
                    :is="common.COMPNAME+item.component.name"
-                   v-bind="item"
-                   :data-formatter="getFunction(item.dataFormatter)"
-                   :click-formatter="getFunction(item.clickFormatter,true)"
-                   :echart-formatter="getFunction(item.echartFormatter)"
-                   :label-formatter="getFunction(item.labelFormatter)"
-                   :styles-formatter="getFunction(item.stylesFormatter)"
+                   v-bind="Object.assign(item,getFormatter(item))"
                    :sql-formatter="sqlFormatter"
-                   :formatter="getFunction(item.formatter)"
                    :width="item.component.width"
-                   :data-query="getFunction(item.dataQuery)"
-                   :data-header="getFunction(item.dataHeader)"
                    :height="item.component.height"
-                   :animation="!contain.menuFlag"
-                   :theme="(item.option || {}).theme"
                    :disabled="!contain.menuFlag"
                    :scale="container.stepScale"
                    :option="item.option"
                    :child="item.child"
                    title="" />
       </avue-draggable>
-      <subgroup :nav="item.children"></subgroup>
+      <subgroup :nav="item.children" />
     </div>
   </div>
 </template>
@@ -90,6 +79,15 @@ export default {
       });
       this.getJson = getJson;
       this.getFunction = getFunction
+    },
+    getFormatter (item) {
+      let list = ['data-formatter', 'data-formatter', 'echart-formatter', 'label-formatter',
+        'styles-formatter', 'formatter', 'data-query', 'data-header']
+      let result = {}
+      list.forEach(ele => {
+        result[ele] = getFunction(item[ele])
+      })
+      return result;
     },
     getItemObj () {
       return this.$refs[this.common.NAME + this.contain.activeObj.index][0];

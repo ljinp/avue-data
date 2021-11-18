@@ -26,10 +26,6 @@ export default (() => {
       theme: {
         type: String
       },
-      animation: {
-        type: Boolean,
-        default: true
-      },
       child: {
         type: Object,
         default: () => {
@@ -86,6 +82,7 @@ export default (() => {
         checkChart: '',
         myChart: '',
         dataChart: [],
+        dataAxios: {},
         dataUrl: '',
         key: false,
         isChart: false,
@@ -284,6 +281,7 @@ export default (() => {
             if (this.isApi) {
               const detail = (res) => {
                 // 处理返回的数据
+                this.dataAxios = res;
                 let result = (() => {
                   if (typeof this.dataFormatter === 'function') {
                     return this.dataFormatter(res.data);
