@@ -3,6 +3,7 @@ import Vue from 'vue';
 Vue.use(Router)
 const vueRouter = new Router({
   mode: 'history',
+  base: process.env.VUE_APP_PATH,
   routes: [{
     path: '/',
     name: 'list',
