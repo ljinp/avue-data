@@ -254,7 +254,7 @@
           </el-tab-pane>
           <!-- 交互事件配置 -->
           <el-tab-pane name="2"
-                       v-if="vaildProp('eventList')&&activeObj.child">
+                       v-if="vaildProp('eventList')">
             <el-tooltip slot="label"
                         effect="dark"
                         content="交互"
@@ -542,6 +542,7 @@ export default {
     activeObj () {
       if (this.validatenull(this.activeIndex)) return {}
       let item = this.findlist(this.activeIndex);
+      if (!item.child) item.child = {}
       return item
     },
     activeList () {
