@@ -41,9 +41,10 @@
 import components from '@/components/';
 import crypto from '@/utils/crypto';
 import { dynamicSql } from '@/api/db'
-import { getFunction, getJson } from '@/utils/utils'
+import { getFunction } from '@/utils/utils'
 import common from '@/config'
 import echartComponents from '../../echart/'
+import { validatenull } from '../../echart/util';
 export default {
   name: 'subgroup',
   inject: ["contain", 'container'],
@@ -77,16 +78,17 @@ export default {
         let component = echartComponents[ele];
         Vue.component(component.name, component);
       });
-      this.getJson = getJson;
-      this.getFunction = getFunction
     },
     getFormatter (item) {
-      let list = ['data-formatter', 'data-formatter', 'echart-formatter', 'label-formatter',
-        'styles-formatter', 'formatter', 'data-query', 'data-header']
+      let list = ['dataFormatter', 'dataFormatter', 'echartFormatter', 'labelFormatter',
+        'stylesFormatter', 'formatter', 'dataQuery', 'dataHeader']
       let result = {}
       list.forEach(ele => {
-        result[ele] = getFunction(item[ele])
+        if (!validatenull(item[ele])) {
+          result[ele] = getFunction(item[ele])
+        }
       })
+      console.log(result);
       return result;
     },
     getItemObj () {
