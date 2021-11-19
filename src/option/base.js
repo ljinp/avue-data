@@ -918,6 +918,10 @@ export default [{
       "name": "颜色块",
       "icon": 'icon-flop',
       "img": require('@/assets/flop2.png'),
+      "child": {
+        "index": [],
+        "paramName": ""
+      },
       "top": 0,
       "left": 0,
       "dataType": 0,

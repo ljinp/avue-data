@@ -259,8 +259,8 @@ export default (() => {
         this.updateData();
       },
       // 更新数据核心方法
-      updateData (p) {
-        if (p) this.dynamicQuery = p;
+      updateData (p = {}) {
+        this.dynamicQuery = Object.assign(this.dynamicQuery, p)
         return new Promise((resolve, reject) => {
           this.resetData && this.resetData();
           if (this.key) return;

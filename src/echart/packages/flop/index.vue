@@ -178,6 +178,9 @@ export default create({
   created () { },
   methods: {
     handleClick (item, index) {
+      this.updateClick({
+        value: item.prefixText
+      });
       this.clickFormatter && this.clickFormatter({
         type: index,
         value: item,

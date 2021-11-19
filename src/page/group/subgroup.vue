@@ -88,7 +88,6 @@ export default {
           result[ele] = getFunction(item[ele])
         }
       })
-      console.log(result);
       return result;
     },
     getItemObj () {
