@@ -21,17 +21,23 @@
         <component :ref="common.NAME+item.index"
                    :id="common.NAME+item.index"
                    :is="common.COMPNAME+item.component.name"
-                   v-bind="Object.assign(item,getFormatter(item))"
+                   v-bind="item"
+                   :data-formatter="getFunction(item.dataFormatter)"
+                   :click-formatter="getFunction(item.clickFormatter,true)"
+                   :echart-formatter="getFunction(item.echartFormatter)"
+                   :label-formatter="getFunction(item.labelFormatter)"
+                   :styles-formatter="getFunction(item.stylesFormatter)"
                    :sql-formatter="sqlFormatter"
+                   :formatter="getFunction(item.formatter)"
+                   :data-query="getFunction(item.dataQuery)"
+                   :data-header="getFunction(item.dataHeader)"
                    :width="item.component.width"
                    :height="item.component.height"
                    :disabled="!contain.menuFlag"
                    :scale="container.stepScale"
-                   :option="item.option"
-                   :child="item.child"
                    title="" />
       </avue-draggable>
-      <subgroup :nav="item.children" />
+      <subgroup :nav="item.children"></subgroup>
     </div>
   </div>
 </template>
@@ -44,7 +50,6 @@ import { dynamicSql } from '@/api/db'
 import { getFunction } from '@/utils/utils'
 import common from '@/config'
 import echartComponents from '../../echart/'
-import { validatenull } from '../../echart/util';
 export default {
   name: 'subgroup',
   inject: ["contain", 'container'],
@@ -78,17 +83,7 @@ export default {
         let component = echartComponents[ele];
         Vue.component(component.name, component);
       });
-    },
-    getFormatter (item) {
-      let list = ['dataFormatter', 'dataFormatter', 'echartFormatter', 'labelFormatter',
-        'stylesFormatter', 'formatter', 'dataQuery', 'dataHeader']
-      let result = {}
-      list.forEach(ele => {
-        if (!validatenull(item[ele])) {
-          result[ele] = getFunction(item[ele])
-        }
-      })
-      return result;
+      this.getFunction = getFunction
     },
     getItemObj () {
       return this.$refs[this.common.NAME + this.contain.activeObj.index][0];
