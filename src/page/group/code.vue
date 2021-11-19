@@ -40,14 +40,25 @@ export default {
   watch: {
     value: {
       handler (val) {
-        if (['dataFormatter', 'query', 'header', 'dataQuery', 'dataHeader', 'stylesFormatter'].includes(this.type) && this.validatenull(val)) {
-          this.code = `function(params){
+        if (this.validatenull(val)) {
+          if (['dataFormatter'].includes(this.type) && this.validatenull(val)) {
+            this.code = `function(data,params){
     return {}
 }`
-        } else if (['clickFormatter', 'labelFormatter'].includes(this.type) && this.validatenull(val)) {
-          this.code = `function(params){
+          } else if (['query', 'header', 'dataQuery', 'dataHeader', 'stylesFormatter'].includes(this.type) && this.validatenull(val)) {
+            this.code = `function(data){
+    return {}
+}`
+          } else if (['clickFormatter'].includes(this.type) && this.validatenull(val)) {
+            this.code = `function(params){
     alert(params)
 }`
+          } else if (['labelFormatter'].includes(this.type) && this.validatenull(val)) {
+            this.code = `function(name,data){
+    console.log(name,data)
+    return {}
+}`
+          }
         } else {
           this.code = val;
         }

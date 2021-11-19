@@ -284,7 +284,7 @@ export default (() => {
                 this.dataAxios = res;
                 let result = (() => {
                   if (typeof this.dataFormatter === 'function') {
-                    return this.dataFormatter(res.data);
+                    return this.dataFormatter(res.data, this.dataAxios);
                   };
                   return res.data || {};
                 })();
@@ -329,7 +329,7 @@ export default (() => {
             } else {
               // 静态数据
               if (typeof this.dataFormatter === 'function') {
-                this.dataChart = this.dataFormatter(this.data);
+                this.dataChart = this.dataFormatter(this.data, this.dynamicQuery);
               } else {
                 this.dataChart = this.data;
               }
