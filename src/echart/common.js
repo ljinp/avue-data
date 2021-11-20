@@ -1,6 +1,7 @@
 import { setPx, getUrlParams, validatenull } from './util';
 import config from './config';
 import crypto from '@/utils/crypto'
+import { funEval } from '@/utils/utils';
 export default (() => {
   return {
     props: {
@@ -313,10 +314,13 @@ export default (() => {
               });
             } else if (this.isSql) {
               let sql = JSON.parse(crypto.decrypt(this.sql));
-              Object.keys(this.dynamicQuery).forEach(ele => {
-                sql.sql = sql.sql.replace(`{{${ele}}}`, this.dynamicQuery[ele]);
-              })
-              let result = crypto.encrypt(JSON.stringify(sql));
+              let result;
+              try {
+                sql.sql = funEval(sql.sql)(this.dynamicQuery)
+                result = crypto.encrypt(JSON.stringify(sql));
+              } catch (error) {
+                result = this.sql;
+              }
               this.sqlFormatter(result).then(res => {
                 // 静态数据
                 if (typeof this.dataFormatter === 'function') {
