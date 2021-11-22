@@ -8,8 +8,8 @@
            loop=""
            :width="width"
            :height="height"
+           :src="dataChart.value"
            style="object-fit: fill">
-      <source :src="dataChart.value" />
     </video>
   </div>
 </template>
