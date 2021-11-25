@@ -39,6 +39,18 @@ export const viewHtml = `
       padding: 0;
       margin: 0;
     }
+   
+    body,
+    html,
+    #app,
+    .el-scrollbar__view,
+    .middle {
+      height: 100% !important;
+    }
+
+    .middle {
+      background-color: #171b22 !important;
+    }
   </style>
   <script>
     function GetQueryString(name) {
