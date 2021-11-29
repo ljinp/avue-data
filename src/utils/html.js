@@ -42,14 +42,8 @@ export const viewHtml = `
    
     body,
     html,
-    #app,
-    .el-scrollbar__view,
-    .middle {
-      height: 100% !important;
-    }
-
-    .middle {
-      background-color: #171b22 !important;
+    #app {
+      height: 100%;
     }
   </style>
   <script>

@@ -27,6 +27,8 @@
 import subgroup from './subgroup'
 import common from '@/config'
 import { getObj } from '@/api/visual'
+import Vue from 'vue'
+Vue.prototype.$website = window.$website;
 export default {
   name: 'contents',
   inject: ["contain"],
@@ -70,9 +72,10 @@ export default {
     //计算中央可视化大屏比例
     styleName () {
       const scale = this.contain.config.scale;
-      const val = (scale / 100) + 0.001;
+      const widthVal = (scale / 100) + 0.001;
+      const heightVal = (document.body.clientHeight / this.contain.config.height) - 0.002;
       return Object.assign({
-        transform: `scale(${val}, ${val})`,
+        transform: `scale(${widthVal}, ${!this.isBuild ? heightVal : widthVal})`,
         width: this.setPx(this.contain.config.width),
         height: this.setPx(this.contain.config.height),
         backgroundColor: this.contain.config.backgroundColor
@@ -89,6 +92,9 @@ export default {
       return {
         backgroundSize: `${this.setPx(this.contain.config.gradeLen)} ${this.setPx(this.contain.config.gradeLen)},${this.setPx(this.contain.config.gradeLen)} ${this.setPx(this.contain.config.gradeLen)}`
       }
+    },
+    isBuild () {
+      return this.$route ? this.$route.name === 'build' : false;
     }
   },
   mounted () {
@@ -106,12 +112,11 @@ export default {
       const id = this.$route ? this.$route.params.id : this.props.id
       this.contain.id = id;
       this.contain.contentWidth = this.$refs.content.offsetWidth;
-      const isBuild = this.$route ? this.$route.name === 'build' : this.props.name;
-      const width = isBuild ? this.contain.contentWidth : document.body.clientWidth
+      const width = this.isBuild ? this.contain.contentWidth : document.body.clientWidth
       let config;
       const callback = () => {
         //赋值属性
-        if (this.contain.config.mark.show && !isBuild) {
+        if (this.contain.config.mark.show && !this.isBuild) {
           this.watermark(this.contain.config.mark);
         }
         this.calcData();
@@ -137,7 +142,7 @@ export default {
           this.contain.nav = contain.component
           this.contain.visual = data.visual;
           //添加水印。只有查看页面生效
-          if (!isBuild) {
+          if (!this.isBuild) {
             const password = this.contain.visual.password
             if (!this.validatenull(password)) {
               this.$prompt('请输入密码', '提示', {
@@ -171,18 +176,18 @@ export default {
         this.setScale(width);
       }
     },
+    //计算比例
+    setScale (width) {
+      this.contain.config.scale = (width / this.contain.config.width) * 100
+      this.scale = this.contain.config.scale;
+      this.setResize();
+    },
     //适配尺寸
     setResize () {
       this.contentStyle = {
         width: this.setPx((this.contain.config.scale * this.contain.config.width) / 100),
         height: this.setPx((this.contain.config.scale * this.contain.config.height) / 100),
       }
-    },
-    //计算比例
-    setScale (width) {
-      this.contain.config.scale = (width / this.contain.config.width) * 100
-      this.scale = this.contain.config.scale;
-      this.setResize();
     },
     calcData () {
       if (!this.contain.config.mark) this.contain.config.mark = {}

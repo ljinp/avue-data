@@ -298,10 +298,10 @@
 .views{
   height: 100%;
   overflow: hidden;
+  .el-scrollbar__bar{
+    display: none;
+  }
   .el-scrollbar__wrap{
-    overflow-x: hidden;
-  }
-  .wrapper{
-    overflow: hidden;
-  }
+   overflow: hidden;
+ }
 }
