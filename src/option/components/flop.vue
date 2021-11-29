@@ -79,6 +79,9 @@
           <avue-input-number v-model="main.activeOption.fontSize"
                              :max="200"></avue-input-number>
         </el-form-item>
+        <el-form-item label="字体高亮颜色">
+          <avue-input-color v-model="main.activeOption.empColor"></avue-input-color>
+        </el-form-item>
         <el-form-item label="字体颜色">
           <avue-input-color v-model="main.activeOption.color"></avue-input-color>
         </el-form-item>

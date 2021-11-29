@@ -7,13 +7,13 @@
                   placement="top-start"
                   :style="[styleParentName,{
                backgroundColor: item.backgroundColor || option.backgroundColor,
-           }]">
+           },getEmpStyle(index)]">
         <div slot="content"
              v-html="item.formatter && item.formatter()"></div>
         <div :class="b('item',{'none':(statusDIC.includes(item) || type===''),'whole':isWhole,'img':isWhole&&(isImg || isBorder)})"
              :style="!isWhole?'':styleName"
              @click="handleClick(item,index)">
-          <div :style="prefixStyle"
+          <div :style="[prefixStyle,getEmpStyle(index)]"
                v-if="getValByArray(item,'prefixText')">{{getValByArray(item,'prefixText')}}</div>
           <avue-count-up v-if="isWhole"
                          :decimals="decimals"
@@ -32,7 +32,7 @@
                              :end="item"></avue-count-up>
             </div>
           </div>
-          <div :style="suffixStyle"
+          <div :style="[suffixStyle,getEmpStyle(index)]"
                v-if="getValByArray(item,'suffixText')">{{getValByArray(item,'suffixText')}}</div>
         </div>
       </el-tooltip>
@@ -47,6 +47,7 @@ export default create({
   name: "flop",
   data () {
     return {
+      active: 0,
       statusDIC: [".", ","]
     };
   },
@@ -178,6 +179,7 @@ export default create({
   created () { },
   methods: {
     handleClick (item, index) {
+      this.active = index;
       this.updateClick({
         value: item.prefixText
       });
@@ -186,6 +188,15 @@ export default create({
         value: item,
         data: this.dataChart
       });
+    },
+    getEmpStyle (index) {
+      let result = {}
+      if (index == this.active) {
+        result = {
+          color: this.option.empColor
+        }
+      }
+      return result
     },
     getValByArray (item, prop) {
       return this.isArray ? item[prop] : this.option[prop];
