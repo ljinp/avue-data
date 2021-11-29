@@ -8,7 +8,6 @@ import dataV from '@jiaminghi/data-view'
 import router from './router.js';
 import App from './App.vue'
 import './styles/common.scss'
-import { url } from '@/config'
 import '@/utils/es6'
 import '@/mock/'
 //导入主题文件
@@ -18,7 +17,7 @@ window.axios = axios;
 Vue.use(Avue, {
   size: 'mini'
 });
-Vue.prototype.url = url;
+Vue.prototype.$website = window.$website;
 Vue.use(ElementUI);
 Vue.use(dataV)
 new Vue({

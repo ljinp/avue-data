@@ -61,8 +61,8 @@ export default {
       }
     },
     rowDel (row, index) {
-      if (this.vaildData(index)) {
-        this.$message.error('例子模板不允许修改')
+      if (this.vaildData(index) && this.$website.isDemo) {
+        this.$message.error(this.$website.isDemoTip)
         return false;
       }
       this.$confirm('此操作将永久删除, 是否继续?', '提示', {
@@ -80,14 +80,16 @@ export default {
 
     },
     rowUpdate (row, index, done) {
-      if (this.vaildData(index)) {
-        this.$message.error('例子模板不允许修改')
+      if (this.vaildData(index) && this.$website.isDemo) {
+        done();
+        this.$message.error(this.$website.isDemoTip)
         return false;
       }
       updateObj(row).then(() => {
+        done();
         this.$message.success('修改成功');
         this.getList()
-        done();
+
       })
     },
     rowSave (row, done) {

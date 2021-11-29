@@ -7,8 +7,8 @@
            height="220px">
       <div class="title">
         <p>
-          WELECOMT TO AVUE-DATA<br />
-          <small>可视化数据大屏（演示环境）</small>
+          WELCOME TO AVUE-DATA<br />
+          <small>可视化数据大屏{{$website.isDemo?'（演示环境-请勿放生产数据）':''}}</small>
         </p>
       </div>
       <navs @change="handleChange"></navs>

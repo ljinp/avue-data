@@ -95,7 +95,7 @@ export default {
         this.DIC.MAP = data.records.map(ele => {
           return {
             label: ele.name,
-            value: this.url + '/map/data?id=' + ele.id
+            value: this.$website.url + '/map/data?id=' + ele.id
           }
         });
       })

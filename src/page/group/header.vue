@@ -158,7 +158,7 @@ export default {
           var file = dataURLtoFile(canvas.toDataURL('image/jpeg', 0.1), new Date().getTime() + '.jpg');
           var formdata = new FormData();
           formdata.append('file', file)
-          axios.post(this.url + '/visual/put-file', formdata, {
+          axios.post(this.$website.url + '/visual/put-file', formdata, {
             headers: {
               "Content-Type": "multipart/form-data"
             }

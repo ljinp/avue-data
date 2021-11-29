@@ -135,25 +135,26 @@ export default {
       });
     },
     rowUpdate (row, index, done, loading) {
-      if (this.vaildData(index)) {
-        this.$message.error('例子模板不允许修改')
+      if (this.vaildData(index) && this.$website.isDemo) {
+        this.$message.error(this.$website.isDemoTip)
+        done();
         return false;
       }
       update(row).then(() => {
+        done();
         this.onLoad();
         this.$message({
           type: "success",
           message: "操作成功!"
         });
-        done();
       }, error => {
         window.console.log(error);
         loading();
       });
     },
     rowDel (row, index) {
-      if (this.vaildData(index)) {
-        this.$message.error('例子模板不允许修改')
+      if (this.vaildData(index) && this.$website.isDemo) {
+        this.$message.error(this.$website.isDemoTip)
         return false;
       }
       this.$prompt('请输入管理员密码', '提示', {

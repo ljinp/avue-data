@@ -4,4 +4,4 @@ export default {
   DEAFNAME: 'item',
   password: 'avue_data'
 }
-export const url = window.$url;
+export const url = window.$website.url;

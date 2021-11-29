@@ -120,7 +120,7 @@ export default {
           span: 24,
           labelWidth: 100,
           type: 'select',
-          dicUrl: this.url + '/category/list',
+          dicUrl: this.$website.url + '/category/list',
           props: {
             label: 'categoryKey',
             value: 'categoryValue',
@@ -212,11 +212,10 @@ export default {
       })
     },
     handleCopy (item) {
-      this.$message({
-        message: '演示环境不允许复制',
-        type: 'danger'
-      })
-      return
+      if (this.$website.isDemo) {
+        this.$message.error(this.$website.isDemoTip)
+        return
+      }
       this.$confirm('确认复制当前大屏', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -231,15 +230,15 @@ export default {
       });
     },
     handleDel (item, index) {
+      if (this.vaildData(index) && this.$website.isDemo) {
+        this.$message.error(this.$website.isDemoTip)
+        return false;
+      }
       this.$confirm('是否确认永久删除?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        if (this.vaildData(index)) {
-          this.$message.error('例子模板不允许修改')
-          return false;
-        }
         delObj(item.id).then(() => {
           this.list.splice(index, 1)
           this.$message.success('删除成功')
@@ -273,9 +272,9 @@ export default {
       window.open(routeUrl.href, '_blank');
     },
     handleSave (form, done) {
-      done();
-      if (this.vaildData(Number(this.index))) {
-        this.$message.error('例子模板不允许修改')
+      if (this.vaildData(Number(this.index)) && this.$website.isDemo) {
+        done();
+        this.$message.error(this.$website.isDemoTip)
         return false;
       }
       updateObj({
@@ -285,8 +284,10 @@ export default {
         status: this.form.status,
         title: this.form.title
       }).then(() => {
+        done();
         this.$message.success('修改成功');
         this.getList();
+
       })
     },
     handleCurrentChange (val) {

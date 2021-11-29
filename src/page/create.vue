@@ -100,7 +100,7 @@ export default {
           span: 24,
           labelWidth: 100,
           type: 'select',
-          dicUrl: this.url + '/category/list',
+          dicUrl: this.$website.url + '/category/list',
           props: {
             label: 'categoryKey',
             value: 'categoryValue',
