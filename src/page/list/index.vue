@@ -111,7 +111,7 @@ export default {
   data () {
     return {
       typeList: [],
-      index: 0,
+      box: false,
       option: {
         submitText: '修改大屏',
         column: [{
@@ -221,9 +221,10 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        copyObj(item.id).then(() => {
+        copyObj(item.id).then((res) => {
           this.$message.success('复制成功');
-          this.getList();
+          const id = res.data.data;
+          this.handleEdit({ id })
         })
       }).catch(() => {
 
@@ -255,9 +256,13 @@ export default {
       })
     },
     handleUpdate (item, index) {
+      if (this.vaildData(Number(index)) && this.$website.isDemo) {
+        this.$message.error(this.$website.isDemoTip)
+        return false;
+      }
       this.form = item
       this.form.category = this.form.category + '';
-      this.index = index;
+      this.box = true;
     },
     handleEdit (item) {
       let routeUrl = this.$router.resolve({
@@ -272,11 +277,6 @@ export default {
       window.open(routeUrl.href, '_blank');
     },
     handleSave (form, done) {
-      if (this.vaildData(Number(this.index)) && this.$website.isDemo) {
-        done();
-        this.$message.error(this.$website.isDemoTip)
-        return false;
-      }
       updateObj({
         id: this.form.id,
         category: this.form.category,
