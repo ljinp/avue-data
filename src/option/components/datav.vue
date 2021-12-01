@@ -15,6 +15,8 @@
     </el-form-item>
     <codeedit @submit="codeClose"
               v-model="code.obj"
+              v-if="code.box"
+              :type="code.type"
               :visible.sync="code.box"></codeedit>
   </div>
 </template>

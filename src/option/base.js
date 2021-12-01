@@ -46,27 +46,6 @@ export default [{
       },
     }
   }, {
-    label: '自定义',
-    option: {
-      "name": "自定义",
-      "title": "自定义",
-      "icon": 'icon-bar',
-      "img": require('@/assets/text4.png'),
-      "dataType": 0,
-      "data": [],
-      "dataFormatter": "",
-      "stylesFormatter": "",
-      "component": {
-        "width": 800,
-        "height": 500,
-        "name": "test",
-        "prop": "test",
-      },
-      "option": {
-        "fontSize": 20,
-      }
-    }
-  }, {
     "label": 'datav',
     "option": {
       "name": "datav",
@@ -1284,6 +1263,45 @@ export default [{
   label: '二次开发',
   icon: 'el-icon-info',
   children: [{
+    label: '自定义组件',
+    option: {
+      "name": "自定义组件",
+      "title": "自定义组件",
+      "icon": 'icon-bar',
+      "img": require('@/assets/text4.png'),
+      "dataType": 0,
+      "data": [],
+      "dataFormatter": "",
+      "stylesFormatter": "",
+      "component": {
+        "width": 800,
+        "height": 500,
+        "name": "test",
+        "prop": "test",
+      },
+      "option": {
+        "fontSize": 20,
+      }
+    }
+  }, {
+    label: '定时器',
+    option: {
+      "name": "定时器",
+      "title": "定时器",
+      "icon": 'icon-datetime',
+      "img": require('@/assets/text4.png'),
+      "echartFormatter": "",
+      "component": {
+        "width": 100,
+        "height": 100,
+        "name": "time",
+        "prop": "time",
+      },
+      option: {
+        time: 0
+      }
+    }
+  }, {
     label: '滚动选项卡',
     option: {
       "name": "滚动选项卡",
@@ -1362,7 +1380,6 @@ export default [{
         step: 1,
         marginBottom: 20,
         hoverStop: true,
-
       }
     }
   }]

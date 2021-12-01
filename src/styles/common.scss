@@ -284,13 +284,17 @@ input{
 .el-card{
   background-color: transparent;
 }
-.el-input__inner,.el-textarea__inner{
+.el-input__inner,.el-textarea__inner,.el-input-group__append, .el-input-group__prepend{
   border-color: #000 !important;
   border-radius: 0;
   color:#fff !important;
   &:hover{
     border-color: #2681ff !important;
   }
+}
+.el-form-item--mini .el-color-picker--mini, .el-form-item--mini .el-color-picker--mini .el-color-picker__trigger{
+  width: 22px;
+  height: 22px;
 }
 .avue-dialog .el-dialog__header{
   border-color: #333;

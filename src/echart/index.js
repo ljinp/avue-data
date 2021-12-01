@@ -23,5 +23,5 @@ import EchartScatter from './packages/scatter';
 import EchartCommon from './packages/common';
 import EchartDatav from './packages/datav';
 import EchartClapper from './packages/clappr';
-
-export default { EchartRadar, EchartScatter, EchartFunnel, EchartSlide, EchartTabs, EchartVideo, EchartWordCloud, EchartPictorialBar, EchartMaps, EchartImg, EchartImgBorder, EchartBar, EchartGauge, EchartIframe, EchartSwiper, EchartTable, EchartPie, EchartText, EchartLine, EchartFlop, EchartDatetime, EchartProgress, EchartCommon, EchartDatav, EchartClapper };
+import EchartTime from './packages/time';
+export default { EchartRadar, EchartScatter, EchartFunnel, EchartSlide, EchartTabs, EchartVideo, EchartWordCloud, EchartPictorialBar, EchartMaps, EchartImg, EchartImgBorder, EchartBar, EchartGauge, EchartIframe, EchartSwiper, EchartTable, EchartPie, EchartText, EchartLine, EchartFlop, EchartDatetime, EchartProgress, EchartCommon, EchartDatav, EchartClapper, EchartTime };

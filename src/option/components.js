@@ -24,6 +24,7 @@ import clapperOption from './components/clapper'
 import commonOption from './components/common'
 import wordcloudOption from './components/wordcloud'
 import datavOption from './components/datav'
+import timeOption from './components/time'
 //通用配置
 import mainOption from './components/main'
 //自定义组件库
@@ -57,6 +58,7 @@ export default {
     clapperOption,
     wordcloudOption,
     datavOption,
+    timeOption,
     testOption,
     imgTabsOption,
     imgListOption

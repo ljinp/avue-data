@@ -49,7 +49,7 @@ export default {
             this.code = `function(data){
     return {}
 }`
-          } else if (['clickFormatter'].includes(this.type) && this.validatenull(val)) {
+          } else if (['clickFormatter', 'echartFormatter'].includes(this.type) && this.validatenull(val)) {
             this.code = `function(params){
     alert(params)
 }`

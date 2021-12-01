@@ -2,6 +2,7 @@ import { setPx, getUrlParams, validatenull } from './util';
 import config from './config';
 import crypto from '@/utils/crypto'
 import { funEval } from '@/utils/utils';
+import COMMON from '@/config'
 export default (() => {
   return {
     props: {
@@ -105,7 +106,7 @@ export default (() => {
         this.updateData()
       },
       echartFormatter () {
-        this.updateChart();
+        this.updateChart && this.updateChart();
       },
       url: {
         handler (val) {
@@ -212,17 +213,25 @@ export default (() => {
           }
         }
       },
-      updateClick (params) {
+      getItemRefs () {
         let refList = this.$parent.$parent.$refs;
+        let result = {}
+        Object.keys(refList).forEach(ele => {
+          if (ele.indexOf(COMMON.NAME) !== -1) {
+            result[ele.replace(COMMON.NAME, '')] = refList[ele][0]
+          }
+        })
+        return result;
+      },
+      updateClick (params) {
+        let refList = this.getItemRefs();
         let indexList = this.child.index;
         let indexName = this.child.paramName;
         if (validatenull(indexName) && validatenull(indexList)) return
         let p = {};
         p[indexName] = params.value
         Object.keys(refList).forEach(ele => {
-          if (indexList.includes(ele.replace('list', ''))) {
-            refList[ele][0].updateData(p);
-          }
+          if (indexList.includes(ele)) refList[ele].updateData(p);
         })
       },
       updateAppend (result) {

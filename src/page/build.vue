@@ -129,13 +129,13 @@
                   <el-button type="primary"
                              size="mini"
                              class="block"
-                             @click="handleDeleteSelect">删除</el-button>
+                             @click="handleFloder">成组</el-button>
                 </el-form-item>
                 <el-form-item label-width="0">
                   <el-button type="danger"
                              size="mini"
                              class="block"
-                             @click="handleFloder">成组</el-button>
+                             @click="handleDeleteSelect">删除</el-button>
                 </el-form-item>
               </template>
               <!-- 主屏的配置项 -->
@@ -715,13 +715,6 @@ export default {
         this.keys.ctrl = false;
       }
     },
-    deleteMethod () {
-      this.active.forEach(index => {
-        const params = this.findnav(index);
-        delete params.parent.splice(params.count, 1);
-      })
-      this.handleInitActive()
-    },
     setActive (val, result, fun) {
       const obj = this.$refs.container.getDragObj(val);
       if (!this.validatenull(obj)) obj[0][fun](result)
@@ -732,7 +725,7 @@ export default {
       this.active.forEach(index => {
         const params = this.findnav(index);
         floder.children.push(params.obj);
-        delete params.parent.splice(params.count, 1);
+        params.parent.splice(params.count, 1);
       })
       this.nav.push(floder);
       this.handleInitActive();
@@ -744,7 +737,11 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.deleteMethod()
+        this.active.forEach(index => {
+          const params = this.findnav(index);
+          params.parent.splice(params.count, 1);
+        })
+        this.handleInitActive()
       })
     },
     vaildProp (name, list) {

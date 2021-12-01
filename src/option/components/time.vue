@@ -1,11 +1,11 @@
 <!-- 通用形配置 -->
 <template>
   <div>
-    <el-form-item label="在线文档">
-      <a href="https://echarts.apache.org/examples/zh/index.html"
-         target="_blank">点击查看</a>
+    <el-form-item label="执行间隔">
+      <avue-input-number v-model="main.activeOption.time">
+      </avue-input-number>
     </el-form-item>
-    <el-form-item label="配置列表">
+    <el-form-item label="执行逻辑">
       <el-button size="mini"
                  type="primary"
                  @click="openCode">编辑</el-button>

@@ -13,7 +13,7 @@ export default create({
   methods: {
     updateChart () {
       const optionData = this.deepClone(this.dataChart) || [];
-      const option = this.echartFormatter(optionData);
+      const option = this.echartFormatter && this.echartFormatter(optionData);
       this.myChart.resize();
       this.myChart.setOption(option, true);
     }
