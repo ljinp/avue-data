@@ -20,7 +20,6 @@
 
 <script>
 import { getList, getDetail, add, update, remove, dbTest } from "@/api/db";
-import config from '@/config';
 export default {
   data () {
     return {
@@ -157,28 +156,21 @@ export default {
         this.$message.error(this.$website.isDemoTip)
         return false;
       }
-      this.$prompt('请输入管理员密码', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        inputPattern: new RegExp(config.password),
-        inputErrorMessage: '密码不正确，请重新输入'
-      }).then(({ value }) => {
-        this.$confirm("确定将选择数据删除?", {
-          confirmButtonText: "确定",
-          cancelButtonText: "取消",
-          type: "warning"
-        })
-          .then(() => {
-            return remove(row.id);
-          })
-          .then(() => {
-            this.onLoad();
-            this.$message({
-              type: "success",
-              message: "操作成功!"
-            });
-          });
+      this.$confirm("确定将选择数据删除?", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
       })
+        .then(() => {
+          return remove(row.id);
+        })
+        .then(() => {
+          this.onLoad();
+          this.$message({
+            type: "success",
+            message: "操作成功!"
+          });
+        });
 
     },
     beforeOpen (done, type) {

@@ -53,6 +53,7 @@ export const dynamicSql = (data) => {
     url: url + '/db/dynamic-query',
     method: 'post',
     headers: {
+      'data': data,
       'Content-Type': 'application/json'
     },
     data: data
@@ -63,6 +64,7 @@ export const dbTest = (data) => {
     url: url + '/db/db-test',
     method: 'post',
     headers: {
+      'data': crypto.encrypt(JSON.stringify(data)),
       'Content-Type': 'application/json'
     },
     data: crypto.encrypt(JSON.stringify(data))

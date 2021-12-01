@@ -1,7 +1,6 @@
 export default {
   COMPNAME: "avue-echart-",
   NAME: "list",
-  DEAFNAME: 'item',
-  password: 'avue_data'
+  DEAFNAME: 'item'
 }
 export const url = window.$website.url;

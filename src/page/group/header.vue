@@ -126,8 +126,8 @@ export default {
     },
     handleBuild (fn) {
       let isFun = typeof (fn) === 'function'
-      if (!isFun && this.$route.params.id <= 100) {
-        this.$message.error('模版例子不能修改')
+      if (!isFun && this.$route.params.id <= 100 && this.$website.isDemo) {
+        this.$message.error(this.$website.isDemoTip)
         return
       }
       this.contain.handleInitActive();
