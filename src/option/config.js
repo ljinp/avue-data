@@ -3,7 +3,6 @@ const path = process.env.VUE_APP_PATH;
 export const config = {
   width: 1920,
   height: 1080,
-  scale: 1,
   query: '',
   header: '',
   mark: {

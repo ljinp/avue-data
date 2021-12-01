@@ -7,7 +7,7 @@
       <el-upload class="upload-demo"
                  :on-success="onSuccess"
                  :show-file-list="false"
-                 :action="url+'/visual/put-file'"
+                 :action="$website.url+'/visual/put-file'"
                  multiple
                  list-type="picture">
         <el-button size="small"
