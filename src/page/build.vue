@@ -405,21 +405,16 @@
                          disabled
                          height="300"></monaco-editor>
         </el-form-item>
-        <el-form-item label-width="0px">
-          <el-col :span="12">
-            <el-button size="small"
-                       type="danger"
-                       class="block"
-                       @click="openCode('dataFormatter')">数据处理</el-button>
-          </el-col>
-          <el-col :span="12">
-            <el-button size="small"
-                       type="primary"
-                       class="block"
-                       @click="handleRes">刷新数据</el-button>
-          </el-col>
-        </el-form-item>
       </el-form>
+      <span slot="footer"
+            class="dialog-footer">
+        <el-button size="small"
+                   type="danger"
+                   @click="openCode('dataFormatter')">数据处理</el-button>
+        <el-button size="small"
+                   type="primary"
+                   @click="handleRes">刷新数据</el-button>
+      </span>
     </el-dialog>
   </div>
 </template>
