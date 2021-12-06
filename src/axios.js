@@ -33,7 +33,8 @@ axios.interceptors.request.use(config => {
   });
   getGlobParams();
   if (!checkUrl(config.url)) {
-    config.url = config.url + window.$glob.url
+    config.url = window.$glob.url+config.url;
+    console.log("遇到组件中url片段,追加$glob.url,最终请求："+config.url);
   }
   if (!validatenull(window.$glob.header)) {
     let header = getFunction(window.$glob.header)();
