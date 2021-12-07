@@ -168,7 +168,7 @@
                               :min-rows="3"
                               v-model="config.url"></avue-input>
                 </el-form-item>
-                <el-form-item label="公共请求头">
+                <el-form-item label="公共请求参数">
                   <el-button size="mini"
                              type="primary"
                              @click="openCode('query')">编辑函数</el-button>

@@ -19,7 +19,7 @@
         margin-right: 10px;
       }
       &.is-active{
-        background-image: url(/img/nav-menu-img.png);
+        background-image: url(#{$app-path}img/nav-menu-img.png);
         background-repeat: round;
         &:hover{
           color: #fff;
@@ -77,8 +77,8 @@
       p {
         letter-spacing: 2px;
       }
-      
-    }  
+
+    }
     &__page{
       padding-right: 50px;
       display: flex;
@@ -98,7 +98,7 @@
       &:hover {
         box-shadow: 0 0 20px 0 #000;
         border: 1px solid #00baff;
-      }  
+      }
     }
     &__main {
       font-size: 12px;
