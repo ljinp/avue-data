@@ -1,7 +1,7 @@
 <template>
   <div class="index">
     <div class="header">
-      <img src="/img/nav-img.png"
+      <img :src="`${$router.options.base}img/nav-img.png`"
            alt=""
            width="100%"
            height="220px">

@@ -1,3 +1,4 @@
+let scssVariables = require('./src/styles/scss.variables.js');
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production'
     ? '/'
@@ -6,7 +7,12 @@ module.exports = {
   css: {
     loaderOptions: {
       scss: {
-        prependData: '@import "@/styles/echart.scss";'
+        prependData: '@import "@/styles/echart.scss";\n' +
+          Object.keys(scssVariables)
+            .map(k => `\$${k.replace('_', '-')}: "${scssVariables[k]}";`)
+            .join('\n')
+
+
       }
     }
   },
