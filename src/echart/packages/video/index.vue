@@ -23,19 +23,10 @@ export default create({
   computed: {
     params () {
       let result = {}
-      if (this.controls) result.controls = "controls"
-      if (this.loop) result.loop = "loop"
-      if (this.autoplay) result.autoplay = "autoplay"
+      if (this.option.controls) result.controls = "controls"
+      if (this.option.loop) result.loop = "loop"
+      if (this.option.autoplay) result.autoplay = "autoplay"
       return result
-    },
-    loop () {
-      return this.option.loop
-    },
-    controls () {
-      return this.option.controls
-    },
-    autoplay () {
-      return this.option.autoplay
     }
   },
   created () { },

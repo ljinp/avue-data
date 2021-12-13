@@ -75,7 +75,7 @@ export default {
       const widthVal = (scale / 100) + 0.001;
       const heightVal = (document.body.clientHeight / this.contain.config.height) - 0.002;
       return Object.assign({
-        transform: `scale(${widthVal}, ${!this.isBuild ? heightVal : widthVal})`,
+        transform: `scale(${widthVal}, ${widthVal})`,
         width: this.setPx(this.contain.config.width),
         height: this.setPx(this.contain.config.height),
         backgroundColor: this.contain.config.backgroundColor

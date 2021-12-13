@@ -758,6 +758,8 @@ export default [{
           value: 'https://img.alicdn.com/tfs/TB1v28TC8v0gK0jSZKbXXbK2FXa-1880-640.jpg',
         }, {
           value: 'https://img.alicdn.com/tfs/TB1uevcCrj1gK0jSZFuXXcrHpXa-1880-640.jpg',
+        }, {
+          value: 'http://www.w3school.com.cn/i/movie.ogg'
         }],
       "dataFormatter": "",
       "stylesFormatter": "",
@@ -771,7 +773,11 @@ export default [{
         type: '',
         interval: 5000,
         opacity: 100,
-        indicator: 'none'
+        indicator: 'none',
+        autoplay: true,
+        controls: true,
+        loop: true
+
       },
     }
   }, {
@@ -812,9 +818,9 @@ export default [{
         value: 'http://www.w3school.com.cn/i/movie.ogg'
       },
       "option": {
-        autoplay: false,
-        controls: false,
-        loop: false
+        autoplay: true,
+        controls: true,
+        loop: true
       },
       "dataFormatter": "",
       "stylesFormatter": "",
