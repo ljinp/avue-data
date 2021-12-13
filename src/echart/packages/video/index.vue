@@ -3,12 +3,11 @@
        :style="styleSizeName"
        ref="main"
        @click="handleClick">
-    <video controls=""
-           autoplay=""
-           loop=""
+    <video muted
            :width="width"
            :height="height"
            :src="dataChart.value"
+           v-bind="params"
            style="object-fit: fill">
     </video>
   </div>
@@ -21,7 +20,24 @@ export default create({
   data () {
     return {};
   },
-  computed: {},
+  computed: {
+    params () {
+      let result = {}
+      if (this.controls) result.controls = "controls"
+      if (this.loop) result.loop = "loop"
+      if (this.autoplay) result.autoplay = "autoplay"
+      return result
+    },
+    loop () {
+      return this.option.loop
+    },
+    controls () {
+      return this.option.controls
+    },
+    autoplay () {
+      return this.option.autoplay
+    }
+  },
   created () { },
   mounted () { },
   methods: {

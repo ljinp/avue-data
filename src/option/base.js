@@ -811,7 +811,11 @@ export default [{
       "data": {
         value: 'http://www.w3school.com.cn/i/movie.ogg'
       },
-      "option": {},
+      "option": {
+        autoplay: false,
+        controls: false,
+        loop: false
+      },
       "dataFormatter": "",
       "stylesFormatter": "",
       "component": {
@@ -835,7 +839,9 @@ export default [{
       "data": {
         value: 'https://open.ys7.com/v3/openlive/E10668433_1_1.m3u8?expire=1664027961&id=363444666731335680&t=346b970f0d5cb5d5b5e4734d966275a61fb9efd5038c7a75b7435423c5716908&ev=100'
       },
-      "option": {},
+      "option": {
+        autoplay: true
+      },
       "dataFormatter": "",
       "stylesFormatter": "",
       "component": {

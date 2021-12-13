@@ -18,6 +18,11 @@ export default create({
       config: {}
     }
   },
+  computed: {
+    autoplay () {
+      return this.option.autoplay
+    }
+  },
   watch: {
     dataChart: {
       handler () {
@@ -28,7 +33,7 @@ export default create({
             new Clappr.Player({
               parentId: '#player-wrapper',
               source: this.dataChart.value,
-              autoPlay: true,
+              autoPlay: this.autoplay,
               mute: true,
               height: '100%',
               width: '100%'
