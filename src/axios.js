@@ -1,4 +1,4 @@
-import { Loading } from 'element-ui';
+// import { Loading } from 'element-ui';
 import { validatenull } from '@/echart/util'
 import { checkUrl, getFunction } from '@/utils/utils'
 import axios from 'axios';
@@ -23,14 +23,14 @@ axios.defaults.validateStatus = function (status) {
   return status >= 200 && status <= 500; // 默认的
 };
 //跨域请求，允许保存cookie
-let loadingInstance = '';
+// let loadingInstance = '';
 axios.defaults.withCredentials = true;
 axios.interceptors.request.use(config => {
-  loadingInstance = Loading.service({
-    text: '拼命加载中',
-    background: 'rgba(0,0,0,0)',
-    spinner: 'el-icon-loading'
-  });
+  // loadingInstance = Loading.service({
+  //   text: '拼命加载中',
+  //   background: 'rgba(0,0,0,0)',
+  //   spinner: 'el-icon-loading'
+  // });
   getGlobParams();
   if (!checkUrl(config.url)) {
     config.url = window.$glob.url + config.url;
@@ -55,10 +55,10 @@ axios.interceptors.request.use(config => {
 });
 //HTTPrequest拦截
 axios.interceptors.response.use(config => {
-  loadingInstance.close();
+  // loadingInstance.close();
   return config;
 }, error => {
-  loadingInstance.close();
+  // loadingInstance.close();
   return Promise.reject(new Error(error));
 })
 

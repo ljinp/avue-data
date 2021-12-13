@@ -728,6 +728,8 @@ export default [{
       "img": require('@/assets/imgborder.png'),
       "top": 0,
       "left": 0,
+      "dataType": 0,
+      "data": "",
       "component": {
         "width": 140,
         "height": 140,
