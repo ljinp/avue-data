@@ -1,6 +1,7 @@
 <template>
   <div :class="b()"
-       :style="styleSizeName">
+       :style="styleSizeName"
+       @click="handleClick">
     <div id="player-wrapper"
          v-if="reload"
          :style="styleSizeName"></div>
@@ -36,6 +37,13 @@ export default create({
         })
       },
       deep: true
+    }
+  },
+  methods: {
+    handleClick () {
+      this.clickFormatter && this.clickFormatter({
+        data: this.dataChart
+      }, this.getItemRefs());
     }
   }
 });

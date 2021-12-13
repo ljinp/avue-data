@@ -92,7 +92,7 @@ export default create({
       });
       this.clickFormatter && this.clickFormatter({
         data: this.dataChart
-      });
+      }, this.getItemRefs());
     },
     move () {
       clearInterval(this.check);

@@ -70,17 +70,6 @@
     justify-content: center;
   }
 }
-&-slide{
-  .swiper-container {
-    width: 100%;
-    height: 100%;
-  }
-  .swiper-slide {
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-  }
-}
 &-table{
   &__body{
     position: relative;

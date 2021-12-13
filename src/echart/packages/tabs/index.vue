@@ -146,7 +146,7 @@ export default create({
         type: this.name,
         child: this.child,
         value: this.active
-      });
+      }, this.getItemRefs());
     }
   },
   props: {

@@ -187,7 +187,7 @@ export default create({
         type: index,
         value: item,
         data: this.dataChart
-      });
+      }, this.getItemRefs());
     },
     getEmpStyle (index) {
       let result = {}

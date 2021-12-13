@@ -18,8 +18,6 @@ export const viewHtml = `
   <link rel="stylesheet" href="${cdnPath}/element-ui/2.15.3/theme-chalk/index.min.css">
   <link rel="stylesheet" href="${homePath}/lib/index.css">
   <link rel="stylesheet" href="${dataPath}/lib/index.css">
-  <link rel="stylesheet" href="${cdnPath}/Swiper/4.5.1/css/swiper.min.css">
-  <script src="${cdnPath}/Swiper/4.5.1/js/swiper.min.js"> </script>
   <script src="${dataPath}/config.js"></script>
   <script src="${cdnPath}/echarts/4.2.1/echarts.min.js"></script>
   <script src="${dataPath}/cdn/echarts-wordcloud.min.js"></script>

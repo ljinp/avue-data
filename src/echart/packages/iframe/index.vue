@@ -22,7 +22,7 @@ export default create({
     handleClick () {
       this.clickFormatter && this.clickFormatter({
         data: this.dataChart
-      });
+      }, this.getItemRefs());
     }
   },
   props: {

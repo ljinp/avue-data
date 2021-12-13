@@ -377,7 +377,7 @@ export default (() => {
               name: e.name,
               value: e.value[2] || e.value,
               data: this.dataChart
-            });
+            }, this.getItemRefs());
 
           }
         });

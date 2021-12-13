@@ -49,9 +49,13 @@ export default {
             this.code = `function(data){
     return {}
 }`
-          } else if (['clickFormatter', 'echartFormatter'].includes(this.type) && this.validatenull(val)) {
+          } else if (['echartFormatter'].includes(this.type) && this.validatenull(val)) {
             this.code = `function(params){
     alert(params)
+}`
+          } else if (['clickFormatter'].includes(this.type) && this.validatenull(val)) {
+            this.code = `function(params,refs){
+    console.log(params,refs)
 }`
           } else if (['labelFormatter'].includes(this.type) && this.validatenull(val)) {
             this.code = `function(name,data){

@@ -1,6 +1,7 @@
 <template>
   <div :class="b()"
-       :style="styleSizeName">
+       :style="styleSizeName"
+       @click="handleClick">
     <div :style="styleImgName"></div>
   </div>
 </template>
@@ -33,7 +34,13 @@ export default create({
       })())
     }
   },
-  methods: {}
+  methods: {
+    handleClick () {
+      this.clickFormatter && this.clickFormatter({
+        data: this.dataChart
+      }, this.getItemRefs());
+    }
+  }
 });
 </script>
 

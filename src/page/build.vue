@@ -277,8 +277,7 @@
             </el-form>
           </el-tab-pane>
           <!-- 其他事件配置 -->
-          <el-tab-pane name="3"
-                       v-if="vaildProp('clickFormatterList') || vaildProp('labelFormatterList')">
+          <el-tab-pane name="3">
             <el-tooltip slot="label"
                         effect="dark"
                         content="事件"
@@ -288,18 +287,16 @@
             <el-form label-width="120px"
                      label-position="left"
                      size="mini">
+              <el-form-item label="点击事件">
+                <el-button size="mini"
+                           type="primary"
+                           @click="openCode('clickFormatter')">编辑</el-button>
+              </el-form-item>
               <el-form-item label="提示事件"
                             v-if="vaildProp('labelFormatterList')">
                 <el-button size="mini"
                            type="primary"
                            @click="openCode('formatter')">编辑</el-button>
-              </el-form-item>
-              <el-form-item label="点击事件"
-                            v-if="vaildProp('clickFormatterList')">
-                <el-button size="mini"
-                           type="primary"
-                           @click="openCode('clickFormatter')">编辑</el-button>
-
               </el-form-item>
               <el-form-item label="标题事件"
                             v-if="vaildProp('labelFormatterList')">
