@@ -796,13 +796,13 @@ export default [{
         "name": "iframe",
         "prop": "iframe"
       },
-      "option": {},
       "dataType": 0,
       "data": {
         value: 'https://avuejs.com'
       },
       "dataFormatter": "",
-      "stylesFormatter": ""
+      "stylesFormatter": "",
+      "option": {},
     }
   }, {
     label: 'video播放器',

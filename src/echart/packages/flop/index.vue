@@ -1,43 +1,44 @@
 <template>
   <div :class="b()">
-    <div v-for="(item,index) in listData"
-         :key="index"
-         :style="styleParentSize">
-      <el-tooltip :disabled="!item.formatter"
-                  placement="top-start"
-                  :style="[styleParentName,{
+    <template v-for="(item,index) in listData">
+      <div :key="index"
+           v-if="item.display!==false"
+           :style="styleParentSize">
+        <el-tooltip :disabled="!item.formatter"
+                    placement="top-start"
+                    :style="[styleParentName,{
                backgroundColor: item.backgroundColor || option.backgroundColor,
            },getEmpStyle(index)]">
-        <div slot="content"
-             v-html="item.formatter && item.formatter()"></div>
-        <div :class="b('item',{'none':(statusDIC.includes(item) || type===''),'whole':isWhole,'img':isWhole&&(isImg || isBorder)})"
-             :style="!isWhole?'':styleName"
-             @click="handleClick(item,index)">
-          <div :style="[prefixStyle,getEmpStyle(index)]"
-               v-if="getValByArray(item,'prefixText')">{{getValByArray(item,'prefixText')}}</div>
-          <avue-count-up v-if="isWhole"
-                         :decimals="decimals"
-                         :end="item.data || item.value"></avue-count-up>
-          <div :class="[b('count'),b(`count-${option.textAlign}`)]"
-               :style="styleSizeName"
-               v-else>
-            <div :class="b('item',{'none':(statusDIC.includes(item) || type===''),'img':isImg})"
-                 v-for="(item,index) in (item.data || item.value)+''.split(',')"
-                 :key="index"
-                 @click="handleClick(item,index)"
-                 :style="styleName">
-              <div v-if="statusDIC.includes(item)">{{item}}</div>
-              <avue-count-up :decimals="decimals"
-                             v-else
-                             :end="item"></avue-count-up>
+          <div slot="content"
+               v-html="item.formatter && item.formatter()"></div>
+          <div :class="b('item',{'none':(statusDIC.includes(item) || type===''),'whole':isWhole,'img':isWhole&&(isImg || isBorder)})"
+               :style="!isWhole?'':styleName"
+               @click="handleClick(item,index)">
+            <div :style="[prefixStyle,getEmpStyle(index)]"
+                 v-if="getValByArray(item,'prefixText')">{{getValByArray(item,'prefixText')}}</div>
+            <avue-count-up v-if="isWhole"
+                           :decimals="decimals"
+                           :end="item.data || item.value"></avue-count-up>
+            <div :class="[b('count'),b(`count-${option.textAlign}`)]"
+                 :style="styleSizeName"
+                 v-else>
+              <div :class="b('item',{'none':(statusDIC.includes(item) || type===''),'img':isImg})"
+                   v-for="(item,index) in (item.data || item.value)+''.split(',')"
+                   :key="index"
+                   @click="handleClick(item,index)"
+                   :style="styleName">
+                <div v-if="statusDIC.includes(item)">{{item}}</div>
+                <avue-count-up :decimals="decimals"
+                               v-else
+                               :end="item"></avue-count-up>
+              </div>
             </div>
+            <div :style="[suffixStyle,getEmpStyle(index)]"
+                 v-if="getValByArray(item,'suffixText')">{{getValByArray(item,'suffixText')}}</div>
           </div>
-          <div :style="[suffixStyle,getEmpStyle(index)]"
-               v-if="getValByArray(item,'suffixText')">{{getValByArray(item,'suffixText')}}</div>
-        </div>
-      </el-tooltip>
-    </div>
-
+        </el-tooltip>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -188,6 +189,7 @@ export default create({
         value: item,
         data: this.dataChart
       }, this.getItemRefs());
+      if (item.href) window.open(item.href, item.target)
     },
     getEmpStyle (index) {
       let result = {}
