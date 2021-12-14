@@ -41,11 +41,11 @@ export default {
     value: {
       handler (val) {
         if (this.validatenull(val)) {
-          if (['dataFormatter'].includes(this.type) && this.validatenull(val)) {
-            this.code = `function(data,params){
+          if (['dataFormatter', 'stylesFormatter'].includes(this.type) && this.validatenull(val)) {
+            this.code = `function(data,params,refs){
     return {}
 }`
-          } else if (['query', 'header', 'dataQuery', 'dataHeader', 'stylesFormatter'].includes(this.type) && this.validatenull(val)) {
+          } else if (['query', 'header', 'dataQuery', 'dataHeader'].includes(this.type) && this.validatenull(val)) {
             this.code = `function(data){
     return {}
 }`

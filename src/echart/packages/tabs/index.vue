@@ -12,7 +12,7 @@
            :style="[styleName,styleActiveName(item)]"
            v-for="(item,index) in dataChart"
            :key="index"
-           @click="handleItem(item.value)">
+           @click="handleClick(item,index)">
         <div v-if="item.icon"
              :class="b('icon')"
              :style="[styleIconName,styleIconBgName(item),styleIconActiveName(item)]"></div>
@@ -32,13 +32,10 @@ export default create({
     };
   },
   watch: {
-    active (val) {
-      this.handleClick();
-    },
     dataChart: {
       handler (val) {
         if (val.length !== 0) {
-          this.active = val[0].value;
+          this.handleClick(val[0], 0, true)
         }
       },
       immediate: true
@@ -95,8 +92,6 @@ export default create({
       );
     }
   },
-  created () { },
-  mounted () { },
   methods: {
     styleIconBgName (item) {
       if (item.icon) {
@@ -135,18 +130,15 @@ export default create({
         );
       }
     },
-    handleItem (val) {
-      this.active = val;
-    },
-    handleClick () {
-      this.updateClick({
-        value: this.active
-      });
+    handleClick (item, index, target = false) {
+      this.active = item.value;
+      this.updateClick(item);
       this.clickFormatter && this.clickFormatter({
-        type: this.name,
-        child: this.child,
-        value: this.active
+        type: index,
+        value: item,
+        data: this.dataChart
       }, this.getItemRefs());
+      if (item.href && !target) window.open(item.href, item.target)
     }
   },
   props: {

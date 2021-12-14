@@ -305,12 +305,6 @@
                            type="primary"
                            @click="openCode('labelFormatter')">编辑</el-button>
               </el-form-item>
-              <el-form-item label-width="0">
-                <el-button size="mini"
-                           type="primary"
-                           class="block"
-                           @click="handleRefresh">刷新</el-button>
-              </el-form-item>
             </el-form>
           </el-tab-pane>
           <!-- 基本参数配置 -->

@@ -281,7 +281,7 @@ export default (() => {
               if (this.isChart) this.updateChart();
               if (this.myChart) this.bindClick();
               if (typeof this.stylesFormatter === 'function') {
-                this.styles = this.stylesFormatter(this.dataChart) || {};
+                this.styles = this.stylesFormatter(this.dataChart, this.dynamicQuery, this.getItemRefs()) || {};
               }
               resolve(this.dataChart);
 
@@ -294,7 +294,7 @@ export default (() => {
                 this.dataAxios = res;
                 let result = (() => {
                   if (typeof this.dataFormatter === 'function') {
-                    return this.dataFormatter(res.data, this.dataAxios);
+                    return this.dataFormatter(res.data, this.dataAxios, this.getItemRefs());
                   };
                   return res.data || {};
                 })();
@@ -333,7 +333,7 @@ export default (() => {
               this.sqlFormatter(result).then(res => {
                 // 静态数据
                 if (typeof this.dataFormatter === 'function') {
-                  this.dataChart = this.dataFormatter(res.data.data);
+                  this.dataChart = this.dataFormatter(res.data.data, this.dynamicQuery, this.getItemRefs());
                 } else {
                   this.dataChart = res.data.data;
                 }
@@ -342,7 +342,7 @@ export default (() => {
             } else {
               // 静态数据
               if (typeof this.dataFormatter === 'function') {
-                this.dataChart = this.dataFormatter(this.data, this.dynamicQuery);
+                this.dataChart = this.dataFormatter(this.data, this.dynamicQuery, this.getItemRefs());
               } else {
                 this.dataChart = this.data;
               }
