@@ -61,7 +61,7 @@ export const getJson = (str) => {
   }
 }
 export const checkUrl = (url) => {
-  var reg = /http(s)?:\/\/([\w-.]+)+(:[0-9]+)?([\w-./%])*$/;
+  var reg = /http(s)?:\/\/([\w-.]+)+(:[0-9]+)?.*$/;
   if (!reg.test(url)) {
     return false;
   }
