@@ -277,7 +277,8 @@
             </el-form>
           </el-tab-pane>
           <!-- 其他事件配置 -->
-          <el-tab-pane name="3">
+          <el-tab-pane name="3"
+                       v-if="!vaildProp('',[undefined])">
             <el-tooltip slot="label"
                         effect="dark"
                         content="事件"
