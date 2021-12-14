@@ -35,7 +35,8 @@ export default create({
     handleClick () {
       this.clickFormatter && this.clickFormatter({
         type: index,
-        value: item,
+        item: item,
+        value: item.value,
         data: this.dataChart
       }, this.getItemRefs());
     }

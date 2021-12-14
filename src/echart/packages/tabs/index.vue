@@ -135,7 +135,8 @@ export default create({
       this.updateClick(item);
       this.clickFormatter && this.clickFormatter({
         type: index,
-        value: item,
+        item: item,
+        value: item.value,
         data: this.dataChart
       }, this.getItemRefs());
       if (item.href && !target) window.open(item.href, item.target)

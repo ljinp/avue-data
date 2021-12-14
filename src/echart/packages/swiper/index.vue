@@ -70,7 +70,8 @@ export default create({
     handleClick (item, index) {
       this.clickFormatter && this.clickFormatter({
         type: index,
-        value: item,
+        item: item,
+        value: item.value,
         data: this.dataChart
       }, this.getItemRefs());
     }

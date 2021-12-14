@@ -332,7 +332,7 @@ export default create({
     rowClick (item, index) {
       this.clickFormatter && this.clickFormatter({
         type: index,
-        value: item,
+        item: item,
         data: this.dataChart
       });
     },

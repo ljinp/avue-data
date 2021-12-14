@@ -186,7 +186,8 @@ export default create({
       });
       this.clickFormatter && this.clickFormatter({
         type: index,
-        value: item,
+        item: item,
+        value: item.prefixText,
         data: this.dataChart
       }, this.getItemRefs());
       if (item.href) window.open(item.href, item.target)
