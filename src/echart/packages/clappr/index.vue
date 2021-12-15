@@ -2,7 +2,7 @@
   <div :class="b()"
        :style="styleSizeName"
        @click="handleClick">
-    <div id="player-wrapper"
+    <div :id="id"
          v-if="reload"
          :style="styleSizeName"></div>
   </div>
@@ -14,6 +14,7 @@ export default create({
   name: "clapper",
   data () {
     return {
+      id: 'player-wrapper',
       reload: true,
       config: {}
     }
@@ -31,7 +32,7 @@ export default create({
           this.reload = true;
           setTimeout(() => {
             new Clappr.Player({
-              parentId: '#player-wrapper',
+              parentId: '#' + this.id,
               source: this.dataChart.value,
               autoPlay: this.autoplay,
               mute: true,
