@@ -78,6 +78,12 @@
  .el-table::before{
    display: none;
  }
+ .el-table colgroup.gutter, .el-table th.gutter{
+   display: none !important;
+ }
+ .el-table td, .el-table th.is-leaf{
+   border-bottom:none;
+ }
 }
 &-header{
   padding: 10px;

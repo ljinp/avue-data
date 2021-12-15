@@ -5,6 +5,8 @@
               :height="height"
               :border="option.border"
               :cellStyle="cellStyle"
+              :row-style="rowStyle"
+              :header-row-style="headerRowStyle"
               :header-cell-style="headerCellStyle">
       <el-table-column type="index"
                        label="#"
@@ -16,6 +18,7 @@
       </el-table-column>
       <template v-for="(item,index) in option.column">
         <el-table-column v-if="item.hide!==true"
+                         show-overflow-tooltip
                          :key='index'
                          :prop="item.prop"
                          :label="item.label"
@@ -94,13 +97,23 @@ export default create({
         fontSize: this.setPx(this.option.bodyFontSize),
         color: this.option.bodyColor,
         textAlign: column.type == 'index' ? 'center' : this.option.bodyTextAlign,
-        background: rowIndex % 2 == 0 ? this.option.nthColor : this.option.othColor,
+        backgroundColor: rowIndex % 2 == 0 ? this.option.othColor : this.option.nthColor,
+      }
+    },
+    rowStyle ({ rowIndex }) {
+      return {
+        backgroundColor: 'transparent'
+      }
+    },
+    headerRowStyle () {
+      return {
+        backgroundColor: this.option.headerBackground
       }
     },
     headerCellStyle ({ row, column, rowIndex, columnIndex }) {
       return {
         fontSize: this.setPx(this.option.headerFontSize),
-        background: this.option.headerBackground,
+        backgroundColor: this.option.headerBackground,
         color: this.option.headerColor,
         textAlign: column.type == 'index' ? 'center' : this.option.headerTextAlign
       }
