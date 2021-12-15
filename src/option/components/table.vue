@@ -17,6 +17,10 @@
       </avue-switch>
     </el-form-item>
     <template v-if="main.activeOption.scroll">
+      <el-form-item label="滚动间隔">
+        <avue-input-number v-model="main.activeOption.scrollTime">
+        </avue-input-number>
+      </el-form-item>
       <el-form-item label="滚动速度">
         <avue-input-number v-model="main.activeOption.scrollSpeed">
         </avue-input-number>

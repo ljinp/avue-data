@@ -1,6 +1,7 @@
 <template>
   <div :class="b()">
     <el-table ref="table"
+              @cell-click="cellClick"
               :data="dataChart"
               :height="height"
               :border="option.border"
@@ -50,14 +51,17 @@ export default create({
     }
   },
   computed: {
+    scrollTime () {
+      return this.option.scrollTime
+    },
     scrollSpeed () {
-      return this.option.scrollSpeed
+      return this.option.scrollSpeed || 1
     },
     scroll () {
       return this.option.scroll
     },
     cellHeight () {
-      return Number((this.height - 50) / this.option.count)
+      return Number((this.height + 35.3) / this.option.count)
     }
   },
   props: {
@@ -71,20 +75,38 @@ export default create({
   created () {
     this.$nextTick(() => {
       this.height = this.$el.clientHeight;
-      this.setTime();
+      setTimeout(() => {
+        this.setTime();
+      }, this.scrollTime)
     })
   },
   methods: {
+    cellClick (row, column, cell, event) {
+      this.updateClick(row);
+      this.clickFormatter && this.clickFormatter({
+        type: column,
+        item: item,
+        data: this.dataChart
+      }, this.getItemRefs());
+    },
     setTime () {
       clearInterval(this.scrollCheck);
       const table = this.$refs.table
       const divData = table.bodyWrapper
+      let top = 0
       if (this.scroll) {
         this.scrollCheck = setInterval(() => {
-          divData.scrollTop += this.scrollSpeed || 1
+          top = top + this.scrollSpeed
+          divData.scrollTop += this.scrollSpeed
           if (divData.clientHeight + divData.scrollTop == divData.scrollHeight) {
             // 重置table距离顶部距离
             divData.scrollTop = 0
+          }
+          if (top > this.cellHeight && this.scrollTime) {
+            clearInterval(this.scrollCheck);
+            setTimeout(() => {
+              this.setTime()
+            }, this.scrollTime)
           }
         }, 20)
       } else {

@@ -84,6 +84,23 @@
  .el-table td, .el-table th.is-leaf{
    border-bottom:none;
  }
+ .el-table tbody tr:hover>td { 
+   background-color: transparent 
+  }
+ .el-table__body-wrapper::-webkit-scrollbar {
+  /*width: 0;宽度为0隐藏*/
+  width: 0px;
+}
+.el-table__body-wrapper::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  height: 50px;
+  background: #eee;
+}
+.el-table__body-wrapper::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.4);
+}
 }
 &-header{
   padding: 10px;
