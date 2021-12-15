@@ -441,7 +441,6 @@ export default {
       db: '',
       sql: '',
       nav: [],
-      json: {},
       DIC: {
         sql: [],
       },

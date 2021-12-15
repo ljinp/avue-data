@@ -25,7 +25,7 @@
 
 <script>
 import subgroup from './subgroup'
-import {config as defaultConfig} from '@/option/config'
+import common from '@/config'
 import { getObj } from '@/api/visual'
 import Vue from 'vue'
 Vue.prototype.$website = window.$website;
@@ -116,8 +116,11 @@ export default {
       let config;
       const callback = () => {
         //赋值属性
-        if (this.contain.config.mark.show && !this.isBuild) {
-          this.watermark(this.contain.config.mark);
+        let mark = this.contain.config.mark;
+        if (mark.show && !this.isBuild) {
+          this.watermark(Object.assign(mark, {
+            fontSize: mark.fontSize + 'px'
+          }));
         }
         this.calcData();
         this.setScale(width);
@@ -137,8 +140,7 @@ export default {
             config: JSON.parse(config.detail) || {},
             component: JSON.parse(config.component) || []
           }
-          this.contain.json = contain
-          this.contain.config = Object.assign({}, defaultConfig, contain.config);
+          this.contain.config = contain.config;
           this.contain.nav = contain.component
           this.contain.visual = data.visual;
           //添加水印。只有查看页面生效

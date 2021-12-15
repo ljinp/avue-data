@@ -1,44 +1,45 @@
 <template>
   <div>
-    <div v-for="item in nav"
-         :key="item.index"
-         @contextmenu.prevent="contain.handleContextMenu && contain.handleContextMenu($event,item)">
-      <avue-draggable v-if="!item.children"
-                      v-bind="item"
-                      :scale="container.stepScale"
-                      :disabled="!contain.menuFlag"
-                      :step="container.stepScale"
-                      :width="item.component.width"
-                      :height="item.component.height"
-                      :ref="common.DEAFNAME+item.index"
-                      :id="common.DEAFNAME+item.index"
-                      :active-flag="contain.active.includes(item.index)"
-                      v-show="!item.display"
-                      @move="handleMove"
-                      @over="handleOver"
-                      @focus="handleFocus"
-                      @blur="handleBlur">
-        <component :ref="common.NAME+item.index"
-                   :id="common.NAME+item.index"
-                   :is="common.COMPNAME+item.component.name"
-                   v-bind="item"
-                   :data-formatter="getFunction(item.dataFormatter)"
-                   :click-formatter="getFunction(item.clickFormatter,true)"
-                   :echart-formatter="getFunction(item.echartFormatter)"
-                   :label-formatter="getFunction(item.labelFormatter)"
-                   :styles-formatter="getFunction(item.stylesFormatter)"
-                   :formatter="getFunction(item.formatter)"
-                   :data-query="getFunction(item.dataQuery)"
-                   :data-header="getFunction(item.dataHeader)"
-                   :sql-formatter="sqlFormatter"
-                   :width="item.component.width"
-                   :height="item.component.height"
-                   :disabled="!contain.menuFlag"
-                   :scale="container.stepScale"
-                   title="" />
-      </avue-draggable>
-      <subgroup :nav="item.children"></subgroup>
-    </div>
+    <template v-for="item in nav">
+      <div :key="item.index"
+           v-if="!item.children"
+           @contextmenu.prevent="contain.handleContextMenu && contain.handleContextMenu($event,item)">
+        <avue-draggable v-bind="item"
+                        :scale="container.stepScale"
+                        :disabled="!contain.menuFlag"
+                        :step="container.stepScale"
+                        :width="item.component.width"
+                        :height="item.component.height"
+                        :ref="common.DEAFNAME+item.index"
+                        :id="common.DEAFNAME+item.index"
+                        :active-flag="contain.active.includes(item.index)"
+                        v-show="!item.display"
+                        @move="handleMove"
+                        @over="handleOver"
+                        @focus="handleFocus"
+                        @blur="handleBlur">
+          <component :ref="common.NAME+item.index"
+                     :id="common.NAME+item.index"
+                     :is="common.COMPNAME+item.component.name"
+                     v-bind="item"
+                     :data-formatter="getFunction(item.dataFormatter)"
+                     :click-formatter="getFunction(item.clickFormatter,true)"
+                     :echart-formatter="getFunction(item.echartFormatter)"
+                     :label-formatter="getFunction(item.labelFormatter)"
+                     :styles-formatter="getFunction(item.stylesFormatter)"
+                     :formatter="getFunction(item.formatter)"
+                     :data-query="getFunction(item.dataQuery)"
+                     :data-header="getFunction(item.dataHeader)"
+                     :sql-formatter="sqlFormatter"
+                     :width="item.component.width"
+                     :height="item.component.height"
+                     :disabled="!contain.menuFlag"
+                     :scale="container.stepScale"
+                     title="" />
+        </avue-draggable>
+        <subgroup :nav="item.children"></subgroup>
+      </div>
+    </template>
   </div>
 </template>
 

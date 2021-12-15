@@ -62,9 +62,9 @@
       <div class="head_btn"
            @click="$refs.result.show=true">
         <el-tooltip effect="dark"
-                    content="大屏结构"
+                    content="导入导出"
                     placement="top">
-          <i class="el-icon-info"></i>
+          <i class="el-icon-download"></i>
         </el-tooltip>
       </div>
       <div class="head_btn"

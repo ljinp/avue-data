@@ -1191,21 +1191,28 @@ export default [{
       "dataFormatter": "",
       "stylesFormatter": "",
       "component": {
-        "width": 500,
-        "height": 200,
+        "width": 700,
+        "height": 350,
         "name": "table",
         "prop": "table",
       },
       "option": {
         "columnShow": true,
         "columnViews": true,
-        "headerBackground": "rgba(30, 144, 255, 1)",
-        "headerColor": "rgba(241, 242, 245, 1)",
+        "headerBackground": "rgba(8, 90, 111, 0.8)",
+        "headerColor": "rgba(154, 168, 212, 1)",
         "headerTextAlign": "center",
+        "nthColor": "rgba(14, 86, 241, 0.08)",
         "bodyBackground": "rgba(0, 0, 0, 0.01)",
-        "bodyColor": "rgba(0, 0, 0, 1)",
-        "borderColor": "rgba(51, 65, 107, 1)",
+        "bodyColor": "rgba(154, 168, 212, 1)",
         "bodyTextAlign": "center",
+        "align": "center",
+        "headerAlign": "center",
+        "header": false,
+        "scrollSpeed": 1,
+        "fontSize": 15,
+        "count": 4,
+        "index": true,
         "column": [{
           "label": "车牌号",
           "prop": "type1"
@@ -1219,17 +1226,6 @@ export default [{
           "label": "油耗",
           "prop": "type4"
         }],
-        "align": "center",
-        "headerAlign": "center",
-        "header": false,
-        "scroll": true,
-        "scrollTime": 10000,
-        "fontSize": 15,
-        "count": 4,
-        "nthColor": "rgba(127, 185, 242, 1)",
-        "othColor": "rgba(164, 205, 244, 1)",
-        "index": true,
-        "scrollCount": 1
       }
     }
   }, {

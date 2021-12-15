@@ -1,6 +1,13 @@
 <!-- 表格配置 -->
 <template>
   <div>
+    <el-form-item label="开启排名">
+      <avue-switch v-model="main.activeOption.index"></avue-switch>
+    </el-form-item>
+    <el-form-item label="边框">
+      <avue-switch v-model="main.activeOption.border">
+      </avue-switch>
+    </el-form-item>
     <el-form-item label="追加模式">
       <avue-switch v-model="main.activeOption.dataAppend">
       </avue-switch>
@@ -9,30 +16,23 @@
       <avue-switch v-model="main.activeOption.scroll">
       </avue-switch>
     </el-form-item>
-    <el-form-item label="开启显隐">
-      <avue-switch v-model="main.activeOption.columnShow">
-      </avue-switch>
-    </el-form-item>
-    <el-form-item label="全部数据">
-      <avue-switch v-model="main.activeOption.columnViews">
-      </avue-switch>
-    </el-form-item>
     <template v-if="main.activeOption.scroll">
-      <el-form-item label="滚动时间">
+      <el-form-item label="滚动间隔">
         <avue-input-number v-model="main.activeOption.scrollTime">
         </avue-input-number>
       </el-form-item>
-      <el-form-item label="滚动行数">
-        <avue-input-number v-model="main.activeOption.scrollCount">
+      <el-form-item label="滚动速度">
+        <avue-input-number v-model="main.activeOption.scrollSpeed">
         </avue-input-number>
       </el-form-item>
     </template>
-    <el-form-item label="开启排名">
-      <avue-switch v-model="main.activeOption.index"></avue-switch>
-    </el-form-item>
     <el-collapse accordion>
       <el-collapse-item title="表头设置">
-        <el-form-item label="背景">
+        <el-form-item label="字体大小">
+          <avue-input-number v-model="main.activeOption.headerFontSize">
+          </avue-input-number>
+        </el-form-item>
+        <el-form-item label="背景颜色">
           <avue-input-color type="textarea"
                             v-model="main.activeOption.headerBackground"></avue-input-color>
         </el-form-item>
@@ -40,15 +40,25 @@
           <avue-input-color type="textarea"
                             v-model="main.activeOption.headerColor"></avue-input-color>
         </el-form-item>
+        <el-form-item label="对其方式">
+          <avue-select v-model="main.activeOption.headerTextAlign"
+                       :dic="dicOption.textAlign">
+          </avue-select>
+        </el-form-item>
       </el-collapse-item>
       <el-collapse-item title="表格设置">
-        <el-form-item label="字体大小">
-          <avue-input-number v-model="main.activeOption.fontSize">
-          </avue-input-number>
-        </el-form-item>
         <el-form-item label="显示行数">
           <avue-input-number v-model="main.activeOption.count">
           </avue-input-number>
+        </el-form-item>
+        <el-form-item label="字体大小">
+          <avue-input-number v-model="main.activeOption.bodyFontSize">
+          </avue-input-number>
+        </el-form-item>
+        <el-form-item label="对其方式">
+          <avue-select v-model="main.activeOption.bodyTextAlign"
+                       :dic="dicOption.textAlign">
+          </avue-select>
         </el-form-item>
         <el-form-item label="文字颜色">
           <avue-input-color type="textarea"

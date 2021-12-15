@@ -104,12 +104,24 @@ a{
 .el-radio__input, .params .el-radio__label,.params input{
   font-size: 12px;
 }
-.el-table th, .el-table tr,.el-table, .el-table__expanded-cell {
-  background-color: transparent !important;
-  color:#859094 !important;
-}
-.el-table td, .el-table th.is-leaf {
-  border-color: #859094 !important;
+.avue-crud{
+  .el-table th, .el-table tr,.el-table, .el-table__expanded-cell {
+    background-color: transparent !important;
+    color:#859094 !important;
+  }
+  .el-table td, .el-table th.is-leaf {
+    border-color: #859094 !important;
+  }
+  .hover-row td,.hover-row th{
+    background-color: transparent !important;
+    border-bottom: none;
+  }
+  .el-table__fixed-right::before, .el-table__fixed::before,.el-table::before{
+    display: none;
+  }
+  .el-table td, .el-table th.is-leaf {
+    border-bottom:none;
+  }
 }
 .avue-empty__desc{
   color:#fff;
@@ -118,16 +130,6 @@ a{
   color:#fff !important;
 }
 
-.hover-row td,.hover-row th{
-  background-color: transparent !important;
-  border-bottom: none;
-}
-.el-table__fixed-right::before, .el-table__fixed::before,.el-table::before{
-  display: none;
-}
-.el-table td, .el-table th.is-leaf {
-  border-bottom:none;
-}
 .el-dialog ,.avue-group__item{
   background: #1b1e25;
 }
@@ -313,4 +315,7 @@ input{
   overflow: hidden;
   white-space: nowrap;
   line-height: 40px;
+}
+.avue-draggable__item{
+  height: 100%;
 }
