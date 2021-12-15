@@ -1,102 +1,28 @@
 <template>
-  <div :class="b()"
-       :style="[styleSizeName,{overflow:(scroll?'hidden':'inherit')}]">
-    <el-dialog :visible.sync="visible"
-               modal-append-to-body
-               :close-on-click-modal="false"
-               append-to-body
-               title="数据显隐"
-               width="30%">
-      <avue-checkbox :dic="columnOption"
-                     :props="{value:'prop'}"
-                     v-model="columnData"></avue-checkbox>
-    </el-dialog>
-    <el-dialog :visible.sync="listVisible"
-               modal-append-to-body
-               :close-on-click-modal="false"
-               :class="b('allview')"
-               title="详细数据"
-               append-to-body
-               width="80%">
-      <avue-crud :option="listOption"
-                 :data="dataTabel"></avue-crud>
-    </el-dialog>
-    <div :style="styleTdName"
-         :class="b('table')">
-      <div :class="b('tr')">
-        <div :class="b('td')"
-             :style="[styleThName,styleWidth(indexWidth)]"
-             v-if="index">
-          <div :class="b('menu')"
-               :style="styleMenuName">
-            <i class="el-icon-menu"
-               v-if="columnShow"
-               @click="visible=true"></i>
-            <i class="el-icon-view"
-               v-if="columnViews"
-               @click="listVisible=true"></i>
-          </div>
-        </div>
-        <template v-for="(item,index) in columnOption">
-          <div :class="b('td')"
-               :style="[styleThName,styleWidth(item.width)]"
-               v-if="(columnData || []).includes(item.prop)"
-               :key="index"
-               @click="handleSortable(item.prop)">
-            {{item.label}}
-          </div>
-        </template>
-      </div>
-      <div :class="b('tr')"
-           v-if="totalFlag">
-        <div :class="[b('td')]"
-             :style="[styleWidth(indexWidth)]"
-             v-if="index">
-          合计
-        </div>
-        <template v-for="(item,index) in columnOption">
-          <div :class="b('td')"
-               :style="[styleWidth(item.width)]"
-               v-if="(columnData || []).includes(item.prop)"
-               :key="index">
-            {{totalData[item.prop]}}
-          </div>
-        </template>
-      </div>
-      <div :class="b('body')"
-           ref="body"
-           :style="styleSizeName">
-        <transition-group :enter-active-class="option.enterActiveClass"
-                          :leave-active-class="option.leaveActiveClass"
-                          tag="div">
-          <div v-for="(citem,cindex) in dataTabel"
-               @click="rowClick(citem,cindex)"
-               :key="dataTabelLen-cindex"
-               :class="b('tr',['line'])"
-               :style="[styleTrName(cindex),{ top:setPx(cindex * lineHeight +top)}]">
-            <div :class="b('td')"
-                 :style="[styleWidth(indexWidth)]"
-                 :key="index"
-                 v-if="index">
-              <div :class="b('index',[(cindex+1)+''])"> {{(cindex+1)}}</div>
-            </div>
-            <template v-for="(item,index) in columnOption">
-              <div :class="b('td')"
-                   v-if="(columnData ||[]).includes(item.prop)"
-                   :style="[styleTdName,styleWidth(item.width)]"
-                   :key="index">
-                <el-tooltip class="item"
-                            effect="dark"
-                            :content="citem[item.prop]"
-                            placement="top">
-                  <span v-html="citem[item.prop]"></span>
-                </el-tooltip>
-              </div>
-            </template>
-          </div>
-        </transition-group>
-      </div>
-    </div>
+  <div :class="b()">
+    <el-table ref="table"
+              :data="dataChart"
+              :height="height"
+              :border="option.border"
+              :cellStyle="cellStyle"
+              :header-cell-style="headerCellStyle">
+      <el-table-column type="index"
+                       label="#"
+                       header-align="center"
+                       align="center"
+                       v-if="option.index"
+                       width="60">
+        <span slot-scope="{$index}">{{$index+1}}</span>
+      </el-table-column>
+      <template v-for="(item,index) in option.column">
+        <el-table-column v-if="item.hide!==true"
+                         :key='index'
+                         :prop="item.prop"
+                         :label="item.label"
+                         :width="item.width">
+        </el-table-column>
+      </template>
+    </el-table>
   </div>
 </template>
 
@@ -106,179 +32,29 @@ export default create({
   name: "table",
   data () {
     return {
-      visible: false,
-      listVisible: false,
-      columnData: [],
-      indexWidth: 80,
-      top: 0,
-      prop: "",
+      height: '',
       scrollCheck: "",
-      activeIndex: 0,
-      query: {}
     };
   },
   watch: {
-    columnOption: {
-      handler () {
-        this.columnData = [];
-        this.columnOption.forEach(ele => {
-          if (ele.hide != true) {
-            this.columnData.push(ele.prop);
-          }
-        });
-      },
-      immediate: true
-    },
-    scrollCount () {
-      this.setTime();
-    },
-    count () {
-      this.setTime();
-    },
-    scrollTime () {
-      this.setTime();
-    },
-    count () {
+    scrollSpeed () {
       this.setTime();
     },
     scroll: {
-      handler (val) {
+      handler () {
         this.setTime();
       },
-      immediate: true
     }
   },
   computed: {
-    listOption () {
-      return Object.assign(
-        {
-          align: "center",
-          headerAlign: "center",
-          size: "mini",
-          menu: false,
-          header: false,
-          height: 500,
-          sumText: "合计",
-          showSummary: true,
-          column: this.option.column
-        },
-        (() => {
-          return {
-            sumColumnList: this.totalList.map(column => {
-              return {
-                name: column,
-                type: "sum"
-              };
-            })
-          };
-        })()
-      );
-    },
-    totalList () {
-      return this.option.totalList || [];
-    },
-    totalFlag () {
-      return !this.validatenull(this.totalList);
-    },
-    totalData () {
-      let obj = {};
-      this.totalList.forEach(prop => {
-        this.dataChart.forEach(ele => {
-          obj[prop] = (obj[prop] || 0) + Number(ele[prop]);
-          obj[prop] = Number(obj[prop].toFixed(2));
-        });
-      });
-      return obj;
-    },
-    columnShow () {
-      return this.option.columnShow;
-    },
-    columnViews () {
-      return this.option.columnViews;
-    },
-    columnShowWhite () {
-      return this.option.columnShowWhite || [];
-    },
-    columnShowList () {
-      return this.option.columnShowList || [];
-    },
-    dataTabelLen () {
-      return this.dataChart.length;
-    },
-    dataTabel () {
-      let list = this.dataChart;
-      if (!this.validatenull(this.prop)) {
-        list = this.sortArrys(list, this.prop);
-      }
-      return list;
-    },
-    allHeight () {
-      const count = this.count - (this.totalFlag ? 2 : 1);
-      const calcState = this.dataChartLen - count;
-      return calcState * this.lineHeight;
-    },
-    count () {
-      return (this.option.count || 10) + 1;
-    },
-    dataChartLen () {
-      return (this.dataChart || []).length;
-    },
-    lineHeight () {
-      return parseInt(this.height / this.count);
-    },
-    index () {
-      return this.option.index;
+    scrollSpeed () {
+      return this.option.scrollSpeed
     },
     scroll () {
-      return this.option.scroll;
+      return this.option.scroll
     },
-    scrollTime () {
-      return this.option.scrollTime || 5000;
-    },
-    fontSize () {
-      return this.option.fontSize || 14;
-    },
-    scrollCount () {
-      return this.option.scrollCount || this.count;
-    },
-    speed () {
-      return this.scrollCount * this.lineHeight;
-    },
-    styleThName () {
-      return {
-        fontSize: this.setPx(this.fontSize),
-        background: this.option.headerBackground || "rgba(0, 0, 0, 0.01)",
-        color: this.option.headerColor || "rgba(154, 168, 212, 1)"
-      };
-    },
-    columnOption () {
-      return this.crudOption.column || [];
-    },
-    styleTdName () {
-      return {
-        fontSize: this.setPx(this.fontSize),
-        lineHeight: this.setPx(this.lineHeight),
-        height: this.setPx(this.lineHeight),
-        color: this.option.bodyColor || "rgba(154, 168, 212, 1)",
-        borderColor: this.option.borderColor || "rgba(51, 65, 107, 1)"
-      };
-    },
-    styleMenuName () {
-      return {
-        lineHeight: this.setPx(this.lineHeight),
-        color: this.option.headerColor || "rgba(154, 168, 212, 1)"
-      };
-    },
-    sortableProp () {
-      return this.option.sortableProp || "order";
-    },
-    crudOption () {
-      return Object.assign(this.option, {
-        menu: false,
-        align: "center",
-        headerAlign: "center",
-        header: false
-      });
+    cellHeight () {
+      return Number((this.height - 50) / this.option.count)
     }
   },
   props: {
@@ -289,57 +65,45 @@ export default create({
       }
     }
   },
+  created () {
+    this.$nextTick(() => {
+      this.height = this.$el.clientHeight;
+      this.setTime();
+    })
+  },
   methods: {
-    styleWidth (width) {
-      return {
-        width: this.setPx(width),
-        flex: width ? "initial" : 1
-      };
-    },
-    resetData () {
-      this.top = 0;
-    },
-    handleSortable (prop) {
-      this.propQuery[this.sortableProp] = prop;
-      this.updateData();
-    },
     setTime () {
-      this.top = 0;
       clearInterval(this.scrollCheck);
-      setTimeout(() => {
-        if (this.scroll) {
-          this.scrollCheck = setInterval(() => {
-            if (this.top <= -this.allHeight) {
-              this.top = 0;
-            } else {
-              this.top = this.top - this.speed;
-            }
-          }, this.scrollTime);
-        }
-      }, 2000);
-    },
-    styleTrName (index) {
-      let result = {
-        lineHeight: this.setPx(this.lineHeight)
-      };
-      if (index % 2 === 0) {
-        result.background = this.option.othColor;
+      const table = this.$refs.table
+      const divData = table.bodyWrapper
+      if (this.scroll) {
+        this.scrollCheck = setInterval(() => {
+          divData.scrollTop += this.scrollSpeed || 1
+          if (divData.clientHeight + divData.scrollTop == divData.scrollHeight) {
+            // 重置table距离顶部距离
+            divData.scrollTop = 0
+          }
+        }, 20)
       } else {
-        result.background = this.option.nthColor;
+        divData.scrollTop = 0
       }
-      return result;
     },
-    rowClick (item, index) {
-      this.clickFormatter && this.clickFormatter({
-        type: index,
-        item: item,
-        data: this.dataChart
-      });
+    cellStyle ({ row, column, rowIndex, columnIndex }) {
+      return {
+        height: this.setPx(this.cellHeight),
+        fontSize: this.setPx(this.option.bodyFontSize),
+        color: this.option.bodyColor,
+        textAlign: column.type == 'index' ? 'center' : this.option.bodyTextAlign,
+        background: rowIndex % 2 == 0 ? this.option.nthColor : this.option.othColor,
+      }
     },
-    handleClick (value, index) {
-      this.activeIndex = index;
-      this.query.type = value;
-      this.updateData();
+    headerCellStyle ({ row, column, rowIndex, columnIndex }) {
+      return {
+        fontSize: this.setPx(this.option.headerFontSize),
+        background: this.option.headerBackground,
+        color: this.option.headerColor,
+        textAlign: column.type == 'index' ? 'center' : this.option.headerTextAlign
+      }
     }
   }
 });

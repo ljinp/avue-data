@@ -1191,8 +1191,8 @@ export default [{
       "dataFormatter": "",
       "stylesFormatter": "",
       "component": {
-        "width": 500,
-        "height": 200,
+        "width": 700,
+        "height": 350,
         "name": "table",
         "prop": "table",
       },
@@ -1222,14 +1222,12 @@ export default [{
         "align": "center",
         "headerAlign": "center",
         "header": false,
-        "scroll": true,
-        "scrollTime": 10000,
+        "scrollSpeed": 1,
         "fontSize": 15,
         "count": 4,
         "nthColor": "rgba(127, 185, 242, 1)",
         "othColor": "rgba(164, 205, 244, 1)",
         "index": true,
-        "scrollCount": 1
       }
     }
   }, {
