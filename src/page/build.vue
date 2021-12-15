@@ -189,7 +189,7 @@
                     <avue-input-number v-model="config.mark.fontSize"></avue-input-number>
                   </el-form-item>
                   <el-form-item label="颜色">
-                    <avue-input-color v-model="config.mark.textStyle"></avue-input-color>
+                    <avue-input-color v-model="config.mark.color"></avue-input-color>
                   </el-form-item>
                   <el-form-item label="角度">
                     <avue-input-number v-model="config.mark.degree"></avue-input-number>

@@ -9,7 +9,7 @@ export const config = {
     show: false,
     text: 'avue数据大屏水印',
     fontSize: 20,
-    textStyle: 'rgba(100,100,100,0.2)',
+    color: 'rgba(100,100,100,0.2)',
     degree: -20
   },
   scale: 1,
