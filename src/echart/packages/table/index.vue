@@ -61,7 +61,7 @@ export default create({
       return this.option.scroll
     },
     cellHeight () {
-      return Number((this.height + 35.3) / this.option.count)
+      return Number(this.height / this.option.count)
     }
   },
   props: {
@@ -115,6 +115,7 @@ export default create({
     },
     cellStyle ({ row, column, rowIndex, columnIndex }) {
       return {
+        padding: 0,
         height: this.setPx(this.cellHeight),
         fontSize: this.setPx(this.option.bodyFontSize),
         color: this.option.bodyColor,
