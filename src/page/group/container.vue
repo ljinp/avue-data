@@ -25,7 +25,7 @@
 
 <script>
 import subgroup from './subgroup'
-import common from '@/config'
+import {config as defaultConfig} from '@/option/config'
 import { getObj } from '@/api/visual'
 import Vue from 'vue'
 Vue.prototype.$website = window.$website;
@@ -140,7 +140,7 @@ export default {
             config: JSON.parse(config.detail) || {},
             component: JSON.parse(config.component) || []
           }
-          this.contain.config = contain.config;
+          this.contain.config = Object.assign({}, defaultConfig, contain.config);
           this.contain.nav = contain.component
           this.contain.visual = data.visual;
           //添加水印。只有查看页面生效
