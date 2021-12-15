@@ -116,8 +116,11 @@ export default {
       let config;
       const callback = () => {
         //赋值属性
-        if (this.contain.config.mark.show && !this.isBuild) {
-          this.watermark(this.contain.config.mark);
+        let mark = this.contain.config.mark;
+        if (mark.show && !this.isBuild) {
+          this.watermark(Object.assign(mark, {
+            fontSize: mark.fontSize + 'px'
+          }));
         }
         this.calcData();
         this.setScale(width);
