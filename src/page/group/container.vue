@@ -137,7 +137,6 @@ export default {
             config: JSON.parse(config.detail) || {},
             component: JSON.parse(config.component) || []
           }
-          this.contain.json = contain
           this.contain.config = contain.config;
           this.contain.nav = contain.component
           this.contain.visual = data.visual;

@@ -1,15 +1,17 @@
 <template>
   <el-dialog append-to-body
-             title="代码结构"
+             @open="open"
+             title="导入导出"
              :close-on-click-modal="false"
              :visible.sync="show"
              width="60%">
-    <monaco-editor v-model="contain.json"
-                   disabled></monaco-editor>
+    <monaco-editor v-model="json"></monaco-editor>
     <span slot="footer"
           class="dialog-footer">
+      <el-button @click="importData"
+                 size="small"
+                 type="primary">导入数据</el-button>
       <el-button @click="exportData"
-                 icon="el-icon-download"
                  size="small"
                  type="danger">导出数据</el-button>
     </span>
@@ -25,13 +27,31 @@ export default {
   inject: ["contain"],
   data () {
     return {
-      show: false
+      show: false,
+      json: {}
     }
   },
   methods: {
+    open () {
+      this.json = {
+        config: this.contain.config,
+        component: this.contain.nav
+      }
+    },
+    importData () {
+      try {
+        let json = JSON.parse(this.json)
+        this.contain.config = json.config
+        this.contain.nav = json.component
+        this.show = false;
+        this.$message.success('数据导入成功')
+      } catch {
+        this.$message.error('导入数据错误')
+      }
+    },
     exportData () {
       var zip = new window.JSZip();
-      zip.file("data.txt", this.contain.json);
+      zip.file("data.txt", this.json);
       zip.generateAsync({ type: "base64" })
         .then(function (content) {
           location.href = "data:application/zip;base64," + content;
