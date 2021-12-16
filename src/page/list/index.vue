@@ -18,7 +18,7 @@
         <div class="content__box content__nav">
           <div class="content__add"
                @click="handleAdd">
-            <img src="`${$router.options.base}img/new-project.png`"
+            <img :src="`${$router.options.base}img/new-project.png`"
                  height="40px"
                  alt="">
             <p>新建大屏</p>
