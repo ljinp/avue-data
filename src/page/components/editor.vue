@@ -36,7 +36,7 @@ export default {
     },
     value: {
       handler (val) {
-        if (['object', 'array'].includes(typeof val)) {
+        if (typeof (val) == 'object') {
           this.code = JSON.stringify(val, null, 4);
         } else {
           this.code = val || '';

@@ -78,23 +78,44 @@
                    :data="main.activeOption.column"
                    @row-save="rowSave"
                    @row-del="rowDel"
-                   @row-update="rowUpdate"></avue-crud>
+                   @row-update="rowUpdate">
+          <template slot="menuLeft"
+                    slot-scope="{}">
+            <el-button size="mini"
+                       icon="el-icon-s-operation"
+                       @click="openCode"
+                       type="primary">编辑数据</el-button>
+          </template>
+        </avue-crud>
       </el-collapse-item>
     </el-collapse>
+    <codeedit @submit="codeClose"
+              v-model="code.obj"
+              v-if="code.box"
+              :type="code.type"
+              :visible.sync="code.box"></codeedit>
   </div>
 </template>
 
 <script>
 import { tableOption, dicOption } from '@/option/config'
-
+import codeedit from '../../page/group/code';
 export default {
   data () {
     return {
       dicOption: dicOption,
-      tableOption: tableOption
+      tableOption: tableOption,
+      code: {
+        box: false,
+        type: 'data',
+        obj: {},
+      }
     }
   },
   inject: ["main"],
+  components: {
+    codeedit
+  },
   methods: {
     rowSave (row, done) {
       this.main.activeOption.column.push(row);
@@ -106,6 +127,13 @@ export default {
     rowUpdate (row, index, done) {
       this.main.activeOption.column.splice(index, 1, row);
       done()
+    },
+    codeClose (value) {
+      this.main.activeOption.column = value;
+    },
+    openCode () {
+      this.code.obj = this.main.activeOption.column
+      this.code.box = true;
     },
   }
 }
