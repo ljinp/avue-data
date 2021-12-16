@@ -360,6 +360,17 @@
                        type="primary"
                        @click="openCode('data')">编辑JSON</el-button>
           </el-form-item>
+          <el-form-item label="数据值"
+                        label-position="top">
+            <el-upload :show-file-list="false"
+                       :auto-upload="false"
+                       accept=".xls,.xlsx"
+                       :on-change="handleImport">
+              <el-button size="mini"
+                         type="success">导入数据(Excel)</el-button>
+            </el-upload>
+
+          </el-form-item>
         </template>
         <template v-else-if="isSql">
           <el-form-item label="数据源选择">
@@ -607,6 +618,14 @@ export default {
     })
   },
   methods: {
+    handleImport (file, fileLis) {
+      this.$Export.xlsx(file.raw)
+        .then(data => {
+          this.activeObj.data = data.results;
+          this.$message.success('导入成功')
+          this.handleRes()
+        })
+    },
     handleRefresh () {
       return this.$refs.container.handleRefresh();
     },

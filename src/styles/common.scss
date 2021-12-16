@@ -241,6 +241,16 @@ input{
     color:#f56c6c;
   }
 }
+.el-button--success{
+  background-color: transparent;
+  color:#67C23A;
+  border-color:#67C23A;
+  &:hover,&:focus{
+    background:transparent;
+    border-color: #67C23A;
+    color:#67C23A;
+  }
+}
 .el-button--default{
   background-color: transparent;
   color:#859094;

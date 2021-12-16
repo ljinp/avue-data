@@ -93,6 +93,8 @@ export default create({
     },
     setTime () {
       clearInterval(this.scrollCheck);
+      this.height = parseInt(this.$el.clientHeight);
+      this.headerHeight = parseInt(this.$refs.table.$refs.headerWrapper.clientHeight)
       const table = this.$refs.table
       const divData = table.bodyWrapper
       const speed = this.scrollSpeed
