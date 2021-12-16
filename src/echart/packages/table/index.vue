@@ -36,6 +36,7 @@ export default create({
   name: "table",
   data () {
     return {
+      headerHeight: '',
       height: '',
       scrollCheck: "",
     };
@@ -61,7 +62,7 @@ export default create({
       return this.option.scroll
     },
     cellHeight () {
-      return Number(this.height / this.option.count)
+      return parseInt((this.height - this.headerHeight) / this.option.count)
     }
   },
   props: {
@@ -74,7 +75,8 @@ export default create({
   },
   created () {
     this.$nextTick(() => {
-      this.height = this.$el.clientHeight;
+      this.height = parseInt(this.$el.clientHeight);
+      this.headerHeight = parseInt(this.$refs.table.$refs.headerWrapper.clientHeight)
       setTimeout(() => {
         this.setTime();
       }, this.scrollTime)
@@ -93,16 +95,17 @@ export default create({
       clearInterval(this.scrollCheck);
       const table = this.$refs.table
       const divData = table.bodyWrapper
+      const speed = this.scrollSpeed
       let top = 0
       if (this.scroll) {
         this.scrollCheck = setInterval(() => {
-          top = top + this.scrollSpeed
-          divData.scrollTop += this.scrollSpeed
+          top = top + speed
+          divData.scrollTop += speed;
           if (divData.clientHeight + divData.scrollTop == divData.scrollHeight) {
-            // 重置table距离顶部距离
             divData.scrollTop = 0
           }
-          if (top > this.cellHeight && this.scrollTime) {
+          if (top >= this.cellHeight && this.scrollTime) {
+            divData.scrollTop = divData.scrollTop - (top - this.cellHeight)
             clearInterval(this.scrollCheck);
             setTimeout(() => {
               this.setTime()
