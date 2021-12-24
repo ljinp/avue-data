@@ -2,19 +2,20 @@
   <div :class="b()"
        :style="styleSizeName"
        @click="handleClick">
-    <div :id="id"
+    <div :id="hid"
          v-if="reload"
          :style="styleSizeName"></div>
   </div>
 </template>
 
 <script>
+import { uuid } from '@/utils/utils';
 import create from "../../create";
 export default create({
   name: "clapper",
   data () {
     return {
-      id: 'player-wrapper',
+      hid: 'main_' + uuid(),
       reload: true,
       config: {}
     }
@@ -32,7 +33,7 @@ export default create({
           this.reload = true;
           setTimeout(() => {
             new Clappr.Player({
-              parentId: '#' + this.id,
+              parentId: '#' + this.hid,
               source: this.dataChart.value,
               autoPlay: this.autoplay,
               mute: true,

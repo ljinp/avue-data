@@ -1,7 +1,7 @@
 import { setPx, getUrlParams, validatenull } from './util';
 import config from './config';
 import crypto from '@/utils/crypto'
-import { funEval } from '@/utils/utils';
+import { funEval, uuid } from '@/utils/utils';
 import COMMON from '@/config'
 export default (() => {
   return {
@@ -58,7 +58,7 @@ export default (() => {
       },
       id: {
         type: String,
-        default: 'main_' + new Date().getTime()
+        default: 'main_' + uuid()
       },
       data: {
         type: [Object, String, Array]

@@ -6,8 +6,8 @@
                  :indicator-position="indicator"
                  :interval="interval"
                  :height="height">
-      <el-carousel-item v-for="item in dataChart"
-                        :key="item"
+      <el-carousel-item v-for="(item,index) in dataChart"
+                        :key="index"
                         @click="handleClick(item,index)">
         <img v-if="typeList.img.test(item.value)"
              :src="item.value"
@@ -19,6 +19,16 @@
                :src="item.value"
                :style="styleName">
         </video>
+        <avue-echart-clapper v-else-if="item.type=='hls'"
+                             :width="width"
+                             :height="height"
+                             :key="index"
+                             :data="{value:item.value}"
+                             :option="hlsOption"></avue-echart-clapper>
+        <avue-echart-iframe v-else-if="item.type=='iframe'"
+                            :width="width"
+                            :height="height"
+                            :data="{value:item.value}"></avue-echart-iframe>
       </el-carousel-item>
     </el-carousel>
   </div>
@@ -37,6 +47,11 @@ export default create({
     };
   },
   computed: {
+    hlsOption () {
+      return {
+        autoplay: this.option.autoplay
+      }
+    },
     params () {
       let result = {}
       if (this.option.controls) result.controls = "controls"
