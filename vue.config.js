@@ -6,13 +6,14 @@ module.exports = {
   lintOnSave: false,
   css: {
     loaderOptions: {
+      sass: {
+        implementation: require('sass'), // This line must in sass option
+      },
       scss: {
         prependData: '@import "@/styles/echart.scss";\n' +
           Object.keys(scssVariables)
             .map(k => `\$${k.replace('_', '-')}: "${scssVariables[k]}";`)
             .join('\n')
-
-
       }
     }
   },
