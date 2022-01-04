@@ -95,6 +95,8 @@ export default create({
             show: this.vaildData(this.option.xAxisSplitLineShow, false)
           },
           axisLabel: {
+            interval: this.option.xAxisinterval || 'auto',
+            rotate: this.option.xAxisRotate || 0,
             textStyle: {
               color: this.option.nameColor || "#333",
               fontSize: this.option.xNameFontSize || 14
