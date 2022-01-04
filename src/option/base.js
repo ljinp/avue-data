@@ -1197,6 +1197,7 @@ export default [{
         "prop": "table",
       },
       "option": {
+        "showHeader": true,
         "columnShow": true,
         "columnViews": true,
         "headerBackground": "rgba(8, 90, 111, 0.8)",

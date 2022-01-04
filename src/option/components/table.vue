@@ -28,6 +28,10 @@
     </template>
     <el-collapse accordion>
       <el-collapse-item title="表头设置">
+        <el-form-item label="显示">
+          <avue-switch v-model="main.activeOption.showHeader">
+          </avue-switch>
+        </el-form-item>
         <el-form-item label="字体大小">
           <avue-input-number v-model="main.activeOption.headerFontSize">
           </avue-input-number>

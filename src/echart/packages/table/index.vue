@@ -7,6 +7,7 @@
               :border="option.border"
               :cellStyle="cellStyle"
               :row-style="rowStyle"
+              :show-header="showHeader"
               :header-row-style="headerRowStyle"
               :header-cell-style="headerCellStyle">
       <el-table-column type="index"
@@ -52,6 +53,9 @@ export default create({
     }
   },
   computed: {
+    showHeader () {
+      return this.option.showHeader
+    },
     scrollTime () {
       return this.option.scrollTime
     },
